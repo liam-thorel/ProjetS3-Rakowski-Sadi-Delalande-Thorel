@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="Maven: org.kordamp.ikonli:ikonli-core:12.2.0">
     <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/kordamp/ikonli/ikonli-core/12.2.0/ikonli-core-12.2.0.jar!/" />
+      <root url="jar://$USER_HOME$/IdeaProjects/FXML/repository/org/kordamp/ikonli/ikonli-core/12.2.0/ikonli-core-12.2.0.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$MAVEN_REPOSITORY$/org/kordamp/ikonli/ikonli-core/12.2.0/ikonli-core-12.2.0-javadoc.jar!/" />
