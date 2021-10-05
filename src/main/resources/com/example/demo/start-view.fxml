@@ -14,4 +14,5 @@
     <Label fx:id="welcomeText"/>
     <Button text="Nouvelle Simulation" onAction="#onNouvelleSimulation"/>
     <Button text="Charger Simulation" onAction="#onChargerSimulation"/>
+    <Label fx:id="systemText"/>
 </VBox>

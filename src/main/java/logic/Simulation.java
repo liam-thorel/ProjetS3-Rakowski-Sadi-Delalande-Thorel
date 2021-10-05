@@ -13,6 +13,9 @@ public class Simulation implements Serializable {
         listeAstre = new ArrayList<>();
     }
 
+    public Simulation(FileInputStream save) throws IOException, ClassNotFoundException {
+        setAPartireDunFichier(save);
+    }
     public ArrayList<Astre> getListeAstre() {
         return listeAstre;
     }
@@ -36,7 +39,10 @@ public class Simulation implements Serializable {
 
     @Override
     public String toString() {
-        return "Simulation{" +
+        if (listeAstre.isEmpty()){
+            return "la simulation est vide";
+        }
+        return "Simulation{ " +
                  listeAstre +
                 '}';
     }
