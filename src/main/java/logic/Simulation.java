@@ -2,10 +2,12 @@ package logic;
 
 import java.io.*;
 import java.util.ArrayList;
+
+import javafx.stage.Stage;
 import logic.Astre;
 
 
-public class Simulation implements Serializable {
+public class Simulation {
 
     private ArrayList<Astre> listeAstre;
 
@@ -26,8 +28,7 @@ public class Simulation implements Serializable {
 
     public void setAPartireDunFichier(FileInputStream save) throws IOException, ClassNotFoundException {
         ObjectInputStream ois = new ObjectInputStream(save);
-        ArrayList<Astre> listeA = (ArrayList<Astre>) ois.readObject();
-        listeAstre = listeA;
+        listeAstre = (ArrayList<Astre>) ois.readObject();
         ois.close();
     }
 
