@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import logic.Simulation;
 
@@ -22,7 +23,9 @@ public class StartView extends Pane {
     private Button nouveau;
     private BorderPane root;
     private PlaneteApp app;
-    private HBox field;
+    private VBox field;
+    private Label titre;
+    private VBox centrage;
 
     public StartView(PlaneteApp app) {
         this.app = app;
@@ -30,21 +33,27 @@ public class StartView extends Pane {
         setHeight(750);
         welcomeText = new Label();
         root = new BorderPane();
-        field = new HBox();
+        field = new VBox();
+        centrage = new VBox();
         nouveau = new Button("Nouveau Systeme");
         charger = new Button("Charger Systeme");
+        titre = new Label("Trajectoire de planètes");
         charger.setOnAction(onChargerSimulation);
         nouveau.setOnAction(onNouvelleSimulation);
 
-        //ImageView background = new ImageView("src/main/resources/images/background.png");
-
+        //ImageView background = new ImageView("images/background.png");
+        //root.setStyle("-fx-background-image: url(images/background.png);-fx-background-size: 500, 500;-fx-background-repeat: no-repeat;");
         field.setAlignment(Pos.CENTER);
-        //background.setFitWidth(1550);
-        //background.setFitHeight(750);
+        titre.setAlignment(Pos.CENTER);
+        centrage.setAlignment(Pos.CENTER);
+        centrage.getChildren().add(titre);
+        /*background.setFitWidth(1500);
+        background.setFitHeight(750);*/
 
 
         field.getChildren().addAll(nouveau, charger);
 
+        root.setTop(centrage);
         root.setCenter(field);
         root.setBottom(welcomeText);
         Scene scene = new Scene(root);
