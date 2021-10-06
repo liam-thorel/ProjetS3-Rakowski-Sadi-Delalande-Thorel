@@ -26,13 +26,16 @@ public class StartView extends Pane {
     private VBox field;
     private Label titre;
     private VBox centrage;
+    private Pane background;
 
     public StartView(PlaneteApp app) {
         this.app = app;
         setWidth(1500);
         setHeight(750);
         welcomeText = new Label();
+        background = new Pane();
         root = new BorderPane();
+        //root.getStylesheets().addAll(this.getClass().getResource("Css/accueil.css").toExternalForm());
         field = new VBox();
         centrage = new VBox();
         nouveau = new Button("Nouveau Systeme");
@@ -42,22 +45,27 @@ public class StartView extends Pane {
         nouveau.setOnAction(onNouvelleSimulation);
 
         //ImageView background = new ImageView("images/background.png");
-        //root.setStyle("-fx-background-image: url(images/background.png);-fx-background-size: 500, 500;-fx-background-repeat: no-repeat;");
+        //root.setStyle("-fx-background-image: url(https://c.pxhere.com/photos/1a/9d/stars_background_blue_photoshop_color_space_sky_dark-610854.jpg!d);-fx-background-repeat : stretch;-fx-background-position: center center;-fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0)");
         field.setAlignment(Pos.CENTER);
         titre.setAlignment(Pos.CENTER);
         centrage.setAlignment(Pos.CENTER);
         centrage.getChildren().add(titre);
-        titre.setStyle("-fx-font-size: 15 px");
+        titre.setStyle("-fx-font-size: 15 px;-fx-text-fill: white;");
+
         /*background.setFitWidth(1500);
         background.setFitHeight(750);*/
 
 
         field.getChildren().addAll(nouveau, charger);
-
+        //background.getChildren().add(root);
         root.setTop(centrage);
         root.setCenter(field);
         root.setBottom(welcomeText);
+        root.setId("Pane");
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(this.getClass().getResource("/Css/accueil.css").toExternalForm());
+
+
 
         app.getStage().setScene(scene);
 

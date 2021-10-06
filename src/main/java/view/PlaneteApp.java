@@ -28,7 +28,6 @@ public class PlaneteApp extends Application {
         stage.setTitle("Simulation Planète");
         stage.setHeight(750);
         stage.setWidth(1500);
-
         stage.show();
 
 
