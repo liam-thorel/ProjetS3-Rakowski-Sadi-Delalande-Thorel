@@ -6,6 +6,7 @@
     -fx-font-weight: bold;
     -fx-font-family: OpenSymbol;
 }
+/*-fx-background-image:url(../images/background.png) ;*/
 .button {
     -fx-text-fill: black;
     -fx-font-family: "Arial Narrow";
@@ -18,7 +19,7 @@
 }
 
 #pane{
-    -fx-background-image: url(https://c.pxhere.com/photos/1a/9d/stars_background_blue_photoshop_color_space_sky_dark-610854.jpg);
+    -fx-background-image:url(../images/background.png);
     -fx-background-repeat: stretch;
     -fx-background-position: center center;
     /*-fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);*/

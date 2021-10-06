@@ -61,9 +61,10 @@ public class StartView extends Pane {
         root.setTop(centrage);
         root.setCenter(field);
         root.setBottom(welcomeText);
-        root.setId("Pane");
+        root.setId("pane");
+        root.getStylesheets().add(this.getClass().getResource("/Css/accueil.css").toExternalForm());
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(this.getClass().getResource("/Css/accueil.css").toExternalForm());
+
 
 
 
