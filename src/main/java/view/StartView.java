@@ -50,7 +50,7 @@ public class StartView extends Pane {
         titre.setAlignment(Pos.CENTER);
         centrage.setAlignment(Pos.CENTER);
         centrage.getChildren().add(titre);
-        titre.setStyle("-fx-font-size: 15 px;-fx-text-fill: white;");
+        titre.getStylesheets().add(this.getClass().getResource("/Css/accueil.css").toExternalForm());
 
         /*background.setFitWidth(1500);
         background.setFitHeight(750);*/
