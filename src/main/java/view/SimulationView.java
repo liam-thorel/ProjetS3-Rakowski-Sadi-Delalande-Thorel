@@ -27,6 +27,7 @@ public class SimulationView extends Stage {
         contener.getChildren().add(system);
         contener.setAlignment(Pos.CENTER);
         root.setCenter(contener);
+        root.setBottom(new MenuAjouter(this));
 
         Scene scene = new Scene(root);
 
