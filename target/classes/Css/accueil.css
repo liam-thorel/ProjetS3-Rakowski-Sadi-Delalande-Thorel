@@ -1,0 +1,28 @@
+@font-face {
+    font-family: 'Gravitas';
+    src: url(../Font/Gravitas.otf);
+}
+
+.label {
+    -fx-font-size: 100px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-label-padding: 50;
+    -fx-font-family: 'Gravitas';
+
+}
+.button {
+    -fx-font-size: 25px;
+    -fx-font-family: OpenSymbol;
+    -fx-font-weight: bold;
+    -fx-padding: 15;
+}
+.button:hover {
+    -fx-background-color: linear-gradient(Gray, white);
+}
+
+#pane{
+    -fx-background-image:url(../images/background.png);
+}
+
+
