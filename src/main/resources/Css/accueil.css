@@ -1,18 +1,21 @@
+@font-face {
+    font-family: 'Gravitas';
+    src: url(../Font/Gravitas.otf);
+}
 
 .label {
-    -fx-font-size: 50px;
+    -fx-font-size: 100px;
     -fx-text-fill: white;
-    -fx-background-color: black; /*a enlever c'est seulement pour voir*/
     -fx-font-weight: bold;
-    -fx-font-family: OpenSymbol;
+    -fx-label-padding: 50;
+    -fx-font-family: 'Gravitas';
+
 }
-/*-fx-background-image:url(../images/background.png) ;*/
 .button {
-    -fx-text-fill: black;
-    -fx-font-family: "Arial Narrow";
+    -fx-font-size: 25px;
+    -fx-font-family: OpenSymbol;
     -fx-font-weight: bold;
-    -fx-background-color: white;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-padding: 15;
 }
 .button:hover {
     -fx-background-color: linear-gradient(Gray, white);
@@ -20,9 +23,6 @@
 
 #pane{
     -fx-background-image:url(../images/background.png);
-    -fx-background-repeat: stretch;
-    -fx-background-position: center center;
-    /*-fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);*/
 }
 
 

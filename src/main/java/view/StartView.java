@@ -2,6 +2,7 @@ package view;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -55,7 +56,9 @@ public class StartView extends Pane {
         /*background.setFitWidth(1500);
         background.setFitHeight(750);*/
 
-
+        nouveau.setPrefWidth(500);
+        charger.setPrefWidth(500);
+        field.setSpacing(50);
         field.getChildren().addAll(nouveau, charger);
         //background.getChildren().add(root);
         root.setTop(centrage);
