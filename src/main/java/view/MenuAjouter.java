@@ -66,5 +66,8 @@ public class MenuAjouter extends Pane {
     };
 
 
+    public VBox getMenuEtChangeMenu() {
+        return menuEtChangeMenu;
     }
+}
 

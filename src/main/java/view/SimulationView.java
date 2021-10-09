@@ -44,7 +44,7 @@ public class SimulationView extends Stage {
                         new BorderWidths(1),
                         new Insets(0) ));
         menu.setBorder(border2);
-        root.getChildren().add(menu);
+        root.getChildren().add(menu.getMenuEtChangeMenu());
 
         Scene scene = new Scene(root);
 
