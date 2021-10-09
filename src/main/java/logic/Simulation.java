@@ -2,6 +2,7 @@ package logic;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
 import javafx.stage.Stage;
@@ -39,6 +40,7 @@ public class Simulation {
             int masse = 0;
             int pX = 0;
             int pY = 0;
+            boolean creer = true;
             for(String chaine : ligne.split(" ")){
                 if (!chaine.contains("//")){
                     switch (cpt){
@@ -58,10 +60,14 @@ public class Simulation {
                             pY = Integer.parseInt(chaine);
                             break;
                     }
+                }else{
+                    creer = false;
                 }
                 cpt++;
             }
-            listeA.add(new Planete(name, taille, masse, pX, pY));
+            if(creer){
+                listeA.add(new Planete(name, taille, masse, pX, pY));
+            }
         }
         return  listeA;
 
@@ -70,10 +76,17 @@ public class Simulation {
     //getLine()
     //splitString : .split(avec quoi on split)
 
-    public void saveListeAstre(FileOutputStream save) throws IOException {
-        ObjectOutputStream oos = new ObjectOutputStream(save);
-        oos.writeObject(listeAstre);
-        oos.close();
+    public void saveListeAstre(File save) throws IOException {
+        if(save.exists()){
+            save.delete();
+        }
+        save.createNewFile();
+        for(Astre a : listeAstre){
+            String arg = a.getArgString();
+            Files.write(save.toPath(), arg.getBytes(), StandardOpenOption.APPEND);
+
+
+        }
     }
 
     @Override

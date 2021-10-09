@@ -24,6 +24,7 @@ public class Play {
         //s.saveListeAstre(new FileOutputStream(new File("save.txt")));
 
         Simulation s2 = new Simulation(new File("save.txt"));
+        s2.saveListeAstre(new File("save2.txt"));
         System.out.println(s2);
         System.out.println(s);
     }

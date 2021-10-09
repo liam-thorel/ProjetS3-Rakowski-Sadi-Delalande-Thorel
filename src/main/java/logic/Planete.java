@@ -17,6 +17,11 @@ public class Planete extends Astre{
     }
 
     @Override
+    public String getArgString(){
+        return nom + " "+ taille+ " " + masse+ " " + positionX+ " " + positionY + "\n";
+    }
+
+    @Override
     public String toString() {
         return nom + " {" +
                 " taille = " + taille +
