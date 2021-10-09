@@ -35,7 +35,11 @@ public class MenuAjouter extends Pane {
         systemeOuAjouter = new HBox();
         playOuPause = new HBox();
         systeme = new Button();
+        systeme.prefWidth(20);
+        systeme.prefHeight(15);
         ajouter = new Button();
+        ajouter.prefWidth(20);
+        ajouter.prefHeight(15);
         ajouter.setOnAction(onAjouterMenu);
         systeme.setOnAction(onSystemeMenu);
         systemeOuAjouter.getChildren().addAll(systeme, ajouter);
