@@ -20,7 +20,7 @@ public class SimulationView extends Stage {
     private Simulation s;
     private VBox root;
     private HBox contener;
-    private StackPane espace;
+    private Pane espace;
 
     public SimulationView(Simulation s,PlaneteApp app) {
         this.s = s;
