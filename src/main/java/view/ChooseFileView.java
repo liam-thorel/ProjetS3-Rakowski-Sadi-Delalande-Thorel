@@ -44,6 +44,8 @@ public class ChooseFileView extends Stage {
         root.add(fileName, 0,0);
         root.add(chargerFile, 0, 1);
         root.add(systemText,0,2);
+        root.setId("bg");
+        root.getStylesheets().add(this.getClass().getResource("/Css/simulation.css").toExternalForm());
 
         Scene scene = new Scene(root);
         app.getStage().setScene(scene);

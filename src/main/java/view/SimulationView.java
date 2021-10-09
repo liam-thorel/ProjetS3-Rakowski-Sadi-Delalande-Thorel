@@ -45,6 +45,8 @@ public class SimulationView extends Stage {
                         new Insets(0) ));
         menu.setBorder(border2);
         root.getChildren().add(menu.getMenuEtChangeMenu());
+        root.setId("bg");
+        root.getStylesheets().add(this.getClass().getResource("/Css/simulation.css").toExternalForm());
 
         Scene scene = new Scene(root);
 
