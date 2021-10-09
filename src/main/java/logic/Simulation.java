@@ -37,7 +37,8 @@ public class Simulation {
             String name = "";
             int taille =0;
             int masse = 0;
-
+            int pX = 0;
+            int pY = 0;
             for(String chaine : ligne.split(" ")){
                 switch (cpt){
                     case 1:
@@ -48,10 +49,17 @@ public class Simulation {
                         break;
                     case 3 :
                         masse = Integer.parseInt(chaine);
+                        break;
+                    case 4 :
+                        pX = Integer.parseInt(chaine);
+                        break;
+                    case 5 :
+                        pY = Integer.parseInt(chaine);
+                        break;
                 }
                 cpt++;
             }
-            listeA.add(new Planete(name, taille, masse));
+            listeA.add(new Planete(name, taille, masse, pX, pY));
         }
         return  listeA;
 
