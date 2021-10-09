@@ -59,8 +59,6 @@ public class MenuAjouter extends Pane {
         public void handle(ActionEvent actionEvent){
             System.out.println("j'affiche la vue du menu systeme'");
         }
-
-
     };
 
 

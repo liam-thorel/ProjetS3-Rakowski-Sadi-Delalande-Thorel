@@ -1,11 +1,12 @@
 package view;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import logic.Simulation;
 
@@ -26,9 +27,16 @@ public class SimulationView extends Stage {
         Label system = new Label(s.toString());
         contener.getChildren().add(system);
         contener.setAlignment(Pos.CENTER);
+        Border border1 = new Border(
+                new BorderStroke(Color.GREEN,
+                        BorderStrokeStyle.SOLID,
+                        CornerRadii.EMPTY,
+                        new BorderWidths(6),
+                        new Insets(0) ));
+        contener.setBorder(border1);
         root.getChildren().add(contener);
-        root.getChildren().add(new MenuAjouter(this));
 
+        root.getChildren().add(new MenuAjouter(this));
 
         Scene scene = new Scene(root);
 
