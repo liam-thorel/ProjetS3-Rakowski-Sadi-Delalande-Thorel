@@ -18,8 +18,10 @@ public class Planete extends Astre{
     @Override
     public String toString() {
         return nom + " {" +
-                " taille= " + taille +
-                ", masse= " + masse +
+                " taille = " + taille +
+                ", masse = " + masse +
+                "coordonnées = X " + positionX +
+                ", Y : " + positionY +
                 '}'+'\n';
     }
 }
