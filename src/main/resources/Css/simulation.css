@@ -5,3 +5,8 @@
 .label{
     -fx-text-fill: white;
 }
+
+.button {
+    -fx-font-family: OpenSymbol;
+    -fx-font-weight: bold;
+}
