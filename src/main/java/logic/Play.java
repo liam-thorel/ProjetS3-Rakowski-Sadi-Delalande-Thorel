@@ -1,9 +1,6 @@
 package logic;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class Play {
@@ -24,9 +21,9 @@ public class Play {
         listeA.add(p3);
 
         s.setListeAstre(listeA);
-        s.saveListeAstre(new FileOutputStream("save.txt"));
+        //s.saveListeAstre(new FileOutputStream(new File("save.txt")));
 
-        Simulation s2 = new Simulation(new FileInputStream("save.txt"));
+        Simulation s2 = new Simulation(new File("save.txt"));
         System.out.println(s2);
         System.out.println(s);
     }

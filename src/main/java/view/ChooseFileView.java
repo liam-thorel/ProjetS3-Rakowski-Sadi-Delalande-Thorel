@@ -11,6 +11,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import logic.Simulation;
+
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
@@ -58,7 +60,7 @@ public class ChooseFileView extends Stage {
             String name = fileName.getText();
             Simulation s = null;
             try {
-                s = new Simulation(new FileInputStream(name));
+                s = new Simulation(new File(name));
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }

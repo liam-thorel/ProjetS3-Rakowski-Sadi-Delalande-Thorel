@@ -1,6 +1,7 @@
 package logic;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.ArrayList;
 
 import javafx.stage.Stage;
@@ -15,8 +16,8 @@ public class Simulation {
         listeAstre = new ArrayList<>();
     }
 
-    public Simulation(FileInputStream save) throws IOException, ClassNotFoundException {
-        setAPartireDunFichier(save);
+    public Simulation(File save) throws IOException, ClassNotFoundException {
+        listeAstre = setAPartireDunFichier(save);
     }
     public ArrayList<Astre> getListeAstre() {
         return listeAstre;
@@ -26,10 +27,34 @@ public class Simulation {
         this.listeAstre = listeAstre;
     }
 
-    public void setAPartireDunFichier(FileInputStream save) throws IOException, ClassNotFoundException {
-        ObjectInputStream ois = new ObjectInputStream(save);
+    public ArrayList<Astre> setAPartireDunFichier(File save) throws IOException {
+        /*ObjectInputStream ois = new ObjectInputStream(save);
         listeAstre = (ArrayList<Astre>) ois.readObject();
-        ois.close();
+        ois.close();*/
+        ArrayList<Astre> listeA = new ArrayList<>();
+        for (String ligne : Files.readAllLines(save.toPath())){
+            int cpt =1;
+            String name = "";
+            int taille =0;
+            int masse = 0;
+
+            for(String chaine : ligne.split(" ")){
+                switch (cpt){
+                    case 1:
+                        name = chaine;
+                        break;
+                    case 2 :
+                        taille = Integer.parseInt(chaine);
+                        break;
+                    case 3 :
+                        masse = Integer.parseInt(chaine);
+                }
+                cpt++;
+            }
+            listeA.add(new Planete(name, taille, masse));
+        }
+        return  listeA;
+
     }
 
     //getLine()

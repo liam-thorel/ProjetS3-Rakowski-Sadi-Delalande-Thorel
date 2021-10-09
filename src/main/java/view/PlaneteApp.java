@@ -16,11 +16,11 @@ public class PlaneteApp extends Application {
 
 
 
-    public PlaneteApp() throws MalformedURLException {
+    public PlaneteApp() {
     }
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage)  {
         this.stage = stage;
         intitStart();
         //FXMLLoader fxmlLoader = new FXMLLoader(PlaneteApp.class.getResource("start-view.fxml"));
