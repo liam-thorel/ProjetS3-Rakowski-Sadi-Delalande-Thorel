@@ -25,4 +25,24 @@ public class Planete extends Astre{
                 ", Y : " + positionY +
                 '}'+'\n';
     }
+
+    public float getTaille() {
+        return taille;
+    }
+
+    public float getMasse() {
+        return masse;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public int getPositionX() {
+        return positionX;
+    }
+
+    public int getPositionY() {
+        return positionY;
+    }
 }
