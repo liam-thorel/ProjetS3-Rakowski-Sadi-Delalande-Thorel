@@ -40,22 +40,24 @@ public class Simulation {
             int pX = 0;
             int pY = 0;
             for(String chaine : ligne.split(" ")){
-                switch (cpt){
-                    case 1:
-                        name = chaine;
-                        break;
-                    case 2 :
-                        taille = Integer.parseInt(chaine);
-                        break;
-                    case 3 :
-                        masse = Integer.parseInt(chaine);
-                        break;
-                    case 4 :
-                        pX = Integer.parseInt(chaine);
-                        break;
-                    case 5 :
-                        pY = Integer.parseInt(chaine);
-                        break;
+                if (!chaine.contains("//")){
+                    switch (cpt){
+                        case 1:
+                            name = chaine;
+                            break;
+                        case 2 :
+                            taille = Integer.parseInt(chaine);
+                            break;
+                        case 3 :
+                            masse = Integer.parseInt(chaine);
+                            break;
+                        case 4 :
+                            pX = Integer.parseInt(chaine);
+                            break;
+                        case 5 :
+                            pY = Integer.parseInt(chaine);
+                            break;
+                    }
                 }
                 cpt++;
             }
