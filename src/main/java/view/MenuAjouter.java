@@ -34,8 +34,12 @@ public class MenuAjouter extends Pane {
         addAstre = new HBox();
         systemeOuAjouter = new HBox();
         playOuPause = new HBox();
-        systeme = new Button();
-        ajouter = new Button();
+        systeme = new Button("Systeme");
+        systeme.prefWidth(20);
+        systeme.prefHeight(15);
+        ajouter = new Button("Ajouter");
+        ajouter.prefWidth(20);
+        ajouter.prefHeight(15);
         ajouter.setOnAction(onAjouterMenu);
         systeme.setOnAction(onSystemeMenu);
         systemeOuAjouter.getChildren().addAll(systeme, ajouter);
@@ -59,10 +63,11 @@ public class MenuAjouter extends Pane {
         public void handle(ActionEvent actionEvent){
             System.out.println("j'affiche la vue du menu systeme'");
         }
-
-
     };
 
 
+    public VBox getMenuEtChangeMenu() {
+        return menuEtChangeMenu;
     }
+}
 
