@@ -7,9 +7,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import logic.Planete;
 import logic.Simulation;
 
+import java.util.ArrayList;
 
 
 public class SimulationView extends Stage {
@@ -18,11 +21,15 @@ public class SimulationView extends Stage {
     private Simulation s;
     private VBox root;
     private HBox contener;
+    private Pane espace;
 
     public SimulationView(Simulation s,PlaneteApp app) {
         this.s = s;
         this.app = app;
         root = new VBox();
+        espace = new StackPane();
+        espace.setPrefWidth(1500);
+        espace.setPrefHeight(550);
         contener = new HBox();
         StackPane test = new StackPane();
         Label system = new Label(s.toString());
@@ -44,6 +51,7 @@ public class SimulationView extends Stage {
                         new BorderWidths(1),
                         new Insets(0) ));
         menu.setBorder(border2);
+        root.getChildren().add(espace);
         root.getChildren().add(menu.getMenuEtChangeMenu());
         root.setId("bg");
         root.getStylesheets().add(this.getClass().getResource("/Css/simulation.css").toExternalForm());
@@ -51,5 +59,19 @@ public class SimulationView extends Stage {
         Scene scene = new Scene(root);
 
         app.getStage().setScene(scene);
+    }
+    private void ajouterPlanetes(ArrayList<Planete> listeP){
+        for (int i = 0 ; i < listeP.size() ; i++){
+            espace.getChildren().add(creerPlaneteCercle(listeP.get(i)));
+        }
+    }
+
+
+    private Circle creerPlaneteCercle(Planete p){
+        Circle planete = new Circle();
+        planete.setCenterX(p.getPositionX());
+        planete.setCenterY(p.getPositionX());
+        planete.setRadius(p.getTaille()/2);
+        return planete;
     }
 }

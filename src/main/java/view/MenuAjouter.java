@@ -46,10 +46,8 @@ public class MenuAjouter extends Pane {
         changeMenu.getChildren().addAll(systemeOuAjouter, playOuPause);
         menu.getChildren().addAll(menuAstre, addAstre);
         menuEtChangeMenu.getChildren().addAll(changeMenu, menu);
-
       /*  Scene scene = new Scene(menuEtChangeMenu);
         app.getStage().setScene(scene);*/
-
     }
         private EventHandler<ActionEvent> onAjouterMenu = new EventHandler<ActionEvent>() {
             @Override
@@ -61,7 +59,7 @@ public class MenuAjouter extends Pane {
     private EventHandler<ActionEvent> onSystemeMenu = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent){
-            System.out.println("j'affiche la vue du menu systeme'");
+            System.out.println("j'affiche la vue du menu systeme");
         }
     };
 
