@@ -32,6 +32,9 @@ public class Simulation {
         ois.close();
     }
 
+    //getLine()
+    //splitString : .split(avec quoi on split)
+
     public void saveListeAstre(FileOutputStream save) throws IOException {
         ObjectOutputStream oos = new ObjectOutputStream(save);
         oos.writeObject(listeAstre);

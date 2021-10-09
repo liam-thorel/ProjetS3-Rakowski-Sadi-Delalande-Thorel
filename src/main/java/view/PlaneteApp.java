@@ -33,7 +33,6 @@ public class PlaneteApp extends Application {
 
     }
 
-
     public Stage getStage() {
         return stage;
     }
