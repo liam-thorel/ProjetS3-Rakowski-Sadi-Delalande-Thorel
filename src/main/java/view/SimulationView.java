@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import logic.Planete;
 import logic.Simulation;
 
+import java.util.ArrayList;
 
 
 public class SimulationView extends Stage {
@@ -59,6 +60,13 @@ public class SimulationView extends Stage {
 
         app.getStage().setScene(scene);
     }
+    private void ajouterPlanetes(ArrayList<Planete> listeP){
+        for (int i = 0 ; i < listeP.size() ; i++){
+            espace.getChildren().add(creerPlaneteCercle(listeP.get(i)));
+        }
+    }
+
+
     private Circle creerPlaneteCercle(Planete p){
         Circle planete = new Circle();
         planete.setCenterX(p.getPositionX());
