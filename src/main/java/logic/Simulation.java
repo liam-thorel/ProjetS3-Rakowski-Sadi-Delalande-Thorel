@@ -33,6 +33,7 @@ public class Simulation {
         listeAstre = (ArrayList<Astre>) ois.readObject();
         ois.close();*/
         ArrayList<Astre> listeA = new ArrayList<>();
+        CreateurAstre p = new CreateurPlanete();
         for (String ligne : Files.readAllLines(save.toPath())){
             int cpt =1;
             String name = "";
@@ -66,12 +67,13 @@ public class Simulation {
                 cpt++;
             }
             if(creer){
-                listeA.add(new Planete(name, taille, masse, pX, pY));
+                listeA.add(p.factory(name, taille, masse, pX, pY));
             }
         }
         return  listeA;
 
     }
+
 
     //getLine()
     //splitString : .split(avec quoi on split)
@@ -81,6 +83,8 @@ public class Simulation {
             save.delete();
         }
         save.createNewFile();
+        String commentaire = "//nom_taille_masse_positionX_positionY \n";
+        Files.write(save.toPath(), commentaire.getBytes(), StandardOpenOption.APPEND);
         for(Astre a : listeAstre){
             String arg = a.getArgString();
             Files.write(save.toPath(), arg.getBytes(), StandardOpenOption.APPEND);

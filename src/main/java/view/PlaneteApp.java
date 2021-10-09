@@ -38,13 +38,10 @@ public class PlaneteApp extends Application {
     }
 
     public void initChooseFile(){
-        System.out.println("j'init cF");
         chooseFileView = new ChooseFileView(this);
     }
 
     public void intitStart(){
-        System.out.println("je suis la");
-
         startView = new StartView(this);
 
     }

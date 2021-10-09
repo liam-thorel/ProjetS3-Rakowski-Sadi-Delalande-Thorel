@@ -27,7 +27,6 @@ public class ChooseFileView extends Stage {
     private GridPane root;
 
     public ChooseFileView(PlaneteApp app) {
-        System.out.println("je suis dans choose file");
         this.app = app;
         //field = new HBox();
         root = new GridPane();
