@@ -15,24 +15,23 @@ public class SimulationView extends Stage {
 
     private PlaneteApp app;
     private Simulation s;
-    private BorderPane root;
+    private HBox root;
     private HBox contener;
 
     public SimulationView(Simulation s,PlaneteApp app) {
         this.s = s;
         this.app = app;
-        root = new BorderPane();
+        root = new HBox();
         contener = new HBox();
         Label system = new Label(s.toString());
         contener.getChildren().add(system);
         contener.setAlignment(Pos.CENTER);
-        root.setCenter(contener);
-        root.setBottom(new MenuAjouter(this));
+        root.getChildren().add(contener);
+        root.getChildren().add(new MenuAjouter(this));
+
 
         Scene scene = new Scene(root);
 
         app.getStage().setScene(scene);
     }
-
-
 }

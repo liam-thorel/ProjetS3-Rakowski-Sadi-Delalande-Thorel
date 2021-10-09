@@ -52,8 +52,6 @@ public class MenuAjouter extends Pane {
             public void handle(ActionEvent actionEvent){
                 System.out.println("je fais rien je suis deja en vue ajouter");
             }
-
-
         };
 
     private EventHandler<ActionEvent> onSystemeMenu = new EventHandler<ActionEvent>() {
