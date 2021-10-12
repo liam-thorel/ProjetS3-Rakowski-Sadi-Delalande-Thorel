@@ -5,11 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import logic.Astre;
-
-
 public class Simulation {
 
     private ArrayList<Astre> listeAstre;
