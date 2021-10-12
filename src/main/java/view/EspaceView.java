@@ -29,6 +29,8 @@ public class EspaceView extends Pane {
     public Circle creerPlaneteCercle(Astre p){
         Circle planete = new Circle();
         planete.setFill(Color.RED);
+        planete.setStrokeWidth(5);
+        planete.setStroke(Color.BLUE);
         planete.setCenterX(p.getPositionX());
         planete.setCenterY(p.getPositionX());
         planete.setRadius(p.getTaille()/2);
