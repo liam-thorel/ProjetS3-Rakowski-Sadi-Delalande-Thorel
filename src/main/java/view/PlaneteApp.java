@@ -7,8 +7,6 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import logic.Simulation;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.Optional;
 
 public class PlaneteApp extends Application {
