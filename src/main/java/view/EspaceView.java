@@ -12,6 +12,7 @@ import logic.Simulation;
 import org.kordamp.bootstrapfx.scene.layout.Panel;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class EspaceView extends Pane {
 
@@ -28,8 +29,8 @@ public class EspaceView extends Pane {
     }
     public Circle creerPlaneteCercle(Astre p){
         Circle planete = new Circle();
-        planete.setFill(Color.RED);
-        planete.setStrokeWidth(5);
+        planete.setFill(new Color(new Random().nextFloat(),new Random().nextFloat(), new Random().nextFloat(), new Random().nextFloat()));
+        planete.setStrokeWidth(2);
         planete.setStroke(Color.BLUE);
         planete.setCenterX(p.getPositionX());
         planete.setCenterY(p.getPositionX());
