@@ -32,8 +32,6 @@ public class PlaneteApp extends Application {
             event.consume();
         });
         intitStart();
-        //FXMLLoader fxmlLoader = new FXMLLoader(PlaneteApp.class.getResource("start-view.fxml"));
-        //Scene scene = new Scene(fxmlLoader.load(), 1200, 750);
         stage.setTitle("Simulation Planète");
         stage.setHeight(750);
         stage.setWidth(1500);
