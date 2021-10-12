@@ -65,7 +65,7 @@ public class PlaneteApp extends Application {
     public void onStopGame() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
-        alert.setContentText("Voulez vous vraiment nous quitter 😭 ?");
+        alert.setContentText("ATTENTION Voulez vous vraiment arreter la simulation 😭 ?");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             Platform.exit();
