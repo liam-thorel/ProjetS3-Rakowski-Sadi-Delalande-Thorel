@@ -1,4 +1,4 @@
-//nom_taille_masse_positionX_positionY 
+// nom taille masse positionX positionY 
 green 180 260 10 20
 red 55 800 50 60
 blue 200 500 90 100

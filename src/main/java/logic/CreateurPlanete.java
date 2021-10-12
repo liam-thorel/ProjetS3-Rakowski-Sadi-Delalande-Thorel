@@ -1,5 +1,7 @@
 package logic;
 
+import javafx.scene.paint.Color;
+
 public class CreateurPlanete extends CreateurAstre{
 
     @Override

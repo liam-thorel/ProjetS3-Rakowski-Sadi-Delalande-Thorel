@@ -1,5 +1,7 @@
 package logic;
 
+import javafx.scene.paint.Color;
+
 import java.io.Serializable;
 
 public abstract class Astre implements Serializable {
@@ -30,4 +32,5 @@ public abstract class Astre implements Serializable {
     public int getPositionY() {
         return positionY;
     }
+
 }

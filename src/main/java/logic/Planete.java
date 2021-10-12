@@ -1,5 +1,7 @@
 package logic;
 
+import javafx.scene.paint.Color;
+
 public class Planete extends Astre{
     private int taille;
     private int masse;
@@ -8,17 +10,19 @@ public class Planete extends Astre{
     private int positionY;
 
 
+
     public Planete(String nom, int taille, int masse, int pX, int pY ) {
         this.taille = taille;
         this.masse = masse;
         this.nom = nom;
         this.positionX = pX;
         this.positionY = pY;
+
     }
 
     @Override
     public String getArgString(){
-        return nom + " "+ taille+ " " + masse+ " " + positionX+ " " + positionY + "\n";
+        return nom + " "+ (int) taille+ " " + (int) masse+ " " + positionX+ " " + positionY + "\n";
     }
 
     @Override
