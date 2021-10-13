@@ -1,35 +1,28 @@
 package logic;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
-import javafx.scene.Node;
-import javafx.scene.shape.Circle;
-import javafx.scene.transform.Rotate;
-import javafx.util.Duration;
-import view.SimulationView;
-
-import static javafx.scene.paint.Color.WHITE;
+import javafx.scene.paint.Color;
 
 public class Planete extends Astre{
-    private float taille;
-    private float masse;
+    private int taille;
+    private int masse;
     private String nom;
-    private double positionX;
-    private double positionY;
+    private int positionX;
+    private int positionY;
 
 
-    public Planete(String nom, float taille, float masse, int pX, int pY ) {
+
+    public Planete(String nom, int taille, int masse, int pX, int pY ) {
         this.taille = taille;
         this.masse = masse;
         this.nom = nom;
         this.positionX = pX;
         this.positionY = pY;
+
     }
 
     @Override
     public String getArgString(){
-        return nom + " "+ taille+ " " + masse+ " " + positionX+ " " + positionY + "\n";
+        return nom + " "+ (int) taille+ " " + (int) masse+ " " + positionX+ " " + positionY + "\n";
     }
 
     @Override
@@ -54,11 +47,11 @@ public class Planete extends Astre{
         return nom;
     }
 
-    public double getPositionX() {
+    public int getPositionX() {
         return positionX;
     }
 
-    public double getPositionY() {
+    public int getPositionY() {
         return positionY;
     }
 }

@@ -1,5 +1,7 @@
 package logic;
 
+import javafx.scene.paint.Color;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -19,10 +21,6 @@ public class Play {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         Simulation s = new Simulation();
 
-        /*Planete p1 = new Planete("blue",25,25, 10, 50);
-        Planete p2 = new Planete("green", 50, 50, 25, 12);
-        Planete p3 = new Planete("red", 30, 30, 0, 0);*/
-
         CreateurPlanete p = new CreateurPlanete();
         Planete p1 = p.factory("blue",25,25, 0, 0);
         Planete p2 = p.factory("green", 50, 50, 10, 300);
@@ -34,7 +32,6 @@ public class Play {
         listeA.add(p3);
 
         s.setListeAstre(listeA);
-        //s.saveListeAstre(new FileOutputStream(new File("save.txt")));
 
         Simulation s2 = new Simulation(new File("save.txt"));
         s2.saveListeAstre(new File("save2.txt"));

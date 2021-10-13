@@ -5,24 +5,9 @@ import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
-import javafx.scene.shape.Circle;
-import javafx.scene.transform.Rotate;
-import javafx.stage.Stage;
-import javafx.util.Duration;
-import logic.Astre;
-import view.SimulationView;
-
-import static javafx.scene.paint.Color.WHITE;
-
-
 public class Simulation {
 
     private ArrayList<Astre> listeAstre;
-
-
 
     public Simulation(){
         listeAstre = new ArrayList<>();
@@ -40,43 +25,31 @@ public class Simulation {
     }
 
     public ArrayList<Astre> setAPartireDunFichier(File save) throws IOException {
-        /*ObjectInputStream ois = new ObjectInputStream(save);
-        listeAstre = (ArrayList<Astre>) ois.readObject();
-        ois.close();*/
         ArrayList<Astre> listeA = new ArrayList<>();
         CreateurAstre p = new CreateurPlanete();
         for (String ligne : Files.readAllLines(save.toPath())){
-            int cpt =1;
             String name = "";
             int taille =0;
             int masse = 0;
             int pX = 0;
             int pY = 0;
+
             boolean creer = true;
-            for(String chaine : ligne.split(" ")){
-                if (!chaine.contains("//")){
-                    switch (cpt){
-                        case 1:
-                            name = chaine;
-                            break;
-                        case 2 :
-                            taille = Integer.parseInt(chaine);
-                            break;
-                        case 3 :
-                            masse = Integer.parseInt(chaine);
-                            break;
-                        case 4 :
-                            pX = Integer.parseInt(chaine);
-                            break;
-                        case 5 :
-                            pY = Integer.parseInt(chaine);
-                            break;
-                    }
+            String [] arguments = ligne.split(" ");
+
+                if (!(arguments[0].equals("//"))){
+                    name = arguments[0];
+                    System.out.println(arguments[0]);
+                    taille = Integer.parseInt(arguments[1]);
+                    masse = Integer.parseInt(arguments[2]);
+                    pX = Integer.parseInt(arguments[3]);
+                    pY = Integer.parseInt(arguments[4]);
+
                 }else{
                     creer = false;
                 }
-                cpt++;
-            }
+
+
             if(creer){
                 listeA.add(p.factory(name, taille, masse, pX, pY));
             }
@@ -94,7 +67,7 @@ public class Simulation {
             save.delete();
         }
         save.createNewFile();
-        String commentaire = "//nom_taille_masse_positionX_positionY \n";
+        String commentaire = "// nom taille masse positionX positionY \n";
         Files.write(save.toPath(), commentaire.getBytes(), StandardOpenOption.APPEND);
         for(Astre a : listeAstre){
             String arg = a.getArgString();

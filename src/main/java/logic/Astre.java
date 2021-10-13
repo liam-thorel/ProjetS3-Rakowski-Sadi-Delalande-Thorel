@@ -1,29 +1,17 @@
 package logic;
 
-import javafx.scene.Node;
-import javafx.scene.shape.Circle;
+import javafx.scene.paint.Color;
 
 import java.io.Serializable;
-
-import static javafx.scene.paint.Color.WHITE;
 
 public abstract class Astre implements Serializable {
     private float taille;
     private float masse;
     private String nom;
-    private double positionX;
-    private double positionY;
+    private int positionX;
+    private int positionY;
     public abstract String getArgString();
     public abstract String toString();
-    private static Node n;
-
-    public static void setN(Node n) {
-        Astre.n = n;
-    }
-
-    public Node getNode() {
-        return n;
-    }
 
     public float getTaille() {
         return taille;
@@ -37,11 +25,11 @@ public abstract class Astre implements Serializable {
         return nom;
     }
 
-    public double getPositionX() {
+    public int getPositionX() {
         return positionX;
     }
 
-    public double getPositionY() {
+    public int getPositionY() {
         return positionY;
     }
 

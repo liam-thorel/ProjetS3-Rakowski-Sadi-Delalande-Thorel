@@ -3,89 +3,89 @@
   <ID>JAVA</ID>
   <OriginalElement>logic</OriginalElement>
   <nodes>
-    <node x="249.99999999999997" y="326.0">logic.CreateurAstre</node>
-    <node x="330.380787037037" y="667.0">logic.Simulation</node>
-    <node x="187.90162037037032" y="937.0">logic.Play</node>
-    <node x="70.33333333333331" y="563.0">logic.CreateurPlanete</node>
-    <node x="0.0" y="193.0">logic.Planete</node>
-    <node x="436.5" y="0.0">logic.Astre</node>
+    <node x="116.62499999999997" y="491.0">logic.CreateurAstre</node>
+    <node x="0.0" y="843.0">logic.Simulation</node>
+    <node x="367.1712962962963" y="1103.0">logic.Play</node>
+    <node x="276.90625" y="739.0">logic.CreateurPlanete</node>
+    <node x="369.625" y="347.0">logic.Planete</node>
+    <node x="157.3599537037037" y="0.0">logic.Astre</node>
   </nodes>
   <notes />
   <edges>
     <edge source="logic.Play" target="logic.Astre">
-      <point x="62.5" y="-27.0" />
-      <point x="325.4016203703703" y="917.0" />
-      <point x="621.880787037037" y="917.0" />
-      <point x="621.880787037037" y="173.0" />
-      <point x="580.5" y="173.0" />
-      <point x="64.0" y="71.5" />
+      <point x="62.500000000000014" y="-27.0" />
+      <point x="504.6712962962963" y="1083.0" />
+      <point x="588.125" y="1083.0" />
+      <point x="588.125" y="317.0" />
+      <point x="301.3599537037037" y="317.0" />
+      <point x="64.0" y="148.5" />
     </edge>
     <edge source="logic.Simulation" target="logic.CreateurPlanete">
-      <point x="-105.375" y="-105.0" />
-      <point x="365.505787037037" y="642.0" />
-      <point x="293.66666666666663" y="642.0" />
-      <point x="89.33333333333331" y="27.0" />
+      <point x="105.375" y="-105.0" />
+      <point x="245.875" y="818.0" />
+      <point x="317.73958333333326" y="818.0" />
+      <point x="-81.66666666666669" y="27.0" />
     </edge>
     <edge source="logic.Play" target="logic.Planete">
-      <point x="-62.5" y="-27.0" />
-      <point x="200.40162037037032" y="917.0" />
-      <point x="59.83333333333326" y="917.0" />
-      <point x="59.83333333333326" y="538.0" />
-      <point x="38.333333333333314" y="538.0" />
-      <point x="-76.66666666666669" y="160.0" />
-    </edge>
-    <edge source="logic.Simulation" target="logic.Astre">
-      <point x="105.375" y="-105.0" />
-      <point x="576.255787037037" y="642.0" />
-      <point x="549.0358796296296" y="642.0" />
-      <point x="32.0" y="71.5" />
-    </edge>
-    <edge source="logic.Play" target="logic.CreateurPlanete">
-      <point x="-37.5" y="-27.0" />
-      <point x="225.40162037037032" y="907.0" />
-      <point x="142.1724537037037" y="907.0" />
-      <point x="142.1724537037037" y="642.0" />
-      <point x="115.0" y="642.0" />
-      <point x="-89.33333333333331" y="27.0" />
+      <point x="37.500000000000014" y="-27.0" />
+      <point x="479.6712962962963" y="1073.0" />
+      <point x="546.1145833333333" y="1073.0" />
+      <point x="546.1145833333333" y="714.0" />
+      <point x="542.9583333333334" y="714.0" />
+      <point x="69.33333333333337" y="171.0" />
     </edge>
     <edge source="logic.CreateurPlanete" target="logic.Planete">
-      <point x="-89.33333333333331" y="-27.0" />
-      <point x="1.4210854715202004E-14" y="160.0" />
+      <point x="0.0" y="-27.0" />
+      <point x="399.40625" y="714.0" />
+      <point x="404.29166666666663" y="714.0" />
+      <point x="-69.33333333333331" y="171.0" />
+    </edge>
+    <edge source="logic.Simulation" target="logic.Astre">
+      <point x="-35.125" y="-105.0" />
+      <point x="106.12499999999997" y="327.0" />
+      <point x="205.3599537037037" y="327.0" />
+      <point x="-32.0" y="148.5" />
+    </edge>
+    <edge source="logic.Play" target="logic.CreateurPlanete">
+      <point x="-12.5" y="-27.0" />
+      <point x="429.6712962962963" y="1083.0" />
+      <point x="413.1145833333333" y="1083.0" />
+      <point x="413.1145833333333" y="818.0" />
+      <point x="399.40625" y="818.0" />
+      <point x="0.0" y="27.0" />
     </edge>
     <edge source="logic.CreateurAstre" target="logic.Astre">
-      <point x="0.0" y="-27.0" />
-      <point x="378.0" y="173.0" />
-      <point x="484.5" y="173.0" />
-      <point x="-32.0" y="71.5" />
+      <point x="2.8421709430404007E-14" y="-27.0" />
+      <point x="233.125" y="327.0" />
+      <point x="237.3599537037037" y="327.0" />
+      <point x="0.0" y="148.5" />
     </edge>
     <edge source="logic.Simulation" target="logic.CreateurAstre">
-      <point x="-35.125" y="-105.0" />
-      <point x="435.755787037037" y="642.0" />
-      <point x="442.0" y="642.0" />
-      <point x="64.0" y="27.0" />
+      <point x="35.125" y="-105.0" />
+      <point x="-58.25" y="27.0" />
     </edge>
     <edge source="logic.Play" target="logic.Simulation">
-      <point x="12.5" y="-27.0" />
-      <point x="275.4016203703703" y="897.0" />
-      <point x="400.630787037037" y="897.0" />
+      <point x="-62.5" y="-27.0" />
+      <point x="379.6712962962963" y="1083.0" />
+      <point x="70.25" y="1083.0" />
       <point x="-70.25" y="105.0" />
     </edge>
     <edge source="logic.Planete" target="logic.Astre">
-      <point x="0.0" y="-160.0" />
-      <point x="115.0" y="163.0" />
-      <point x="452.5" y="163.0" />
-      <point x="-64.0" y="71.5" />
+      <point x="0.0" y="-171.0" />
+      <point x="473.625" y="327.0" />
+      <point x="269.3599537037037" y="327.0" />
+      <point x="32.0" y="148.5" />
     </edge>
     <edge source="logic.CreateurPlanete" target="logic.CreateurAstre">
-      <point x="89.33333333333331" y="-27.0" />
-      <point x="293.66666666666663" y="538.0" />
-      <point x="314.0" y="538.0" />
-      <point x="-64.0" y="27.0" />
+      <point x="-81.66666666666669" y="-27.0" />
+      <point x="317.73958333333326" y="714.0" />
+      <point x="291.375" y="714.0" />
+      <point x="58.25000000000003" y="27.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.6000000000000001" x="353.3333333333335" y="517.3333333333333" />
+  <settings layout="Hierarchic Group" zoom="0.9" x="306.88888888888846" y="871.0" />
   <SelectedNodes>
-    <node>logic.CreateurAstre</node>
+    <node>logic.Play</node>
   </SelectedNodes>
   <Categories>
     <Category>Fields</Category>
