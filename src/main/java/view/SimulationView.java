@@ -19,8 +19,13 @@ import java.util.ArrayList;
 public class SimulationView extends Stage {
 
     private PlaneteApp app;
-    private Simulation s;
-    private VBox root;
+    private static Simulation s;
+    private static VBox root;
+
+    public static Simulation getS() {
+        return s;
+    }
+
     private HBox contener;
     private EspaceView espace;
 
@@ -76,6 +81,9 @@ public class SimulationView extends Stage {
 
     public Simulation getSimulation() {
         return s;
+    }
+    public VBox getRoot() {
+        return root;
     }
 
 

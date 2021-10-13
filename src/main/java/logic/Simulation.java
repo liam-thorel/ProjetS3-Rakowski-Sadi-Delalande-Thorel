@@ -5,13 +5,24 @@ import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.scene.shape.Circle;
+import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import logic.Astre;
+import view.SimulationView;
+
+import static javafx.scene.paint.Color.WHITE;
 
 
 public class Simulation {
 
     private ArrayList<Astre> listeAstre;
+
+
 
     public Simulation(){
         listeAstre = new ArrayList<>();

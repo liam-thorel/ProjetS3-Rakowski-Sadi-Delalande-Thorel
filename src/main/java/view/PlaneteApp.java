@@ -3,7 +3,6 @@ package view;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import logic.Simulation;
-
 import java.io.IOException;
 import java.net.MalformedURLException;
 
@@ -26,8 +25,8 @@ public class PlaneteApp extends Application {
         //FXMLLoader fxmlLoader = new FXMLLoader(PlaneteApp.class.getResource("start-view.fxml"));
         //Scene scene = new Scene(fxmlLoader.load(), 1200, 750);
         stage.setTitle("Simulation Planète");
-        stage.setHeight(750);
-        stage.setWidth(1500);
+        stage.setHeight(600);
+        stage.setWidth(1200);
         stage.show();
 
 
