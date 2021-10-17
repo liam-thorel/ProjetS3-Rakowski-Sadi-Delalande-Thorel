@@ -2,10 +2,12 @@ package view;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.DialogPane;
+import javafx.css.Style;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import logic.Simulation;
 
@@ -87,8 +89,30 @@ public class PlaneteApp extends Application {
                 Platform.exit();
             }
             if (result.isPresent() && result.get() == save) {
-                simulation.saveListeAstre(new File("save.txt"));
-                Platform.exit();
+                alert.close();
+                Stage popup = new Stage();
+                popup.setHeight(105);
+                popup.setWidth(500);
+                TextArea txta = new TextArea();
+                txta.setMaxWidth(480);
+                txta.setMaxHeight(30);
+                Button bt = new Button("sauvegarder");
+                VBox txt = new VBox(txta,bt);
+                popup.show();
+                popup.setTitle("choisissez un nom de sauvegarde");
+                popup.setScene(new Scene(txt));
+                bt.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        try {
+                            simulation.saveListeAstre(new File(txta.getText()));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        popup.hide();
+                        Platform.exit();
+                    }
+                });
             }
         }else{
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
