@@ -1,8 +1,8 @@
 package logic;
 
 import javafx.scene.paint.Color;
-
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public abstract class Astre implements Serializable {
     private float taille;
@@ -10,8 +10,14 @@ public abstract class Astre implements Serializable {
     private String nom;
     private int positionX;
     private int positionY;
+    private int vitesseInit;
+    //private int vecteurX;
+    //private int vecteurY;
+    private int vitesse;
     public abstract String getArgString();
     public abstract String toString();
+
+
 
     public float getTaille() {
         return taille;
@@ -29,8 +35,23 @@ public abstract class Astre implements Serializable {
         return positionX;
     }
 
+
+    public int getVitesse() {
+        return vitesse;
+    }
+
     public int getPositionY() {
         return positionY;
     }
+
+    public abstract int calculerForce(Astre a1);
+
+    public abstract int calculerDistance(Astre a1);
+
+    public abstract int calculerAcc(ArrayList<Astre> listeA);
+
+    public abstract void setVistesse(ArrayList<Astre> listeA);
+
+    public abstract void setPositions();
 
 }
