@@ -1,7 +1,10 @@
 package view;
 
 import javafx.animation.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Point3D;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -14,7 +17,7 @@ import javafx.util.Duration;
 import logic.Astre;
 import logic.Planete;
 import logic.Simulation;
-import org.kordamp.bootstrapfx.scene.layout.Panel;
+
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -24,11 +27,15 @@ public class EspaceView extends Pane {
     private ArrayList<Astre> listeA;
     private ArrayList<Circle> listeC;
     private Simulation s;
-
+    private Timeline timeline = new Timeline();
+    private Button play;
+    private Button pause;
 
     public EspaceView(SimulationView s){
         listeA = s.getSimulation().getListeAstre();
         listeC = new ArrayList<>();
+        play = new Button("Play");
+        pause = new Button("Pause");
         this.s = s.getSimulation();
         for (Astre a: listeA) {
             Circle p = creerPlaneteCercle(a);
@@ -36,8 +43,23 @@ public class EspaceView extends Pane {
             getChildren().add(p);
             p.relocate(a.getPositionX(), a.getPositionY());
         }
+
+
+        // mettre a jour avec un relocate a chaque changement de timeline (envent ?)
         move();
+
+
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
     }
+
+    private EventHandler<ActionEvent> lancer = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+
+        }
+    };
+
     public Circle creerPlaneteCercle(Astre p){
         Circle planete = new Circle();
         planete.setFill(new Color(new Random().nextFloat(),new Random().nextFloat(), new Random().nextFloat(), 1));
@@ -63,16 +85,22 @@ public class EspaceView extends Pane {
     private ArrayList<PathTransition> listeT;
     public void move(){
         listeT = new ArrayList<>();
-        Timeline timeline = new Timeline();
+
 
         for(int i =0; i<listeA.size(); i++){
             Astre current = listeA.get(i);
             System.out.println("ancienne position de " + current.getNom()+ " "+current.getPositionX() + " " + current.getPositionY());
-            current.setVistesse(getOther(current));
-            current.setPositions();
+            //current.setVistesse(getOther(current));
+            //current.setPositions();
             System.out.println("nouvelle position de " + current.getNom()+ " "+current.getPositionX() + " " + current.getPositionY());
 
-            Ellipse path = new Ellipse();
+            timeline.getKeyFrames().addAll(
+                    new KeyFrame(Duration.ZERO, new KeyValue(listeC.get(i).centerXProperty(), 0)),
+                    new KeyFrame(Duration.ZERO, new KeyValue(listeC.get(i).centerYProperty(), 0)),
+                    new KeyFrame(new Duration (50), new KeyValue(listeC.get(i).centerXProperty(), current.calculerAcc(getOther(current)))),
+                    new KeyFrame(new Duration (50), new KeyValue(listeC.get(i).centerYProperty(), current.calculerAcc(getOther(current))))
+            );
+            /*Ellipse path = new Ellipse();
             path.setStrokeWidth(0.5);
             path.setStroke(Color.RED);
             path.setFill(Color.TRANSPARENT);
@@ -88,18 +116,18 @@ public class EspaceView extends Pane {
             pathTransition.setDuration(Duration.seconds(1));
             pathTransition.setCycleCount(Transition.INDEFINITE);
 
-            listeT.add(pathTransition);
+            listeT.add(pathTransition);*/
 
 
 
 
         }
 
-        for(PathTransition t : listeT){
+       /* for(PathTransition t : listeT){
             t.play();
 
 
-        }
+        }*/
 
 
 
@@ -112,4 +140,3 @@ public class EspaceView extends Pane {
 
 
 }
-
