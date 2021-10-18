@@ -105,7 +105,8 @@ public class PlaneteApp extends Application {
                     @Override
                     public void handle(ActionEvent event) {
                         try {
-                            simulation.saveListeAstre(new File(txta.getText()));
+                            String s =  txta.getText() + ".txt";
+                            simulation.saveListeAstre(new File(s));
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
