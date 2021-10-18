@@ -27,7 +27,7 @@ public class SimulationView extends Stage {
         contener = new HBox();
         contener.setAlignment(Pos.CENTER);
         root.getChildren().add(contener);
-        MenuAjouter menu = new MenuAjouter(this);
+        Menu menu = new Menu(this);
         root.getChildren().add(espace);
         root.getChildren().add(menu.getMenuEtChangeMenu());
         root.setId("bg");
