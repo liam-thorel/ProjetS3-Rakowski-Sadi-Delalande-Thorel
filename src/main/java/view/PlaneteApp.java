@@ -106,6 +106,9 @@ public class PlaneteApp extends Application {
                     public void handle(ActionEvent event) {
                         try {
                             String s =  txta.getText() + ".txt";
+                            if (s.equals(".txt")){
+                            s = "default.txt";
+                            }
                             simulation.saveListeAstre(new File(s));
                         } catch (IOException e) {
                             e.printStackTrace();
