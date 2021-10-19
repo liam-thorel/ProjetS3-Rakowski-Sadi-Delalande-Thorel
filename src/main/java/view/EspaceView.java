@@ -94,7 +94,11 @@ public class EspaceView extends Pane {
     private ChangeListener<Boolean> playOrStop = (observableValue, aBoolean, t1) -> {
         System.out.println(playing.getValue());
         if(t1){
-            move.start();
+            if(!move.isAlive()){
+                move.start();
+            }else{
+                move.run();
+            }
         }
         else{
             try {
