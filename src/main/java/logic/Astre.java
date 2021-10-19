@@ -1,5 +1,6 @@
 package logic;
 
+import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,8 +17,14 @@ public abstract class Astre implements Serializable {
     private int vitesse;
     public abstract String getArgString();
     public abstract String toString();
+    private Node n;
 
 
+    public Node getN() {return n;}
+
+    public void setN(Node n) {this.n = n;}
+
+    public int getVitesseInit() {return vitesseInit;}
 
     public float getTaille() {
         return taille;
