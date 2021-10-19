@@ -32,7 +32,7 @@ public class PlaneteApp extends Application {
     @Override
     public void start(Stage stage)  {
         this.stage = stage;
-        stage.setResizable(false);
+        if (System.getProperty("os.name").startsWith("Windows")) stage.setResizable(false);
         stage.setOnCloseRequest(event -> {
             try {
                 this.onStopGame();
@@ -43,8 +43,8 @@ public class PlaneteApp extends Application {
         });
         intitStart();
         stage.setTitle("Simulation Planète");
-        stage.setHeight(750);
-        stage.setWidth(1500);
+        stage.setHeight(600);
+        stage.setWidth(1200);
         stage.show();
 
 
