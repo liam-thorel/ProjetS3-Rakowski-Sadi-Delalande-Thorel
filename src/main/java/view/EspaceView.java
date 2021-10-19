@@ -35,8 +35,6 @@ public class EspaceView extends Pane {
     private ArrayList<Circle> listeC;
     private Simulation s;
     private Timeline timeline = new Timeline();
-    private Button play;
-    private Button pause;
     private BooleanProperty playing = new SimpleBooleanProperty();
     private MoveThread move;
 
@@ -44,10 +42,6 @@ public class EspaceView extends Pane {
         move = new MoveThread();
         listeA = s.getSimulation().getListeAstre();
         listeC = new ArrayList<>();
-        play = new Button("Play");
-        play.setOnAction(lancer);
-        pause = new Button("Pause");
-        pause.setOnAction(stop);
         this.s = s.getSimulation();
         playing.setValue(false);
         playing.addListener(playOrStop);
@@ -58,13 +52,6 @@ public class EspaceView extends Pane {
             p.relocate(a.getPositionX(), a.getPositionY());
         }
 
-        GridPane boutons = new GridPane();
-        boutons.setAlignment(Pos.BASELINE_RIGHT);
-        boutons.add(play, 0, 1);
-        boutons.add(pause, 0, 2);
-
-        getChildren().addAll(boutons);
-
         // mettre a jour avec un relocate a chaque changement de timeline (envent ?)
         //move();
 
@@ -73,23 +60,6 @@ public class EspaceView extends Pane {
         timeline.play();
     }
 
-    private EventHandler<ActionEvent> lancer = new EventHandler<ActionEvent>() {
-        @Override
-        public void handle(ActionEvent actionEvent) {
-
-            playing.setValue(true);
-
-        }
-    };
-
-    private EventHandler<ActionEvent> stop = new EventHandler<ActionEvent>() {
-        @Override
-        public void handle(ActionEvent actionEvent) {
-                playing.setValue(false);
-                System.out.println("eho stooop");
-
-        }
-    };
 
     private ChangeListener<Boolean> playOrStop = (observableValue, aBoolean, t1) -> {
         System.out.println(playing.getValue());
@@ -152,7 +122,8 @@ public class EspaceView extends Pane {
         }
     }
 
-
-
+    public void setPlaying(boolean playing) {
+        this.playing.setValue(playing);
+    }
 }
 

@@ -56,5 +56,7 @@ public class SimulationView extends Stage {
         return root;
     }
 
-
+    public EspaceView getEspace() {
+        return espace;
+    }
 }
