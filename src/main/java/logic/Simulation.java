@@ -4,9 +4,11 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.lang.Math;
 
 public class Simulation {
 
+    public static double g =  6.6742 * Math.pow(10, -11);
     private ArrayList<Astre> listeAstre;
 
     public Simulation(){
@@ -33,6 +35,7 @@ public class Simulation {
             int masse = 0;
             int pX = 0;
             int pY = 0;
+            int vIinit =0;
 
             boolean creer = true;
             String [] arguments = ligne.split(" ");
@@ -44,6 +47,7 @@ public class Simulation {
                     masse = Integer.parseInt(arguments[2]);
                     pX = Integer.parseInt(arguments[3]);
                     pY = Integer.parseInt(arguments[4]);
+                    vIinit = Integer.parseInt(arguments[5]);
 
                 }else{
                     creer = false;
@@ -51,7 +55,7 @@ public class Simulation {
 
 
             if(creer){
-                listeA.add(p.factory(name, taille, masse, pX, pY));
+                listeA.add(p.factory(name, taille, masse, pX, pY, vIinit));
             }
         }
         return  listeA;
@@ -59,15 +63,12 @@ public class Simulation {
     }
 
 
-    //getLine()
-    //splitString : .split(avec quoi on split)
-
     public void saveListeAstre(File save) throws IOException {
         if(save.exists()){
             save.delete();
         }
         save.createNewFile();
-        String commentaire = "// nom taille masse positionX positionY \n";
+        String commentaire = "// nom taille masse positionX positionY vitesseInitiale \n";
         Files.write(save.toPath(), commentaire.getBytes(), StandardOpenOption.APPEND);
         for(Astre a : listeAstre){
             String arg = a.getArgString();
@@ -76,6 +77,7 @@ public class Simulation {
 
         }
     }
+
 
     @Override
     public String toString() {

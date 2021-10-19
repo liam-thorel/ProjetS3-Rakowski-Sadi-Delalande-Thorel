@@ -10,7 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import logic.Simulation;
 
-public class MenuAjouter extends Pane {
+public class Menu extends Pane {
 
     /*private PlaneteApp app;*/
     private VBox menuEtChangeMenu;
@@ -23,7 +23,7 @@ public class MenuAjouter extends Pane {
     private Button systeme;
     private Button ajouter;
 
-    public MenuAjouter(SimulationView s) {
+    public Menu(SimulationView s) {
        /* this.app=app;
         setWidth(1500);
         setHeight(200);*/
