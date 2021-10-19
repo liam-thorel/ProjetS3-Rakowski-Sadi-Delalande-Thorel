@@ -2,7 +2,6 @@ package view;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.css.Style;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -41,7 +40,7 @@ public class PlaneteApp extends Application {
             }
             event.consume();
         });
-        intitStart();
+        initStart();
         stage.setTitle("Simulation Planète");
         stage.setHeight(750);
         stage.setWidth(1500);
@@ -58,7 +57,7 @@ public class PlaneteApp extends Application {
         chooseFileView = new ChooseFileView(this);
     }
 
-    public void intitStart(){
+    public void initStart(){
         startView = new StartView(this);
 
     }
@@ -109,6 +108,7 @@ public class PlaneteApp extends Application {
                             if (s.equals(".txt")){
                             s = "default.txt";
                             }
+                            s = "saves\\" + s;
                             simulation.saveListeAstre(new File(s));
                         } catch (IOException e) {
                             e.printStackTrace();

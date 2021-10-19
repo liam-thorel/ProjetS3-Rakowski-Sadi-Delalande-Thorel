@@ -67,6 +67,8 @@ public class Simulation {
         if(save.exists()){
             save.delete();
         }
+        System.out.println(save.getPath());
+        save.toPath();
         save.createNewFile();
         String commentaire = "// nom taille masse positionX positionY vitesseInitiale \n";
         Files.write(save.toPath(), commentaire.getBytes(), StandardOpenOption.APPEND);
