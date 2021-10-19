@@ -38,8 +38,10 @@ public class EspaceView extends Pane {
     private Button play;
     private Button pause;
     private BooleanProperty playing = new SimpleBooleanProperty();
+    private MoveThread move;
 
     public EspaceView(SimulationView s){
+        move = new MoveThread();
         listeA = s.getSimulation().getListeAstre();
         listeC = new ArrayList<>();
         play = new Button("Play");
@@ -74,41 +76,37 @@ public class EspaceView extends Pane {
     private EventHandler<ActionEvent> lancer = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent) {
-            if(isPressed()) {
-                playing.setValue(true);
-            }
+
+            playing.setValue(true);
+
         }
     };
 
     private EventHandler<ActionEvent> stop = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent) {
-            if(isPressed()) {
                 playing.setValue(false);
                 System.out.println("eho stooop");
+
+        }
+    };
+
+    private ChangeListener<Boolean> playOrStop = (observableValue, aBoolean, t1) -> {
+        System.out.println(playing.getValue());
+        if(t1){
+            move.start();
+        }
+        else{
+            try {
+                synchronized (move){
+                    move.wait();}
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     };
 
-    private ChangeListener<Boolean> playOrStop = new ChangeListener<Boolean>() {
-        @Override
-        public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
-            if(t1){
-                jouer();
-            }
 
-
-        }
-
-    };
-
-
-    private void jouer(){
-        while(playing.getValue()){
-            move();
-        }
-
-    }
 
 
     public Circle creerPlaneteCercle(Astre p){
@@ -134,62 +132,22 @@ public class EspaceView extends Pane {
     }
 
     private ArrayList<PathTransition> listeT;
-    public void move(){
-        listeT = new ArrayList<>();
 
-
-        for(int i =0; i<listeA.size(); i++){
-            Astre current = listeA.get(i);
-            System.out.println("ancienne position de " + current.getNom()+ " "+current.getPositionX() + " " + current.getPositionY());
-            current.setVistesse(getOther(current));
-            current.setPositions();
-            System.out.println("nouvelle position de " + current.getNom()+ " "+current.getPositionX() + " " + current.getPositionY());
-
-            timeline.getKeyFrames().addAll(
-                    new KeyFrame(Duration.ZERO, new KeyValue(listeC.get(i).centerXProperty(), 0)),
-                    new KeyFrame(Duration.ZERO, new KeyValue(listeC.get(i).centerYProperty(), 0)),
-                    new KeyFrame(new Duration (50), new KeyValue(listeC.get(i).centerXProperty(), current.calculerAcc(getOther(current)))),
-                    new KeyFrame(new Duration (50), new KeyValue(listeC.get(i).centerYProperty(), current.calculerAcc(getOther(current))))
-            );
-
-
-            /*Ellipse path = new Ellipse();
-            path.setStrokeWidth(0.5);
-            path.setStroke(Color.RED);
-            path.setFill(Color.TRANSPARENT);
-            path.setRadiusX(listeA.get(listeA.size() - i -1).getPositionX());
-            path.setRadiusY(listeA.get(listeA.size() - i -1).getPositionY());
-
-            PathTransition pathTransition = new PathTransition();
-            pathTransition.setNode(listeC.get(i));
-            pathTransition.setPath(path);
-            pathTransition.setInterpolator(Interpolator.LINEAR);
-            pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-           // pathTransition.setAutoReverse(true);
-            pathTransition.setDuration(Duration.seconds(1));
-            pathTransition.setCycleCount(Transition.INDEFINITE);
-
-            listeT.add(pathTransition);*/
-
-
-
-
+    public class MoveThread extends Thread{
+        public void run(){
+            while(playing.getValue()){
+                for(int i =0; i<listeA.size(); i++) {
+                    Astre current = listeA.get(i);
+                    System.out.println("ancienne position de " + current.getNom() + " " + current.getPositionX() + " " + current.getPositionY());
+                    current.setVistesse(getOther(current));
+                    current.setPositions();
+                    System.out.println("nouvelle position de " + current.getNom() + " " + current.getPositionX() + " " + current.getPositionY());
+                    listeC.get(i).relocate(current.getPositionX(), current.getPositionY());
+                }
+            }
         }
-
-       /* for(PathTransition t : listeT){
-            t.play();
-
-
-        }*/
-
-
-
-
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.setAutoReverse(true);
-        timeline.play();
-
     }
+
 
 
 }

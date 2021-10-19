@@ -48,6 +48,7 @@ public class Planete extends Astre{
         for(Astre a : listeA){
             r +=calculerForce(a);
         }
+
         return r/this.masse;
     }
 
