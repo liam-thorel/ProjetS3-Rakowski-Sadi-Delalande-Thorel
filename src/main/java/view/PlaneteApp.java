@@ -32,7 +32,7 @@ public class PlaneteApp extends Application {
     @Override
     public void start(Stage stage)  {
         this.stage = stage;
-        if (System.getProperty("os.name").substring(0,7).equals("Windows")) stage.setResizable(false);
+        if (System.getProperty("os.name").startsWith("Windows")) stage.setResizable(false);
         stage.setOnCloseRequest(event -> {
             try {
                 this.onStopGame();
