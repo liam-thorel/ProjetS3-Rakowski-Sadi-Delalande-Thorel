@@ -12,7 +12,6 @@ import logic.Simulation;
 
 public class Menu extends Pane {
 
-    /*private PlaneteApp app;*/
     private VBox menuEtChangeMenu;
     private HBox changeMenu;
     private HBox menu;
@@ -24,9 +23,8 @@ public class Menu extends Pane {
     private Button ajouter;
 
     public Menu(SimulationView s) {
-       /* this.app=app;
         setWidth(1500);
-        setHeight(200);*/
+        setHeight(200);
         changeMenu = new HBox();
         menu = new HBox();
         menuEtChangeMenu = new VBox();
@@ -46,8 +44,8 @@ public class Menu extends Pane {
         changeMenu.getChildren().addAll(systemeOuAjouter, playOuPause);
         menu.getChildren().addAll(menuAstre, addAstre);
         menuEtChangeMenu.getChildren().addAll(changeMenu, menu);
-      /*  Scene scene = new Scene(menuEtChangeMenu);
-        app.getStage().setScene(scene);*/
+
+
     }
         private EventHandler<ActionEvent> onAjouterMenu = new EventHandler<ActionEvent>() {
             @Override
