@@ -82,7 +82,7 @@ public class PlaneteApp extends Application {
             ButtonType save = new ButtonType("Quitter et sauvegarder");
             ButtonType annuler = new ButtonType("Annuler");
             alert.setTitle("Attention");
-            alert.setContentText("ATTENTION Voulez vous vraiment arreter la simulation 😭 ?");
+            alert.setContentText("ATTENTION Voulez vous vraiment arreter la simulation O_o ?");
             alert.getButtonTypes().addAll(save,nosave,annuler);
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == nosave) {
