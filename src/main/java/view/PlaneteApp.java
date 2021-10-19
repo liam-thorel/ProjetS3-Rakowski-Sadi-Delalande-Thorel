@@ -32,7 +32,7 @@ public class PlaneteApp extends Application {
     @Override
     public void start(Stage stage)  {
         this.stage = stage;
-        stage.setResizable(false);
+        stage.setResizable(true);
         stage.setOnCloseRequest(event -> {
             try {
                 this.onStopGame();
