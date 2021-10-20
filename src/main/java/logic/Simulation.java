@@ -16,7 +16,7 @@ public class Simulation {
     }
 
     public Simulation(File save) throws IOException, ClassNotFoundException {
-        listeAstre = setAPartireDunFichier(save);
+        listeAstre = setAPartirDunFichier(save);
     }
     public ArrayList<Astre> getListeAstre() {
         return listeAstre;
@@ -26,7 +26,7 @@ public class Simulation {
         this.listeAstre = listeAstre;
     }
 
-    public ArrayList<Astre> setAPartireDunFichier(File save) throws IOException {
+    public ArrayList<Astre> setAPartirDunFichier(File save) throws IOException {
         ArrayList<Astre> listeA = new ArrayList<>();
         CreateurAstre p = new CreateurPlanete();
         for (String ligne : Files.readAllLines(save.toPath())){
