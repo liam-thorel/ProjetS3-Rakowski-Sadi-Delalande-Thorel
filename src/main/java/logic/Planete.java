@@ -1,9 +1,6 @@
 package logic;
 
-import javafx.scene.paint.Color;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Planete extends Astre{
     private int taille;
@@ -13,7 +10,8 @@ public class Planete extends Astre{
     private int positionY;
     //private int vecteurX = 1;
     //private int vecteurY = 1 ;
-    private int vitesse;
+    private int vitesseX;
+    private int vitesseY;
 
 
 
@@ -23,14 +21,13 @@ public class Planete extends Astre{
         this.nom = nom;
         this.positionX = pX;
         this.positionY = pY;
-        this.vitesse = vInit;
         //vecteurX *= vInit;
         //vecteurY *= vInit;
 
     }
 
-    public int getVitesse() {
-        return vitesse;
+    public Vecteur getVitesse() {
+        return new Vecteur(vitesseX,vitesseY);
     }
 
     @Override
@@ -39,20 +36,26 @@ public class Planete extends Astre{
     }
 
     //Maelis tu penses pas qu'il faut faire un truc comme ca
-    public int[] calculerForce2(ArrayList<Astre> liste){
+    public Vecteur calculerForce2(ArrayList<Astre> liste){
         int force;
-        int[] tab = new int[2];
-        Arrays.fill(tab,0);
+        Vecteur vTotal = new Vecteur(0,0);
         for(Astre a : liste){
             force = calculerForce(a);
-            int distanceX = a.getPositionX() - this.positionX;
-            int distanceY = a.getPositionY() - this.positionY;
-            int coeff = 1/(distanceX+distanceY);
-            int multipleX = distanceX * coeff;
-            int multipleY = distanceY * coeff;
+            Vecteur vX = new Vecteur(a.getPositionX(), this.positionX);
+            Vecteur vY = new Vecteur(a.getPositionY(), this.positionY);
+            int distanceX = Vecteur.calculerLongueur(vX);
+            int distanceY = Vecteur.calculerLongueur(vY);
+            vX.setX((vX.getX()/distanceX)*force);
+            vX.setY((vX.getY()/distanceY)*force);
+            vY.setX((vY.getX()/distanceX)*force);
+            vY.setY((vY.getY()/distanceY)*force);
+
+            vTotal.setX(vTotal.getX()+Vecteur.calculerLongueur(vX));
+            vTotal.setY(vTotal.getY()+Vecteur.calculerLongueur(vY));
+
             //trouver le rapport pour obtenir
         }
-        return tab;
+        return null;
     }
 
     @Override
@@ -61,30 +64,31 @@ public class Planete extends Astre{
     }
 
     @Override
-    public int calculerAcc(ArrayList<Astre> listeA){
-        int r = 0;
-        for(Astre a : listeA){
-            r +=calculerForce(a);
-        }
-
-        return r/this.masse;
+    public Vecteur calculerAcc(ArrayList<Astre> listeA){
+        Vecteur r = calculerForce2(listeA);
+        r.setX(r.getX()/this.masse);
+        r.setY(r.getY()/this.masse);
+        return r;
     }
 
     @Override
     public void setVistesse(ArrayList<Astre> listeA){
-        vitesse += calculerAcc(listeA);
+        this.vitesseX += this.calculerAcc(listeA).getX();
+        this.vitesseY += this.calculerAcc(listeA).getY();
     }
 
     public void setPositions(){
-        positionX += vitesse;
-        positionY += vitesse;
+        positionX += vitesseX;
+        positionY += vitesseY;
     }
 
 
 
     @Override
+
+    //FAUT LE REFAIRE
     public String getArgString(){
-        return nom + " "+ taille+ " " + masse+ " " + positionX+ " " + positionY + " " + vitesse + "\n";
+        return nom + " "+ taille+ " " + masse+ " " + positionX+ " " + positionY + " "  + "\n";
     }
 
     @Override
