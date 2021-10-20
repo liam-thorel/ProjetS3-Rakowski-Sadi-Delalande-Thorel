@@ -1,7 +1,7 @@
 package logic;
 
 import javafx.scene.Node;
-
+import javafx.scene.paint.Color;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -42,6 +42,11 @@ public abstract class Astre implements Serializable {
         return positionX;
     }
 
+
+    public int getVitesse() {
+        return vitesse;
+    }
+
     public int getPositionY() {
         return positionY;
     }
@@ -50,7 +55,7 @@ public abstract class Astre implements Serializable {
 
     public abstract int calculerDistance(Astre a1);
 
-    public abstract Vecteur calculerAcc(ArrayList<Astre> listeA);
+    public abstract int calculerAcc(ArrayList<Astre> listeA);
 
     public abstract void setVistesse(ArrayList<Astre> listeA);
 
