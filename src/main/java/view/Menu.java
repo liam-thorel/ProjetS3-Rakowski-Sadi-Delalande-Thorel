@@ -14,7 +14,6 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import logic.Simulation;
 
-import java.awt.*;
 
 public class Menu extends Pane {
 
