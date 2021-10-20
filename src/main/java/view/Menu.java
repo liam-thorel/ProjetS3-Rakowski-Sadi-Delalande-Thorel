@@ -3,12 +3,18 @@ package view;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
 import logic.Simulation;
+
+import java.awt.*;
 
 public class Menu extends Pane {
 
@@ -24,6 +30,7 @@ public class Menu extends Pane {
     private Button play;
     private Button pause;
     private SimulationView s;
+    private Pane menuBg;
 
     public Menu(SimulationView s) {
         this.s=s;
@@ -48,6 +55,16 @@ public class Menu extends Pane {
         pause = new Button("Pause");
         pause.prefWidth(20);
         pause.prefHeight(15);
+        menuBg = new Pane();
+
+        javafx.scene.shape.Rectangle rectangle = new Rectangle();
+        rectangle.setWidth(1485);
+        rectangle.setHeight(340);
+        rectangle.setArcWidth(20);
+        rectangle.setArcHeight(20);
+        rectangle.setFill(Color.rgb(190, 190, 190, 0.9));
+        menuBg.getChildren().add(rectangle);
+        menuBg.getChildren().add(menu);
 
         systeme.setOnAction(onSystemeMenu);
         ajouter.setOnAction(onAjouterMenu);
@@ -61,7 +78,9 @@ public class Menu extends Pane {
         changeMenu.setMaxWidth(1480);
         playOuPause.getChildren().addAll(play,pause);
         menu.getChildren().addAll(menuAstre, addAstre);
-        menuEtChangeMenu.getChildren().addAll(changeMenu, menu);
+        menuEtChangeMenu.getChildren().addAll(changeMenu, menuBg);
+
+
 
 
     }
