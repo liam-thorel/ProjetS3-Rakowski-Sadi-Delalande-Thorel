@@ -6,10 +6,13 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import logic.Simulation;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
@@ -31,6 +34,7 @@ public class PlaneteApp extends Application {
     @Override
     public void start(Stage stage)  {
         this.stage = stage;
+        Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
         if (System.getProperty("os.name").startsWith("Windows")) stage.setResizable(false);
         stage.setOnCloseRequest(event -> {
             try {
@@ -42,8 +46,8 @@ public class PlaneteApp extends Application {
         });
         initStart();
         stage.setTitle("Simulation Planète");
-        stage.setHeight(750);
-        stage.setWidth(1500);
+        stage.setHeight(dimension.getHeight());
+        stage.setWidth(dimension.getWidth());
         stage.show();
 
 
