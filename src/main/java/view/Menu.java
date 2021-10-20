@@ -57,7 +57,8 @@ public class Menu extends Pane {
         pause.prefHeight(15);
         menuBg = new Pane();
 
-        javafx.scene.shape.Rectangle rectangle = new Rectangle();
+        //Création et affectation du réctangle d'arrière plan derrière le menu
+        Rectangle rectangle = new Rectangle();
         rectangle.setWidth(1485);
         rectangle.setHeight(340);
         rectangle.setArcWidth(20);
