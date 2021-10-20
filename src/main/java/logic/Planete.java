@@ -6,16 +6,16 @@ public class Planete extends Astre{
     private int taille;
     private int masse;
     private String nom;
-    private int positionX;
-    private int positionY;
+    private double positionX;
+    private double positionY;
     //private int vecteurX = 1;
     //private int vecteurY = 1 ;
-    private int vitesseX;
-    private int vitesseY;
+    private double vitesseX;
+    private double vitesseY;
 
 
 
-    public Planete(String nom, int taille, int masse, int pX, int pY, int vInit ) {
+    public Planete(String nom, int taille, int masse, double pX, double pY ) {
         this.taille = taille;
         this.masse = masse;
         this.nom = nom;
@@ -26,36 +26,48 @@ public class Planete extends Astre{
 
     }
 
+    public static double echelleMasse(double m){
+        return Math.pow(m, 20);
+    }
+
+    public static double echelleDistance(double d){
+        return Math.pow(d,8);
+    }
+
     public Vecteur getVitesse() {
         return new Vecteur(vitesseX,vitesseY);
     }
 
     @Override
-    public int calculerForce(Astre p1){
-        return (int) ((int) (p1.getMasse() * this.masse * Simulation.g)/ Math.pow(calculerDistance(p1), 2));
+    public double calculerForce(Astre p1){
+        return  (echelleMasse(p1.getMasse()) * echelleMasse(this.masse) * Simulation.g)/ Math.pow(echelleDistance(calculerDistance(p1)), 2);
     }
 
     //Maelis tu penses pas qu'il faut faire un truc comme ca
     public Vecteur calculerForce2(ArrayList<Astre> liste){
-        int force;
+        double force;
         Vecteur vTotal = new Vecteur(0,0);
         for(Astre a : liste){
             force = calculerForce(a);
+            System.out.println("f = " + force);
             Vecteur vX = new Vecteur(a.getPositionX(), this.positionX);
             Vecteur vY = new Vecteur(a.getPositionY(), this.positionY);
-            int distanceX = Vecteur.calculerLongueur(vX);
-            int distanceY = Vecteur.calculerLongueur(vY);
-            vX.setX((vX.getX()/distanceX)*force);
+            double distanceX = echelleDistance(Vecteur.calculerLongueur(vX));
+            System.out.println("distanceX = " + distanceX);
+            double distanceY = echelleDistance(Vecteur.calculerLongueur(vY));
+            System.out.println("distanceY = " + distanceY );
+            vX.setX(((vX.getX()/distanceX)*force));
             vX.setY((vX.getY()/distanceY)*force);
             vY.setX((vY.getX()/distanceX)*force);
             vY.setY((vY.getY()/distanceY)*force);
 
-            vTotal.setX(vTotal.getX()+Vecteur.calculerLongueur(vX));
-            vTotal.setY(vTotal.getY()+Vecteur.calculerLongueur(vY));
+            vTotal.setX(vTotal.getX()+echelleDistance(Vecteur.calculerLongueur(vX)));
+            vTotal.setY(vTotal.getY()+echelleDistance(Vecteur.calculerLongueur(vY)));
 
             //trouver le rapport pour obtenir
         }
-        return null;
+        System.out.println(vTotal);
+        return vTotal;
     }
 
     @Override
@@ -66,8 +78,8 @@ public class Planete extends Astre{
     @Override
     public Vecteur calculerAcc(ArrayList<Astre> listeA){
         Vecteur r = calculerForce2(listeA);
-        r.setX(r.getX()/this.masse);
-        r.setY(r.getY()/this.masse);
+        r.setX((int) (r.getX()/echelleMasse(this.masse)));
+        r.setY((int) (r.getY()/echelleMasse(this.masse)));
         return r;
     }
 
@@ -88,7 +100,7 @@ public class Planete extends Astre{
 
     //FAUT LE REFAIRE
     public String getArgString(){
-        return nom + " "+ taille+ " " + masse+ " " + positionX+ " " + positionY + " "  + "\n";
+        return nom + " "+ taille+ " " + masse+ " " + (int) positionX+ " " + (int) positionY + " "  + "\n";
     }
 
     @Override
@@ -105,7 +117,7 @@ public class Planete extends Astre{
         return taille;
     }
 
-    public float getMasse() {
+    public int getMasse() {
         return masse;
     }
 
@@ -113,11 +125,11 @@ public class Planete extends Astre{
         return nom;
     }
 
-    public int getPositionX() {
+    public double getPositionX() {
         return positionX;
     }
 
-    public int getPositionY() {
+    public double getPositionY() {
         return positionY;
     }
 }
