@@ -3,6 +3,7 @@ package logic;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Planete extends Astre{
     private int taille;
@@ -35,6 +36,23 @@ public class Planete extends Astre{
     @Override
     public int calculerForce(Astre p1){
         return (int) ((int) (p1.getMasse() * this.masse * Simulation.g)/ Math.pow(calculerDistance(p1), 2));
+    }
+
+    //Maelis tu penses pas qu'il faut faire un truc comme ca
+    public int[] calculerForce2(ArrayList<Astre> liste){
+        int force;
+        int[] tab = new int[2];
+        Arrays.fill(tab,0);
+        for(Astre a : liste){
+            force = calculerForce(a);
+            int distanceX = a.getPositionX() - this.positionX;
+            int distanceY = a.getPositionY() - this.positionY;
+            int coeff = 1/(distanceX+distanceY);
+            int multipleX = distanceX * coeff;
+            int multipleY = distanceY * coeff;
+            //trouver le rapport pour obtenir
+        }
+        return tab;
     }
 
     @Override

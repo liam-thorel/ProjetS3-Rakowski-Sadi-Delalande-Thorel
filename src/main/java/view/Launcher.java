@@ -2,8 +2,7 @@ package view;
 
 public class Launcher {
     public static void main(String[] args) {
-        // Replace "Main" with the name of the class that extends Application
-        // See https://stackoverflow.com/a/52654791/3956070 for explanation
+        //On utilise un launcher pour donner un main à utiliser à notre .jar
         view.PlaneteApp.main(args);
     }
 }
