@@ -58,7 +58,7 @@ public class MenuAjouter extends Pane {
 
     }
 
-    public Pane getMenuBg() {
+    public Pane getMenu() {
         return menuBg;
     }
 }

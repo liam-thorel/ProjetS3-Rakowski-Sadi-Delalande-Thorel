@@ -35,8 +35,8 @@ public class Menu extends Pane {
         setWidth(1500);
         setHeight(200);
         changeMenu = new BorderPane();
-        menuAjouter = new MenuAjouter().getMenuBg();
-        menuSysteme = new Pane();
+        menuAjouter = new MenuAjouter().getMenu();
+        menuSysteme = new MenuSysteme().getMenu();
         menuActuel = menuAjouter;
         menuEtChangeMenu = new VBox();
         systemeOuAjouter = new HBox();
