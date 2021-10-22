@@ -59,4 +59,8 @@ public class SimulationView extends Stage {
     public EspaceView getEspace() {
         return espace;
     }
+
+    public PlaneteApp getApp() {
+        return app;
+    }
 }

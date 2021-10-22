@@ -16,7 +16,7 @@ public class MenuAjouter extends Pane {
     private Pane menuAddAstreBg;
 
 
-    public MenuAjouter(){
+    public MenuAjouter(Menu m){
         menuAstreBg = new Pane();
         menuAddAstreBg = new Pane();
         menuAstre = new HBox();
@@ -25,8 +25,8 @@ public class MenuAjouter extends Pane {
 
         //Création et affectation du réctangle d'arrière plan derrière le menu
         Rectangle rectangle = new Rectangle();
-        rectangle.setWidth(1485);
-        rectangle.setHeight(350);
+        rectangle.setWidth(m.getSimulation().getApp().getDimension().getWidth()-15);
+        rectangle.setHeight(m.getSimulation().getApp().getDimension().getHeight()-500);
         rectangle.setArcWidth(20);
         rectangle.setArcHeight(20);
         rectangle.setFill(Color.rgb(190, 190, 190, 0.9));
