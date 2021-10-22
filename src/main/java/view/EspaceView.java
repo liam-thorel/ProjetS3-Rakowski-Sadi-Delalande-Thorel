@@ -105,8 +105,6 @@ public class EspaceView extends Pane {
         return null;
     }
 
-    private ArrayList<PathTransition> listeT;
-
     public class MoveThread extends Thread{
         public void run(){
             while(playing.getValue()){

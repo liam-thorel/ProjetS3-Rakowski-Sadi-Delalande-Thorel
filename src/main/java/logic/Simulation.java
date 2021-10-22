@@ -35,7 +35,7 @@ public class Simulation {
             int masse = 0;
             int pX = 0;
             int pY = 0;
-            int vIinit =0;
+            //int vIinit =0;
 
             boolean creer = true;
             String [] arguments = ligne.split(" ");
@@ -47,7 +47,7 @@ public class Simulation {
                     masse = Integer.parseInt(arguments[2]);
                     pX = Integer.parseInt(arguments[3]);
                     pY = Integer.parseInt(arguments[4]);
-                    vIinit = Integer.parseInt(arguments[5]);
+                    //vIinit = Integer.parseInt(arguments[5]);
 
                 }else{
                     creer = false;
@@ -55,7 +55,7 @@ public class Simulation {
 
 
             if(creer){
-                listeA.add(p.factory(name, taille, masse, pX, pY, vIinit));
+                listeA.add(p.factory(name, taille, masse, pX, pY));
             }
         }
         return  listeA;
@@ -70,7 +70,7 @@ public class Simulation {
         System.out.println(save.getPath());
         save.toPath();
         save.createNewFile();
-        String commentaire = "// nom taille masse positionX positionY vitesseInitiale \n";
+        String commentaire = "// nom taille masse positionX positionY \n";
         Files.write(save.toPath(), commentaire.getBytes(), StandardOpenOption.APPEND);
         for(Astre a : listeAstre){
             String arg = a.getArgString();

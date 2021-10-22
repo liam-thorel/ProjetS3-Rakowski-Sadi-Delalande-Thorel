@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 public abstract class Astre implements Serializable {
     private float taille;
-    private float masse;
+    private int masse;
     private String nom;
-    private int positionX;
-    private int positionY;
+    private double positionX;
+    private double positionY;
     private int vitesseInit;
     //private int vecteurX;
     //private int vecteurY;
@@ -30,7 +30,7 @@ public abstract class Astre implements Serializable {
         return taille;
     }
 
-    public float getMasse() {
+    public int getMasse() {
         return masse;
     }
 
@@ -38,15 +38,15 @@ public abstract class Astre implements Serializable {
         return nom;
     }
 
-    public int getPositionX() {
+    public double getPositionX() {
         return positionX;
     }
 
-    public int getPositionY() {
+    public double getPositionY() {
         return positionY;
     }
 
-    public abstract int calculerForce(Astre a1);
+    public abstract double calculerForce(Astre a1);
 
     public abstract int calculerDistance(Astre a1);
 
