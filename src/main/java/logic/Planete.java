@@ -12,27 +12,20 @@ public class Planete extends Astre{
     //private int vecteurY = 1 ;
     private double vitesseX;
     private double vitesseY;
+    private boolean isFixed;
 
 
-
-    public Planete(String nom, int taille, int masse, double pX, double pY ) {
+    public Planete(String nom, int taille, int masse,  double positionX, double positionY, double vitesseX, double vitesseY, boolean isFixed) {
         this.taille = taille;
         this.masse = masse;
         this.nom = nom;
-        this.positionX = pX;
-        this.positionY = pY;
-        //vecteurX *= vInit;
-        //vecteurY *= vInit;
-
+        this.positionX = positionX;
+        this.positionY = positionY;
+        this.vitesseX = vitesseX;
+        this.vitesseY = vitesseY;
+        this.isFixed = isFixed;
     }
 
-    public static double echelleMasse(double m){
-        return Math.pow(m, 20);
-    }
-
-    public static double echelleDistance(double d){
-        return Math.pow(d,8);
-    }
 
     public Vecteur getVitesse() {
         return new Vecteur(vitesseX,vitesseY);
@@ -40,34 +33,42 @@ public class Planete extends Astre{
 
     @Override
     public double calculerForce(Astre p1){
-        return  (echelleMasse(p1.getMasse()) * echelleMasse(this.masse) * Simulation.g)/ Math.pow(echelleDistance(calculerDistance(p1)), 2);
+        return  (p1.getMasse() * this.masse * Simulation.g)/ Math.pow(calculerDistance(p1), 2) * Math.pow(10, 14);
     }
 
-    //Maelis tu penses pas qu'il faut faire un truc comme ca
-    public Vecteur calculerForce2(ArrayList<Astre> liste){
+    public boolean isFixed() {
+        return isFixed;
+    }
+
+    public Vecteur calculerSommeForces(ArrayList<Astre> liste){
+
         double force;
-        Vecteur vTotal = new Vecteur(0,0);
+        Vecteur vSommeForces = new Vecteur(0,0);
+
         for(Astre a : liste){
-            force = calculerForce(a);
-            System.out.println("f = " + force);
-            Vecteur vX = new Vecteur(a.getPositionX(), this.positionX);
-            Vecteur vY = new Vecteur(a.getPositionY(), this.positionY);
-            double distanceX = echelleDistance(Vecteur.calculerLongueur(vX));
-            System.out.println("distanceX = " + distanceX);
-            double distanceY = echelleDistance(Vecteur.calculerLongueur(vY));
-            System.out.println("distanceY = " + distanceY );
-            vX.setX(((vX.getX()/distanceX)*force));
-            vX.setY((vX.getY()/distanceY)*force);
-            vY.setX((vY.getX()/distanceX)*force);
-            vY.setY((vY.getY()/distanceY)*force);
 
-            vTotal.setX(vTotal.getX()+echelleDistance(Vecteur.calculerLongueur(vX)));
-            vTotal.setY(vTotal.getY()+echelleDistance(Vecteur.calculerLongueur(vY)));
+                force = calculerForce(a);
+                System.out.println("f = " + force);
+                Vecteur vX = new Vecteur(a.getPositionX(), this.positionX);
 
-            //trouver le rapport pour obtenir
+                Vecteur vY = new Vecteur(a.getPositionY(), this.positionY);
+                System.out.println("ancien vX = " + vX + " , ancien vY = " + vY);
+                double distanceX = vX.getX() - vX.getY();
+                System.out.println("distanceX = " + distanceX);
+                double distanceY = vY.getX() - vY.getY();
+                System.out.println("distanceY = " + distanceY);
+                vX.setX(vX.getX() / (distanceX) * force);
+                vX.setY(vX.getY() / (distanceX) * force);
+                vY.setX(vY.getX() / (distanceY) * force);
+                vY.setY(vY.getY() / (distanceY) * force);
+
+                System.out.println("new vX = " + vX + " , new vY = " + vY);
+                vSommeForces.setX(vSommeForces.getX() + Vecteur.calculerNorme(vX));
+                vSommeForces.setY(vSommeForces.getY() + Vecteur.calculerNorme(vY));
+                System.out.println("vSommeForce = " + vSommeForces);
         }
-        System.out.println(vTotal);
-        return vTotal;
+        System.out.println("vSommeForces = " + vSommeForces);
+        return vSommeForces;
     }
 
     @Override
@@ -77,21 +78,32 @@ public class Planete extends Astre{
 
     @Override
     public Vecteur calculerAcc(ArrayList<Astre> listeA){
-        Vecteur r = calculerForce2(listeA);
-        r.setX((int) (r.getX()/echelleMasse(this.masse)));
-        r.setY((int) (r.getY()/echelleMasse(this.masse)));
-        return r;
+        Vecteur vecteurAcc;
+        if(this.isFixed){
+            vecteurAcc = new Vecteur(0, 0);
+        }else {
+            vecteurAcc = calculerSommeForces(listeA);
+        }
+        System.out.println("vecteur acceleration = " + vecteurAcc);
+        vecteurAcc.setX((int) (vecteurAcc.getX()/60));
+        vecteurAcc.setY((int) (vecteurAcc.getY()/60));
+
+        return vecteurAcc;
     }
 
     @Override
     public void setVistesse(ArrayList<Astre> listeA){
+
         this.vitesseX += this.calculerAcc(listeA).getX();
+        System.out.println("vitesse X " + vitesseX);
         this.vitesseY += this.calculerAcc(listeA).getY();
+        System.out.println("vitesse Y " + vitesseY);
     }
 
     public void setPositions(){
-        positionX += vitesseX;
-        positionY += vitesseY;
+        positionX += vitesseX * Math.pow(10, -8);
+        positionY += vitesseY * Math.pow(10,-8);
+        System.out.println("pX = " + positionX + " pY = " + positionY);
     }
 
 
@@ -100,7 +112,7 @@ public class Planete extends Astre{
 
     //FAUT LE REFAIRE
     public String getArgString(){
-        return nom + " "+ taille+ " " + masse+ " " + (int) positionX+ " " + (int) positionY + " "  + "\n";
+        return nom + " "+ taille+ " " + masse+ " " + (int) positionX+ " " + (int) positionY + " "  + (int) vitesseX+ " " + (int) vitesseY+ " " + isFixed+"\n";
     }
 
     @Override

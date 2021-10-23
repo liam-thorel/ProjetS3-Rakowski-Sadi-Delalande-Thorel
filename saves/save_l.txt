@@ -1,3 +1,3 @@
-// nom taille masse positionX positionY
-bob 1000 1200 250 250
-mini_bob 200 300 250 400
+// nom taille masse positionX positionY vitesseX vitesseY estFixe
+bob 1000 1200 250 250 0 0 false
+mini_bob 200 300 250 400 0 0 false

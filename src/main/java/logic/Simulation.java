@@ -35,7 +35,9 @@ public class Simulation {
             int masse = 0;
             int pX = 0;
             int pY = 0;
-            //int vIinit =0;
+            int vitesseX = 0;
+            int vitesseY = 0;
+            boolean isFixed = false;
 
             boolean creer = true;
             String [] arguments = ligne.split(" ");
@@ -47,7 +49,9 @@ public class Simulation {
                     masse = Integer.parseInt(arguments[2]);
                     pX = Integer.parseInt(arguments[3]);
                     pY = Integer.parseInt(arguments[4]);
-                    //vIinit = Integer.parseInt(arguments[5]);
+                    vitesseX = Integer.parseInt(arguments[5]);
+                    vitesseY = Integer.parseInt(arguments[6]);
+                    isFixed = Boolean.parseBoolean(arguments[7]);
 
                 }else{
                     creer = false;
@@ -55,7 +59,7 @@ public class Simulation {
 
 
             if(creer){
-                listeA.add(p.factory(name, taille, masse, pX, pY));
+                listeA.add(p.factory(name, taille, masse, pX, pY, vitesseX, vitesseY, isFixed));
             }
         }
         return  listeA;
@@ -70,7 +74,7 @@ public class Simulation {
         System.out.println(save.getPath());
         save.toPath();
         save.createNewFile();
-        String commentaire = "// nom taille masse positionX positionY \n";
+        String commentaire = "// nom taille masse positionX positionY vitesseX vitesseY estFixe \n";
         Files.write(save.toPath(), commentaire.getBytes(), StandardOpenOption.APPEND);
         for(Astre a : listeAstre){
             String arg = a.getArgString();
@@ -78,6 +82,13 @@ public class Simulation {
 
 
         }
+    }
+
+    public static ArrayList<Astre> getOther(Astre a, ArrayList<Astre> listeA){
+        ArrayList<Astre> r = new ArrayList<>(listeA);
+        r.remove(a);
+        System.out.println("liste other : " + r + "de longueure : " + r.size());
+        return r;
     }
 
 

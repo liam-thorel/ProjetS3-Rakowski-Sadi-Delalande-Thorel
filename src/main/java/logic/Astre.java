@@ -18,7 +18,11 @@ public abstract class Astre implements Serializable {
     public abstract String getArgString();
     public abstract String toString();
     private Node n;
+    private boolean isFixed;
 
+    public boolean isFixed() {
+        return isFixed;
+    }
 
     public Node getN() {return n;}
 
@@ -56,4 +60,11 @@ public abstract class Astre implements Serializable {
 
     public abstract void setPositions();
 
+    public void setPositionX(double positionX) {
+        this.positionX = positionX;
+    }
+
+    public void setPositionY(double positionY) {
+        this.positionY = positionY;
+    }
 }
