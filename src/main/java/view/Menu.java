@@ -35,8 +35,8 @@ public class Menu extends Pane {
         setWidth(1500);
         setHeight(200);
         changeMenu = new BorderPane();
-        menuAjouter = new MenuAjouter().getMenu();
-        menuSysteme = new MenuSysteme().getMenu();
+        menuAjouter = new MenuAjouter(this).getMenu();
+        menuSysteme = new MenuSysteme(this).getMenu();
         menuActuel = menuAjouter;
         menuEtChangeMenu = new VBox();
         systemeOuAjouter = new HBox();
@@ -66,7 +66,7 @@ public class Menu extends Pane {
         changeMenu.setRight(playOuPause);
         systemeOuAjouter.setSpacing(5);
         playOuPause.setSpacing(5);
-        changeMenu.setMaxWidth(1480);
+        changeMenu.setMaxWidth(s.getApp().getDimension().getWidth()-20);
         playOuPause.getChildren().addAll(play,pause);
         menuEtChangeMenu.getChildren().addAll(changeMenu,menuActuel);
 
@@ -109,6 +109,10 @@ public class Menu extends Pane {
 
     public VBox getMenuEtChangeMenu() {
         return menuEtChangeMenu;
+    }
+
+    public SimulationView getSimulation() {
+        return s;
     }
 }
 

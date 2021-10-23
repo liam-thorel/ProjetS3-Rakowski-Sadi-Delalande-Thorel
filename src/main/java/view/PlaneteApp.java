@@ -24,6 +24,7 @@ public class PlaneteApp extends Application {
     private StartView startView;
     private SimulationView simulationView;
     private Simulation simulation;
+    private Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 
 
 
@@ -34,7 +35,7 @@ public class PlaneteApp extends Application {
     @Override
     public void start(Stage stage)  {
         this.stage = stage;
-        Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+
         if (System.getProperty("os.name").startsWith("Windows")) stage.setResizable(false);
         stage.setOnCloseRequest(event -> {
             try {
@@ -131,5 +132,9 @@ public class PlaneteApp extends Application {
                 Platform.exit();
             }
         }
+    }
+
+    public Dimension getDimension() {
+        return dimension;
     }
 }
