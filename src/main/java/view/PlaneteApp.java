@@ -109,9 +109,9 @@ public class PlaneteApp extends Application {
                     @Override
                     public void handle(ActionEvent event) {
                         try {
-                            String s =  txta.getText() + ".txt";
-                            if (s.equals(".txt")){
-                            s = "default.txt";
+                            String s =  txta.getText() + ".simu";
+                            if (s.equals(".simu")){
+                            s = "default.simu";
                             }
                             s = "saves\\" + s;
                             simulation.saveListeAstre(new File(s));
