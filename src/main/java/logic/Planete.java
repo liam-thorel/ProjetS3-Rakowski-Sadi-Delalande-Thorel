@@ -9,15 +9,10 @@ public class Planete extends Astre{
     private String nom;
     private double positionX;
     private double positionY;
-    //private int vecteurX = 1;
-    //private int vecteurY = 1 ;
     private double vitesseX;
     private double vitesseY;
     private boolean isFixed;
 
-
-    //masse est d'ordre  20 distance² 16 et g -11
-    //masse va etre 1 et distance² 2 donc g
 
     public Planete(String nom, int taille, int masse,  double positionX, double positionY, double vitesseX, double vitesseY, boolean isFixed) {
         this.taille = taille;
@@ -50,11 +45,9 @@ public class Planete extends Astre{
         for(Astre a : liste){
                 Vecteur vX = new Vecteur(a.getPositionX(), this.positionX);
                 Vecteur vY = new Vecteur(a.getPositionY(), this.positionY);
-                System.out.println("new vX = " + vX + " , new vY = " + vY);
 
                 vSommeForces.setX(vSommeForces.getX() + (Simulation.g * (Vecteur.normalize(vX) * a.getMasse() / Math.pow(Vecteur.calculerNorme(vX), 2)) + 1.f));
                 vSommeForces.setY(vSommeForces.getY() + ( Simulation.g * (Vecteur.normalize(vY) *a.getMasse() / Math.pow(Vecteur.calculerNorme(vY), 2)) + 1.f));
-                System.out.println("vSommeForce = " + vSommeForces);
         }
         System.out.println("vSommeForces = " + vSommeForces);
         return vSommeForces;
@@ -82,22 +75,17 @@ public class Planete extends Astre{
     public void setVistesse(ArrayList<Astre> listeA){
 
         this.vitesseX += this.calculerAcc(listeA).getX() * 0.001f;
-        System.out.println("vitesse X " + vitesseX);
-        this.vitesseY += this.calculerAcc(listeA).getY();
-        System.out.println("vitesse Y " + vitesseY);
+        this.vitesseY += this.calculerAcc(listeA).getY() * 0.001f;
     }
 
     public void setPositions(){
         positionX += vitesseX * 0.001f;
         positionY += vitesseY * 0.001f;
-        System.out.println("pX = " + positionX + " pY = " + positionY);
     }
 
 
 
     @Override
-
-    //FAUT LE REFAIRE
     public String getArgString(){
         return nom + " "+ taille+ " " + masse+ " " + (int) positionX+ " " + (int) positionY + " "  + (int) vitesseX+ " " + (int) vitesseY+ " " + isFixed+"\n";
     }

@@ -7,16 +7,6 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ListChangeListener;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Point3D;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -55,8 +45,6 @@ public class EspaceView extends Pane {
             p.relocate(a.getPositionX(), a.getPositionY());
         }
 
-        // mettre a jour avec un relocate a chaque changement de timeline (envent ?)
-        //move();
         timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
@@ -69,20 +57,6 @@ public class EspaceView extends Pane {
         timer.start();
 
     }
-
-    /*private ChangeListener<Boolean> playOrStop = (observableValue, aBoolean, t1) -> {
-        System.out.println(playing.getValue());
-        if(t1){
-            move = new MoveThread();
-            move.start();
-        }
-        else{
-            move.stopThread();
-        }
-    };*/
-
-
-
 
     public Circle creerPlaneteCercle(Astre p){
         Circle planete = new Circle();
