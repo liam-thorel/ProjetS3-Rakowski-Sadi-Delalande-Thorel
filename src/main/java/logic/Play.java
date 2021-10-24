@@ -21,8 +21,8 @@ public class Play {
 
         s.setListeAstre(listeA);
 
-        Simulation s2 = new Simulation(new File("saves/save.txt"));
-        s2.saveListeAstre(new File("saves/save2.txt"));
+        Simulation s2 = new Simulation(new File("saves/save.simu"));
+        s2.saveListeAstre(new File("saves/save2.simusimu"));
         System.out.println(s2);
         System.out.println(s);
 
