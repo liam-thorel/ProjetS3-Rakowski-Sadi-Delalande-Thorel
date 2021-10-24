@@ -43,11 +43,11 @@ public class Planete extends Astre{
         Vecteur vSommeForces = new Vecteur(0,0);
 
         for(Astre a : liste){
-                Vecteur vX = new Vecteur(a.getPositionX(), this.positionX);
-                Vecteur vY = new Vecteur(a.getPositionY(), this.positionY);
+            Vecteur vX = new Vecteur(a.getPositionX(), this.positionX);
+            Vecteur vY = new Vecteur(a.getPositionY(), this.positionY);
 
-                vSommeForces.setX(vSommeForces.getX() + (Simulation.g * (Vecteur.normalize(vX) * a.getMasse() / Math.pow(Vecteur.calculerNorme(vX), 2)) + 1.f));
-                vSommeForces.setY(vSommeForces.getY() + ( Simulation.g * (Vecteur.normalize(vY) *a.getMasse() / Math.pow(Vecteur.calculerNorme(vY), 2)) + 1.f));
+            vSommeForces.setX(vSommeForces.getX() + (Simulation.g * (Vecteur.normalize(vX) * a.getMasse() / (Math.pow(Vecteur.calculerNorme(vX), 2) + 1.f))/ Simulation.simuRate));
+            vSommeForces.setY(vSommeForces.getY() + ( Simulation.g * (Vecteur.normalize(vY) *a.getMasse() / (Math.pow(Vecteur.calculerNorme(vY), 2) + 1.f))/ Simulation.simuRate));
         }
         System.out.println("vSommeForces = " + vSommeForces);
         return vSommeForces;
@@ -67,7 +67,6 @@ public class Planete extends Astre{
 
             vecteurAcc = calculerSommeForces(listeA);
         }
-        System.out.println("vecteur acceleration = " + vecteurAcc);
         return vecteurAcc;
     }
 
@@ -76,11 +75,12 @@ public class Planete extends Astre{
 
         this.vitesseX += this.calculerAcc(listeA).getX() * 0.001f;
         this.vitesseY += this.calculerAcc(listeA).getY() * 0.001f;
+        System.out.println("vitesseX = " + vitesseX + "    vitesseY = " + vitesseY);
     }
 
     public void setPositions(){
-        positionX += vitesseX * 0.001f;
-        positionY += vitesseY * 0.001f;
+        positionX += vitesseX;
+        positionY += vitesseY;
     }
 
 

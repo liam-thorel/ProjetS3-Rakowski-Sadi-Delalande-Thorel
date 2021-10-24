@@ -9,6 +9,7 @@ import java.lang.Math;
 public class Simulation {
 
     public static double g =  6.6742;
+    public static float simuRate = 0.2f;
     private ArrayList<Astre> listeAstre;
 
     public Simulation(){
@@ -24,6 +25,10 @@ public class Simulation {
 
     public void setListeAstre(ArrayList<Astre> listeAstre) {
         this.listeAstre = listeAstre;
+    }
+
+    public static void setSimuRate(float simuRate) {
+        Simulation.simuRate = simuRate;
     }
 
     public ArrayList<Astre> setAPartirDunFichier(File save) throws IOException {
@@ -44,7 +49,6 @@ public class Simulation {
 
                 if (!(arguments[0].equals("//"))){
                     name = arguments[0];
-                    System.out.println(arguments[0]);
                     taille = Integer.parseInt(arguments[1]);
                     masse = Integer.parseInt(arguments[2]);
                     pX = Integer.parseInt(arguments[3]);
@@ -71,7 +75,6 @@ public class Simulation {
         if(save.exists()){
             save.delete();
         }
-        System.out.println(save.getPath());
         save.toPath();
         save.createNewFile();
         String commentaire = "// nom taille masse positionX positionY vitesseX vitesseY estFixe \n";
@@ -87,7 +90,6 @@ public class Simulation {
     public static ArrayList<Astre> getOther(Astre a, ArrayList<Astre> listeA){
         ArrayList<Astre> r = new ArrayList<>(listeA);
         r.remove(a);
-        System.out.println("liste other : " + r + "de longueure : " + r.size());
         return r;
     }
 
