@@ -1,6 +1,7 @@
 package logic;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class Planete extends Astre{
     private int taille;
@@ -14,6 +15,9 @@ public class Planete extends Astre{
     private double vitesseY;
     private boolean isFixed;
 
+
+    //masse est d'ordre  20 distance² 16 et g -11
+    //masse va etre 1 et distance² 2 donc g
 
     public Planete(String nom, int taille, int masse,  double positionX, double positionY, double vitesseX, double vitesseY, boolean isFixed) {
         this.taille = taille;
@@ -39,32 +43,17 @@ public class Planete extends Astre{
     public boolean isFixed() {
         return isFixed;
     }
-
+  //
     public Vecteur calculerSommeForces(ArrayList<Astre> liste){
-
-        double force;
         Vecteur vSommeForces = new Vecteur(0,0);
 
         for(Astre a : liste){
-
-                force = calculerForce(a);
-                System.out.println("f = " + force);
                 Vecteur vX = new Vecteur(a.getPositionX(), this.positionX);
-
                 Vecteur vY = new Vecteur(a.getPositionY(), this.positionY);
-                System.out.println("ancien vX = " + vX + " , ancien vY = " + vY);
-                double distanceX = vX.getX() - vX.getY();
-                System.out.println("distanceX = " + distanceX);
-                double distanceY = vY.getX() - vY.getY();
-                System.out.println("distanceY = " + distanceY);
-                vX.setX(vX.getX() / (distanceX) * force);
-                vX.setY(vX.getY() / (distanceX) * force);
-                vY.setX(vY.getX() / (distanceY) * force);
-                vY.setY(vY.getY() / (distanceY) * force);
-
                 System.out.println("new vX = " + vX + " , new vY = " + vY);
-                vSommeForces.setX(vSommeForces.getX() + Vecteur.calculerNorme(vX));
-                vSommeForces.setY(vSommeForces.getY() + Vecteur.calculerNorme(vY));
+
+                vSommeForces.setX(vSommeForces.getX() + (Simulation.g * (Vecteur.normalize(vX) * a.getMasse() / Math.pow(Vecteur.calculerNorme(vX), 2)) + 1.f));
+                vSommeForces.setY(vSommeForces.getY() + ( Simulation.g * (Vecteur.normalize(vY) *a.getMasse() / Math.pow(Vecteur.calculerNorme(vY), 2)) + 1.f));
                 System.out.println("vSommeForce = " + vSommeForces);
         }
         System.out.println("vSommeForces = " + vSommeForces);
@@ -82,27 +71,25 @@ public class Planete extends Astre{
         if(this.isFixed){
             vecteurAcc = new Vecteur(0, 0);
         }else {
+
             vecteurAcc = calculerSommeForces(listeA);
         }
         System.out.println("vecteur acceleration = " + vecteurAcc);
-        vecteurAcc.setX((int) (vecteurAcc.getX()/60));
-        vecteurAcc.setY((int) (vecteurAcc.getY()/60));
-
         return vecteurAcc;
     }
 
     @Override
     public void setVistesse(ArrayList<Astre> listeA){
 
-        this.vitesseX += this.calculerAcc(listeA).getX();
+        this.vitesseX += this.calculerAcc(listeA).getX() * 0.001f;
         System.out.println("vitesse X " + vitesseX);
         this.vitesseY += this.calculerAcc(listeA).getY();
         System.out.println("vitesse Y " + vitesseY);
     }
 
     public void setPositions(){
-        positionX += vitesseX * Math.pow(10, -8);
-        positionY += vitesseY * Math.pow(10,-8);
+        positionX += vitesseX * 0.001f;
+        positionY += vitesseY * 0.001f;
         System.out.println("pX = " + positionX + " pY = " + positionY);
     }
 

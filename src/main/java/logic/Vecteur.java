@@ -14,14 +14,7 @@ public class Vecteur {
     public static double calculerNorme(Vecteur v) {
         return Math.sqrt(Math.pow(v.getX(), 2) + Math.pow(v.getY(), 2));
     }
-
-    public void setNorme(double norme) {
-        this.norme = norme;
-    }
-
-    public double getNorme() {
-        return norme;
-    }
+    public static double normalize(Vecteur v){ return v.getY() - v.getX()/calculerNorme(v);}
 
     public double getX() {
         return x;

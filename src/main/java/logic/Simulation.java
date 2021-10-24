@@ -8,7 +8,7 @@ import java.lang.Math;
 
 public class Simulation {
 
-    public static double g =  6.6742 * Math.pow(10, -11);
+    public static double g =  6.6742;
     private ArrayList<Astre> listeAstre;
 
     public Simulation(){
