@@ -25,7 +25,7 @@ public class MenuSysteme extends Pane {
         rectangle.setHeight(m.getSimulation().getApp().getDimension().getHeight()-500);
         rectangle.setArcWidth(20);
         rectangle.setArcHeight(20);
-        rectangle.setFill(Color.rgb(190, 190, 190, 0.9));
+        rectangle.setFill(Color.rgb(47, 49, 54, 0.9));
         menuBg.getChildren().add(rectangle);
         menuBg.getChildren().add(menu);
 
@@ -33,7 +33,7 @@ public class MenuSysteme extends Pane {
         Rectangle rectangleMenuAstres = new Rectangle();
         rectangleMenuAstres.setHeight(80);
         rectangleMenuAstres.setWidth(1200);
-        rectangleMenuAstres.setFill(Color.rgb(220, 220, 190, 1));
+        rectangleMenuAstres.setFill(Color.rgb(64,68,75, 1));
         menuSysBg.getChildren().add(rectangleMenuAstres);
         menuSysBg.getChildren().add(menuSys);
 

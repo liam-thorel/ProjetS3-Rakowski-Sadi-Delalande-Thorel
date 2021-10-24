@@ -29,7 +29,7 @@ public class MenuAjouter extends Pane {
         rectangle.setHeight(m.getSimulation().getApp().getDimension().getHeight()-500);
         rectangle.setArcWidth(20);
         rectangle.setArcHeight(20);
-        rectangle.setFill(Color.rgb(190, 190, 190, 0.9));
+        rectangle.setFill(Color.rgb(47, 49, 54, 0.9));
         menuBg.getChildren().add(rectangle);
         menuBg.getChildren().add(menu);
 
@@ -37,7 +37,7 @@ public class MenuAjouter extends Pane {
         Rectangle rectangleMenuAstres = new Rectangle();
         rectangleMenuAstres.setHeight(70);
         rectangleMenuAstres.setWidth(525);
-        rectangleMenuAstres.setFill(Color.rgb(220,220,190,1));
+        rectangleMenuAstres.setFill(Color.rgb(64,68,75,1));
         menuAstreBg.getChildren().add(rectangleMenuAstres);
         menuAstreBg.getChildren().add(menuAstre);
 
@@ -45,7 +45,7 @@ public class MenuAjouter extends Pane {
         Rectangle rectangleAddAstres = new Rectangle();
         rectangleAddAstres.setHeight(70);
         rectangleAddAstres.setWidth(525);
-        rectangleAddAstres.setFill(Color.rgb(220,220,190,1));
+        rectangleAddAstres.setFill(Color.rgb(64,68,75,1));
         menuAddAstreBg.getChildren().add(rectangleAddAstres);
         menuAddAstreBg.getChildren().add(addAstre);
 
