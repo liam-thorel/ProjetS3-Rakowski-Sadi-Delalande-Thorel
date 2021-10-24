@@ -1,8 +1,11 @@
 package view;
 
+import eu.hansolo.tilesfx.events.TimeEvent;
+import eu.hansolo.tilesfx.events.TimeEventListener;
 import javafx.animation.*;
 import javafx.beans.InvalidationListener;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -27,58 +30,56 @@ import logic.Simulation;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 public class EspaceView extends Pane {
 
     private ArrayList<Astre> listeA;
-    private ArrayList<Circle> listeC;
     private Simulation s;
-    private Timeline timeline = new Timeline();
     private BooleanProperty playing = new SimpleBooleanProperty();
-    private MoveThread move;
+    private HashMap <Astre, Circle> listeAetC;
+    private AnimationTimer timer;
 
     public EspaceView(SimulationView s){
-        move = new MoveThread();
+
+        listeAetC = new HashMap<>();
         listeA = s.getSimulation().getListeAstre();
-        listeC = new ArrayList<>();
         this.s = s.getSimulation();
-        playing.setValue(false);
-        playing.addListener(playOrStop);
+        playing.setValue(null);
+        //playing.addListener(playOrStop);
         for (Astre a: listeA) {
             Circle p = creerPlaneteCercle(a);
-            listeC.add(p);
+            listeAetC.put(a, p);
             getChildren().add(p);
             p.relocate(a.getPositionX(), a.getPositionY());
         }
 
         // mettre a jour avec un relocate a chaque changement de timeline (envent ?)
         //move();
+        timer = new AnimationTimer() {
+            @Override
+            public void handle(long l) {
+                if(playing.getValue()){
+                    move();
+                }
+            }
+        };
 
+        timer.start();
 
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
     }
 
-
-    private ChangeListener<Boolean> playOrStop = (observableValue, aBoolean, t1) -> {
+    /*private ChangeListener<Boolean> playOrStop = (observableValue, aBoolean, t1) -> {
         System.out.println(playing.getValue());
         if(t1){
-            if(!move.isInterrupted()){
-                move.start();
-            }else{
-                move.run();
-            }
+            move = new MoveThread();
+            move.start();
         }
         else{
-            try {
-                synchronized (move){
-                    move.wait();}
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            move.stopThread();
         }
-    };
+    };*/
 
 
 
@@ -96,30 +97,15 @@ public class EspaceView extends Pane {
 
 
 
-    private ArrayList<Astre> getOther(Astre a){
-        ArrayList<Astre> r = new ArrayList<>(listeA);
-        if(r.remove(a)){
-            return r;
-        }
-        System.out.println("probleme dans getOther");
-        return null;
-    }
-
-    public class MoveThread extends Thread{
-        public void run(){
-            while(playing.getValue()){
-                for(int i =0; i<listeA.size(); i++) {
-                    Astre current = listeA.get(i);
-                    System.out.println("ancienne position de " + current.getNom() + " " + current.getPositionX() + " " + current.getPositionY());
-                    current.setVistesse(getOther(current));
-                    current.setPositions();
-                    System.out.println("nouvelle position de " + current.getNom() + " " + current.getPositionX() + " " + current.getPositionY());
-                    listeC.get(i).relocate(current.getPositionX(), current.getPositionY());
-                }
-            }
+    public void move(){
+        for(Astre a : listeA) {
+            System.out.println("ancienne position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
+            a.setVistesse(Simulation.getOther(a, listeA));
+            a.setPositions();
+            System.out.println("nouvelle position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
+            listeAetC.get(a).relocate(a.getPositionX(), a.getPositionY());
         }
     }
-
     public void setPlaying(boolean playing) {
         this.playing.setValue(playing);
     }
