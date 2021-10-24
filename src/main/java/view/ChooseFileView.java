@@ -50,9 +50,6 @@ public class ChooseFileView extends Stage {
         app.getStage().setScene(scene);
 
 
-
-
-
     }
 
     private EventHandler<ActionEvent> chargerFileEvent = new EventHandler<ActionEvent>() {
@@ -65,6 +62,7 @@ public class ChooseFileView extends Stage {
                 s = new Simulation(new File(name));
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
+                systemText.setText("le fichier " + name + " n'existe pas.");
             }
             app.initSimulation(s);
         }
