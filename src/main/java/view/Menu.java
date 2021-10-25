@@ -27,8 +27,8 @@ public class Menu extends Pane {
     private HBox playOuPause;
     private Button systeme;
     private Button ajouter;
-    private Button play = new Button();
-    private Button pause = new Button();
+    private Button play = new Button("Play");
+    private Button pause = new Button("Pause");
     private SimulationView s;
 
     public Menu(SimulationView s) {

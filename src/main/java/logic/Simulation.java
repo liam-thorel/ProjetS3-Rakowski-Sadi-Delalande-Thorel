@@ -1,5 +1,8 @@
 package logic;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
@@ -11,9 +14,11 @@ public class Simulation {
     public static double g =  6.6742;
     public static float simuRate = 0.00000001f;
     private ArrayList<Astre> listeAstre;
+    private  ObservableList<Astre> lstAstre;
 
     public Simulation(){
         listeAstre = new ArrayList<>();
+        lstAstre  = FXCollections.observableList(listeAstre);
     }
 
     public Simulation(File save) throws IOException, ClassNotFoundException {
@@ -102,5 +107,9 @@ public class Simulation {
         return "Simulation{ " +
                  listeAstre +
                 '}';
+    }
+
+    public ObservableList<Astre> getLstAstre() {
+        return lstAstre;
     }
 }
