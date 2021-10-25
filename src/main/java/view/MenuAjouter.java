@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import logic.Astre;
 
@@ -26,6 +27,8 @@ public class MenuAjouter extends Pane {
         menuAstre = new HBox();
         addAstre = new HBox();
         menu=new HBox();
+        //m.getSimulation().getSimulation().getLstAstre().addListener(whenListAstreIsUpdate); problème car tout peut être null
+
 
         //Création et affectation du réctangle d'arrière plan derrière le menu
         Rectangle rectangle = new Rectangle();
@@ -61,6 +64,23 @@ public class MenuAjouter extends Pane {
         menu.getChildren().addAll(menuAstreBg, menuAddAstreBg);
 
     }
+
+    private ListChangeListener<Astre> whenListAstreIsUpdate = new ListChangeListener<Astre>() {
+        @Override
+        public void onChanged(Change<? extends Astre> change) {
+            while(change.next()){
+                if(change.wasAdded()){
+                    for (Astre a : change.getAddedSubList()){
+                        menuAstre.getChildren().add(new Circle(a.getTaille()/2));
+                    }
+                }else if (change.wasRemoved()){
+                    for (Astre a : change.getRemoved()){
+                        menuAstre.getChildren().remove(a);
+                    }
+                }
+            }
+        }
+    };
 
     public Pane getMenu() {
         return menuBg;
