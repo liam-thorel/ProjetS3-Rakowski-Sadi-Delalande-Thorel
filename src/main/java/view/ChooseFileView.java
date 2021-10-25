@@ -59,7 +59,7 @@ public class ChooseFileView extends Stage {
         @Override
         public void handle(ActionEvent actionEvent) {
             String name = fileName.getText();
-            name = "saves\\" + name;
+            name = "saves\\" + name+".simu";
             Simulation s = null;
             try {
                 s = new Simulation(new File(name));
