@@ -8,6 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -26,8 +27,8 @@ public class Menu extends Pane {
     private HBox playOuPause;
     private Button systeme;
     private Button ajouter;
-    private Button play;
-    private Button pause;
+    private Button play = new Button();
+    private Button pause = new Button();
     private SimulationView s;
 
     public Menu(SimulationView s) {
@@ -47,13 +48,14 @@ public class Menu extends Pane {
         ajouter = new Button("Ajouter");
         ajouter.prefWidth(20);
         ajouter.prefHeight(15);
-        play = new Button("Play");
         play.prefWidth(20);
         play.prefHeight(15);
-        pause = new Button("Pause");
         pause.prefWidth(20);
         pause.prefHeight(15);
 
+        //apparence des boutons
+        //play.setGraphic(new ImageView("../images/PlayButtonYes.png"));
+        //pause.setGraphic(new ImageView("../images/PauseButtonOFF.png"));
         // Que font les boutons ?
         systeme.setOnAction(onSystemeMenu);
         ajouter.setOnAction(onAjouterMenu);
@@ -96,6 +98,8 @@ public class Menu extends Pane {
         @Override
         public void handle(ActionEvent actionEvent){
             s.getEspace().setPlaying(true);
+            //play.setGraphic(new ImageView("src/main/resources/images/PlayButtonYes.png"));
+            //pause.setGraphic(new ImageView("src/main/resources/images/PauseButtonOFF.png"));
         }
     };
 
@@ -103,6 +107,8 @@ public class Menu extends Pane {
         @Override
         public void handle(ActionEvent actionEvent){
             s.getEspace().setPlaying(false);
+            //play.setGraphic(new ImageView("src/main/resources/images/PlayButtonNo.png"));
+            //pause.setGraphic(new ImageView("src/main/resources/images/PauseButtonON.png"));
         }
     };
 

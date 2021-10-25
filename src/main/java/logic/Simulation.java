@@ -9,7 +9,7 @@ import java.lang.Math;
 public class Simulation {
 
     public static double g =  6.6742;
-    public static float simuRate = 0.2f;
+    public static float simuRate = 0.00000001f;
     private ArrayList<Astre> listeAstre;
 
     public Simulation(){

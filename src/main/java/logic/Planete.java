@@ -46,8 +46,8 @@ public class Planete extends Astre{
             Vecteur vX = new Vecteur(a.getPositionX(), this.positionX);
             Vecteur vY = new Vecteur(a.getPositionY(), this.positionY);
 
-            vSommeForces.setX(vSommeForces.getX() + (Simulation.g * (Vecteur.normalize(vX) * a.getMasse() / (Math.pow(Vecteur.calculerNorme(vX), 2) + 1.f))/ Simulation.simuRate));
-            vSommeForces.setY(vSommeForces.getY() + ( Simulation.g * (Vecteur.normalize(vY) *a.getMasse() / (Math.pow(Vecteur.calculerNorme(vY), 2) + 1.f))/ Simulation.simuRate));
+            vSommeForces.setX(vSommeForces.getX() + (Simulation.g * (Vecteur.normalize(vX) * a.getMasse() / (Math.pow(Vecteur.norm(vX), 2) + 1.f))/ Simulation.simuRate));
+            vSommeForces.setY(vSommeForces.getY() + (-Simulation.g * (Vecteur.normalize(vY) *a.getMasse() / (Math.pow(Vecteur.norm(vY), 2) + 1.f))/ Simulation.simuRate));
         }
         System.out.println("vSommeForces = " + vSommeForces);
         return vSommeForces;
@@ -79,8 +79,8 @@ public class Planete extends Astre{
     }
 
     public void setPositions(){
-        positionX += vitesseX;
-        positionY += vitesseY;
+        positionX += vitesseX * 0.001f;
+        positionY += vitesseY * 0.001f;
     }
 
 
