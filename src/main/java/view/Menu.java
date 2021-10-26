@@ -57,6 +57,8 @@ public class Menu extends Pane {
         //play.setGraphic(new ImageView("../images/PlayButtonYes.png"));
         //pause.setGraphic(new ImageView("../images/PauseButtonOFF.png"));
         // Que font les boutons ?
+        play.setText("Play");
+        pause.setText("Pause");
         systeme.setOnAction(onSystemeMenu);
         ajouter.setOnAction(onAjouterMenu);
         play.setOnAction(onPlay);
