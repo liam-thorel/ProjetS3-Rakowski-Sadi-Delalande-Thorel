@@ -28,7 +28,6 @@ public abstract class Astre implements Serializable {
 
     public void setN(Node n) {this.n = n;}
 
-    public int getVitesseInit() {return vitesseInit;}
 
     public float getTaille() {
         return taille;
@@ -50,13 +49,7 @@ public abstract class Astre implements Serializable {
         return positionY;
     }
 
-    //public abstract double calculerForce(double pos1, double pos2);
-
-    //public abstract int calculerDistance(double pos1, double pos2);
-
-    public abstract Vecteur calculerAcc(ArrayList<Astre> listeA);
-
-    public abstract void setVistesse(ArrayList<Astre> listeA);
+    public abstract void addVistesse(ArrayList<Astre> listeA);
 
     public abstract void setPositions();
 
