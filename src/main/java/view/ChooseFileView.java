@@ -56,7 +56,9 @@ public class ChooseFileView extends Stage {
         @Override
         public void handle(ActionEvent actionEvent) {
             String name = fileName.getText();
-            name = "saves\\" + name+".simu";
+            if (!(name.contains(".simu"))) name+=".simu";
+            if (System.getProperty("os.name").startsWith("Windows")) name = "saves\\" + name;
+            else name = "saves/" + name;
             Simulation s = null;
             try {
                 s = new Simulation(new File(name));
