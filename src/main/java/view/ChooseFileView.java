@@ -64,7 +64,7 @@ public class ChooseFileView extends Stage {
                 s = new Simulation(new File(name));
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
-                systemText.setText("le fichier " + name + " n'existe pas.");
+                systemText.setText("le fichier \"" + fileName.getText() + "\" n'existe pas.");
             }
             app.initSimulation(s);
         }
