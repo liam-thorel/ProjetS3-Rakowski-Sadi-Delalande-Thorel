@@ -11,8 +11,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import logic.Astre;
 
-import javax.swing.event.ChangeListener;
-
 public class MenuAjouter extends Pane {
 
     private HBox menu ;
@@ -31,7 +29,6 @@ public class MenuAjouter extends Pane {
         menuAstre = new HBox();
         addAstre = new HBox();
         menu=new HBox();
-        //m.getSimulation().getSimulation().getLstAstre().addListener(whenListAstreIsUpdate); problème car tout peut être null
 
 
         //Création et affectation du réctangle d'arrière plan derrière le menu
