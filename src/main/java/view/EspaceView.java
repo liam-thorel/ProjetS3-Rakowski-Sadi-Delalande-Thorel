@@ -57,7 +57,7 @@ public class EspaceView extends Pane {
         timer.start();
 
     }
-
+    // prend un Astre en paramètre et créer un cercle le représentant graphiquement
     public Circle creerPlaneteCercle(Astre p){
         Circle planete = new Circle();
         planete.setFill(new Color(new Random().nextFloat(),new Random().nextFloat(), new Random().nextFloat(), 1));
