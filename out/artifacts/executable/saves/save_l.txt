@@ -1,3 +1,0 @@
-// nom taille masse positionX positionY vitesseInitiale
-bob 1000 1200 250 250 0
-mini_bob 200 300 250 400 10
