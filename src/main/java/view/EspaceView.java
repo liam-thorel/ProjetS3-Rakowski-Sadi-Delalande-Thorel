@@ -25,6 +25,7 @@ public class EspaceView extends Pane {
     private BooleanProperty playing = new SimpleBooleanProperty();
     private HashMap <Astre, Circle> listeAetC;
     private AnimationTimer timer;
+    private long previousL = 0;
 
     public EspaceView(SimulationView s){
 
@@ -43,12 +44,15 @@ public class EspaceView extends Pane {
         timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
+                long delay = l - previousL;
                 if(playing.getValue()){
                     move();
                 }
+                previousL = l;
 
             }
         };
+
 
         timer.start();
 
@@ -66,6 +70,7 @@ public class EspaceView extends Pane {
     }
 
 
+    //mettre un pas de temps en arg dans move pour utiliser dans add vitesse
 
     public void move(){
         for(Astre a : listeA) {

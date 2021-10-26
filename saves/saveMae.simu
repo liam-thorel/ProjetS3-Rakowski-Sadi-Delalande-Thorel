@@ -1,3 +1,5 @@
 // nom taille masse positionX positionY vitesseX vitesseY estFixe
-planete 50 6000 300 500 0 0 true
-lune 20 10 400 650 0 0 false
+planete 50 6000 500 300 0 0 false
+lune 20 10 400 450 0 -1000 false
+lune2 20 10 450 500 0 -1000 false
+lune3 30 50 500 400 0 -1500 false

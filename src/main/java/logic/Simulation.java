@@ -12,9 +12,10 @@ import java.lang.Math;
 
 public class Simulation {
 
-    public static double g =  6.6742;
-    public static float simuRate = 1f;
+    public static double g =  66;
+    public static float simuRate = 0.5f;
     private ArrayList<Astre> listeAstre;
+    // constante de scale
 
     public Simulation(){
         listeAstre = new ArrayList<>();

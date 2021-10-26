@@ -30,10 +30,6 @@ public class Planete extends Astre{
         return new Vecteur(vitesseX,vitesseY);
     }
 
-    /*@Override
-    public double calculerForce(Astre p1){
-        return  (p1.getMasse() * this.masse * Simulation.g)/ Math.pow(calculerDistance(p1), 2) * Math.pow(10, 14);
-    }*/
 
     public boolean isFixed() {
         return isFixed;
@@ -45,9 +41,10 @@ public class Planete extends Astre{
         for(Astre a : liste){
             double distanceX = a.getPositionX() - this.positionX;
             double distanceY = a.getPositionY() - this.positionY;
+            double distance = Math.pow(Math.abs(distanceX), 2) + (Math.pow(Math.abs(distanceY), 2) + 1.f);
 
-            vSommeForces.setX(vSommeForces.getX() + (Simulation.g * (distanceX * a.getMasse() / (Math.pow(Math.abs(distanceX), 2) + 1.f))/ Simulation.simuRate));
-            vSommeForces.setY(vSommeForces.getY() + (Simulation.g * (distanceY * a.getMasse() / (Math.pow(Math.abs(distanceY), 2) + 1.f))/ Simulation.simuRate));
+            vSommeForces.setX(vSommeForces.getX() + (Simulation.g * (distanceX * a.getMasse() / distance/ Simulation.simuRate)));
+            vSommeForces.setY(vSommeForces.getY() + (Simulation.g * (distanceY * a.getMasse() / distance/ Simulation.simuRate)));
         }
         System.out.println("vSommeForces = " + vSommeForces);
         return vSommeForces;
