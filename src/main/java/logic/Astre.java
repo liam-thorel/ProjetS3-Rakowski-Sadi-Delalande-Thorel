@@ -50,9 +50,9 @@ public abstract class Astre implements Serializable {
         return positionY;
     }
 
-    public abstract double calculerForce(Astre a1);
+    //public abstract double calculerForce(double pos1, double pos2);
 
-    public abstract int calculerDistance(Astre a1);
+    //public abstract int calculerDistance(double pos1, double pos2);
 
     public abstract Vecteur calculerAcc(ArrayList<Astre> listeA);
 

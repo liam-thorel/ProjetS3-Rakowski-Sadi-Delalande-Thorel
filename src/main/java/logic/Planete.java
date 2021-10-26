@@ -30,10 +30,10 @@ public class Planete extends Astre{
         return new Vecteur(vitesseX,vitesseY);
     }
 
-    @Override
+    /*@Override
     public double calculerForce(Astre p1){
         return  (p1.getMasse() * this.masse * Simulation.g)/ Math.pow(calculerDistance(p1), 2) * Math.pow(10, 14);
-    }
+    }*/
 
     public boolean isFixed() {
         return isFixed;
@@ -43,20 +43,17 @@ public class Planete extends Astre{
         Vecteur vSommeForces = new Vecteur(0,0);
 
         for(Astre a : liste){
-            Vecteur vX = new Vecteur(a.getPositionX(), this.positionX);
-            Vecteur vY = new Vecteur(a.getPositionY(), this.positionY);
+            double distanceX = a.getPositionX() - this.positionX;
+            double distanceY = a.getPositionY() - this.positionY;
 
-            vSommeForces.setX(vSommeForces.getX() + (Simulation.g * (Vecteur.normalize(vX) * a.getMasse() / (Math.pow(Vecteur.norm(vX), 2) + 1.f))/ Simulation.simuRate));
-            vSommeForces.setY(vSommeForces.getY() + (-Simulation.g * (Vecteur.normalize(vY) *a.getMasse() / (Math.pow(Vecteur.norm(vY), 2) + 1.f))/ Simulation.simuRate));
+            vSommeForces.setX(vSommeForces.getX() + (Simulation.g * (distanceX * a.getMasse() / (Math.pow(Math.abs(distanceX), 2) + 1.f))/ Simulation.simuRate));
+            vSommeForces.setY(vSommeForces.getY() + (Simulation.g * (distanceY *a.getMasse() / (Math.pow(Math.abs(distanceY), 2) + 1.f))/ Simulation.simuRate));
         }
         System.out.println("vSommeForces = " + vSommeForces);
         return vSommeForces;
     }
 
-    @Override
-    public int calculerDistance(Astre p1){
-        return (int) Math.sqrt(Math.pow(p1.getPositionX() - this.positionX, 2) + Math.pow(p1.getPositionY() - this.positionY, 2));
-    }
+
 
     @Override
     public Vecteur calculerAcc(ArrayList<Astre> listeA){
