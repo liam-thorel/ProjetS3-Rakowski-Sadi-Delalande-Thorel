@@ -1,4 +1,0 @@
-// nom taille masse positionX positionY vitesseInitiale 
-green 180 260 10 20 0
-red 55 800 50 60 5
-blue 200 500 90 100 2
