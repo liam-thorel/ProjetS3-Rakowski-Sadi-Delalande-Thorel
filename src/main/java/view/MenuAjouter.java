@@ -67,6 +67,7 @@ public class MenuAjouter extends Pane {
     }
 
     // Regarde si la liste d'astre change, si c'est le cas ajoute a menu astre la représentation de l'astre
+    // et inversemment si l'astre est supprimé
     private ListChangeListener<Astre> whenListAstreIsUpdate = new ListChangeListener<Astre>() {
         @Override
         public void onChanged(Change<? extends Astre> change) {
