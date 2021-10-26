@@ -15,11 +15,9 @@ public class Simulation {
     public static double g =  6.6742;
     public static float simuRate = 1f;
     private ArrayList<Astre> listeAstre;
-    private  ObservableList<Astre> lstAstre;
 
     public Simulation(){
         listeAstre = new ArrayList<>();
-        lstAstre  = FXCollections.observableList(listeAstre);
     }
 
     public Simulation(File save) throws IOException, ClassNotFoundException {
@@ -110,7 +108,4 @@ public class Simulation {
                 '}';
     }
 
-    public ObservableList<Astre> getLstAstre() {
-        return lstAstre;
-    }
 }

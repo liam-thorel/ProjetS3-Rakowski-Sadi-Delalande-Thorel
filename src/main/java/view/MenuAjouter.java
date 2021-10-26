@@ -1,6 +1,8 @@
 package view;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -22,6 +24,8 @@ public class MenuAjouter extends Pane {
 
 
     public MenuAjouter(Menu m){
+        ObservableList<Astre> lstAstre  = FXCollections.observableList(m.getSimulation().getSimulation().getListeAstre());
+        lstAstre.addListener(whenListAstreIsUpdate);
         menuAstreBg = new Pane();
         menuAddAstreBg = new Pane();
         menuAstre = new HBox();
