@@ -1,0 +1,4 @@
+// nom taille masse positionX positionY vitesseX vitesseY estFixe 
+green 180 260 10 20 0 0 true
+red 55 800 50 60 5 20 false
+blue 200 500 90 100 2 0 false
