@@ -41,10 +41,10 @@ public class Planete extends Astre{
         for(Astre a : liste){
             double distanceX = a.getPositionX() - this.positionX;
             double distanceY = a.getPositionY() - this.positionY;
-            double distance = Math.pow(Math.abs(distanceX), 2) + (Math.pow(Math.abs(distanceY), 2) + 1.f);
+            double distance = Math.sqrt(Math.pow(Math.abs(distanceX), 2) + (Math.pow(Math.abs(distanceY), 2) + 1.f));
 
-            vSommeForces.setX(vSommeForces.getX() + (Simulation.g * (distanceX * a.getMasse() / distance/ Simulation.simuRate)));
-            vSommeForces.setY(vSommeForces.getY() + (Simulation.g * (distanceY * a.getMasse() / distance/ Simulation.simuRate)));
+            vSommeForces.setX(vSommeForces.getX() + (Simulation.g * (distanceX * a.getMasse() / Math.pow(distance, 3)/ Simulation.simuRate)));
+            vSommeForces.setY(vSommeForces.getY() + (Simulation.g * (distanceY * a.getMasse() / Math.pow(distance,3)/ Simulation.simuRate)));
         }
         System.out.println("vSommeForces = " + vSommeForces);
         return vSommeForces;
@@ -61,8 +61,8 @@ public class Planete extends Astre{
 
             vAcc = calculerSommeForces(listeA);
         }
-        this.vitesseX += vAcc.getX() * 0.001f;
-        this.vitesseY += vAcc.getY() * 0.001f;
+        this.vitesseX += vAcc.getX() * 0.001f/masse;
+        this.vitesseY += vAcc.getY() * 0.001f/masse;
         System.out.println("vitesseX = " + vitesseX + "    vitesseY = " + vitesseY);
     }
 
