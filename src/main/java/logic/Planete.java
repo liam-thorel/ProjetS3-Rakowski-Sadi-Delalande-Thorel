@@ -52,7 +52,7 @@ public class Planete extends Astre{
 
 
     @Override
-    public void addVistesse(ArrayList<Astre> listeA){
+    public void addVitesse(ArrayList<Astre> listeA){
         Vecteur vAcc;
         if(this.isFixed){
             vAcc = new Vecteur(0, 0);
