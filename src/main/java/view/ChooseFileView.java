@@ -61,7 +61,7 @@ public class ChooseFileView extends Stage {
                     new FileChooser.ExtensionFilter("Simu", "*.simu"), //
                     new FileChooser.ExtensionFilter("All Files", "*.*"));
             fileChooser.setTitle("Selectionner un fichier");
-            fileChooser.setInitialDirectory(new File("C:/Users"));
+            fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
             File file = fileChooser.showOpenDialog(new Stage());
             try {
                 app.initSimulation(new Simulation(file));

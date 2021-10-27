@@ -30,9 +30,9 @@ public class Play {
         ArrayList<Astre> listeAstresTeste = new ArrayList<>();
         listeAstresTeste.add(planete);
         listeAstresTeste.add(lune);
-        lune.addVistesse(listeAstresTeste);
+        lune.addVitesse(listeAstresTeste);
         lune.setPositions();
-        planete.addVistesse(listeAstresTeste);
+        planete.addVitesse(listeAstresTeste);
         planete.setPositions();
 
     }

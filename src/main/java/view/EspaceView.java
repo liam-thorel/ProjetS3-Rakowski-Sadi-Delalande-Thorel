@@ -3,12 +3,8 @@ package view;
 import javafx.animation.*;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.geometry.Point2D;
-import javafx.scene.PointLight;
-import javafx.scene.effect.Light;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.*;
 import logic.Astre;
 import logic.Simulation;
@@ -75,7 +71,7 @@ public class EspaceView extends Pane {
     public void move(){
         for(Astre a : listeA) {
             System.out.println("ancienne position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
-            a.addVistesse(Simulation.getOther(a, listeA));
+            a.addVitesse(Simulation.getOther(a, listeA));
             a.setPositions();
             System.out.println("nouvelle position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
             Circle currentC = listeAetC.get(a);
