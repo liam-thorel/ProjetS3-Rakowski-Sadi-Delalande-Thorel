@@ -1,7 +1,6 @@
 package logic;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 public class Planete extends Astre{
     private int taille;
@@ -39,12 +38,12 @@ public class Planete extends Astre{
         Vecteur vSommeForces = new Vecteur(0,0);
 
         for(Astre a : liste){
-            double distanceX = a.getPositionX() - this.positionX;
-            double distanceY = a.getPositionY() - this.positionY;
+            double distanceX = (a.getPositionX() - this.positionX) * Simulation.scaleDistance;
+            double distanceY = (a.getPositionY() - this.positionY) * Simulation.scaleDistance;
             double distance = Math.sqrt(Math.pow(Math.abs(distanceX), 2) + (Math.pow(Math.abs(distanceY), 2) + 1.f));
 
-            vSommeForces.setX(vSommeForces.getX() + (Simulation.g * (distanceX * a.getMasse() / Math.pow(distance, 3)/ Simulation.simuRate)));
-            vSommeForces.setY(vSommeForces.getY() + (Simulation.g * (distanceY * a.getMasse() / Math.pow(distance,3)/ Simulation.simuRate)));
+            vSommeForces.incrementXBy(Simulation.g * (distanceX * (a.getMasse() * Simulation.scaleMasse)/ Math.pow(distance, 3)/ Simulation.simuRate));
+            vSommeForces.incrementYBy(Simulation.g * (distanceY * (a.getMasse() * Simulation.scaleMasse) / Math.pow(distance,3)/ Simulation.simuRate));
         }
         System.out.println("vSommeForces = " + vSommeForces);
         return vSommeForces;
@@ -61,8 +60,8 @@ public class Planete extends Astre{
 
             vAcc = calculerSommeForces(listeA);
         }
-        this.vitesseX += vAcc.getX() * 0.001f/masse;
-        this.vitesseY += vAcc.getY() * 0.001f/masse;
+        this.vitesseX += (vAcc.getX() * Simulation.scaleTemps) /masse * 0.001f;
+        this.vitesseY += (vAcc.getY() * Simulation.scaleTemps) /masse  * 0.001f;
         System.out.println("vitesseX = " + vitesseX + "    vitesseY = " + vitesseY);
     }
 

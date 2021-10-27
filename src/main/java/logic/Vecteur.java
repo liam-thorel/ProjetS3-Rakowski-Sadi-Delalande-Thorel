@@ -18,6 +18,13 @@ public class Vecteur {
     public static double norm(Vecteur v){return Math.pow(v.getX(), 2) + Math.pow(v.getY(), 2); }
     public static double normalize(Vecteur v){ return v.getX() - v.getY()/calculerNorme(v);}
 
+    public void incrementXBy(double px){
+        x += px;
+    }
+
+    public void incrementYBy(double py){
+        y += py;
+    }
     public double getX() {
         return x;
     }
