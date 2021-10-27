@@ -27,7 +27,7 @@ public class MenuAjouter extends Pane {
         menuAstreBg = new Pane();
         menuAddAstreBg = new Pane();
         menuAstre = new HBox();
-        addAstre = new HBox();
+        addAstre = new MenuAddAstre();
         menu=new HBox();
 
 
