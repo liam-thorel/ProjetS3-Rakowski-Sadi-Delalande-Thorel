@@ -34,7 +34,7 @@ public class Menu extends Pane {
     public Menu(SimulationView s) {
         this.s=s;
         setWidth(1500);
-        setHeight(200);
+        setPrefHeight(200);
         changeMenu = new BorderPane();
         menuAjouter = new MenuAjouter(this).getMenu();
         menuSysteme = new MenuSysteme(this).getMenu();
