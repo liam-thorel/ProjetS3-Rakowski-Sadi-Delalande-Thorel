@@ -28,7 +28,7 @@ public class SimulationView extends Stage {
         this.app = app;
         root = new VBox();
         espace = new EspaceView(this);
-        espace.setPrefHeight(600);
+        espace.setMinHeight(app.getStage().getHeight()*0.70);
         contener = new HBox();
         contener.setAlignment(Pos.CENTER);
         root.getChildren().add(contener);
