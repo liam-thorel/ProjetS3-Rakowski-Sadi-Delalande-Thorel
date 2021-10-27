@@ -96,41 +96,12 @@ public class PlaneteApp extends Application {
             if (result.isPresent() && result.get() == save) {
                 alert.close();
                 FileChooser fileChooser = new FileChooser();
+                fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
                 fileChooser.setTitle("Sauvegarder");
                 fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Simu", "*.simu"));
                 File s =fileChooser.showSaveDialog(new Stage());
                 simulation.saveListeAstre(s);
                 Platform.exit();
-                /*
-                alert.close();
-                Stage popup = new Stage();
-                popup.setHeight(105);
-                popup.setWidth(500);
-                TextArea txta = new TextArea();
-                txta.setMaxWidth(480);
-                txta.setMaxHeight(30);
-                Button bt = new Button("sauvegarder");
-                VBox txt = new VBox(txta,bt);
-                popup.show();
-                popup.setTitle("choisissez un nom de sauvegarde");
-                popup.setScene(new Scene(txt));
-                bt.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        try {
-                            String s =  txta.getText() + ".simu";
-                            if (s.equals(".simu")){
-                            s = "default.simu";
-                            }
-                            s = "saves\\" + s;
-                            simulation.saveListeAstre(new File(s));
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        popup.hide();
-                        Platform.exit();
-                    }
-                });*/
             }
         }else{
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

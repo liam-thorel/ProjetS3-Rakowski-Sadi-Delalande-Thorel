@@ -44,7 +44,7 @@ public class Planete extends Astre{
             double distance = Math.sqrt(Math.pow(Math.abs(distanceX), 2) + (Math.pow(Math.abs(distanceY), 2) + 1.f));
 
             vSommeForces.setX(vSommeForces.getX() + (Simulation.g * (distanceX * a.getMasse() / Math.pow(distance, 3)/ Simulation.simuRate)));
-            vSommeForces.setY(vSommeForces.getY() + (Simulation.g * (distanceY * a.getMasse() / Math.pow(distance,3)/ Simulation.simuRate)));
+            vSommeForces.setY(vSommeForces.getY() + (Simulation.g * (distanceY * a.getMasse() / Math.pow(distance, 3)/ Simulation.simuRate)));
         }
         System.out.println("vSommeForces = " + vSommeForces);
         return vSommeForces;
