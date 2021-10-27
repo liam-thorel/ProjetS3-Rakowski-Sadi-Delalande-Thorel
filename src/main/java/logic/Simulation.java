@@ -17,7 +17,7 @@ public class Simulation {
     private ArrayList<Astre> listeAstre;
     public static double scaleDistance = Math.pow(10, 9); //m
     public static double scaleMasse = Math.pow(10,22); //kg
-    public static double scaleTemps = 315360000 ; // secondes = 10 an
+    public static double scaleTemps = 315360000; // 1 frame ~~ 1 mois
 
     public Simulation(){
         listeAstre = new ArrayList<>();
