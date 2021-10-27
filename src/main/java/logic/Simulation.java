@@ -77,9 +77,6 @@ public class Simulation {
 
 
     public void saveListeAstre(File save) throws IOException {
-        if(save.exists()){
-            save.delete();
-        }
         save.toPath();
         save.createNewFile();
         String commentaire = "// nom taille masse positionX positionY vitesseX vitesseY estFixe \n";

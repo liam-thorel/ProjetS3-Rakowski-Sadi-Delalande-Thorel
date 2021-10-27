@@ -85,21 +85,7 @@ public class StartView extends Pane {
     private EventHandler<ActionEvent> onChargerSimulation = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent){
-            /*welcomeText.setText("Chargement du fichier...");*/
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.getExtensionFilters().addAll(//
-                    new FileChooser.ExtensionFilter("Simu", "*.simu"), //
-                    new FileChooser.ExtensionFilter("All Files", "*.*"));
-            fileChooser.setTitle("Selectionner un fichier");
-            fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-            File file = fileChooser.showOpenDialog(new Stage());
-            try {
-                app.initSimulation(new Simulation(file));
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+            app.initChooseFile();
         }
 
 

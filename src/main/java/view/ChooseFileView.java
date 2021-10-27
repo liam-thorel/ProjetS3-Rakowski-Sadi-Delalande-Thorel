@@ -56,7 +56,7 @@ public class ChooseFileView extends Stage {
     private EventHandler<ActionEvent> chargerFileEvent = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent) {
-            /*FileChooser fileChooser = new FileChooser();
+            FileChooser fileChooser = new FileChooser();
             fileChooser.getExtensionFilters().addAll(//
                     new FileChooser.ExtensionFilter("Simu", "*.simu"), //
                     new FileChooser.ExtensionFilter("All Files", "*.*"));
@@ -69,20 +69,7 @@ public class ChooseFileView extends Stage {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
-            }*/
-
-            String name = fileName.getText();
-            if (!(name.contains(".simu"))) name+=".simu";
-            if (System.getProperty("os.name").startsWith("Windows")) name = "saves\\" + name;
-            else name = "saves/" + name;
-            Simulation s = null;
-            try {
-                s = new Simulation(new File(name));
-            } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-                systemText.setText("le fichier " + name + " n'existe pas.");
             }
-            app.initSimulation(s);
         }
     };
 
