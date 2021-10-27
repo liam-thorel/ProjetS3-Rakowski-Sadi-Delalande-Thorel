@@ -12,9 +12,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import logic.Simulation;
 
+import java.io.File;
 import java.io.IOException;
 
 public class StartView extends Pane {
@@ -83,7 +85,6 @@ public class StartView extends Pane {
     private EventHandler<ActionEvent> onChargerSimulation = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent){
-            welcomeText.setText("Chargement du fichier...");
             app.initChooseFile();
         }
 

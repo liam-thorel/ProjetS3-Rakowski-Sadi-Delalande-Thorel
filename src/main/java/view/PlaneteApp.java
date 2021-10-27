@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import logic.Simulation;
 
@@ -94,6 +95,14 @@ public class PlaneteApp extends Application {
             }
             if (result.isPresent() && result.get() == save) {
                 alert.close();
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Sauvegarder");
+                fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Simu", "*.simu"));
+                File s =fileChooser.showSaveDialog(new Stage());
+                simulation.saveListeAstre(s);
+                Platform.exit();
+                /*
+                alert.close();
                 Stage popup = new Stage();
                 popup.setHeight(105);
                 popup.setWidth(500);
@@ -121,7 +130,7 @@ public class PlaneteApp extends Application {
                         popup.hide();
                         Platform.exit();
                     }
-                });
+                });*/
             }
         }else{
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import logic.Simulation;
 
@@ -55,18 +56,20 @@ public class ChooseFileView extends Stage {
     private EventHandler<ActionEvent> chargerFileEvent = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent) {
-            String name = fileName.getText();
-            if (!(name.contains(".simu"))) name+=".simu";
-            if (System.getProperty("os.name").startsWith("Windows")) name = "saves\\" + name;
-            else name = "saves/" + name;
-            Simulation s = null;
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.getExtensionFilters().addAll(//
+                    new FileChooser.ExtensionFilter("Simu", "*.simu"), //
+                    new FileChooser.ExtensionFilter("All Files", "*.*"));
+            fileChooser.setTitle("Selectionner un fichier");
+            fileChooser.setInitialDirectory(new File("C:/Users"));
+            File file = fileChooser.showOpenDialog(new Stage());
             try {
-                s = new Simulation(new File(name));
-            } catch (IOException | ClassNotFoundException e) {
+                app.initSimulation(new Simulation(file));
+            } catch (IOException e) {
                 e.printStackTrace();
-                systemText.setText("le fichier \"" + fileName.getText() + "\" n'existe pas.");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
-            app.initSimulation(s);
         }
     };
 

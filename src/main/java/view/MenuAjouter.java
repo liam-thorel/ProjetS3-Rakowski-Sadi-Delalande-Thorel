@@ -1,6 +1,8 @@
 package view;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -8,8 +10,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import logic.Astre;
-
-import javax.swing.event.ChangeListener;
 
 public class MenuAjouter extends Pane {
 
@@ -22,12 +22,13 @@ public class MenuAjouter extends Pane {
 
 
     public MenuAjouter(Menu m){
+        ObservableList<Astre> lstAstre  = FXCollections.observableList(m.getSimulation().getSimulation().getListeAstre());
+        lstAstre.addListener(whenListAstreIsUpdate);
         menuAstreBg = new Pane();
         menuAddAstreBg = new Pane();
         menuAstre = new HBox();
         addAstre = new HBox();
         menu=new HBox();
-        //m.getSimulation().getSimulation().getLstAstre().addListener(whenListAstreIsUpdate); problème car tout peut être null
 
 
         //Création et affectation du réctangle d'arrière plan derrière le menu
@@ -65,6 +66,8 @@ public class MenuAjouter extends Pane {
 
     }
 
+    // Regarde si la liste d'astre change, si c'est le cas ajoute a menu astre la représentation de l'astre
+    // et inversemment si l'astre est supprimé
     private ListChangeListener<Astre> whenListAstreIsUpdate = new ListChangeListener<Astre>() {
         @Override
         public void onChanged(Change<? extends Astre> change) {

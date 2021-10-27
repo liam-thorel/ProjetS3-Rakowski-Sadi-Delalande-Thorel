@@ -12,14 +12,13 @@ import java.lang.Math;
 
 public class Simulation {
 
-    public static double g =  6.6742;
-    public static float simuRate = 1f;
+    public static double g =  66;
+    public static float simuRate = 0.5f;
     private ArrayList<Astre> listeAstre;
-    private  ObservableList<Astre> lstAstre;
+    // constante de scale
 
     public Simulation(){
         listeAstre = new ArrayList<>();
-        lstAstre  = FXCollections.observableList(listeAstre);
     }
 
     public Simulation(File save) throws IOException, ClassNotFoundException {
@@ -78,9 +77,6 @@ public class Simulation {
 
 
     public void saveListeAstre(File save) throws IOException {
-        if(save.exists()){
-            save.delete();
-        }
         save.toPath();
         save.createNewFile();
         String commentaire = "// nom taille masse positionX positionY vitesseX vitesseY estFixe \n";
@@ -110,7 +106,4 @@ public class Simulation {
                 '}';
     }
 
-    public ObservableList<Astre> getLstAstre() {
-        return lstAstre;
-    }
 }

@@ -1,7 +1,5 @@
 package logic;
 
-import javafx.scene.paint.Color;
-
 import java.io.*;
 import java.util.ArrayList;
 
@@ -32,9 +30,9 @@ public class Play {
         ArrayList<Astre> listeAstresTeste = new ArrayList<>();
         listeAstresTeste.add(planete);
         listeAstresTeste.add(lune);
-        lune.setVistesse(listeAstresTeste);
+        lune.addVistesse(listeAstresTeste);
         lune.setPositions();
-        planete.setVistesse(listeAstresTeste);
+        planete.addVistesse(listeAstresTeste);
         planete.setPositions();
 
     }
