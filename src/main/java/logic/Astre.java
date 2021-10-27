@@ -49,7 +49,7 @@ public abstract class Astre implements Serializable {
         return positionY;
     }
 
-    public abstract void addVistesse(ArrayList<Astre> listeA);
+    public abstract void addVitesse(ArrayList<Astre> listeA);
 
     public abstract void setPositions();
 
