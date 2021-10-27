@@ -78,14 +78,14 @@ public class Menu extends Pane {
 
 
     }
-        private EventHandler<ActionEvent> onAjouterMenu = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent){
-                menuEtChangeMenu.getChildren().remove(menuActuel);
-                menuActuel=menuAjouter;
-                menuEtChangeMenu.getChildren().add(menuActuel);
-            }
-        };
+    private EventHandler<ActionEvent> onAjouterMenu = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent actionEvent){
+            menuEtChangeMenu.getChildren().remove(menuActuel);
+            menuActuel=menuAjouter;
+            menuEtChangeMenu.getChildren().add(menuActuel);
+        }
+    };
 
     private EventHandler<ActionEvent> onSystemeMenu = new EventHandler<ActionEvent>() {
         @Override
