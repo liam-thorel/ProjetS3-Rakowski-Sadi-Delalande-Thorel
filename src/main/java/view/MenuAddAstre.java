@@ -68,7 +68,7 @@ public class MenuAddAstre extends HBox {
 
         getChildren().addAll(nameAll, tailleAll, masseAll, positionXAll, positionYAll, vitesseXAll, vitesseYAll, estFixeAll,button);
         newAstre.setText("Ajouter Astre");
-        setSpacing(7);
+        setSpacing(8);
 
 
     }
