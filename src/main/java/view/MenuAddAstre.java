@@ -105,12 +105,21 @@ public class MenuAddAstre extends HBox {
                     if (f.equals("non")||f.equals("false")||f.equals("no")){
                        Astre p =  new Planete(n,t,m,pX,pY,vX,vY,false);
                        mA.getM().getSimulation().getSimulation().getListeAstre().add(p);
-
+                        mA.getM().getSimulation().getSimulation().getListeAstre().toString();
                     }
+
 
                 }catch (NumberFormatException e){
                     e.printStackTrace();
                 }
+                nom.clear();
+                taille.clear();
+                masse.clear();
+                positionX.clear();
+                positionY.clear();
+                vitesseX.clear();
+                vitesseY.clear();
+                estFixe.clear();
             }
         };
 
