@@ -50,7 +50,7 @@ public class MenuAjouter extends Pane {
         //Création et éffectation du réctangle d'arrière plan derrière Mes astres
         Rectangle rectangleMenuAstres = new Rectangle();
         rectangleMenuAstres.setHeight(70);
-        rectangleMenuAstres.setWidth(525);
+        rectangleMenuAstres.setWidth(695);
         rectangleMenuAstres.setFill(Color.rgb(64,68,75,1));
         menuAstreBg.getChildren().add(rectangleMenuAstres);
         menuAstreBg.getChildren().add(menuAstre);
@@ -58,7 +58,7 @@ public class MenuAjouter extends Pane {
         //Création et éffectation du réctangle d'arrière plan derrière Add astres
         Rectangle rectangleAddAstres = new Rectangle();
         rectangleAddAstres.setHeight(70);
-        rectangleAddAstres.setWidth(525);
+        rectangleAddAstres.setWidth(695);
         rectangleAddAstres.setFill(Color.rgb(64,68,75,1));
 
         menuAddAstreBg.getChildren().add(rectangleAddAstres);
@@ -66,7 +66,7 @@ public class MenuAjouter extends Pane {
 
 
         //eloignement des différents Menu
-        menu.setSpacing(380);
+        menu.setSpacing(100);
         menu.setPadding(new Insets(25));
 
         //ajout a menu de l'ensemble des sous menu
