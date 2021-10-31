@@ -30,6 +30,10 @@ public class Simulation {
         return listeAstre;
     }
 
+    public void addListeAstre(Astre a){
+        listeAstre.add(a);
+    }
+
     public void setListeAstre(ArrayList<Astre> listeAstre) {
         this.listeAstre = listeAstre;
     }

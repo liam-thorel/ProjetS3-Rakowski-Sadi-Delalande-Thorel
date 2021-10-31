@@ -8,14 +8,20 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import logic.Astre;
+import logic.Planete;
+
+import java.util.Locale;
 
 public class MenuAddAstre extends HBox {
     private Button newAstre;
     private TextField nom, taille, masse, positionX, positionY, vitesseX, vitesseY, estFixe;
     private Label nomtxt, tailletxt, massetxt, positionXtxt, positionYtxt, vitesseXtxt, vitesseYtxt, estFixetxt;
+    private MenuAjouter mA;
 
     public MenuAddAstre(MenuAjouter mA) {
         newAstre = new Button();
+        this.mA=mA;
 
         //contenu de Add Astre
         nom = new TextField();
@@ -78,23 +84,34 @@ public class MenuAddAstre extends HBox {
         private EventHandler<ActionEvent> onAjouterAstre = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent){
-                String n,t,m,pX,pY,vX,vY,f;
+                String n,f;
+                int m,t,pX,pY;
+                double vX,vY;
+
                 n = nom.getText();
-                t = taille.getText();
-                m = masse.getText();
-                pX = positionX.getText();
-                pY = positionY.getText();
-                vX=vitesseX.getText();
-                vY=vitesseY.getText();
                 f=estFixe.getText();
+                try {
+                    m = Integer.parseInt(masse.getText());
+                    t = Integer.parseInt(taille.getText());
+                    pX = Integer.parseInt(positionX.getText());
+                    pY = Integer.parseInt(positionY.getText());
+                    vX = Double.parseDouble(vitesseX.getText());
+                    vY = Double.parseDouble(vitesseY.getText());
+                    f = f.toLowerCase(Locale.ROOT);
+                    if (f.equals("oui")||f.equals("true")||f.equals("yes")){
+                       Astre p = new Planete(n,t,m,pX,pY,vX,vY,true);
+                       mA.getM().getSimulation().getSimulation().getListeAstre().add(p);
+                    }
+                    if (f.equals("non")||f.equals("false")||f.equals("no")){
+                       Astre p =  new Planete(n,t,m,pX,pY,vX,vY,false);
+                       mA.getM().getSimulation().getSimulation().getListeAstre().add(p);
 
-                if (f.equals("oui")||f.equals("non")||f.equals("true")||f.equals("false")){
+                    }
 
+                }catch (NumberFormatException e){
+                    e.printStackTrace();
                 }
-
             }
-
-
         };
 
 

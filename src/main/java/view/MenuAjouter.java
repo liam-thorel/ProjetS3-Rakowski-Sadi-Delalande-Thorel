@@ -21,12 +21,14 @@ public class MenuAjouter extends Pane {
     private Pane menuBg = new Pane();
     private Pane menuAstreBg;
     private Pane menuAddAstreBg;
+    private Menu m;
 
 
 
 
 
     public MenuAjouter(Menu m){
+        this.m = m;
         ObservableList<Astre> lstAstre  = FXCollections.observableList(m.getSimulation().getSimulation().getListeAstre());
         lstAstre.addListener(whenListAstreIsUpdate);
         menuAstreBg = new Pane();
@@ -95,5 +97,9 @@ public class MenuAjouter extends Pane {
 
     public Pane getMenu() {
         return menuBg;
+    }
+
+    public Menu getM() {
+        return m;
     }
 }
