@@ -60,14 +60,14 @@ public class Planete extends Astre{
 
             vAcc = calculerSommeForces(listeA);
         }
-        this.vitesseX += (vAcc.getX() * Simulation.scaleTemps) /masse * 0.001f;
-        this.vitesseY += (vAcc.getY() * Simulation.scaleTemps) /masse  * 0.001f;
+        this.vitesseX += (vAcc.getX() * Simulation.scaleTemps) /masse *0.0005;
+        this.vitesseY += (vAcc.getY() * Simulation.scaleTemps) /masse *0.0005 ;
         System.out.println("vitesseX = " + vitesseX + "    vitesseY = " + vitesseY);
     }
 
     public void setPositions(){
-        positionX += vitesseX * 0.001f;
-        positionY += vitesseY * 0.001f;
+        positionX += vitesseX *0.0005;
+        positionY += vitesseY *0.0005;
     }
 
 
