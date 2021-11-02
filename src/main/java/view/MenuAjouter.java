@@ -81,6 +81,7 @@ public class MenuAjouter extends Pane {
     private ListChangeListener<Astre> whenListAstreIsUpdate = new ListChangeListener<Astre>() {
         @Override
         public void onChanged(Change<? extends Astre> change) {
+            System.out.println("en vrais t'es trop beau gosse mon reuf, genre j'ai détecter l'actualisation tu vois");
             while(change.next()){
                 if(change.wasAdded()){
                     for (Astre a : change.getAddedSubList()){
