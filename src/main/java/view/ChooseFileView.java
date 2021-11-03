@@ -65,9 +65,7 @@ public class ChooseFileView extends Stage {
             File file = fileChooser.showOpenDialog(new Stage());
             try {
                 app.initSimulation(new Simulation(file));
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
+            } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }

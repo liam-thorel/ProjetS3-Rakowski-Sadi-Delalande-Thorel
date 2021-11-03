@@ -4,8 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -29,7 +27,7 @@ public class MenuAjouter extends Pane {
 
     public MenuAjouter(Menu m){
         this.m = m;
-        ObservableList<Astre> lstAstre  = FXCollections.observableList(m.getSimulation().getSimulation().getListeAstre());
+        ObservableList<Astre> lstAstre  = FXCollections.observableList(m.getSimulationView().getSimulation().getListeAstre());
         lstAstre.addListener(whenListAstreIsUpdate);
         menuAstreBg = new Pane();
         menuAddAstreBg = new Pane();
@@ -41,8 +39,8 @@ public class MenuAjouter extends Pane {
 
         //Création et affectation du réctangle d'arrière plan derrière le menu
         Rectangle rectangle = new Rectangle();
-        rectangle.setWidth(m.getSimulation().getApp().getDimension().getWidth()-15);
-        rectangle.setHeight(m.getSimulation().getApp().getDimension().getHeight()-500);
+        rectangle.setWidth(m.getSimulationView().getApp().getDimension().getWidth()-15);
+        rectangle.setHeight(m.getSimulationView().getApp().getDimension().getHeight()-500);
         rectangle.setArcWidth(20);
         rectangle.setArcHeight(20);
         rectangle.setFill(Color.rgb(47, 49, 54, 0.9));

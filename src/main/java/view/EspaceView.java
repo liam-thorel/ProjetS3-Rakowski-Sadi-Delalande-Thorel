@@ -1,8 +1,15 @@
 package view;
 
 import javafx.animation.*;
+import javafx.beans.Observable;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
@@ -10,32 +17,36 @@ import logic.Astre;
 import logic.Simulation;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Random;
+import java.lang.reflect.Array;
+import java.util.*;
 
 public class EspaceView extends Pane {
 
-    private ArrayList<Astre> listeA;
+    public ObservableList<Astre> listeA;
     private Simulation s;
     private BooleanProperty playing = new SimpleBooleanProperty();
     private HashMap <Astre, Circle> listeAetC;
     private AnimationTimer timer;
     private long previousL = 0;
 
+
+
     public EspaceView(SimulationView s){
 
         listeAetC = new HashMap<>();
-        listeA = s.getSimulation().getListeAstre();
+        listeA = FXCollections.observableArrayList();
+        listeA.addAll(s.getSimulation().getListeAstre());
+
         this.s = s.getSimulation();
         playing.setValue(null);
+        listeA.addListener(addingAstre);
         //playing.addListener(playOrStop);
-        for (Astre a: listeA) {
+        /*for (Astre a: listeA) {
             Circle p = creerPlaneteCercle(a);
             listeAetC.put(a, p);
             getChildren().add(p);
             p.relocate(p.getCenterX(), p.getCenterY());
-        }
+        }*/
 
         timer = new AnimationTimer() {
             @Override
@@ -54,7 +65,7 @@ public class EspaceView extends Pane {
 
     }
     // prend un Astre en paramètre et créer un cercle le représentant graphiquement
-    public Circle creerPlaneteCercle(Astre p){
+    public static Circle creerPlaneteCercle(Astre p){
         Circle planete = new Circle();
         planete.setFill(new Color(new Random().nextFloat(),new Random().nextFloat(), new Random().nextFloat(), 1));
         planete.setStrokeWidth(2);
@@ -69,9 +80,10 @@ public class EspaceView extends Pane {
     //mettre un pas de temps en arg dans move pour utiliser dans add vitesse
 
     public void move(){
-        for(Astre a : listeA) {
+
+        for(Astre a : listeAetC.keySet()) {
             System.out.println("ancienne position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
-            a.addVitesse(Simulation.getOther(a, listeA));
+            a.addVitesse(Simulation.getOther(a, s.getListeAstre()));
             a.setPositions();
             System.out.println("nouvelle position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
             Circle currentC = listeAetC.get(a);
@@ -86,6 +98,28 @@ public class EspaceView extends Pane {
 
         }
     }
+
+
+
+    public void addAstre(Astre a ){
+        listeA.set(listeA.size(),a);
+    }
+
+    public ListChangeListener<Astre> addingAstre = new ListChangeListener<>() {
+        @Override
+        public void onChanged(Change<? extends Astre> change) {
+            change.next();
+            System.out.println("je suis la");
+            for(Astre a : change.getAddedSubList()){
+                Circle c = creerPlaneteCercle(a);
+                listeAetC.put(a, c);
+                getChildren().add(c);
+                c.relocate(c.getCenterX(), c.getCenterY());
+
+            }
+        }
+    };
+
     public void setPlaying(boolean playing) {
         this.playing.setValue(playing);
     }

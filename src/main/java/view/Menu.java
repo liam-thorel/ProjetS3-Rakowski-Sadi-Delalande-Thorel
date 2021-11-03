@@ -119,7 +119,7 @@ public class Menu extends Pane {
         return menuEtChangeMenu;
     }
 
-    public SimulationView getSimulation() {
+    public SimulationView getSimulationView() {
         return s;
     }
 }

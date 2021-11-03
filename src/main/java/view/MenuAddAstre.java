@@ -2,12 +2,12 @@ package view;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import logic.Astre;
 import logic.Planete;
 
@@ -98,16 +98,17 @@ public class MenuAddAstre extends HBox {
                     vX = Double.parseDouble(vitesseX.getText());
                     vY = Double.parseDouble(vitesseY.getText());
                     f = f.toLowerCase(Locale.ROOT);
+                    boolean isFixed = true;
                     if (f.equals("oui")||f.equals("true")||f.equals("yes")){
-                       Astre p = new Planete(n,t,m,pX,pY,vX,vY,true);
-                       mA.getM().getSimulation().getSimulation().getListeAstre().add(p);
+                        isFixed = true;
+
                     }
                     if (f.equals("non")||f.equals("false")||f.equals("no")){
-                       Astre p =  new Planete(n,t,m,pX,pY,vX,vY,false);
-                       mA.getM().getSimulation().getSimulation().getListeAstre().add(p);
-                        mA.getM().getSimulation().getSimulation().getListeAstre().toString();
+                        isFixed = false;
                     }
-
+                    Astre p = new Planete(n,t,m,pX,pY,vX,vY,isFixed);
+                    p.toString();
+                    mA.getM().getSimulationView().getEspace().listeA.add(p);
 
                 }catch (NumberFormatException e){
                     e.printStackTrace();
