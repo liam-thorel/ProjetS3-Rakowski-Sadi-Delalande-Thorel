@@ -115,6 +115,7 @@ public class EspaceView extends Pane {
                 listeAetC.put(a, c);
                 getChildren().add(c);
                 c.relocate(c.getCenterX(), c.getCenterY());
+                s.getListeAstre().add(a);
 
             }
         }
