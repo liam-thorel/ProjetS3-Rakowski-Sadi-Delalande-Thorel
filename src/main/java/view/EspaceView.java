@@ -109,14 +109,22 @@ public class EspaceView extends Pane {
         @Override
         public void onChanged(Change<? extends Astre> change) {
             change.next();
-            System.out.println("je suis la");
-            for(Astre a : change.getAddedSubList()){
-                Circle c = creerPlaneteCercle(a);
-                listeAetC.put(a, c);
-                getChildren().add(c);
-                c.relocate(c.getCenterX(), c.getCenterY());
-                s.getListeAstre().add(a);
+            if (change.wasAdded()) {
+                for (Astre a : change.getAddedSubList()) {
+                    Circle c = creerPlaneteCercle(a);
+                    listeAetC.put(a, c);
+                    getChildren().add(c);
+                    c.relocate(c.getCenterX(), c.getCenterY());
+                    s.getListeAstre().add(a);
 
+                }
+            }
+            if (change.wasRemoved()){
+                for (Astre a : change.getRemoved()) { // je crois ça vas ressembler à un truc du genre
+                    getChildren().remove(listeAetC.get(a));
+                    s.getListeAstre().remove(a);
+                    listeAetC.remove(a);
+                }
             }
         }
     };
