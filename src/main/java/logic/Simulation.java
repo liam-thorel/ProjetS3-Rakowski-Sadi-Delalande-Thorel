@@ -42,6 +42,10 @@ public class Simulation {
         Simulation.simuRate = simuRate;
     }
 
+    /** construire une liste d'astre a partir d'un fichier
+     * @param save fichier a partir duquel on va construire
+     * @return la liste construite a partire de save
+     * */
     public ArrayList<Astre> setAPartirDunFichier(File save) throws IOException {
         ArrayList<Astre> listeA = new ArrayList<>();
         CreateurAstre p = new CreateurPlanete();
@@ -82,6 +86,9 @@ public class Simulation {
     }
 
 
+    /**sauvegarde de la listes des astres dans un fichier
+     * @param save le fichier dans lequel on va sauvegarder
+     * */
     public void saveListeAstre(File save) throws IOException {
         save.toPath();
         save.createNewFile();
@@ -94,6 +101,12 @@ public class Simulation {
 
         }
     }
+
+    /** pour avoir les autres astres de a d'une listeA
+     * @param a l'astre qu'on ne veut pas
+     * @param listeA la liste de tout les astres
+     * @return la liste des autres astres
+     * */
 
     public static ArrayList<Astre> getOther(Astre a, ArrayList<Astre> listeA){
         ArrayList<Astre> r = new ArrayList<>(listeA);
