@@ -1,6 +1,9 @@
 package view;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -29,7 +32,7 @@ public class MenuSysteme extends Pane {
         menuBg.getChildren().add(rectangle);
         menuBg.getChildren().add(menu);
 
-        //Création et éffectation du réctangle d'arrière plan derrière Mes astres
+        //Création et affectation du rectangle d'arrière plan derrière Mes astres
         Rectangle rectangleMenuAstres = new Rectangle();
         rectangleMenuAstres.setHeight(80);
         rectangleMenuAstres.setWidth(1200);
@@ -48,5 +51,14 @@ public class MenuSysteme extends Pane {
 
     public Pane getMenu() {
         return menuBg;
+    }
+
+    public void afficherInfos(String info, Button supprimer){
+        menuSys.getChildren().clear();
+        Label infoAstre = new Label(info);
+        infoAstre.setAlignment(Pos.CENTER);
+        supprimer.setAlignment(Pos.CENTER_RIGHT);
+        menuSys.getChildren().add(infoAstre);
+        menuSys.getChildren().add(supprimer);
     }
 }

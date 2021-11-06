@@ -6,10 +6,15 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleListProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
+import javafx.scene.input.InputEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
@@ -17,27 +22,36 @@ import logic.Astre;
 import logic.Simulation;
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseListener;
 import java.lang.reflect.Array;
 import java.util.*;
 
 public class EspaceView extends Pane {
 
+    //liste des astres de la simulation
     public ObservableList<Astre> listeA;
     private Simulation s;
+    //verifie si la simulation est en cours
     private BooleanProperty playing = new SimpleBooleanProperty();
+    //pour avoir le cercle d'un astre
     private HashMap <Astre, Circle> listeAetC;
+    //pour avoir l'astre d'un cercle
+    private HashMap <Circle, Astre> listeCetA;
     private AnimationTimer timer;
     private long previousL = 0;
+    private SimulationView sV;
 
 
 
-    public EspaceView(SimulationView s){
+    public EspaceView(SimulationView sV){
 
         listeAetC = new HashMap<>();
+        listeCetA = new HashMap<>();
         listeA = FXCollections.observableArrayList();
-        listeA.addAll(s.getSimulation().getListeAstre());
-
-        this.s = s.getSimulation();
+        listeA.addAll(sV.getSimulation().getListeAstre());
+        this.sV = sV;
+        this.s = sV.getSimulation();
         playing.setValue(null);
         listeA.addListener(addingAstre);
         //playing.addListener(playOrStop);
@@ -101,25 +115,40 @@ public class EspaceView extends Pane {
 
 
 
-    public void addAstre(Astre a ){
-        listeA.set(listeA.size(),a);
-    }
-
+    //le listener des ajouts d'astres
     public ListChangeListener<Astre> addingAstre = new ListChangeListener<>() {
         @Override
         public void onChanged(Change<? extends Astre> change) {
             change.next();
-            System.out.println("je suis la");
             for(Astre a : change.getAddedSubList()){
                 Circle c = creerPlaneteCercle(a);
                 listeAetC.put(a, c);
+                listeCetA.put(c, a);
                 getChildren().add(c);
                 c.relocate(c.getCenterX(), c.getCenterY());
+                c.setOnMouseClicked(selected);
                 s.getListeAstre().add(a);
+
 
             }
         }
     };
+
+
+    //eventHandler de la selection des cercles
+    public EventHandler<MouseEvent> selected = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent mouseEvent) {
+            Circle selectedC = (Circle) mouseEvent.getSource();
+            Astre selectedA = listeCetA.get(selectedC);
+            Button supprimer = new Button("Supprimer" + selectedA.getNom());
+
+            sV.getMenu().getMenuSysteme().afficherInfos(selectedA.getArgString(), supprimer);
+
+        }
+    };
+
+    
 
     public void setPlaying(boolean playing) {
         this.playing.setValue(playing);

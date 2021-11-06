@@ -22,6 +22,7 @@ public class SimulationView extends Stage {
 
     private HBox contener;
     private EspaceView espace;
+    private Menu menu;
 
     public SimulationView(Simulation s,PlaneteApp app) {
         this.s = s;
@@ -32,7 +33,7 @@ public class SimulationView extends Stage {
         contener = new HBox();
         contener.setAlignment(Pos.CENTER);
         root.getChildren().add(contener);
-        Menu menu = new Menu(this);
+        menu = new Menu(this);
         root.getChildren().add(espace);
         root.getChildren().add(menu.getMenuEtChangeMenu());
         root.setId("bg");
@@ -42,11 +43,11 @@ public class SimulationView extends Stage {
 
         app.getStage().setScene(scene);
     }
-    private void ajouterPlanetes(ArrayList<Planete> listeP){
+    /*private void ajouterPlanetes(ArrayList<Planete> listeP){
         for (int i = 0 ; i < listeP.size() ; i++){
             espace.getChildren().add(espace.creerPlaneteCercle(listeP.get(i)));
         }
-    }
+    }*/
 
 
     public Simulation getSimulation() {
@@ -62,5 +63,9 @@ public class SimulationView extends Stage {
 
     public PlaneteApp getApp() {
         return app;
+    }
+
+    public Menu getMenu() {
+        return menu;
     }
 }
