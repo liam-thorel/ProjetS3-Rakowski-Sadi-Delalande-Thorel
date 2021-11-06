@@ -33,7 +33,12 @@ public class Planete extends Astre{
     public boolean isFixed() {
         return isFixed;
     }
-  //
+
+
+    /** calcule la somme des forces que recoit this des autres
+     * @param liste les astres qui ont une influence sur this
+     * @return le vesteur de l'acceleration de this par rapport aux autres planetes
+     * */
     public Vecteur calculerSommeForces(ArrayList<Astre> liste){
         Vecteur vSommeForces = new Vecteur(0,0);
 
@@ -50,7 +55,9 @@ public class Planete extends Astre{
     }
 
 
-
+    /** ajoute la vitesse a this et multiplie par le pas de temps
+     * @param listeA la liste des astres qui influent this
+     * */
     @Override
     public void addVitesse(ArrayList<Astre> listeA){
         Vecteur vAcc;
@@ -64,6 +71,9 @@ public class Planete extends Astre{
         this.vitesseY += (vAcc.getY() * Simulation.scaleTemps) /masse *0.0005 ;
         System.out.println("vitesseX = " + vitesseX + "    vitesseY = " + vitesseY);
     }
+
+    /**position * le pas de temps*
+     **/
 
     public void setPositions(){
         positionX += vitesseX *0.0005;
