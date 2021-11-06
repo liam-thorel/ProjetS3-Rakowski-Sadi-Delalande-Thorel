@@ -1,15 +1,10 @@
 package view;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import logic.Astre;
 
 public class MenuAjouter extends Pane {
 
@@ -27,8 +22,7 @@ public class MenuAjouter extends Pane {
 
     public MenuAjouter(Menu m){
         this.m = m;
-        ObservableList<Astre> lstAstre  = FXCollections.observableList(m.getSimulationView().getSimulation().getListeAstre());
-        lstAstre.addListener(whenListAstreIsUpdate);
+
         menuAstreBg = new Pane();
         menuAddAstreBg = new Pane();
         menuAstre = new HBox();
@@ -74,25 +68,6 @@ public class MenuAjouter extends Pane {
 
     }
 
-    // Regarde si la liste d'astre change, si c'est le cas ajoute a menu astre la représentation de l'astre
-    // et inversemment si l'astre est supprimé
-    private ListChangeListener<Astre> whenListAstreIsUpdate = new ListChangeListener<Astre>() {
-        @Override
-        public void onChanged(Change<? extends Astre> change) {
-            System.out.println("en vrais t'es trop beau gosse mon reuf, genre j'ai détecter l'actualisation tu vois");
-            while(change.next()){
-                if(change.wasAdded()){
-                    for (Astre a : change.getAddedSubList()){
-                        menuAstre.getChildren().add(new Circle(a.getTaille()/2));
-                    }
-                }else if (change.wasRemoved()){
-                    for (Astre a : change.getRemoved()){
-                        menuAstre.getChildren().remove(a);
-                    }
-                }
-            }
-        }
-    };
 
     public Pane getMenu() {
         return menuBg;
