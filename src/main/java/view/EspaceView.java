@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.input.InputEvent;
@@ -22,7 +23,6 @@ import logic.Astre;
 import logic.Simulation;
 
 
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseListener;
 import java.lang.reflect.Array;
 import java.util.*;
@@ -115,21 +115,31 @@ public class EspaceView extends Pane {
 
 
 
-    //le listener des ajouts d'astres
+    //le listener des ajouts ou des suppression d'astres
     public ListChangeListener<Astre> addingAstre = new ListChangeListener<>() {
         @Override
         public void onChanged(Change<? extends Astre> change) {
             change.next();
-            for(Astre a : change.getAddedSubList()){
-                Circle c = creerPlaneteCercle(a);
-                listeAetC.put(a, c);
-                listeCetA.put(c, a);
-                getChildren().add(c);
-                c.relocate(c.getCenterX(), c.getCenterY());
-                c.setOnMouseClicked(selected);
-                s.getListeAstre().add(a);
+            if(change.wasAdded()) {
+                for (Astre a : change.getAddedSubList()) {
+                    Circle c = creerPlaneteCercle(a);
+                    listeAetC.put(a, c);
+                    listeCetA.put(c, a);
+                    getChildren().add(c);
+                    c.relocate(c.getCenterX(), c.getCenterY());
+                    c.setOnMouseClicked(selected);
+                    s.getListeAstre().add(a);
 
+                }
+            }
+            if (change.wasRemoved()) {
+                for (Astre a : change.getRemoved()) { // je crois ça vas ressembler à un truc du genre
+                    getChildren().remove(listeAetC.get(a));
+                    s.getListeAstre().remove(a);
+                    listeCetA.remove(listeAetC.get(a));
+                    listeAetC.remove(a);
 
+                }
             }
         }
     };
@@ -141,8 +151,14 @@ public class EspaceView extends Pane {
         public void handle(MouseEvent mouseEvent) {
             Circle selectedC = (Circle) mouseEvent.getSource();
             Astre selectedA = listeCetA.get(selectedC);
-            Button supprimer = new Button("Supprimer" + selectedA.getNom());
-
+            Button supprimer = new Button("Supprimer " + selectedA.getNom());
+            EventHandler<ActionEvent> supression = new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    listeA.remove(selectedA);
+                }
+            };
+            supprimer.setOnAction(supression);
             sV.getMenu().getMenuSysteme().afficherInfos(selectedA.getArgString(), supprimer);
 
         }
