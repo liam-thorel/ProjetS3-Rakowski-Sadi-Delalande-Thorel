@@ -1,20 +1,14 @@
 package view;
 
 import javafx.animation.*;
-import javafx.beans.Observable;
 import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleListProperty;
-import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import javafx.scene.input.InputEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -23,8 +17,6 @@ import logic.Astre;
 import logic.Simulation;
 
 
-import java.awt.event.MouseListener;
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class EspaceView extends Pane {
@@ -53,7 +45,7 @@ public class EspaceView extends Pane {
         this.sV = sV;
         this.s = sV.getSimulation();
         playing.setValue(null);
-        listeA.addListener(addingAstre);
+        listeA.addListener(addingOrRemovingAstres);
         //playing.addListener(playOrStop);
         /*for (Astre a: listeA) {
             Circle p = creerPlaneteCercle(a);
@@ -116,7 +108,7 @@ public class EspaceView extends Pane {
 
 
     //le listener des ajouts ou des suppression d'astres
-    public ListChangeListener<Astre> addingAstre = new ListChangeListener<>() {
+    public ListChangeListener<Astre> addingOrRemovingAstres = new ListChangeListener<>() {
         @Override
         public void onChanged(Change<? extends Astre> change) {
             change.next();
