@@ -37,15 +37,17 @@ public class EspaceView extends Pane {
 
 
     public EspaceView(SimulationView sV){
-
+        this.sV = sV;
+        this.s = sV.getSimulation();
         listeAetC = new HashMap<>();
         listeCetA = new HashMap<>();
         listeA = FXCollections.observableArrayList();
-        listeA.addAll(sV.getSimulation().getListeAstre());
-        this.sV = sV;
-        this.s = sV.getSimulation();
-        playing.setValue(null);
         listeA.addListener(addingOrRemovingAstres);
+        listeA.addAll(sV.getSimulation().getListeAstre());
+        System.out.println(listeA);
+
+        playing.setValue(null);
+
         //playing.addListener(playOrStop);
         /*for (Astre a: listeA) {
             Circle p = creerPlaneteCercle(a);
@@ -113,6 +115,7 @@ public class EspaceView extends Pane {
         public void onChanged(Change<? extends Astre> change) {
             change.next();
             if(change.wasAdded()) {
+                System.out.println("j'ajoute");
                 for (Astre a : change.getAddedSubList()) {
                     Circle c = creerPlaneteCercle(a);
                     listeAetC.put(a, c);
@@ -120,7 +123,8 @@ public class EspaceView extends Pane {
                     getChildren().add(c);
                     c.relocate(c.getCenterX(), c.getCenterY());
                     c.setOnMouseClicked(selected);
-                    s.getListeAstre().add(a);
+                    if(!s.getListeAstre().contains(a)){
+                    s.getListeAstre().add(a);}
 
                 }
             }
