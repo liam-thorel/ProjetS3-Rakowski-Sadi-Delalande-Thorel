@@ -2,6 +2,7 @@ package view;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -18,6 +19,7 @@ public class MenuAddAstre extends HBox {
     private TextField nom, taille, masse, positionX, positionY, vitesseX, vitesseY, estFixe;
     private Label nomtxt, tailletxt, massetxt, positionXtxt, positionYtxt, vitesseXtxt, vitesseYtxt, estFixetxt;
     private MenuAjouter mA;
+    private VBox nameAll;
 
     public MenuAddAstre(MenuAjouter mA) {
         newAstre = new Button();
@@ -26,7 +28,7 @@ public class MenuAddAstre extends HBox {
         //contenu de Add Astre
         nom = new TextField();
         nomtxt = new Label("Nom");
-        VBox nameAll = new VBox();
+        nameAll = new VBox();
         nameAll.getChildren().addAll(nomtxt, nom);
         nom.setMaxWidth(75);
         taille = new TextField();
@@ -111,7 +113,10 @@ public class MenuAddAstre extends HBox {
                     mA.getM().getSimulationView().getEspace().listeA.add(p);
 
                 }catch (NumberFormatException e){
-                    e.printStackTrace();
+                    Label error =new Label("Erreur données pas de bon type ou non remplis");
+                    getChildren().add(error);// bien le placé
+                    //attendre
+                    /*getChildren().remove(error);*/
                 }
                 nom.clear();
                 taille.clear();
