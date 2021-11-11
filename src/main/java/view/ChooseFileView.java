@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
@@ -19,31 +20,19 @@ import java.io.IOException;
 
 public class ChooseFileView extends Stage {
 
-
-    private TextArea fileName;
     private Button chargerFile;
-    private Label systemText;
     private PlaneteApp app;
-    private HBox field;
-    private GridPane root;
+    private BorderPane root;
 
     public ChooseFileView(PlaneteApp app) {
         this.app = app;
-        //field = new HBox();
-        root = new GridPane();
-        fileName = new TextArea();
-        fileName.setPrefSize(200,50);
+        root = new BorderPane();
 
         chargerFile = new Button();
         chargerFile.setText("charger simulation");
-        chargerFile.setAlignment(Pos.CENTER);
         chargerFile.setOnAction(chargerFileEvent);
 
-        systemText = new Label();
-        root.setAlignment(Pos.CENTER);
-        root.add(fileName, 0,0);
-        root.add(chargerFile, 0, 1);
-        root.add(systemText,0,2);
+        root.setCenter(chargerFile);
         root.setId("bg");
         root.getStylesheets().add(this.getClass().getResource("/Css/simulation.css").toExternalForm());
 
