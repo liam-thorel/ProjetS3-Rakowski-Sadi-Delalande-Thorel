@@ -116,6 +116,7 @@ public class MenuAddAstre extends VBox {
                     mA.getM().getSimulationView().getEspace().listeA.add(p);
                     getChildren().remove(error);
                 }catch (NumberFormatException e){
+                    getChildren().remove(error);
                     getChildren().add(error);// bien le placé$
                     //attendre
 
