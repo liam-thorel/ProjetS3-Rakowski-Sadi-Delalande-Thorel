@@ -13,6 +13,7 @@ import logic.Astre;
 import logic.Planete;
 
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class MenuAddAstre extends HBox {
     private Button newAstre;
@@ -20,6 +21,7 @@ public class MenuAddAstre extends HBox {
     private Label nomtxt, tailletxt, massetxt, positionXtxt, positionYtxt, vitesseXtxt, vitesseYtxt, estFixetxt;
     private MenuAjouter mA;
     private VBox nameAll;
+    private Label error =new Label("Erreur données pas de bon type ou non remplis");
 
     public MenuAddAstre(MenuAjouter mA) {
         newAstre = new Button();
@@ -111,12 +113,11 @@ public class MenuAddAstre extends HBox {
                     Astre p = new Planete(n,t,m,pX,pY,vX,vY,isFixed);
                     p.toString();
                     mA.getM().getSimulationView().getEspace().listeA.add(p);
-
+                    getChildren().remove(error);
                 }catch (NumberFormatException e){
-                    Label error =new Label("Erreur données pas de bon type ou non remplis");
-                    getChildren().add(error);// bien le placé
+                    getChildren().add(error);// bien le placé$
                     //attendre
-                    /*getChildren().remove(error);*/
+
                 }
                 nom.clear();
                 taille.clear();
@@ -126,6 +127,7 @@ public class MenuAddAstre extends HBox {
                 vitesseX.clear();
                 vitesseY.clear();
                 estFixe.clear();
+
             }
         };
 
