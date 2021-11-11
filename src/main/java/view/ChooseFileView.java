@@ -20,7 +20,7 @@ import java.io.IOException;
 
 public class ChooseFileView extends Stage {
 
-    private Button chargerFile;
+    private Button chargerFile,chargerSystemeSolaire;
     private PlaneteApp app;
     private BorderPane root;
 
@@ -28,11 +28,14 @@ public class ChooseFileView extends Stage {
         this.app = app;
         root = new BorderPane();
 
-        chargerFile = new Button();
-        chargerFile.setText("charger simulation");
+        chargerSystemeSolaire = new Button("charger Système Solaire");
+
+
+        chargerFile = new Button("charger simulation");
         chargerFile.setOnAction(chargerFileEvent);
 
         root.setCenter(chargerFile);
+        root.setTop(chargerSystemeSolaire);
         root.setId("bg");
         root.getStylesheets().add(this.getClass().getResource("/Css/simulation.css").toExternalForm());
 
