@@ -15,12 +15,13 @@ import logic.Planete;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-public class MenuAddAstre extends HBox {
+public class MenuAddAstre extends VBox {
     private Button newAstre;
     private TextField nom, taille, masse, positionX, positionY, vitesseX, vitesseY, estFixe;
     private Label nomtxt, tailletxt, massetxt, positionXtxt, positionYtxt, vitesseXtxt, vitesseYtxt, estFixetxt;
     private MenuAjouter mA;
     private VBox nameAll;
+    private HBox all = new HBox();
     private Label error =new Label("Erreur données pas de bon type ou non remplis");
 
     public MenuAddAstre(MenuAjouter mA) {
@@ -77,10 +78,10 @@ public class MenuAddAstre extends HBox {
 
         VBox button = new VBox();
         button.getChildren().addAll(new Label(), newAstre);
-
-        getChildren().addAll(nameAll, tailleAll, masseAll, positionXAll, positionYAll, vitesseXAll, vitesseYAll, estFixeAll, button);
+        all.getChildren().addAll(nameAll, tailleAll, masseAll, positionXAll, positionYAll, vitesseXAll, vitesseYAll, estFixeAll, button);
+        getChildren().add(all);
         newAstre.setText("Ajouter Astre");
-        setSpacing(8);
+        all.setSpacing(8);
 
         newAstre.setOnAction(onAjouterAstre);
     }
