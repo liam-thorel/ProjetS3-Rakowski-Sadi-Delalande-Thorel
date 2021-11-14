@@ -23,11 +23,13 @@ public class SimulationView extends Stage {
     private HBox contener;
     private EspaceView espace;
     private Menu menu;
+    private OptionView menuOption;
 
-    public SimulationView(Simulation s,PlaneteApp app) {
-        this.s = s;
+    public SimulationView(Simulation myS,PlaneteApp app) {
+        s = myS;
         this.app = app;
         root = new VBox();
+        menuOption = new OptionView(this);
         espace = new EspaceView(this);
         espace.setPrefHeight(600);
         contener = new HBox();
@@ -49,6 +51,11 @@ public class SimulationView extends Stage {
         }
     }*/
 
+
+    public void ouvrirMenuOption(){
+        espace.setPlaying(false);
+        root.getChildren().add(menuOption);
+    }
 
     public Simulation getSimulation() {
         return s;

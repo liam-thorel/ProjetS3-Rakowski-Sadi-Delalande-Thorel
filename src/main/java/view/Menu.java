@@ -22,6 +22,8 @@ public class Menu extends Pane {
     private Button ajouter;
     private Button play = new Button("Play");
     private Button pause = new Button("Pause");
+    //bouton des options
+    private Button option = new Button("Options");
     private SimulationView sV;
 
     public Menu(SimulationView sV) {
@@ -58,7 +60,9 @@ public class Menu extends Pane {
         ajouter.setOnAction(onAjouterMenu);
         play.setOnAction(onPlay);
         pause.setOnAction(onPause);
-
+        option.setOnAction(onOption);
+        option.setPrefHeight(15);
+        option.prefWidth(20);
         //
         systemeOuAjouter.getChildren().addAll(systeme, ajouter);
         changeMenu.setLeft(systemeOuAjouter);
@@ -106,6 +110,13 @@ public class Menu extends Pane {
             sV.getEspace().setPlaying(false);
             //play.setGraphic(new ImageView("src/main/resources/images/PlayButtonNo.png"));
             //pause.setGraphic(new ImageView("src/main/resources/images/PauseButtonON.png"));
+        }
+    };
+
+    private EventHandler<ActionEvent> onOption = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            sV.ouvrirMenuOption();
         }
     };
 
