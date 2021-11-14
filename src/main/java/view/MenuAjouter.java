@@ -3,6 +3,7 @@ package view;
 import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -10,7 +11,7 @@ public class MenuAjouter extends Pane {
 
     private HBox menu ;
     private HBox menuAstre;
-    private HBox addAstre;
+    private VBox addAstre;
     private Pane menuBg = new Pane();
     private Pane menuAstreBg;
     private Pane menuAddAstreBg;

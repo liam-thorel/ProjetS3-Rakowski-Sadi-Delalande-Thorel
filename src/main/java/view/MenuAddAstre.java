@@ -2,6 +2,7 @@ package view;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -12,12 +13,16 @@ import logic.Astre;
 import logic.Planete;
 
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
-public class MenuAddAstre extends HBox {
+public class MenuAddAstre extends VBox {
     private Button newAstre;
     private TextField nom, taille, masse, positionX, positionY, vitesseX, vitesseY, estFixe;
     private Label nomtxt, tailletxt, massetxt, positionXtxt, positionYtxt, vitesseXtxt, vitesseYtxt, estFixetxt;
     private MenuAjouter mA;
+    private VBox nameAll;
+    private HBox all = new HBox();
+    private Label error =new Label("Erreur données pas de bon type ou non remplis");
 
     public MenuAddAstre(MenuAjouter mA) {
         newAstre = new Button();
@@ -26,7 +31,7 @@ public class MenuAddAstre extends HBox {
         //contenu de Add Astre
         nom = new TextField();
         nomtxt = new Label("Nom");
-        VBox nameAll = new VBox();
+        nameAll = new VBox();
         nameAll.getChildren().addAll(nomtxt, nom);
         nom.setMaxWidth(75);
         taille = new TextField();
@@ -73,10 +78,10 @@ public class MenuAddAstre extends HBox {
 
         VBox button = new VBox();
         button.getChildren().addAll(new Label(), newAstre);
-
-        getChildren().addAll(nameAll, tailleAll, masseAll, positionXAll, positionYAll, vitesseXAll, vitesseYAll, estFixeAll, button);
+        all.getChildren().addAll(nameAll, tailleAll, masseAll, positionXAll, positionYAll, vitesseXAll, vitesseYAll, estFixeAll, button);
+        getChildren().add(all);
         newAstre.setText("Ajouter Astre");
-        setSpacing(8);
+        all.setSpacing(8);
 
         newAstre.setOnAction(onAjouterAstre);
     }
@@ -109,9 +114,12 @@ public class MenuAddAstre extends HBox {
                     Astre p = new Planete(n,t,m,pX,pY,vX,vY,isFixed);
                     p.toString();
                     mA.getM().getSimulationView().getEspace().listeA.add(p);
-
+                    getChildren().remove(error);
                 }catch (NumberFormatException e){
-                    e.printStackTrace();
+                    getChildren().remove(error);
+                    getChildren().add(error);// bien le placé$
+                    //attendre
+
                 }
                 nom.clear();
                 taille.clear();
@@ -121,6 +129,7 @@ public class MenuAddAstre extends HBox {
                 vitesseX.clear();
                 vitesseY.clear();
                 estFixe.clear();
+
             }
         };
 
