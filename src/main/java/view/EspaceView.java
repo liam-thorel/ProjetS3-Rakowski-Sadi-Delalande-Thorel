@@ -1,6 +1,7 @@
 package view;
 
-import javafx.animation.*;
+
+import javafx.animation.AnimationTimer;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
@@ -97,14 +98,7 @@ public class EspaceView extends Pane {
             System.out.println("nouvelle position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
             Circle currentC = listeAetC.get(a);
             currentC.relocate(a.getPositionX() - a.getTaille()/2, a.getPositionY() - a.getTaille()/2);
-            Circle p = new Circle();
-            p.setFill(Color.RED);
-            p.setCenterX(a.getPositionX());
-            p.setCenterY(a.getPositionY());
-            p.setRadius(1);
-
-            getChildren().add(p);
-
+            tracerTrajectoire(a);
         }
     }
 
@@ -160,6 +154,27 @@ public class EspaceView extends Pane {
 
         }
     };
+
+    private HashMap<Astre, ArrayList<Circle>> listeTrajectoires = new HashMap<>();
+
+    public void tracerTrajectoire(Astre a){
+        Circle p = new Circle();
+        p.setFill(Color.RED);
+        p.setCenterX(a.getPositionX());
+        p.setCenterY(a.getPositionY());
+        p.setRadius(1);
+        ArrayList<Circle> trajectoire;
+        if(listeTrajectoires.get(a) == null){
+            trajectoire = new ArrayList<>();
+        }else{
+            trajectoire = listeTrajectoires.get(a);
+        }
+        trajectoire.add(p);
+        listeTrajectoires.put(a, trajectoire);
+
+
+        getChildren().add(p);
+    }
 
     
 

@@ -84,7 +84,6 @@ public class OptionView extends Pane {
             }
         };
 
-
         //event pour les param
         EventHandler<ActionEvent> onSettings = new EventHandler<ActionEvent>() {
             @Override
