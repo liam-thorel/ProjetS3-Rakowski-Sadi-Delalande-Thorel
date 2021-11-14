@@ -70,7 +70,7 @@ public class Menu extends Pane {
         systemeOuAjouter.setSpacing(5);
         playOuPause.setSpacing(5);
         changeMenu.setMaxWidth(sV.getApp().getDimension().getWidth()-20);
-        playOuPause.getChildren().addAll(play,pause);
+        playOuPause.getChildren().addAll(play,pause, option);
         menuEtChangeMenu.getChildren().addAll(changeMenu, menuActuelPane);
 
 

@@ -1,5 +1,10 @@
 package view;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableBooleanValue;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
@@ -24,18 +29,21 @@ public class SimulationView extends Stage {
     private EspaceView espace;
     private Menu menu;
     private OptionView menuOption;
+    private BooleanProperty optionsOuvertes = new SimpleBooleanProperty();
 
     public SimulationView(Simulation myS,PlaneteApp app) {
         s = myS;
         this.app = app;
         root = new VBox();
-        menuOption = new OptionView(this);
+        optionsOuvertes.addListener(optionOpenOrClose);
+        menuOption = OptionView.getOptionView(this);
         espace = new EspaceView(this);
         espace.setPrefHeight(600);
         contener = new HBox();
         contener.setAlignment(Pos.CENTER);
         root.getChildren().add(contener);
         menu = new Menu(this);
+        menu.toBack();
         root.getChildren().add(espace);
         root.getChildren().add(menu.getMenuEtChangeMenu());
         root.setId("bg");
@@ -45,15 +53,22 @@ public class SimulationView extends Stage {
 
         app.getStage().setScene(scene);
     }
-    /*private void ajouterPlanetes(ArrayList<Planete> listeP){
-        for (int i = 0 ; i < listeP.size() ; i++){
-            espace.getChildren().add(espace.creerPlaneteCercle(listeP.get(i)));
-        }
-    }*/
 
+    private ChangeListener<Boolean> optionOpenOrClose = new ChangeListener<Boolean>() {
+        @Override
+        public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
+            menuOption.setVisible(t1);
+            System.out.println("visible ? " + t1);
+        }
+    };
 
     public void ouvrirMenuOption(){
         espace.setPlaying(false);
+        optionsOuvertes.setValue(true);
+        menuOption.toFront();
+        double milieuX = this.getApp().getDimension().getWidth()-(this.getApp().getDimension().getWidth()/2);
+        double milieuY = this.getApp().getDimension().getHeight()-(this.getApp().getDimension().getHeight()/2);
+        menuOption.relocate(milieuX, milieuY);
         root.getChildren().add(menuOption);
     }
 
@@ -74,5 +89,9 @@ public class SimulationView extends Stage {
 
     public Menu getMenu() {
         return menu;
+    }
+
+    public void setOptionsOuvertes(boolean optionsOuvertes) {
+        this.optionsOuvertes.setValue(optionsOuvertes);
     }
 }

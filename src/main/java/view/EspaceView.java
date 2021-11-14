@@ -30,6 +30,7 @@ public class EspaceView extends Pane {
     private HashMap <Astre, Circle> listeAetC;
     //pour avoir l'astre d'un cercle
     private HashMap <Circle, Astre> listeCetA;
+    //timer de l'animation
     private AnimationTimer timer;
     private long previousL = 0;
     private SimulationView sV;
