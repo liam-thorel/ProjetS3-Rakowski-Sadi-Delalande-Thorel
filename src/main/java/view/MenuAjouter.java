@@ -35,7 +35,7 @@ public class MenuAjouter extends Pane {
         //Création et affectation du réctangle d'arrière plan derrière le menu
         Rectangle rectangle = new Rectangle();
         rectangle.setWidth(m.getSimulationView().getApp().getDimension().getWidth()-15);
-        rectangle.setHeight(m.getSimulationView().getApp().getDimension().getHeight()-500);
+        rectangle.setHeight(m.getSimulationView().getApp().getDimension().getHeight()-690);
         rectangle.setArcWidth(20);
         rectangle.setArcHeight(20);
         rectangle.setFill(Color.rgb(47, 49, 54, 0.9));
