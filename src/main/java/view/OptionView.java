@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
 import javafx.scene.paint.Color;
@@ -26,9 +27,11 @@ public class OptionView extends Pane {
     private static OptionView optionView;
     private SimulationView sV;
     private HBox bouttons;
+    private Label error;
     public OptionView(SimulationView sV){
         this.sV = sV;
         bouttons = new HBox();
+        error = new Label();
         //le fond legerement transparent
         this.setBackground(new Background(new BackgroundFill(Color.rgb(47, 49, 54,0.8), null, null)));
         /*Rectangle fond = new Rectangle();
@@ -45,28 +48,39 @@ public class OptionView extends Pane {
         saveEtContinuer.setAlignment(Pos.CENTER);
         Button saveEtQuit = new Button("Sauvegarder et quitter");
         saveEtQuit.setAlignment(Pos.CENTER);
+        Button quit = new Button("Quitter sans sauvegarder");
+        quit.setAlignment(Pos.CENTER);
         Button parametre = new Button("Parametres");
         parametre.setAlignment(Pos.CENTER);
 
-
-        //event pour les save
-        EventHandler<ActionEvent> onSave = new EventHandler<ActionEvent>() {
+        //pour cacher l'erreur
+        EventHandler<MouseEvent> onClickError = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                error.setText("");
+            }
+        };
+        //event pour les save et quit
+        EventHandler<ActionEvent> onSaveOrQuit = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                FileChooser fileChooser = new FileChooser();
-                fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-                fileChooser.setTitle("Sauvegarder");
-                fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Simu", "*.simu"));
-                File s =fileChooser.showSaveDialog(new Stage());
-                try {
-                    sV.getSimulation().saveListeAstre(s);
-                    if(actionEvent.getSource().equals(saveEtQuit)){
-                        sV.getApp().initStart();
-                    }
+                if(actionEvent.getSource().equals(saveEtQuit) || actionEvent.getSource().equals(saveEtContinuer)) {
+                    FileChooser fileChooser = new FileChooser();
+                    fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+                    fileChooser.setTitle("Sauvegarder");
+                    fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Simu", "*.simu"));
+                    File s = fileChooser.showSaveDialog(new Stage());
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                    try {
+                        sV.getSimulation().saveListeAstre(s);
+                        if (actionEvent.getSource().equals(saveEtQuit)) {
+                            sV.getApp().initStart();
+                        }
+
+                    } catch (IOException e) {
+                        error.setText(e.getMessage());
+                    }
+                }else{sV.getApp().initStart();}
             }
         };
 
@@ -101,20 +115,23 @@ public class OptionView extends Pane {
             }
         };
 
-        saveEtContinuer.setOnAction(onSave);
-        saveEtQuit.setOnAction(onSave);
+        saveEtContinuer.setOnAction(onSaveOrQuit);
+        saveEtQuit.setOnAction(onSaveOrQuit);
+        quit.setOnAction(onSaveOrQuit);
         parametre.setOnAction(onSettings);
         retour.setOnAction(onRetourSimu);
 
+        error.setOnMouseClicked(onClickError);
         // le hBox contenant les bouttons
         bouttons.setBackground(new Background(new BackgroundFill(Color.rgb(64,68,75,1), null, null)));
         bouttons.setAlignment(Pos.CENTER);
         bouttons.setPadding(new Insets(50, 20, 50 , 20));
-        bouttons.getChildren().addAll(saveEtContinuer, saveEtQuit, parametre, retour);
+        bouttons.relocate(500,200);
+        bouttons.setSpacing(10);
+        bouttons.getChildren().addAll(saveEtContinuer, saveEtQuit, quit, parametre, retour);
 
-
-        this.setPrefSize(sV.getApp().getDimension().getHeight(), sV.getApp().getDimension().getWidth());
-        this.getChildren().addAll( bouttons);
+        this.setPrefSize(sV.getApp().getDimension().getWidth(), sV.getApp().getDimension().getHeight());
+        this.getChildren().addAll( bouttons, error);
 
     }
 

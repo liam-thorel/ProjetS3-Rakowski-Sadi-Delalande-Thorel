@@ -20,6 +20,7 @@ public class SimulationView extends Stage {
     private PlaneteApp app;
     private static Simulation s;
     private static VBox root;
+    private static Pane all;
 
     public static Simulation getS() {
         return s;
@@ -35,6 +36,7 @@ public class SimulationView extends Stage {
         s = myS;
         this.app = app;
         root = new VBox();
+        all = new Pane();
         optionsOuvertes.addListener(optionOpenOrClose);
         menuOption = OptionView.getOptionView(this);
         espace = new EspaceView(this);
@@ -49,7 +51,8 @@ public class SimulationView extends Stage {
         root.setId("bg");
         root.getStylesheets().add(this.getClass().getResource("/Css/simulation.css").toExternalForm());
 
-        Scene scene = new Scene(root);
+        all.getChildren().add(root);
+        Scene scene = new Scene(all);
 
         app.getStage().setScene(scene);
     }
@@ -66,10 +69,8 @@ public class SimulationView extends Stage {
         espace.setPlaying(false);
         optionsOuvertes.setValue(true);
         menuOption.toFront();
-        double milieuX = this.getApp().getDimension().getWidth()-(this.getApp().getDimension().getWidth()/2);
-        double milieuY = this.getApp().getDimension().getHeight()-(this.getApp().getDimension().getHeight()/2);
-        menuOption.relocate(milieuX, milieuY);
-        root.getChildren().add(menuOption);
+        menuOption.relocate(0, 0);
+        all.getChildren().add(menuOption);
     }
 
     public Simulation getSimulation() {
