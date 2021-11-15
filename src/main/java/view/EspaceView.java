@@ -4,6 +4,8 @@ package view;
 import javafx.animation.AnimationTimer;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -31,6 +33,8 @@ public class EspaceView extends Pane {
     private HashMap <Astre, Circle> listeAetC;
     //pour avoir l'astre d'un cercle
     private HashMap <Circle, Astre> listeCetA;
+    //boolean de la trajectoire
+    private BooleanProperty showingT = new SimpleBooleanProperty();
     //timer de l'animation
     private AnimationTimer timer;
     private long previousL = 0;
@@ -48,7 +52,9 @@ public class EspaceView extends Pane {
         listeA.addAll(sV.getSimulation().getListeAstre());
         System.out.println(listeA);
 
-        playing.setValue(null);
+        playing.setValue(false);
+        showingT.setValue(true);
+        showingT.addListener(onShowingT);
 
         //playing.addListener(playOrStop);
         /*for (Astre a: listeA) {
@@ -98,7 +104,9 @@ public class EspaceView extends Pane {
             System.out.println("nouvelle position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
             Circle currentC = listeAetC.get(a);
             currentC.relocate(a.getPositionX() - a.getTaille()/2, a.getPositionY() - a.getTaille()/2);
-            tracerTrajectoire(a);
+            if(showingT.getValue()){
+                tracerTrajectoire(a);
+            }
         }
     }
 
@@ -176,7 +184,26 @@ public class EspaceView extends Pane {
         getChildren().add(p);
     }
 
-    
+
+    private ChangeListener<Boolean> onShowingT = new ChangeListener<Boolean>() {
+        @Override
+        public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
+            if(!t1){
+                effacerAllTrajectoire();
+            }
+        }
+    };
+
+    public void effacerAllTrajectoire(){
+        for(Astre a : listeTrajectoires.keySet()){
+            getChildren().removeAll(listeTrajectoires.get(a));
+            listeTrajectoires.remove(a);
+        }
+    }
+
+    public void setShowingT(boolean showingT) {
+        this.showingT.setValue(showingT);
+    }
 
     public void setPlaying(boolean playing) {
         this.playing.setValue(playing);
