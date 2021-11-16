@@ -122,11 +122,16 @@ public class OptionView extends Pane {
         EventHandler<ActionEvent> onReset = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent){
-                try {
-                    sV.getApp().initSimulation(new Simulation(sV.getSimulation().getFile()));
-                } catch (IOException | ClassNotFoundException e) {
-                    sV.getApp().initSimulation(new Simulation());
-                }
+                    try {
+                        sV.getApp().initSimulation(new Simulation(sV.getSimulation().getFile()));
+                    } catch (IOException e) {
+                        sV.getApp().initSimulation(new Simulation());
+                    } catch (ClassNotFoundException e) {
+                        sV.getApp().initSimulation(new Simulation());
+                    }
+                    catch (NullPointerException e){
+                        sV.getApp().initSimulation(new Simulation());
+                    }
             }
         };
 
