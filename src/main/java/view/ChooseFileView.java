@@ -18,6 +18,7 @@ import logic.Simulation;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.NoSuchFileException;
 
 public class ChooseFileView extends Stage {
 
@@ -66,13 +67,13 @@ public class ChooseFileView extends Stage {
         public void handle(ActionEvent actionEvent) {
             try {
                 app.initSimulation(new Simulation(new File("presets/systeme solaire.simu")));
-            } catch (IOException e) {
+            }catch (NoSuchFileException e) {
+                boutons.getChildren().remove(erreur);
+                boutons.getChildren().add(erreur = new Label("Fichier preset systeme solaire.simu non trouvé"));
+            }catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
-            } catch (NullPointerException e){
-                boutons.getChildren().remove(erreur);
-                boutons.getChildren().add(erreur = new Label("Fichier preset systeme solaire.simu non trouvé"));
             }
         }
     };
