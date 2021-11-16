@@ -57,7 +57,7 @@ public class ChooseFileView extends Stage {
         @Override
         public void handle(ActionEvent actionEvent) {
             boutons.getChildren().remove(erreur);
-            boutons.getChildren().add(erreur = new Label(app.getfilechoose()));
+            boutons.getChildren().add(erreur = new Label(app.getfilechooser()));
         }
     };
 

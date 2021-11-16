@@ -119,7 +119,7 @@ public class PlaneteApp extends Application {
         return dimension;
     }
 
-    public String getfilechoose () {
+    public String getfilechooser () {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(//
                 new FileChooser.ExtensionFilter("Simu", "*.simu"), //
