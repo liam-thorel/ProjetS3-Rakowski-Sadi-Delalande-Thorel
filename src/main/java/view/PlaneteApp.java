@@ -118,4 +118,22 @@ public class PlaneteApp extends Application {
     public Dimension getDimension() {
         return dimension;
     }
+
+    public String getfilechoose () {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(//
+                new FileChooser.ExtensionFilter("Simu", "*.simu"), //
+                new FileChooser.ExtensionFilter("All Files", "*.*"));
+        fileChooser.setTitle("Selectionner un fichier");
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        File fichierSimu = fileChooser.showOpenDialog(new Stage());
+        try {
+            initSimulation(new Simulation(fichierSimu));
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (NullPointerException e) {
+            return "erreur fichier non choisit";
+        }
+        return "";
+    }
 }
