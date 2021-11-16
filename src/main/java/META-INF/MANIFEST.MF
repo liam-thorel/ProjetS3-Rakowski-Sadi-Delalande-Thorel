@@ -1,11 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: view.PlaneteApp
-Class-Path:     javafx-web-17-ea+11.jar javafx-fxml-17-ea+11-linux.jar ikonl
- i-javafx-12.2.0.jar javafx-media-17-ea+11-linux.jar bootstrapfx-core-0.
- 4.0.jar validatorfx-0.1.13.jar javafx-graphics-17-ea+11-linux.jar contr
- olsfx-11.1.0.jar ikonli-core-12.2.0.jar javafx-controls-17-ea+11.jar ja
- vafx-media-17-ea+11.jar javafx-controls-17-ea+11-linux.jar tilesfx-11.4
- 8.jar javafx-base-17-ea+11.jar formsfx-core-11.3.2.jar javafx-base-17-e
- a+11-linux.jar javafx-graphics-17-ea+11.jar javafx-web-17-ea+11-linux.j
- ar javafx-fxml-17-ea+11.jar
+Main-Class: view.Launcher
 
