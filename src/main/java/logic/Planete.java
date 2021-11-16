@@ -50,7 +50,7 @@ public class Planete extends Astre{
             vSommeForces.incrementXBy(Simulation.g * (distanceX * (a.getMasse() * Simulation.scaleMasse)/ Math.pow(distance, 3)/ Simulation.simuRate));
             vSommeForces.incrementYBy(Simulation.g * (distanceY * (a.getMasse() * Simulation.scaleMasse) / Math.pow(distance,3)/ Simulation.simuRate));
         }
-        System.out.println("vSommeForces = " + vSommeForces);
+        //System.out.println("vSommeForces = " + vSommeForces);
         return vSommeForces;
     }
 
@@ -69,7 +69,7 @@ public class Planete extends Astre{
         }
         this.vitesseX += (vAcc.getX() * Simulation.scaleTemps) /masse *0.0005;
         this.vitesseY += (vAcc.getY() * Simulation.scaleTemps) /masse *0.0005 ;
-        System.out.println("vitesseX = " + vitesseX + "    vitesseY = " + vitesseY);
+        //System.out.println("vitesseX = " + vitesseX + "    vitesseY = " + vitesseY);
     }
 
     /**position * le pas de temps*

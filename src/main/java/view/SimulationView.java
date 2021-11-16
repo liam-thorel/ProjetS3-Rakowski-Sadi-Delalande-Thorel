@@ -7,6 +7,8 @@ import javafx.beans.value.ObservableBooleanValue;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import logic.Planete;
@@ -54,6 +56,13 @@ public class SimulationView extends Stage {
         all.getChildren().add(root);
         Scene scene = new Scene(all);
 
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, ke -> {
+            if (ke.getCode() == KeyCode.F1) {
+                ouvrirMenuOption();
+                ke.consume();
+            }
+
+        });
         app.getStage().setScene(scene);
     }
 
