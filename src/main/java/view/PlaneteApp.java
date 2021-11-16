@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -40,7 +41,7 @@ public class PlaneteApp extends Application {
         if (System.getProperty("os.name").startsWith("Windows")) stage.setResizable(false);
         stage.setOnCloseRequest(event -> {
             try {
-                this.onStopGame();
+                this.onStopGame("ATTENTION Voulez vous vraiment arreter la simulation ?");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -81,28 +82,27 @@ public class PlaneteApp extends Application {
 
     }
 
-    public void onStopGame() throws IOException {
+    public void onStopGame(String titre) throws IOException {
         if (!(simulation==null)) {
             Alert alert = new Alert(Alert.AlertType.NONE);
             ButtonType nosave = new ButtonType("Quitter sans sauvegarder");
             ButtonType save = new ButtonType("Quitter et sauvegarder");
             ButtonType annuler = new ButtonType("Annuler");
             alert.setTitle("Attention");
-            alert.setContentText("ATTENTION Voulez vous vraiment arreter la simulation O_o ?");
+            alert.setContentText(titre);
             alert.getButtonTypes().addAll(save,nosave,annuler);
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == nosave) {
                 Platform.exit();
             }
             if (result.isPresent() && result.get() == save) {
-                alert.close();
-                FileChooser fileChooser = new FileChooser();
-                fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-                fileChooser.setTitle("Sauvegarder");
-                fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Simu", "*.simu"));
-                File s =fileChooser.showSaveDialog(new Stage());
-                simulation.saveListeAstre(s);
-                Platform.exit();
+                String erreur = getfileSaver();
+                if (erreur.equals("")){
+                    Platform.exit();
+                }
+                else {
+                    onStopGame(erreur);
+                }
             }
         }else{
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -133,6 +133,23 @@ public class PlaneteApp extends Application {
             e.printStackTrace();
         } catch (NullPointerException e) {
             return "erreur fichier non choisit";
+        }
+        return "";
+    }
+
+    public String getfileSaver(){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        fileChooser.setTitle("Sauvegarder");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Simu", "*.simu"));
+        File s =fileChooser.showSaveDialog(new Stage());
+        try {
+            simulation.saveListeAstre(s);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        catch (NullPointerException e){
+            return "erreur emplacement de sauvegarde non spécifié";
         }
         return "";
     }
