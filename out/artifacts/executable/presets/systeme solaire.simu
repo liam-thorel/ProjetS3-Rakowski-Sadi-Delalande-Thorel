@@ -1,3 +1,0 @@
-// nom taille masse positionX positionY vitesseX vitesseY estFixe
-soleil 69 198900000 960 540 0 0 true
-terre 30 597 545 540 0 7000 false
