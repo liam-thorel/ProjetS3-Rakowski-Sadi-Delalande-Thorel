@@ -65,7 +65,7 @@ public class OptionView extends Pane {
                     error = new Label (sV.getApp().getfileSaver());
                     error.setTextFill(Color.WHITE);
                   bouttons.getChildren().add(error);
-                }else{sV.getApp().initStart();}
+                } if(actionEvent.getSource().equals(quit) |actionEvent.getSource().equals(saveEtQuit) ){sV.getApp().initStart();}
             }
         };
 
