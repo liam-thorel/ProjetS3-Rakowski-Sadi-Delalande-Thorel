@@ -62,7 +62,7 @@ public class OptionView extends Pane {
             public void handle(ActionEvent actionEvent) {
                 if(actionEvent.getSource().equals(saveEtQuit) || actionEvent.getSource().equals(saveEtContinuer)) {
                     bouttons.getChildren().remove(error);
-                    error = new Label (sV.getApp().getfileSaver());
+                    error = new Label (sV.getApp().getfilechooser(false));
                     error.setTextFill(Color.WHITE);
                   bouttons.getChildren().add(error);
                 } if(actionEvent.getSource().equals(quit) |(actionEvent.getSource().equals(saveEtQuit) && error.getText().equals(""))  ){sV.getApp().initStart();}

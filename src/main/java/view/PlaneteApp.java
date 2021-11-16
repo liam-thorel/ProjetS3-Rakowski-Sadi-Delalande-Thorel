@@ -89,7 +89,7 @@ public class PlaneteApp extends Application {
                 Platform.exit();
             }
             if (result.isPresent() && result.get() == save) {
-                String erreur = getfileSaver();
+                String erreur = getfilechooser(false);
                 if (erreur.equals("")){
                     Platform.exit();
                 }
@@ -112,37 +112,38 @@ public class PlaneteApp extends Application {
         return dimension;
     }
 
-    public String getfilechooser () {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().addAll(//
-                new FileChooser.ExtensionFilter("Simu", "*.simu"), //
-                new FileChooser.ExtensionFilter("All Files", "*.*"));
-        fileChooser.setTitle("Selectionner un fichier");
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-        File fichierSimu = fileChooser.showOpenDialog(new Stage());
-        try {
-            initSimulation(new Simulation(fichierSimu));
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (NullPointerException e) {
-            return "erreur fichier non choisit";
+    public String getfilechooser (Boolean type) { // si true alors enregistrer si false alors sauvegarder
+        if (type) {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.getExtensionFilters().addAll(//
+                    new FileChooser.ExtensionFilter("Simu", "*.simu"), //
+                    new FileChooser.ExtensionFilter("All Files", "*.*"));
+            fileChooser.setTitle("Selectionner un fichier à charger");
+            fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+            File fichierSimu = fileChooser.showOpenDialog(new Stage());
+            try {
+                initSimulation(new Simulation(fichierSimu));
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (NullPointerException e) {
+                return "erreur fichier non choisit";
+            }
+            return "";
         }
-        return "";
-    }
-
-    public String getfileSaver(){
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-        fileChooser.setTitle("Enregistrer");
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Simu", "*.simu"));
-        File s =fileChooser.showSaveDialog(new Stage());
-        try {
-            simulation.saveListeAstre(s);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        catch (NullPointerException e){
-            return "erreur emplacement d'enregistrement non spécifié";
+        else {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+            fileChooser.setTitle("Selectionner un endroit ou enregistrer le fichier");
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Simu", "*.simu"));
+            File s =fileChooser.showSaveDialog(new Stage());
+            try {
+                simulation.saveListeAstre(s);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            catch (NullPointerException e){
+                return "erreur emplacement d'enregistrement non spécifié";
+            }
         }
         return "";
     }
