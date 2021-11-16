@@ -13,6 +13,7 @@ import logic.Astre;
 import logic.Planete;
 import logic.Simulation;
 
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
@@ -24,7 +25,7 @@ public class MenuAddAstre extends VBox {
     private VBox nameAll;
     private HBox all = new HBox();
     //Changer error en fonction de l'erreur !!!!!
-    private Label error =new Label("Erreur données pas de bon type ou non remplis");
+    private Label error;
     private Label errorProximite;
 
     public MenuAddAstre(MenuAjouter mA) {
@@ -106,7 +107,7 @@ public class MenuAddAstre extends VBox {
                     vX = Double.parseDouble(vitesseX.getText());
                     vY = Double.parseDouble(vitesseY.getText());
                     f = f.toLowerCase(Locale.ROOT);
-                    boolean isFixed = true;
+                    boolean isFixed = false;
                     if (f.equals("oui")||f.equals("true")||f.equals("yes")){
                         isFixed = true;
 
@@ -115,14 +116,21 @@ public class MenuAddAstre extends VBox {
                         isFixed = false;
                     }
                     int nbTropProches = 0;
+                    String listeProchesNoms = "";
                     for(Astre a : mA.getM().getSimulationView().getEspace().listeA){
-                        if((a.getPositionX()-pX)+(a.getPositionY()-pY)<t){
+                        if(Math.sqrt(Math.pow(pX-a.getPositionX(),2)+Math.pow(pY-a.getPositionY(),2))<t){
+                            listeProchesNoms+= a.getNom() + " ";
                             nbTropProches++;
                         }
                     }
-                    if(nbTropProches>0){
-                        errorProximite = new Label("ERREUR : Nombre de planètes trop proches : " + nbTropProches);
-                        getChildren().add(errorProximite);
+                    if(nbTropProches == 1){
+                        getChildren().remove(error);
+                        error = new Label("ERREUR : Planète trop proche : " + listeProchesNoms);
+                        getChildren().add(error);
+                    }else if(nbTropProches > 1){
+                        getChildren().remove(error);
+                        error = new Label("ERREUR : Planètes trop proches : " + listeProchesNoms);
+                        getChildren().add(error);
                     }
                     else{
                         Astre p = new Planete(n,t,m,pX,pY,vX,vY,isFixed);
@@ -131,6 +139,7 @@ public class MenuAddAstre extends VBox {
                         getChildren().remove(error);
                     }
                 }catch (NumberFormatException e){
+                    error = new Label("Erreur données pas de bon type ou non remplis");
                     getChildren().remove(error);
                     getChildren().add(error);// bien le placé$
                     //attendre
