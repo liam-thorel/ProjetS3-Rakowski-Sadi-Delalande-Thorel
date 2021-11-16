@@ -68,7 +68,7 @@ public class ChooseFileView extends Stage {
         @Override
         public void handle(ActionEvent actionEvent) {
             try {
-                app.initSimulation(new Simulation(new File("saves/systeme solaire.simu")));
+                app.initSimulation(new Simulation(new File("presets/systeme solaire.simu")));
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
