@@ -100,7 +100,6 @@ public class OptionView extends Pane {
                 EventHandler<ActionEvent> onShowingTParam = new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
-                        System.out.println("tu as décoché la case");
                         sV.getEspace().setShowingT(showTraj.isSelected());
                     }
                 };

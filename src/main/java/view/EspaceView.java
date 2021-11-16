@@ -118,7 +118,6 @@ public class EspaceView extends Pane {
         public void onChanged(Change<? extends Astre> change) {
             change.next();
             if(change.wasAdded()) {
-                System.out.println("j'ajoute");
                 for (Astre a : change.getAddedSubList()) {
                     Circle c = creerPlaneteCercle(a);
                     listeAetC.put(a, c);
@@ -182,14 +181,12 @@ public class EspaceView extends Pane {
         @Override
         public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
             if(!t1){
-                System.out.println("effacage, je suis dans le change listener");
                 effacerAllTrajectoire();
             }
         }
     };
 
     public void effacerAllTrajectoire(){
-        System.out.println("jefface");
         getChildren().removeAll(listeTrajectoires);
         listeTrajectoires.clear();
 
