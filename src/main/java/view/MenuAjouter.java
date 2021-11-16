@@ -1,10 +1,14 @@
 package view;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 public class MenuAjouter extends Pane {
@@ -16,9 +20,8 @@ public class MenuAjouter extends Pane {
     private Pane menuAstreBg;
     private Pane menuAddAstreBg;
     private Menu m;
-
-
-
+    private ObservableList<Circle> mesPlanetesCourantes = FXCollections.observableArrayList();
+    ListView<Circle> mesAstres = new ListView<Circle>(mesPlanetesCourantes);// créer ListView pour astres
 
 
     public MenuAjouter(Menu m){
@@ -69,6 +72,9 @@ public class MenuAjouter extends Pane {
 
     }
 
+    public void setMesAstres(ListView<Circle> mesAstres) {this.mesAstres = mesAstres;}
+
+    public ListView<Circle> getMesAstres() {return mesAstres;}
 
     public Pane getMenu() {
         return menuBg;
