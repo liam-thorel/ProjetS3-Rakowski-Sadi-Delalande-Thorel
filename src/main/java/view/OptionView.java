@@ -57,25 +57,14 @@ public class OptionView extends Pane {
             }
         };
         //event pour les save et quit
-        EventHandler<ActionEvent> onSaveOrQuit = new EventHandler<ActionEvent>() {
+        EventHandler<ActionEvent> onSaveAndQuit = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 if(actionEvent.getSource().equals(saveEtQuit) || actionEvent.getSource().equals(saveEtContinuer)) {
-                    FileChooser fileChooser = new FileChooser();
-                    fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-                    fileChooser.setTitle("Sauvegarder");
-                    fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Simu", "*.simu"));
-                    File s = fileChooser.showSaveDialog(new Stage());
-
-                    try {
-                        sV.getSimulation().saveListeAstre(s);
-                        if (actionEvent.getSource().equals(saveEtQuit)) {
-                            sV.getApp().initStart();
-                        }
-
-                    } catch (IOException e) {
-                        error.setText(e.getMessage());
-                    }
+                    bouttons.getChildren().remove(error);
+                    error = new Label (sV.getApp().getfileSaver());
+                    error.setTextFill(Color.WHITE);
+                  bouttons.getChildren().add(error);
                 }else{sV.getApp().initStart();}
             }
         };
@@ -136,9 +125,9 @@ public class OptionView extends Pane {
         };
 
 
-        saveEtContinuer.setOnAction(onSaveOrQuit);
-        saveEtQuit.setOnAction(onSaveOrQuit);
-        quit.setOnAction(onSaveOrQuit);
+        saveEtContinuer.setOnAction(onSaveAndQuit);
+        saveEtQuit.setOnAction(onSaveAndQuit);
+        quit.setOnAction(onSaveAndQuit);
         parametre.setOnAction(onSettings);
         retour.setOnAction(onRetourSimu);
         reset.setOnAction(onReset);
