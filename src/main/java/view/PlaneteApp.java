@@ -78,8 +78,8 @@ public class PlaneteApp extends Application {
     public void onStopGame(String titre) throws IOException {
         if (!(simulation==null)) {
             Alert alert = new Alert(Alert.AlertType.NONE);
-            ButtonType nosave = new ButtonType("Quitter sans sauvegarder");
-            ButtonType save = new ButtonType("Quitter et sauvegarder");
+            ButtonType nosave = new ButtonType("Quitter sans enregistrer");
+            ButtonType save = new ButtonType("Quitter et enregistrer");
             ButtonType annuler = new ButtonType("Annuler");
             alert.setTitle("Attention");
             alert.setContentText(titre);
@@ -133,7 +133,7 @@ public class PlaneteApp extends Application {
     public String getfileSaver(){
         FileChooser fileChooser = new FileChooser();
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-        fileChooser.setTitle("Sauvegarder");
+        fileChooser.setTitle("Enregistrer");
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Simu", "*.simu"));
         File s =fileChooser.showSaveDialog(new Stage());
         try {
@@ -142,7 +142,7 @@ public class PlaneteApp extends Application {
             e.printStackTrace();
         }
         catch (NullPointerException e){
-            return "erreur emplacement de sauvegarde non spécifié";
+            return "erreur emplacement d'enregistrement non spécifié";
         }
         return "";
     }
