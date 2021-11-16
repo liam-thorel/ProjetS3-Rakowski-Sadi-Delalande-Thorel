@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import logic.Astre;
 import logic.Planete;
+import logic.Simulation;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -22,7 +23,9 @@ public class MenuAddAstre extends VBox {
     private MenuAjouter mA;
     private VBox nameAll;
     private HBox all = new HBox();
+    //Changer error en fonction de l'erreur !!!!!
     private Label error =new Label("Erreur données pas de bon type ou non remplis");
+    private Label errorProximite;
 
     public MenuAddAstre(MenuAjouter mA) {
         newAstre = new Button();
@@ -111,10 +114,22 @@ public class MenuAddAstre extends VBox {
                     if (f.equals("non")||f.equals("false")||f.equals("no")){
                         isFixed = false;
                     }
-                    Astre p = new Planete(n,t,m,pX,pY,vX,vY,isFixed);
-                    p.toString();
-                    mA.getM().getSimulationView().getEspace().listeA.add(p);
-                    getChildren().remove(error);
+                    int nbTropProches = 0;
+                    for(Astre a : mA.getM().getSimulationView().getEspace().listeA){
+                        if((a.getPositionX()-pX)+(a.getPositionY()-pY)<t){
+                            nbTropProches++;
+                        }
+                    }
+                    if(nbTropProches>0){
+                        errorProximite = new Label("ERREUR : Nombre de planètes trop proches : " + nbTropProches);
+                        getChildren().add(errorProximite);
+                    }
+                    else{
+                        Astre p = new Planete(n,t,m,pX,pY,vX,vY,isFixed);
+                        p.toString();
+                        mA.getM().getSimulationView().getEspace().listeA.add(p);
+                        getChildren().remove(error);
+                    }
                 }catch (NumberFormatException e){
                     getChildren().remove(error);
                     getChildren().add(error);// bien le placé$
