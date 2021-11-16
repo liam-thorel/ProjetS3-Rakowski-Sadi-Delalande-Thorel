@@ -38,11 +38,11 @@ public class OptionView extends Pane {
 
         //les bouttons
         Button retour = new Button("Retour à la simulation");
-        Button saveEtContinuer = new Button("Sauvegarder et continuer");
+        Button saveEtContinuer = new Button("Enregistrer et continuer");
         saveEtContinuer.setAlignment(Pos.CENTER);
-        Button saveEtQuit = new Button("Sauvegarder et quitter");
+        Button saveEtQuit = new Button("Enregistrer et quitter");
         saveEtQuit.setAlignment(Pos.CENTER);
-        Button quit = new Button("Quitter sans sauvegarder");
+        Button quit = new Button("Quitter sans enregistrer");
         quit.setAlignment(Pos.CENTER);
         Button parametre = new Button("Parametres");
         parametre.setAlignment(Pos.CENTER);
