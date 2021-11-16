@@ -98,10 +98,10 @@ public class EspaceView extends Pane {
     public void move(){
 
         for(Astre a : listeAetC.keySet()) {
-            System.out.println("ancienne position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
+            //System.out.println("ancienne position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
             a.addVitesse(Simulation.getOther(a, s.getListeAstre()));
             a.setPositions();
-            System.out.println("nouvelle position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
+            //System.out.println("nouvelle position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
             Circle currentC = listeAetC.get(a);
             currentC.relocate(a.getPositionX() - a.getTaille()/2, a.getPositionY() - a.getTaille()/2);
             if(showingT.getValue()){
@@ -118,7 +118,6 @@ public class EspaceView extends Pane {
         public void onChanged(Change<? extends Astre> change) {
             change.next();
             if(change.wasAdded()) {
-                System.out.println("j'ajoute");
                 for (Astre a : change.getAddedSubList()) {
                     Circle c = creerPlaneteCercle(a);
                     listeAetC.put(a, c);
@@ -163,7 +162,7 @@ public class EspaceView extends Pane {
         }
     };
 
-    private HashMap<Astre, ArrayList<Circle>> listeTrajectoires = new HashMap<>();
+    private ArrayList<Circle> listeTrajectoires = new ArrayList<>();
 
     public void tracerTrajectoire(Astre a){
         Circle p = new Circle();
@@ -172,14 +171,7 @@ public class EspaceView extends Pane {
         p.setCenterY(a.getPositionY());
         p.setRadius(1);
         ArrayList<Circle> trajectoire;
-        if(listeTrajectoires.get(a) == null){
-            trajectoire = new ArrayList<>();
-        }else{
-            trajectoire = listeTrajectoires.get(a);
-        }
-        trajectoire.add(p);
-        listeTrajectoires.put(a, trajectoire);
-
+        listeTrajectoires.add(p);
 
         getChildren().add(p);
     }
@@ -195,15 +187,20 @@ public class EspaceView extends Pane {
     };
 
     public void effacerAllTrajectoire(){
-        for(Astre a : listeTrajectoires.keySet()){
-            getChildren().removeAll(listeTrajectoires.get(a));
-            listeTrajectoires.remove(a);
-        }
+        getChildren().removeAll(listeTrajectoires);
+        listeTrajectoires.clear();
+
+
     }
 
     public void setShowingT(boolean showingT) {
         this.showingT.setValue(showingT);
     }
+
+    public boolean isShowingT() {
+        return showingT.getValue();
+    }
+
 
     public void setPlaying(boolean playing) {
         this.playing.setValue(playing);
