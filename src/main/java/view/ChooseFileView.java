@@ -70,6 +70,9 @@ public class ChooseFileView extends Stage {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
+            } catch (NullPointerException e){
+                boutons.getChildren().remove(erreur);
+                boutons.getChildren().add(erreur = new Label("Fichier preset systeme solaire.simu non trouvé"));
             }
         }
     };
