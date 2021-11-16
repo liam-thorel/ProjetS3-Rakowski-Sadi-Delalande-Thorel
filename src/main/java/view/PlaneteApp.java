@@ -121,7 +121,7 @@ public class PlaneteApp extends Application {
                     new FileChooser.ExtensionFilter("All Files", "*.*"));
             fileChooser.setTitle("Selectionner un fichier à charger");
             if (emplacement!=null){
-                System.out.println(emplacement.getAbsolutePath()); // faut changer pour que ce soit le vrais emplacement la ça return avec le fichier genre a.simu
+                System.out.println(emplacement.getAbsolutePath() + System.getProperty("file.separator") + ".." );
             }
             else {
                 fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
@@ -142,7 +142,7 @@ public class PlaneteApp extends Application {
             fileChooser.setTitle("Selectionner un endroit ou enregistrer le fichier");
             fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Simu", "*.simu"));
             if (emplacement != null){
-                fileChooser.setInitialDirectory(new File (emplacement.getAbsolutePath())); // faut changer pour que ce soit le vrais emplacement
+                fileChooser.setInitialDirectory(new File (emplacement.getAbsolutePath()  + System.getProperty("file.separator") + ".."));
             }
             else {
                 fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
@@ -161,4 +161,5 @@ public class PlaneteApp extends Application {
 
         return "";
     }
+
 }
