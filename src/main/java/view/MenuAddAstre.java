@@ -137,6 +137,8 @@ public class MenuAddAstre extends VBox {
                         p.toString();
                         mA.getM().getSimulationView().getEspace().listeA.add(p);
                         getChildren().remove(error);
+                        Circle a = EspaceView.creerPlaneteCercle(p);
+                        mA.getM().getMenuAjouter().getMesPlanetesCourantes().add(a);
                     }
                 }catch (NumberFormatException e){
                     error = new Label("Erreur données pas de bon type ou non remplis");

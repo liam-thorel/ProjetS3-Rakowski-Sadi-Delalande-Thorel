@@ -135,6 +135,10 @@ public class MenuAjouter extends Pane {
 
     }
 
+    public ObservableList<Circle> getMesPlanetesCourantes() {
+        return mesPlanetesCourantes;
+    }
+
     public void setMesAstres(ListView<Circle> mesAstres) {this.mesAstres = mesAstres;}
 
     public ListView<Circle> getMesAstres() {return mesAstres;}
