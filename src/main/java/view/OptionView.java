@@ -65,7 +65,7 @@ public class OptionView extends Pane {
                     error = new Label (sV.getApp().getfileSaver());
                     error.setTextFill(Color.WHITE);
                   bouttons.getChildren().add(error);
-                } if(actionEvent.getSource().equals(quit) |actionEvent.getSource().equals(saveEtQuit) ){sV.getApp().initStart();}
+                } if(actionEvent.getSource().equals(quit) |(actionEvent.getSource().equals(saveEtQuit) && error.getText().equals(""))  ){sV.getApp().initStart();}
             }
         };
 
@@ -135,9 +135,10 @@ public class OptionView extends Pane {
         error.setOnMouseClicked(onClickError);
         // le hBox contenant les bouttons
         bouttons.setBackground(new Background(new BackgroundFill(Color.rgb(64,68,75,1), null, null)));
+        bouttons.setMinWidth(250);
         bouttons.setAlignment(Pos.CENTER);
         bouttons.setPadding(new Insets(50, 20, 50 , 20));
-        bouttons.relocate(500,200);
+        bouttons.relocate(625,200);
         bouttons.setSpacing(10);
         bouttons.getChildren().addAll(saveEtContinuer, saveEtQuit, quit, parametre, reset,retour);
 
