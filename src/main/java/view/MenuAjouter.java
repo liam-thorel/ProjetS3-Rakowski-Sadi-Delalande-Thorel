@@ -52,7 +52,6 @@ public class MenuAjouter extends Pane {
         menuBg.getChildren().add(menu);
 
         /////////////// Pour afficher les planètes courantes ;) ///////////////
-        menuAstreBg.getChildren().add(menuAstre);//rgb(64,68,75,1)
         // Orientation pour la ListView
         mesAstres.setOrientation(Orientation.HORIZONTAL);
         // taille ListView
@@ -102,11 +101,16 @@ public class MenuAjouter extends Pane {
             mouseEvent.consume();
         });
 
+
+
+        menuAstre.setSpacing(10); // espacement 10 pixels
+        menuAstre.getChildren().add(mesAstres);
+
             //Création et éffectation du réctangle d'arrière plan derrière Mes astres
             Rectangle rectangleMenuAstres = new Rectangle();
             rectangleMenuAstres.setHeight(70);
-            rectangleMenuAstres.setWidth(695);
-            rectangleMenuAstres.setFill(Color.rgb(64, 68, 75, 1));
+            rectangleMenuAstres.setWidth(500);
+            rectangleMenuAstres.setFill(Color.WHITE);//rgb(64, 68, 75, 1));
             menuAstreBg.getChildren().add(rectangleMenuAstres);
             menuAstreBg.getChildren().add(menuAstre);
 
@@ -121,7 +125,7 @@ public class MenuAjouter extends Pane {
 
 
             //eloignement des différents Menu
-            menu.setSpacing(100);
+            menu.setSpacing(20);
             menu.setPadding(new Insets(25));
 
             //ajout a menu de l'ensemble des sous menu
