@@ -35,13 +35,6 @@ public class OptionView extends Pane {
         error = new Label();
         //le fond legerement transparent
         this.setBackground(new Background(new BackgroundFill(Color.rgb(47, 49, 54,0.8), null, null)));
-        /*Rectangle fond = new Rectangle();
-
-        fond.setHeight(sV.getApp().getDimension().getHeight());
-        fond.setWidth(sV.getApp().getDimension().getWidth());
-        fond.setFill(Color.GREY);
-        fond.setOpacity(0.6);*/
-
 
         //les bouttons
         Button retour = new Button("Retour à la simulation");
@@ -96,7 +89,7 @@ public class OptionView extends Pane {
                 bouttons.getChildren().add(new Label("les parametres arrivent"));
                 Button retourOptions= new Button("retour");
                 CheckBox showTraj = new CheckBox("afficher les trajectoires");
-                showTraj.setSelected(true);
+                showTraj.setSelected(sV.getEspace().isShowingT());
                 EventHandler<ActionEvent> onRetourOption = new EventHandler<ActionEvent>() {
                    @Override
                    public void handle(ActionEvent actionEvent) {
@@ -107,11 +100,13 @@ public class OptionView extends Pane {
                 EventHandler<ActionEvent> onShowingTParam = new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
+                        System.out.println("tu as décoché la case");
                         sV.getEspace().setShowingT(showTraj.isSelected());
                     }
                 };
 
                 retourOptions.setOnAction(onRetourOption);
+                showTraj.setOnAction(onShowingTParam);
                 bouttons.getChildren().addAll(showTraj,retourOptions);
             }
         };
