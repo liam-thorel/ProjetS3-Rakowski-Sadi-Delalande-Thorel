@@ -20,6 +20,7 @@ public class PlaneteApp extends Application {
     private SimulationView simulationView;
     private Simulation simulation;
     private Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+    private File emplacement;
 
 
 
@@ -119,10 +120,16 @@ public class PlaneteApp extends Application {
                     new FileChooser.ExtensionFilter("Simu", "*.simu"), //
                     new FileChooser.ExtensionFilter("All Files", "*.*"));
             fileChooser.setTitle("Selectionner un fichier à charger");
-            fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-            File fichierSimu = fileChooser.showOpenDialog(new Stage());
+            if (emplacement!=null){
+                System.out.println(emplacement.getAbsolutePath()); // faut changer pour que ce soit le vrais emplacement la ça return avec le fichier genre a.simu
+            }
+            else {
+                fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+            }
+            File s = fileChooser.showOpenDialog(new Stage());
             try {
-                initSimulation(new Simulation(fichierSimu));
+                emplacement = s;
+                initSimulation(new Simulation(s));
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (NullPointerException e) {
@@ -132,12 +139,18 @@ public class PlaneteApp extends Application {
         }
         else {
             FileChooser fileChooser = new FileChooser();
-            fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
             fileChooser.setTitle("Selectionner un endroit ou enregistrer le fichier");
             fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Simu", "*.simu"));
+            if (emplacement != null){
+                fileChooser.setInitialDirectory(new File (emplacement.getAbsolutePath())); // faut changer pour que ce soit le vrais emplacement
+            }
+            else {
+                fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+            }
             File s =fileChooser.showSaveDialog(new Stage());
             try {
                 simulation.saveListeAstre(s);
+                emplacement = s;
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -145,6 +158,7 @@ public class PlaneteApp extends Application {
                 return "erreur emplacement d'enregistrement non spécifié";
             }
         }
+
         return "";
     }
 }
