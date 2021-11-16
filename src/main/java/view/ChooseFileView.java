@@ -20,7 +20,7 @@ import java.io.IOException;
 
 public class ChooseFileView extends Stage {
 
-    private Button chargerFile,chargerSystemeSolaire;
+    private Button chargerFile, chargerSystemeSolaire;
     private PlaneteApp app;
     private BorderPane root;
 
@@ -29,6 +29,7 @@ public class ChooseFileView extends Stage {
         root = new BorderPane();
 
         chargerSystemeSolaire = new Button("charger Système Solaire");
+        chargerSystemeSolaire.setOnAction(chargerSystemeSol);
 
 
         chargerFile = new Button("charger simulation");
@@ -63,5 +64,16 @@ public class ChooseFileView extends Stage {
         }
     };
 
-
+    private EventHandler<ActionEvent> chargerSystemeSol = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            try {
+                app.initSimulation(new Simulation(new File("presets/systeme solaire.simu")));
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    };
 }
