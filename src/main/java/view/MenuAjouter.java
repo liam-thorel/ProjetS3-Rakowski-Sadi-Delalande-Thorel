@@ -106,48 +106,39 @@ public class MenuAjouter extends Pane {
         menuAstre.setSpacing(10); // espacement 10 pixels
         menuAstre.getChildren().add(mesAstres);
 
-            //Création et éffectation du réctangle d'arrière plan derrière Mes astres
-            Rectangle rectangleMenuAstres = new Rectangle();
-            rectangleMenuAstres.setHeight(70);
-            rectangleMenuAstres.setWidth(500);
-            rectangleMenuAstres.setFill(Color.WHITE);//rgb(64, 68, 75, 1));
-            menuAstreBg.getChildren().add(rectangleMenuAstres);
-            menuAstreBg.getChildren().add(menuAstre);
+        //Création et éffectation du réctangle d'arrière plan derrière Mes astres
+        Rectangle rectangleMenuAstres = new Rectangle();
+        rectangleMenuAstres.setHeight(70);
+        rectangleMenuAstres.setWidth(500);
+        rectangleMenuAstres.setFill(Color.WHITE);//rgb(64, 68, 75, 1));
+        menuAstreBg.getChildren().add(rectangleMenuAstres);
+        menuAstreBg.getChildren().add(menuAstre);
 
-            //Création et éffectation du réctangle d'arrière plan derrière Add astres
-            Rectangle rectangleAddAstres = new Rectangle();
-            rectangleAddAstres.setHeight(70);
-            rectangleAddAstres.setWidth(695);
-            rectangleAddAstres.setFill(Color.rgb(64, 68, 75, 1));
+        //Création et éffectation du réctangle d'arrière plan derrière Add astres
+        Rectangle rectangleAddAstres = new Rectangle();
+        rectangleAddAstres.setHeight(70);
+        rectangleAddAstres.setWidth(695);
+        rectangleAddAstres.setFill(Color.rgb(64, 68, 75, 1));
 
-            menuAddAstreBg.getChildren().add(rectangleAddAstres);
-            menuAddAstreBg.getChildren().add(addAstre);
-
-
-            //eloignement des différents Menu
-            menu.setSpacing(20);
-            menu.setPadding(new Insets(25));
-
-            //ajout a menu de l'ensemble des sous menu
-            menu.getChildren().addAll(menuAstreBg, menuAddAstreBg);
+        menuAddAstreBg.getChildren().add(rectangleAddAstres);
+        menuAddAstreBg.getChildren().add(addAstre);
 
 
+        //eloignement des différents Menu
+        menu.setSpacing(20);
+        menu.setPadding(new Insets(25));
 
+        //ajout a menu de l'ensemble des sous menu
+        menu.getChildren().addAll(menuAstreBg, menuAddAstreBg);
     }
 
-    public ObservableList<Circle> getMesPlanetesCourantes() {
-        return mesPlanetesCourantes;
-    }
+    public ObservableList<Circle> getMesPlanetesCourantes() {return mesPlanetesCourantes;}
 
     public void setMesAstres(ListView<Circle> mesAstres) {this.mesAstres = mesAstres;}
 
     public ListView<Circle> getMesAstres() {return mesAstres;}
 
-    public Pane getMenu() {
-        return menuBg;
-    }
+    public Pane getMenu() {return menuBg;}
 
-    public Menu getM() {
-        return m;
-    }
+    public Menu getM() {return m;}
 }
