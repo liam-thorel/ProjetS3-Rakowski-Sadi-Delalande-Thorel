@@ -1,8 +1,10 @@
 package view;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -33,8 +35,6 @@ public class MenuAjouter extends Pane {
         addAstre = new MenuAddAstre(this);
         menu=new HBox();
 
-
-
         //Création et affectation du réctangle d'arrière plan derrière le menu
         Rectangle rectangle = new Rectangle();
         rectangle.setWidth(m.getSimulationView().getApp().getDimension().getWidth()-15);
@@ -44,6 +44,31 @@ public class MenuAjouter extends Pane {
         rectangle.setFill(Color.rgb(47, 49, 54, 0.9));
         menuBg.getChildren().add(rectangle);
         menuBg.getChildren().add(menu);
+
+        /////////////// Pour afficher les planètes courantes ;) ///////////////
+        menuAstreBg.getChildren().add(menuAstre);//rgb(64,68,75,1)
+        // Orientation pour la ListView
+        mesAstres.setOrientation(Orientation.HORIZONTAL);
+        // taille ListView
+        mesAstres.setPrefSize(500, 70);
+        //écoute l'index de la planète sélectionnée
+        mesAstres.getSelectionModel().selectedIndexProperty().addListener(observable -> System.out.printf("Indice sélectionné: %d", mesAstres.getSelectionModel().getSelectedIndex()).println());
+        int selectedIndex = mesAstres.getSelectionModel().getSelectedIndex();
+        ///// Listener /////
+        mesPlanetesCourantes.addListener(new ListChangeListener<Circle>() {
+            @Override
+            public void onChanged(ListChangeListener.Change<? extends Circle> change) {
+                while(change.next()) {
+                    if (change.wasAdded()) {
+                        System.out.println("++Ajout");
+                    }
+                    if (change.wasRemoved()) {
+                        System.out.println("++Retrait");
+                        change.getRemoved().forEach(value -> mesPlanetesCourantes.remove(value));
+                    }
+                }
+            }
+        });
 
         //Création et éffectation du réctangle d'arrière plan derrière Mes astres
         Rectangle rectangleMenuAstres = new Rectangle();
