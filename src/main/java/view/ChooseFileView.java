@@ -23,6 +23,7 @@ public class ChooseFileView extends Stage {
     private Button chargerFile, chargerSystemeSolaire;
     private PlaneteApp app;
     private BorderPane root;
+    public File fichierSimu;
 
     public ChooseFileView(PlaneteApp app) {
         this.app = app;
@@ -55,9 +56,9 @@ public class ChooseFileView extends Stage {
                     new FileChooser.ExtensionFilter("All Files", "*.*"));
             fileChooser.setTitle("Selectionner un fichier");
             fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-            File file = fileChooser.showOpenDialog(new Stage());
+            fichierSimu = fileChooser.showOpenDialog(new Stage());
             try {
-                app.initSimulation(new Simulation(file));
+                app.initSimulation(new Simulation(fichierSimu));
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -76,4 +77,8 @@ public class ChooseFileView extends Stage {
             }
         }
     };
+
+    public File getFichierSimu() {
+        return fichierSimu;
+    }
 }

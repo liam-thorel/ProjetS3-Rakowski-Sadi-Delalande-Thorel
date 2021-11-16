@@ -86,6 +86,7 @@ public class SimulationView extends Stage {
     public Simulation getSimulation() {
         return s;
     }
+
     public VBox getRoot() {
         return root;
     }
@@ -105,4 +106,6 @@ public class SimulationView extends Stage {
     public void setOptionsOuvertes(boolean optionsOuvertes) {
         this.optionsOuvertes.setValue(optionsOuvertes);
     }
+
+
 }

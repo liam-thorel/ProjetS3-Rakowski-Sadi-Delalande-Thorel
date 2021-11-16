@@ -18,6 +18,7 @@ public class Simulation {
     public static double scaleDistance = Math.pow(10, 9); //m
     public static double scaleMasse = Math.pow(10,22); //kg
     public static double scaleTemps = 315360000; // 1 frame ~~ 1 mois
+    private File file;
 
     public Simulation(){
         listeAstre = new ArrayList<>();
@@ -25,6 +26,7 @@ public class Simulation {
 
     public Simulation(File save) throws IOException, ClassNotFoundException {
         listeAstre = setAPartirDunFichier(save);
+        file = save;
     }
     public ArrayList<Astre> getListeAstre() {
         return listeAstre;
@@ -125,4 +127,7 @@ public class Simulation {
                 '}';
     }
 
+    public File getFile() {
+        return file;
+    }
 }

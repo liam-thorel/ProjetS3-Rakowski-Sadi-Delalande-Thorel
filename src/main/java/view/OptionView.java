@@ -27,11 +27,11 @@ public class OptionView extends Pane {
 
     private static OptionView optionView;
     private SimulationView sV;
-    private HBox bouttons;
+    private VBox bouttons;
     private Label error;
     public OptionView(SimulationView sV){
         this.sV = sV;
-        bouttons = new HBox();
+        bouttons = new VBox();
         error = new Label();
         //le fond legerement transparent
         this.setBackground(new Background(new BackgroundFill(Color.rgb(47, 49, 54,0.8), null, null)));
@@ -45,6 +45,8 @@ public class OptionView extends Pane {
         Button quit = new Button("Quitter sans sauvegarder");
         quit.setAlignment(Pos.CENTER);
         Button parametre = new Button("Parametres");
+        parametre.setAlignment(Pos.CENTER);
+        Button reset = new Button("Reset");
         parametre.setAlignment(Pos.CENTER);
 
         //pour cacher l'erreur
@@ -117,12 +119,24 @@ public class OptionView extends Pane {
                 sV.setOptionsOuvertes(false);
             }
         };
+        EventHandler<ActionEvent> onReset = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent){
+                try {
+                    sV.getApp().initSimulation(new Simulation(sV.getSimulation().getFile()));
+                } catch (IOException | ClassNotFoundException e) {
+                    sV.getApp().initSimulation(new Simulation());
+                }
+            }
+        };
+
 
         saveEtContinuer.setOnAction(onSaveOrQuit);
         saveEtQuit.setOnAction(onSaveOrQuit);
         quit.setOnAction(onSaveOrQuit);
         parametre.setOnAction(onSettings);
         retour.setOnAction(onRetourSimu);
+        reset.setOnAction(onReset);
 
         error.setOnMouseClicked(onClickError);
         // le hBox contenant les bouttons
@@ -131,12 +145,14 @@ public class OptionView extends Pane {
         bouttons.setPadding(new Insets(50, 20, 50 , 20));
         bouttons.relocate(500,200);
         bouttons.setSpacing(10);
-        bouttons.getChildren().addAll(saveEtContinuer, saveEtQuit, quit, parametre, retour);
+        bouttons.getChildren().addAll(saveEtContinuer, saveEtQuit, quit, parametre, retour, reset);
 
         this.setPrefSize(sV.getApp().getDimension().getWidth(), sV.getApp().getDimension().getHeight());
         this.getChildren().addAll( bouttons, error);
 
     }
+
+
 
     public static OptionView getOptionView(SimulationView sV) {
         if(optionView == null){
@@ -144,5 +160,6 @@ public class OptionView extends Pane {
         }
         return optionView;
     }
+
 
 }
