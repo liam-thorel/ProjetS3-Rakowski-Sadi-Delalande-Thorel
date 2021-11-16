@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -94,6 +95,8 @@ public class OptionView extends Pane {
                 bouttons.getChildren().clear();
                 bouttons.getChildren().add(new Label("les parametres arrivent"));
                 Button retourOptions= new Button("retour");
+                CheckBox showTraj = new CheckBox("afficher les trajectoires");
+                showTraj.setSelected(true);
                 EventHandler<ActionEvent> onRetourOption = new EventHandler<ActionEvent>() {
                    @Override
                    public void handle(ActionEvent actionEvent) {
@@ -101,8 +104,15 @@ public class OptionView extends Pane {
                    }
                };
 
+                EventHandler<ActionEvent> onShowingTParam = new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        sV.getEspace().setShowingT(showTraj.isSelected());
+                    }
+                };
+
                 retourOptions.setOnAction(onRetourOption);
-                bouttons.getChildren().add(retourOptions);
+                bouttons.getChildren().addAll(showTraj,retourOptions);
             }
         };
 

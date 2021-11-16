@@ -70,7 +70,8 @@ public class SimulationView extends Stage {
         optionsOuvertes.setValue(true);
         menuOption.toFront();
         menuOption.relocate(0, 0);
-        all.getChildren().add(menuOption);
+        if(!all.getChildren().contains(menuOption)){
+        all.getChildren().add(menuOption);}
     }
 
     public Simulation getSimulation() {
