@@ -42,11 +42,14 @@ public class SimulationView extends Stage {
         optionsOuvertes.addListener(optionOpenOrClose);
         menuOption = OptionView.getOptionView(this);
         espace = new EspaceView(this);
-        espace.setPrefHeight(600);
+        espace.setPrefHeight(app.getStage().getHeight()*0.73);
+        espace.setPrefWidth(app.getStage().getWidth());
         contener = new HBox();
         contener.setAlignment(Pos.CENTER);
         root.getChildren().add(contener);
         menu = new Menu(this);
+        menu.setPrefHeight(app.getStage().getHeight()*0.27);
+        menu.setPrefWidth(app.getStage().getWidth());
         menu.toBack();
         root.getChildren().add(espace);
         root.getChildren().add(menu.getMenuEtChangeMenu());

@@ -32,7 +32,7 @@ public class PlaneteApp extends Application {
     public void start(Stage stage)  {
         this.stage = stage;
 
-        if (System.getProperty("os.name").startsWith("Windows")) stage.setResizable(false);
+
         stage.setOnCloseRequest(event -> {
             try {
                 this.onStopGame("ATTENTION Voulez vous vraiment arreter la simulation ?");
