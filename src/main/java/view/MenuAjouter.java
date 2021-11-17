@@ -105,6 +105,8 @@ public class MenuAjouter extends Pane {
 
         menuAstre.setSpacing(10); // espacement 10 pixels
         menuAstre.getChildren().add(mesAstres);
+        //eloignement des différents Menu
+
 
         //Création et éffectation du réctangle d'arrière plan derrière Mes astres
         Rectangle rectangleMenuAstres = new Rectangle();
@@ -125,7 +127,7 @@ public class MenuAjouter extends Pane {
 
 
         //eloignement des différents Menu
-        menu.setSpacing(20);
+        menu.setSpacing(200);
         menu.setPadding(new Insets(25));
 
         //ajout a menu de l'ensemble des sous menu
