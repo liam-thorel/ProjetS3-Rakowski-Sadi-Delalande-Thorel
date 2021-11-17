@@ -19,7 +19,6 @@ public class PlaneteApp extends Application {
     private StartView startView;
     private SimulationView simulationView;
     private Simulation simulation;
-    private Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
     private File emplacement;
 
 
@@ -32,7 +31,7 @@ public class PlaneteApp extends Application {
     public void start(Stage stage)  {
         this.stage = stage;
 
-
+        stage.setMaximized(true);
         stage.setOnCloseRequest(event -> {
             try {
                 this.onStopGame("ATTENTION Voulez vous vraiment arreter la simulation ?");
@@ -43,8 +42,6 @@ public class PlaneteApp extends Application {
         });
         initStart();
         stage.setTitle("Simulation Planète");
-        stage.setHeight(dimension.getHeight()-30);
-        stage.setWidth(dimension.getWidth());
         stage.show();
 
 
@@ -109,9 +106,6 @@ public class PlaneteApp extends Application {
         }
     }
 
-    public Dimension getDimension() {
-        return dimension;
-    }
 
     public String getfilechooser (Boolean type) { // si true alors enregistrer si false alors sauvegarder
         if (type) {

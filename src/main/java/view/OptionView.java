@@ -142,7 +142,7 @@ public class OptionView extends Pane {
         bouttons.setSpacing(10);
         bouttons.getChildren().addAll(saveEtContinuer, saveEtQuit, quit, parametre, reset,retour);
 
-        this.setPrefSize(sV.getApp().getDimension().getWidth(), sV.getApp().getDimension().getHeight());
+        this.setPrefSize(sV.getApp().getStage().getWidth(), sV.getApp().getStage().getHeight());
         this.getChildren().addAll( bouttons, error);
 
     }
