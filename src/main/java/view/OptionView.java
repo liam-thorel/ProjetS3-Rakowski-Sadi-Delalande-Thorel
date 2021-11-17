@@ -38,11 +38,11 @@ public class OptionView extends Pane {
 
         //les bouttons
         Button retour = new Button("Retour à la simulation");
-        Button saveEtContinuer = new Button("Sauvegarder et continuer");
+        Button saveEtContinuer = new Button("Enregistrer et continuer");
         saveEtContinuer.setAlignment(Pos.CENTER);
-        Button saveEtQuit = new Button("Sauvegarder et quitter");
+        Button saveEtQuit = new Button("Enregistrer et quitter");
         saveEtQuit.setAlignment(Pos.CENTER);
-        Button quit = new Button("Quitter sans sauvegarder");
+        Button quit = new Button("Quitter sans enregistrer");
         quit.setAlignment(Pos.CENTER);
         Button parametre = new Button("Parametres");
         parametre.setAlignment(Pos.CENTER);
@@ -57,26 +57,15 @@ public class OptionView extends Pane {
             }
         };
         //event pour les save et quit
-        EventHandler<ActionEvent> onSaveOrQuit = new EventHandler<ActionEvent>() {
+        EventHandler<ActionEvent> onSaveAndQuit = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 if(actionEvent.getSource().equals(saveEtQuit) || actionEvent.getSource().equals(saveEtContinuer)) {
-                    FileChooser fileChooser = new FileChooser();
-                    fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-                    fileChooser.setTitle("Sauvegarder");
-                    fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Simu", "*.simu"));
-                    File s = fileChooser.showSaveDialog(new Stage());
-
-                    try {
-                        sV.getSimulation().saveListeAstre(s);
-                        if (actionEvent.getSource().equals(saveEtQuit)) {
-                            sV.getApp().initStart();
-                        }
-
-                    } catch (IOException e) {
-                        error.setText(e.getMessage());
-                    }
-                }else{sV.getApp().initStart();}
+                    bouttons.getChildren().remove(error);
+                    error = new Label (sV.getApp().getfilechooser(false));
+                    error.setTextFill(Color.WHITE);
+                  bouttons.getChildren().add(error);
+                } if(actionEvent.getSource().equals(quit) |(actionEvent.getSource().equals(saveEtQuit) && error.getText().equals(""))  ){sV.getApp().initStart();}
             }
         };
 
@@ -136,9 +125,9 @@ public class OptionView extends Pane {
         };
 
 
-        saveEtContinuer.setOnAction(onSaveOrQuit);
-        saveEtQuit.setOnAction(onSaveOrQuit);
-        quit.setOnAction(onSaveOrQuit);
+        saveEtContinuer.setOnAction(onSaveAndQuit);
+        saveEtQuit.setOnAction(onSaveAndQuit);
+        quit.setOnAction(onSaveAndQuit);
         parametre.setOnAction(onSettings);
         retour.setOnAction(onRetourSimu);
         reset.setOnAction(onReset);
@@ -146,13 +135,14 @@ public class OptionView extends Pane {
         error.setOnMouseClicked(onClickError);
         // le hBox contenant les bouttons
         bouttons.setBackground(new Background(new BackgroundFill(Color.rgb(64,68,75,1), null, null)));
+        bouttons.setMinWidth(250);
         bouttons.setAlignment(Pos.CENTER);
         bouttons.setPadding(new Insets(50, 20, 50 , 20));
-        bouttons.relocate(500,200);
+        bouttons.relocate(625,200);
         bouttons.setSpacing(10);
-        bouttons.getChildren().addAll(saveEtContinuer, saveEtQuit, quit, parametre, retour, reset);
+        bouttons.getChildren().addAll(saveEtContinuer, saveEtQuit, quit, parametre, reset,retour);
 
-        this.setPrefSize(sV.getApp().getDimension().getWidth(), sV.getApp().getDimension().getHeight());
+        this.setPrefSize(sV.getApp().getStage().getWidth(), sV.getApp().getStage().getHeight());
         this.getChildren().addAll( bouttons, error);
 
     }

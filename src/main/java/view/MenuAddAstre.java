@@ -19,8 +19,8 @@ import java.util.concurrent.TimeUnit;
 
 public class MenuAddAstre extends VBox {
     private Button newAstre;
-    private TextField nom, taille, masse, positionX, positionY, vitesseX, vitesseY, estFixe;
-    private Label nomtxt, tailletxt, massetxt, positionXtxt, positionYtxt, vitesseXtxt, vitesseYtxt, estFixetxt;
+    private TextField nom, taille, masse, positionX, positionY, vitesseX, vitesseY;
+    private Label nomtxt, tailletxt, massetxt, positionXtxt, positionYtxt, vitesseXtxt, vitesseYtxt;
     private MenuAjouter mA;
     private VBox nameAll;
     private HBox all = new HBox();
@@ -74,15 +74,10 @@ public class MenuAddAstre extends VBox {
         vitesseYAll.getChildren().addAll(vitesseYtxt, vitesseY);
         vitesseY.setMaxWidth(75);
 
-        estFixe = new TextField();
-        estFixetxt = new Label("fixe ?");
-        VBox estFixeAll = new VBox();
-        estFixeAll.getChildren().addAll(estFixetxt, estFixe);
-        estFixe.setMaxWidth(50);
 
         VBox button = new VBox();
         button.getChildren().addAll(new Label(), newAstre);
-        all.getChildren().addAll(nameAll, tailleAll, masseAll, positionXAll, positionYAll, vitesseXAll, vitesseYAll, estFixeAll, button);
+        all.getChildren().addAll(nameAll, tailleAll, masseAll, positionXAll, positionYAll, vitesseXAll, vitesseYAll,button);
         getChildren().add(all);
         newAstre.setText("Ajouter Astre");
         all.setSpacing(8);
@@ -93,12 +88,11 @@ public class MenuAddAstre extends VBox {
         private EventHandler<ActionEvent> onAjouterAstre = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent){
-                String n,f;
-                int m,t,pX,pY;
+                String n;
+                int m,t,pX,pY ;
                 double vX,vY;
 
                 n = nom.getText();
-                f=estFixe.getText();
                 try {
                     m = Integer.parseInt(masse.getText());
                     t = Integer.parseInt(taille.getText());
@@ -106,15 +100,7 @@ public class MenuAddAstre extends VBox {
                     pY = Integer.parseInt(positionY.getText());
                     vX = Double.parseDouble(vitesseX.getText());
                     vY = Double.parseDouble(vitesseY.getText());
-                    f = f.toLowerCase(Locale.ROOT);
                     boolean isFixed = false;
-                    if (f.equals("oui")||f.equals("true")||f.equals("yes")){
-                        isFixed = true;
-
-                    }
-                    if (f.equals("non")||f.equals("false")||f.equals("no")){
-                        isFixed = false;
-                    }
                     int nbTropProches = 0;
                     String listeProchesNoms = "";
                     for(Astre a : mA.getM().getSimulationView().getEspace().listeA){
@@ -137,12 +123,17 @@ public class MenuAddAstre extends VBox {
                         p.toString();
                         mA.getM().getSimulationView().getEspace().listeA.add(p);
                         getChildren().remove(error);
+                        Circle a = EspaceView.creerPlaneteCercle(p);
+                        mA.getM().getMenuAjouter().getMesPlanetesCourantes().add(a);
                     }
                 }catch (NumberFormatException e){
-                    error = new Label("Erreur données pas de bon type ou non remplis");
                     getChildren().remove(error);
-                    getChildren().add(error);// bien le placé$
-                    //attendre
+                    error = new Label("Erreur données pas de bon type ou non remplis");
+                    getChildren().add(error);
+                    if (n.equals("")){
+                        error.setText("nom de l'astre non précisé");
+                    }
+
 
                 }
                 nom.clear();
@@ -152,7 +143,6 @@ public class MenuAddAstre extends VBox {
                 positionY.clear();
                 vitesseX.clear();
                 vitesseY.clear();
-                estFixe.clear();
 
             }
         };

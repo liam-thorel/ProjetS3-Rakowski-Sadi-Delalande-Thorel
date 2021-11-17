@@ -2,21 +2,17 @@ package view;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.stage.FileChooser;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import logic.Simulation;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.NoSuchFileException;
 
 public class ChooseFileView extends Stage {
 
@@ -24,19 +20,24 @@ public class ChooseFileView extends Stage {
     private PlaneteApp app;
     private BorderPane root;
     public File fichierSimu;
+    private VBox boutons;
+    private Label erreur;
 
     public ChooseFileView(PlaneteApp app) {
         this.app = app;
         root = new BorderPane();
+        boutons = new VBox();
 
         chargerSystemeSolaire = new Button("charger Système Solaire");
         chargerSystemeSolaire.setOnAction(chargerSystemeSol);
 
 
+
         chargerFile = new Button("charger simulation");
         chargerFile.setOnAction(chargerFileEvent);
+        boutons.getChildren().add(chargerFile);
 
-        root.setCenter(chargerFile);
+        root.setCenter(boutons);
         root.setTop(chargerSystemeSolaire);
         root.setId("bg");
         root.getStylesheets().add(this.getClass().getResource("/Css/simulation.css").toExternalForm());
@@ -50,18 +51,8 @@ public class ChooseFileView extends Stage {
     private EventHandler<ActionEvent> chargerFileEvent = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent) {
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.getExtensionFilters().addAll(//
-                    new FileChooser.ExtensionFilter("Simu", "*.simu"), //
-                    new FileChooser.ExtensionFilter("All Files", "*.*"));
-            fileChooser.setTitle("Selectionner un fichier");
-            fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-            fichierSimu = fileChooser.showOpenDialog(new Stage());
-            try {
-                app.initSimulation(new Simulation(fichierSimu));
-            } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+            boutons.getChildren().remove(erreur);
+            boutons.getChildren().add(erreur = new Label(app.getfilechooser(true)));
         }
     };
 
@@ -70,7 +61,10 @@ public class ChooseFileView extends Stage {
         public void handle(ActionEvent actionEvent) {
             try {
                 app.initSimulation(new Simulation(new File("presets/systeme solaire.simu")));
-            } catch (IOException e) {
+            }catch (NoSuchFileException e) {
+                boutons.getChildren().remove(erreur);
+                boutons.getChildren().add(erreur = new Label("Fichier preset systeme solaire.simu non trouvé"));
+            }catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();

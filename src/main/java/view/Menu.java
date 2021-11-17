@@ -28,12 +28,14 @@ public class Menu extends Pane {
 
     public Menu(SimulationView sV) {
         this.sV =sV;
-        setWidth(1500);
-        setHeight(200);
         changeMenu = new BorderPane();
         menuAjouter = new MenuAjouter(this);
+        menuAjouter.setPrefWidth(sV.getApp().getStage().getWidth());
+        menuAjouter.setPrefHeight(sV.getApp().getStage().getHeight()*0.27);
         menuAjouterPane = menuAjouter.getMenu();
         menuSysteme = new MenuSysteme(this);
+        menuSysteme.setPrefWidth(sV.getApp().getStage().getWidth());
+        menuSysteme.setPrefHeight(sV.getApp().getStage().getHeight()*0.27);
         menuSystemePane = menuSysteme.getMenu();
         menuActuelPane = menuAjouterPane;
         menuEtChangeMenu = new VBox();
@@ -69,7 +71,7 @@ public class Menu extends Pane {
         changeMenu.setRight(playOuPause);
         systemeOuAjouter.setSpacing(5);
         playOuPause.setSpacing(5);
-        changeMenu.setMaxWidth(sV.getApp().getDimension().getWidth()-20);
+        changeMenu.setMaxWidth(sV.getApp().getStage().getWidth()-20);
         playOuPause.getChildren().addAll(play,pause, option);
         menuEtChangeMenu.getChildren().addAll(changeMenu, menuActuelPane);
 
