@@ -49,12 +49,12 @@ public class Simulation {
         CreateurAstre p = new CreateurPlanete();
         for (String ligne : Files.readAllLines(save.toPath())){
             String name = "";
-            int taille =0;
-            int masse = 0;
+            float taille =0;
+            float masse = 0;
             int pX = 0;
             int pY = 0;
-            int vitesseX = 0;
-            int vitesseY = 0;
+            double vitesseX = 0;
+            double vitesseY = 0;
             boolean isFixed = false;
 
             boolean creer = true;
@@ -62,12 +62,12 @@ public class Simulation {
 
                 if (!(arguments[0].equals("//"))){
                     name = arguments[0];
-                    taille = Integer.parseInt(arguments[1]);
-                    masse = Integer.parseInt(arguments[2]);
+                    taille = Float.parseFloat(arguments[1]);
+                    masse = Float.parseFloat(arguments[2]);
                     pX = Integer.parseInt(arguments[3]);
                     pY = Integer.parseInt(arguments[4]);
-                    vitesseX = Integer.parseInt(arguments[5]);
-                    vitesseY = Integer.parseInt(arguments[6]);
+                    vitesseX = Double.parseDouble(arguments[5]);
+                    vitesseY = Double.parseDouble(arguments[6]);
                     isFixed = Boolean.parseBoolean(arguments[7]);
 
                 }else{

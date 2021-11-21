@@ -3,8 +3,8 @@ package logic;
 import java.util.ArrayList;
 
 public class Planete extends Astre{
-    private int taille;
-    private int masse;
+    private float taille;
+    private float masse;
     private String nom;
     private double positionX;
     private double positionY;
@@ -13,7 +13,7 @@ public class Planete extends Astre{
     private boolean isFixed;
 
 
-    public Planete(String nom, int taille, int masse,  double positionX, double positionY, double vitesseX, double vitesseY, boolean isFixed) {
+    public Planete(String nom, float taille, float masse,  double positionX, double positionY, double vitesseX, double vitesseY, boolean isFixed) {
         this.taille = taille;
         this.masse = masse;
         this.nom = nom;
@@ -101,7 +101,7 @@ public class Planete extends Astre{
         return taille;
     }
 
-    public int getMasse() {
+    public float getMasse() {
         return masse;
     }
 
@@ -115,5 +115,13 @@ public class Planete extends Astre{
 
     public double getPositionY() {
         return positionY;
+    }
+
+    public double getVitesseX() {
+        return vitesseX;
+    }
+
+    public double getVitesseY() {
+        return vitesseY;
     }
 }
