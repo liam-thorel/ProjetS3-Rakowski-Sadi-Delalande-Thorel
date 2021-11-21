@@ -73,7 +73,7 @@ public class OptionView extends Pane {
         EventHandler<ActionEvent> onSettings = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                HBox ancient = new HBox();
+                VBox ancient = new VBox();
                 ancient.getChildren().addAll(bouttons.getChildren());
 
                 bouttons.getChildren().clear();
@@ -81,6 +81,7 @@ public class OptionView extends Pane {
                 Button retourOptions= new Button("retour");
                 CheckBox showTraj = new CheckBox("afficher les trajectoires");
                 showTraj.setSelected(sV.getEspace().isShowingT());
+                showTraj.setTextFill(Color.WHITE);
                 EventHandler<ActionEvent> onRetourOption = new EventHandler<ActionEvent>() {
                    @Override
                    public void handle(ActionEvent actionEvent) {
@@ -113,12 +114,7 @@ public class OptionView extends Pane {
             public void handle(ActionEvent actionEvent){
                     try {
                         sV.getApp().initSimulation(new Simulation(sV.getSimulation().getFile()));
-                    } catch (IOException e) {
-                        sV.getApp().initSimulation(new Simulation());
-                    } catch (ClassNotFoundException e) {
-                        sV.getApp().initSimulation(new Simulation());
-                    }
-                    catch (NullPointerException e){
+                    } catch (IOException | NullPointerException | ClassNotFoundException e) {
                         sV.getApp().initSimulation(new Simulation());
                     }
             }

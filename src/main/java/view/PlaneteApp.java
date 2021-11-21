@@ -127,7 +127,7 @@ public class PlaneteApp extends Application {
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (NullPointerException e) {
-                return "erreur fichier non choisit";
+                return "erreur fichier non choisi";
             }
             return "";
         }
