@@ -110,7 +110,9 @@ public class EspaceView extends Pane {
         }
     }
 
-
+    public HashMap<Astre, Circle> getListeAetC() {
+        return listeAetC;
+    }
 
     //le listener des ajouts ou des suppression d'astres
     public ListChangeListener<Astre> addingOrRemovingAstres = new ListChangeListener<>() {
@@ -119,14 +121,14 @@ public class EspaceView extends Pane {
             change.next();
             if(change.wasAdded()) {
                 for (Astre a : change.getAddedSubList()) {
-                    Circle c = creerPlaneteCercle(a);
+                    /*Circle c = creerPlaneteCercle(a);
                     listeAetC.put(a, c);
                     listeCetA.put(c, a);
                     getChildren().add(c);
                     c.relocate(c.getCenterX(), c.getCenterY());
                     c.setOnMouseClicked(selected);
                     if(!s.getListeAstre().contains(a)){
-                    s.getListeAstre().add(a);}
+                    s.getListeAstre().add(a);}*/
 
                 }
             }
@@ -142,6 +144,9 @@ public class EspaceView extends Pane {
         }
     };
 
+    public HashMap<Circle, Astre> getListeCetA() {
+        return listeCetA;
+    }
 
     //eventHandler de la selection des cercles
     public EventHandler<MouseEvent> selected = new EventHandler<MouseEvent>() {
