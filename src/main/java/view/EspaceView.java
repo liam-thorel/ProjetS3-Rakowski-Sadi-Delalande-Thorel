@@ -110,7 +110,9 @@ public class EspaceView extends Pane {
         }
     }
 
-
+    public HashMap<Astre, Circle> getListeAetC() {
+        return listeAetC;
+    }
 
     //le listener des ajouts ou des suppression d'astres
     public ListChangeListener<Astre> addingOrRemovingAstres = new ListChangeListener<>() {
@@ -142,6 +144,9 @@ public class EspaceView extends Pane {
         }
     };
 
+    public HashMap<Circle, Astre> getListeCetA() {
+        return listeCetA;
+    }
 
     //eventHandler de la selection des cercles
     public EventHandler<MouseEvent> selected = new EventHandler<MouseEvent>() {
