@@ -38,11 +38,9 @@ public class OptionView extends Pane {
 
         //les bouttons
         Button retour = new Button("Retour à la simulation");
-        Button saveEtContinuer = new Button("Enregistrer et continuer");
-        saveEtContinuer.setAlignment(Pos.CENTER);
-        Button saveEtQuit = new Button("Enregistrer et quitter");
-        saveEtQuit.setAlignment(Pos.CENTER);
-        Button quit = new Button("Quitter sans enregistrer");
+        Button save = new Button("Enregistrer");
+        save.setAlignment(Pos.CENTER);
+        Button quit = new Button("Quitter");
         quit.setAlignment(Pos.CENTER);
         Button parametre = new Button("Parametres");
         parametre.setAlignment(Pos.CENTER);
@@ -56,16 +54,23 @@ public class OptionView extends Pane {
                 error.setText("");
             }
         };
-        //event pour les save et quit
-        EventHandler<ActionEvent> onSaveAndQuit = new EventHandler<ActionEvent>() {
+        //event pour save
+        EventHandler<ActionEvent> onSave = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                if(actionEvent.getSource().equals(saveEtQuit) || actionEvent.getSource().equals(saveEtContinuer)) {
-                    bouttons.getChildren().remove(error);
-                    error = new Label (sV.getApp().getfilechooser(false));
-                    error.setTextFill(Color.WHITE);
-                  bouttons.getChildren().add(error);
-                } if(actionEvent.getSource().equals(quit) |(actionEvent.getSource().equals(saveEtQuit) && error.getText().equals(""))  ){sV.getApp().initStart();}
+                bouttons.getChildren().remove(error);
+                error = new Label (sV.getApp().getfilechooser(false));
+                error.setTextFill(Color.WHITE);
+                bouttons.getChildren().add(error);
+
+            }
+        };
+
+        //event pour le quit
+        EventHandler<ActionEvent> onQuit = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                sV.getApp().initStart();
             }
         };
 
@@ -109,6 +114,7 @@ public class OptionView extends Pane {
                 sV.setOptionsOuvertes(false);
             }
         };
+
         EventHandler<ActionEvent> onReset = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent){
@@ -121,9 +127,8 @@ public class OptionView extends Pane {
         };
 
 
-        saveEtContinuer.setOnAction(onSaveAndQuit);
-        saveEtQuit.setOnAction(onSaveAndQuit);
-        quit.setOnAction(onSaveAndQuit);
+        save.setOnAction(onSave);
+        quit.setOnAction(onQuit);
         parametre.setOnAction(onSettings);
         retour.setOnAction(onRetourSimu);
         reset.setOnAction(onReset);
@@ -136,7 +141,7 @@ public class OptionView extends Pane {
         bouttons.setPadding(new Insets(50, 20, 50 , 20));
         bouttons.relocate(625,200);
         bouttons.setSpacing(10);
-        bouttons.getChildren().addAll(saveEtContinuer, saveEtQuit, quit, parametre, reset,retour);
+        bouttons.getChildren().addAll( save, quit, parametre, reset,retour);
 
         this.setPrefSize(sV.getApp().getStage().getWidth(), sV.getApp().getStage().getHeight());
         this.getChildren().addAll( bouttons, error);
