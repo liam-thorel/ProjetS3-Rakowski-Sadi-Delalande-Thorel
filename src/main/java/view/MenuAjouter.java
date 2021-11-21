@@ -19,6 +19,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import logic.Astre;
+import logic.Planete;
 import org.controlsfx.control.PropertySheet;
 
 public class MenuAjouter extends Pane {
@@ -34,6 +35,9 @@ public class MenuAjouter extends Pane {
     ListView<Circle> mesAstres = new ListView<Circle>(mesPlanetesCourantes);// créer ListView pour astres
     private Circle aAjouter = new Circle();
 
+    public Circle getaAjouter() {
+        return aAjouter;
+    }
 
     public MenuAjouter(Menu m){
         this.m = m;
@@ -62,7 +66,7 @@ public class MenuAjouter extends Pane {
                 (ObservableValue<? extends Circle> ov, Circle old_val, Circle new_val) -> {
                     aAjouter = new_val;
                     if ( aAjouter != null){System.out.println(aAjouter);}
-        });
+                });
         //mesAstres.getSelectionModel().selectedIndexProperty().addListener(observable -> System.out.printf("Indice sélectionné: %d", mesAstres.getSelectionModel().getSelectedIndex()).println());
         //int selectedIndex = mesAstres.getSelectionModel().getSelectedIndex();
         ///// Listener /////
@@ -74,6 +78,7 @@ public class MenuAjouter extends Pane {
                         System.out.println("++Ajout");
                     }
                     if (change.wasRemoved()) {
+                        mesPlanetesCourantes.remove(aAjouter);
                         System.out.println("++Retrait");
                     }
                 }
@@ -108,73 +113,10 @@ public class MenuAjouter extends Pane {
             }
         });
 
-        m.getSimulationView().getEspace().setOnDragDropped(new EventHandler <DragEvent>() {
-            public void handle(DragEvent event) {
-                /* data dropped */
-                System.out.println("onDragDropped laché sur la cible mon ptit pote");
-                Dragboard db = event.getDragboard();
-                boolean success = false;
-
-                if (db.hasString()) {
-                    System.out.println("c'est bon mon ptit pote");
-                    m.getSimulationView().getEspace().getChildren().add(aAjouter);
-                    aAjouter.relocate(aAjouter.getCenterX(), aAjouter.getCenterY());
-                    if (!m.getSimulationView().getSimulation().getListeAstre().contains(m.getSimulationView().getEspace().getListeCetA().get(aAjouter))) {
-                        System.out.println("c'est CARRE");
-
-                        //m.getSimulationView().getSimulation().getListeAstre().add(m.getSimulationView().getEspace().getListeCetA().get(aAjouter));
-                       // m.getSimulationView().getEspace().listeA.add(m.getSimulationView().getEspace().getListeCetA().add(aAjouter, ));
-                        // m.getSimulationView().getEspace().listeA.add(aAjouter);
-
-
-                        success = true;
-                        event.setDropCompleted(true);
-                    }
-                }
-                else {event.setDropCompleted(false);}
-               /* DataFormat dataAAjouter = DataFormat.lookupMimeType(Paint.class.getName());
-                dataAAjouter = (dataAAjouter == null) ? new DataFormat(Paint.class.getName()) : dataAAjouter;
-                int argb = (Integer) db.getContent(dataAAjouter);
-                double opacity = ((argb >> 24) & 0xFF) / 255.0;
-                int red = (argb >> 16) & 0xFF;
-                int green = (argb >> 8) & 0xFF;
-                int blue = (argb >> 0) & 0xFF;
-                Color fill = Color.rgb(red, green, blue, opacity);
-                aAjouter.setFill(fill);
-
-                if (db.hasContent(dataAAjouter)) {
-                    System.out.println("c'est bon mon ptit pote");
-                    m.getSimulationView().getEspace().getChildren().add(aAjouter);
-                    mesAstres.getSelectionModel().clearSelection();
-                    success = true;
-                }*/
-                event.setDropCompleted(success);
-                event.consume();
-            }
-        });
-
-        m.getSimulationView().getEspace().setOnDragEntered(dragEvent -> {
-            final Dragboard dragBoard = dragEvent.getDragboard();
-            DataFormat paintFormat = DataFormat.lookupMimeType(Paint.class.getName());
-            paintFormat = (paintFormat == null) ? new DataFormat(Paint.class.getName()) : paintFormat;
-            /*if (dragEvent.getGestureSource() !=  m.getSimulationView().getEspace() && dragBroard.hasContent(paintFormat)) {
-                mesAstres.setStroke(Color.GREEN);
-            } else {
-                circle.setStroke(Color.ORANGE);
-            }
-            circle.setStrokeWidth(10);*/
-            dragEvent.consume();
-        });
-        m.getSimulationView().getEspace().setOnDragExited(dragEvent -> {
-            //circle.setStroke(null);
-            //circle.setStrokeWidth(0);
-            dragEvent.consume();
-        });
 
         mesAstres.setOnDragDone(dragEvent -> {
             if (dragEvent.getTransferMode() == TransferMode.MOVE) {
                 // retirer la planete en attente dans la liste view
-                mesPlanetesCourantes.remove(aAjouter);
             }
             dragEvent.consume();
         });
