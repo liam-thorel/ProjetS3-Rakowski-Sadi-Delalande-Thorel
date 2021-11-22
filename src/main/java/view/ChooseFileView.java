@@ -16,7 +16,7 @@ import java.nio.file.NoSuchFileException;
 
 public class ChooseFileView extends Stage {
 
-    private Button chargerFile, chargerSystemeSolaire;
+    private Button chargerFile, chargerSystemeSolaire, retourPageAccueil;
     private PlaneteApp app;
     private BorderPane root;
     public File fichierSimu;
@@ -31,12 +31,14 @@ public class ChooseFileView extends Stage {
         chargerSystemeSolaire = new Button("charger Système Solaire");
         chargerSystemeSolaire.setOnAction(chargerSystemeSol);
 
-
+        retourPageAccueil = new Button("Retour à la Page d'accueil");
+        retourPageAccueil.setOnAction(pageAccueil);
 
         chargerFile = new Button("charger simulation");
         chargerFile.setOnAction(chargerFileEvent);
         boutons.getChildren().add(chargerFile);
 
+        root.setBottom(retourPageAccueil);
         root.setCenter(boutons);
         root.setTop(chargerSystemeSolaire);
         root.setId("bg");
@@ -69,6 +71,13 @@ public class ChooseFileView extends Stage {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
+        }
+    };
+
+    private EventHandler<ActionEvent> pageAccueil = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            app.initStart();
         }
     };
 
