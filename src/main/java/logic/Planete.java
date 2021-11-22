@@ -1,5 +1,8 @@
 package logic;
 
+
+import javafx.scene.paint.Color;
+
 import java.util.ArrayList;
 
 public class Planete extends Astre{
@@ -11,6 +14,7 @@ public class Planete extends Astre{
     private double vitesseX;
     private double vitesseY;
     private boolean isFixed;
+    private Color color;
 
 
     public Planete(String nom, float taille, float masse,  double positionX, double positionY, double vitesseX, double vitesseY, boolean isFixed) {
@@ -133,5 +137,13 @@ public class Planete extends Astre{
         this.positionY = positionY;
         this.vitesseX = vitesseX;
         this.vitesseY = vitesseY;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public Color getColor(){
+        return  this.color;
     }
 }
