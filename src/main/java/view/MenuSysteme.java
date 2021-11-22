@@ -89,6 +89,10 @@ public class MenuSysteme extends Pane {
         return menuGen;
     }
 
+    public void rmv(){
+        menuSys.getChildren().clear();
+    }
+
     public void modifierInfos(Astre a, Button supprimer, Button modifier){
         menuSys.getChildren().clear();
 

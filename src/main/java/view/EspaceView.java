@@ -161,6 +161,7 @@ public class EspaceView extends Pane {
                 @Override
                 public void handle(ActionEvent actionEvent) {
                     listeA.remove(selectedA);
+                    sV.getMenu().getMenuSysteme().rmv();
                 }
             };
 
