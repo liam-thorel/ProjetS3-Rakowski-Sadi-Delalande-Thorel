@@ -60,10 +60,16 @@ public class SimulationView extends Stage {
         Scene scene = new Scene(all);
 
         scene.addEventFilter(KeyEvent.KEY_PRESSED, ke -> {
-            if (ke.getCode() == KeyCode.F1) {
-                ouvrirMenuOption();
-                ke.consume();
+            if (ke.getCode() == KeyCode.F1 ||ke.getCode() == KeyCode.ESCAPE ) {
+                if (!optionsOuvertes.getValue()) {
+                    ouvrirMenuOption();
+                    ke.consume();
+                }else {
+                    optionsOuvertes.set(false);
+                    ke.consume();
+                }
             }
+
 
         });
         app.getStage().setScene(scene);
