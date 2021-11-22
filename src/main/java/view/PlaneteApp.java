@@ -52,17 +52,23 @@ public class PlaneteApp extends Application {
     }
 
     public void initChooseFile(){
+        stage.setMaximized(false);
         chooseFileView = new ChooseFileView(this);
+        stage.setMaximized(true);
     }
 
     public void initStart(){
+        stage.setMaximized(false);
         startView = new StartView(this);
+        stage.setMaximized(true);
 
     }
 
     public void initSimulation(Simulation s){
+
         this.simulation=s;
         simulationView = new SimulationView(s, this);
+
     }
 
 
