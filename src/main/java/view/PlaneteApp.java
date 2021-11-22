@@ -31,7 +31,7 @@ public class PlaneteApp extends Application {
     public void start(Stage stage)  {
         this.stage = stage;
 
-        /*stage.setMaximized(true);*/
+        stage.setMaximized(true);
         stage.setOnCloseRequest(event -> {
             try {
                 this.onStopGame("ATTENTION Voulez vous vraiment arreter la simulation ?");
@@ -65,10 +65,10 @@ public class PlaneteApp extends Application {
     }
 
     public void initSimulation(Simulation s){
-        stage.setMaximized(false);
+
         this.simulation=s;
         simulationView = new SimulationView(s, this);
-        stage.setMaximized(true);
+
     }
 
 
