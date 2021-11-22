@@ -131,15 +131,15 @@ public class MenuAddAstre extends VBox {
                         getChildren().remove(error);
                         mA.getM().getSimulationView().getEspace().setOnDragDropped(new EventHandler <DragEvent>() {
                             public void handle(DragEvent event) { //PLANETE DEPOSEE
-                                System.out.println("onDragDropped laché sur la cible mon ptit pote");
+                                if (mA.getM().getSimulationView().getApp().getDebug())System.out.println("onDragDropped laché sur la cible mon ptit pote");
                                 Dragboard db = event.getDragboard();
                                 boolean success = false;
                                 if (db.hasString()) {
-                                    System.out.println("c'est bon mon ptit pote");
+                                    if (mA.getM().getSimulationView().getApp().getDebug())System.out.println("c'est bon mon ptit pote");
                                     mA.getM().getSimulationView().getEspace().listeA.add(p);
                                     mA.getMesPlanetesCourantes().remove(mA.getaAjouter());
                                     if (!mA.getM().getSimulationView().getSimulation().getListeAstre().contains(mA.getM().getSimulationView().getEspace().getListeCetA().get(a))) {
-                                        System.out.println("c'est CARRE");
+                                        if (mA.getM().getSimulationView().getApp().getDebug())System.out.println("c'est CARRE");
                                     }
                                 }
                                 else {event.setDropCompleted(false);}
