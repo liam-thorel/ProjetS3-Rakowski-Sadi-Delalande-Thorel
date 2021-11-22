@@ -90,6 +90,7 @@ public class OptionView extends Pane {
                 EventHandler<ActionEvent> onRetourOption = new EventHandler<ActionEvent>() {
                    @Override
                    public void handle(ActionEvent actionEvent) {
+                       ancient.setAlignment(Pos.CENTER);
                         bouttons.getChildren().setAll(ancient);
                    }
                };
