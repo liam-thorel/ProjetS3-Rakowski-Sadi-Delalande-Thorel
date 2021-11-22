@@ -122,7 +122,7 @@ public class PlaneteApp extends Application {
                     new FileChooser.ExtensionFilter("All Files", "*.*"));
             fileChooser.setTitle("Selectionner un fichier à charger");
             if (emplacement!=null){
-                System.out.println(emplacement.getAbsolutePath() + System.getProperty("file.separator") + ".." );
+               if(debug)System.out.println(emplacement.getAbsolutePath() + System.getProperty("file.separator") + ".." );
             }
             else {
                 fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
