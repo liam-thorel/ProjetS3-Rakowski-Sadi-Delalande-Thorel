@@ -50,7 +50,7 @@ public class EspaceView extends Pane {
         listeA = FXCollections.observableArrayList();
         listeA.addListener(addingOrRemovingAstres);
         listeA.addAll(sV.getSimulation().getListeAstre());
-        System.out.println(listeA);
+        if (sV.getApp().getDebug())System.out.println(listeA);
 
         playing.setValue(false);
         showingT.setValue(true);
@@ -98,10 +98,10 @@ public class EspaceView extends Pane {
     public void move(){
 
         for(Astre a : listeAetC.keySet()) {
-            //System.out.println("ancienne position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
+            if (sV.getApp().getDebug())System.out.println("ancienne position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
             a.addVitesse(Simulation.getOther(a, s.getListeAstre()));
             a.setPositions();
-            //System.out.println("nouvelle position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
+            if (sV.getApp().getDebug())System.out.println("nouvelle position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
             Circle currentC = listeAetC.get(a);
             currentC.relocate(a.getPositionX() - a.getTaille()/2, a.getPositionY() - a.getTaille()/2);
             if(showingT.getValue()){

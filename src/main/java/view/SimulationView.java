@@ -79,7 +79,7 @@ public class SimulationView extends Stage {
         @Override
         public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
             menuOption.setVisible(t1);
-            System.out.println("visible ? " + t1);
+            if (app.getDebug()) System.out.println("visible ? " + t1);
         }
     };
 
