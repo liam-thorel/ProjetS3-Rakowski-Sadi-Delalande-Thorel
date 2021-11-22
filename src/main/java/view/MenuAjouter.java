@@ -65,7 +65,7 @@ public class MenuAjouter extends Pane {
         mesAstres.getSelectionModel().selectedItemProperty().addListener(
                 (ObservableValue<? extends Circle> ov, Circle old_val, Circle new_val) -> {
                     aAjouter = new_val;
-                    if ( aAjouter != null){System.out.println(aAjouter);}
+                    if ( aAjouter != null){if(m.getSimulationView().getApp().getDebug())System.out.println(aAjouter);}
                 });
         //mesAstres.getSelectionModel().selectedIndexProperty().addListener(observable -> System.out.printf("Indice sélectionné: %d", mesAstres.getSelectionModel().getSelectedIndex()).println());
         //int selectedIndex = mesAstres.getSelectionModel().getSelectedIndex();
@@ -75,11 +75,11 @@ public class MenuAjouter extends Pane {
             public void onChanged(ListChangeListener.Change<? extends Circle> change) {
                 while(change.next()) {
                     if (change.wasAdded()) {
-                        System.out.println("++Ajout");
+                        if(m.getSimulationView().getApp().getDebug())System.out.println("++Ajout");
                     }
                     if (change.wasRemoved()) {
                         mesPlanetesCourantes.remove(aAjouter);
-                        System.out.println("++Retrait");
+                        if(m.getSimulationView().getApp().getDebug())System.out.println("++Retrait");
                     }
                 }
             }
@@ -87,7 +87,7 @@ public class MenuAjouter extends Pane {
 
         ///// DRAG N' DROP /////
         mesAstres.setOnDragDetected(mouseEvent -> {
-            System.out.println("Drag n' Drop detecté mon ptit pote");
+            if(m.getSimulationView().getApp().getDebug())System.out.println("Drag n' Drop detecté mon ptit pote");
             Dragboard db = mesAstres.startDragAndDrop(TransferMode.MOVE);//autorise le mode de transfert déplacement
             ClipboardContent content = new ClipboardContent();// put a string on dragboard
             content.putString("Planète");
@@ -103,7 +103,7 @@ public class MenuAjouter extends Pane {
 
         m.getSimulationView().getEspace().setOnDragOver(new EventHandler<DragEvent>() {
             public void handle(DragEvent event) {
-                System.out.println("onDragOver détecté sur sa cible mon ptit pote");
+                if(m.getSimulationView().getApp().getDebug())System.out.println("onDragOver détecté sur sa cible mon ptit pote");
                 /* accept it only if it is  not dragged from the same node
                  * and if it has a string data */
                 if (event.getGestureSource() != m.getSimulationView().getEspace() && event.getDragboard().hasString()) {
