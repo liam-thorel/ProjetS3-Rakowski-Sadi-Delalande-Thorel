@@ -108,8 +108,8 @@ public class PlaneteApp extends Application {
 
 
     public String getfilechooser (Boolean type) { // si true alors enregistrer si false alors sauvegarder
+        FileChooser fileChooser = new FileChooser();
         if (type) {
-            FileChooser fileChooser = new FileChooser();
             fileChooser.getExtensionFilters().addAll(//
                     new FileChooser.ExtensionFilter("Simu", "*.simu"), //
                     new FileChooser.ExtensionFilter("All Files", "*.*"));
@@ -132,7 +132,6 @@ public class PlaneteApp extends Application {
             return "";
         }
         else {
-            FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Selectionner un endroit ou enregistrer le fichier");
             fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Simu", "*.simu"));
             if (emplacement != null){

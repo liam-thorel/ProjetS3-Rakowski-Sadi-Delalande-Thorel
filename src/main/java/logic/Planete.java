@@ -124,4 +124,14 @@ public class Planete extends Astre{
     public double getVitesseY() {
         return vitesseY;
     }
+
+    public void setAll(float taille, float masse, String nom, double positionX, double positionY, double vitesseX, double vitesseY){
+        this.taille = taille;
+        this.masse = masse;
+        this.nom = nom;
+        this.positionX = positionX;
+        this.positionY = positionY;
+        this.vitesseX = vitesseX;
+        this.vitesseY = vitesseY;
+    }
 }

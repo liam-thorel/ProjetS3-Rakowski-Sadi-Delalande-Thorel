@@ -90,14 +90,5 @@ public abstract class Astre implements Serializable {
         this.vitesseY = vitesseY;
     }
 
-    public void setAll(float taille, float masse, String nom, double positionX, double positionY, double vitesseX, double vitesseY){
-        this.taille = taille;
-        this.masse = masse;
-        this.nom = nom;
-        this.positionX = positionX;
-        this.positionY = positionY;
-        this.vitesseX = vitesseX;
-        this.vitesseY = vitesseY;
-
-    }
+    public abstract  void setAll(float taille, float masse, String nom, double positionX, double positionY, double vitesseX, double vitesseY);
 }

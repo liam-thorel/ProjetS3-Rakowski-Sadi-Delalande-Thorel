@@ -93,13 +93,14 @@ public class MenuAddAstre extends VBox {
             @Override
             public void handle(ActionEvent actionEvent){
                 String n;
-                int m,t,pX,pY ;
+                int pX,pY ;
+                float m,t;
                 double vX,vY;
 
                 n = nom.getText();
                 try {
-                    m = Integer.parseInt(masse.getText());
-                    t = Integer.parseInt(taille.getText());
+                    m = Float.parseFloat(masse.getText());
+                    t = Float.parseFloat(taille.getText());
                     pX = Integer.parseInt(positionX.getText());
                     pY = Integer.parseInt(positionY.getText());
                     vX = Double.parseDouble(vitesseX.getText());
