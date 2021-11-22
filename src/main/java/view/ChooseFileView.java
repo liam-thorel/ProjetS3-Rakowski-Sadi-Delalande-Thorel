@@ -2,10 +2,12 @@ package view;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import logic.Simulation;
@@ -16,29 +18,34 @@ import java.nio.file.NoSuchFileException;
 
 public class ChooseFileView extends Stage {
 
-    private Button chargerFile, chargerSystemeSolaire;
+    private Button chargerFile, chargerSystemeSolaire, retourPageAccueil;
     private PlaneteApp app;
-    private BorderPane root;
+    private Pane root;
     public File fichierSimu;
     private VBox boutons;
     private Label erreur;
 
     public ChooseFileView(PlaneteApp app) {
         this.app = app;
-        root = new BorderPane();
+        root = new Pane();
         boutons = new VBox();
 
         chargerSystemeSolaire = new Button("charger Système Solaire");
         chargerSystemeSolaire.setOnAction(chargerSystemeSol);
 
-
+        retourPageAccueil = new Button("Retour à la Page d'accueil");
+        retourPageAccueil.setOnAction(pageAccueil);
 
         chargerFile = new Button("charger simulation");
         chargerFile.setOnAction(chargerFileEvent);
-        boutons.getChildren().add(chargerFile);
 
-        root.setCenter(boutons);
-        root.setTop(chargerSystemeSolaire);
+        boutons.relocate(app.getStage().getWidth()/2+300,app.getStage().getWidth()/2);
+
+        boutons.getChildren().addAll(chargerSystemeSolaire,chargerFile,retourPageAccueil);
+        boutons.setSpacing(50);
+        boutons.setAlignment(Pos.CENTER);
+
+        root.getChildren().add(boutons);
         root.setId("bg");
         root.getStylesheets().add(this.getClass().getResource("/Css/simulation.css").toExternalForm());
 
@@ -69,6 +76,13 @@ public class ChooseFileView extends Stage {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
+        }
+    };
+
+    private EventHandler<ActionEvent> pageAccueil = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            app.initStart();
         }
     };
 

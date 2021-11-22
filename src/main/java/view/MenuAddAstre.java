@@ -1,11 +1,14 @@
 package view;
 
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
@@ -85,17 +88,19 @@ public class MenuAddAstre extends VBox {
         newAstre.setOnAction(onAjouterAstre);
     }
 
+
         private EventHandler<ActionEvent> onAjouterAstre = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent){
                 String n;
-                int m,t,pX,pY ;
+                int pX,pY ;
+                float m,t;
                 double vX,vY;
 
                 n = nom.getText();
                 try {
-                    m = Integer.parseInt(masse.getText());
-                    t = Integer.parseInt(taille.getText());
+                    m = Float.parseFloat(masse.getText());
+                    t = Float.parseFloat(taille.getText());
                     pX = Integer.parseInt(positionX.getText());
                     pY = Integer.parseInt(positionY.getText());
                     vX = Double.parseDouble(vitesseX.getText());
@@ -121,10 +126,27 @@ public class MenuAddAstre extends VBox {
                     else{
                         Astre p = new Planete(n,t,m,pX,pY,vX,vY,isFixed);
                         p.toString();
-                        mA.getM().getSimulationView().getEspace().listeA.add(p);
-                        getChildren().remove(error);
                         Circle a = EspaceView.creerPlaneteCercle(p);
                         mA.getM().getMenuAjouter().getMesPlanetesCourantes().add(a);
+                        getChildren().remove(error);
+                        mA.getM().getSimulationView().getEspace().setOnDragDropped(new EventHandler <DragEvent>() {
+                            public void handle(DragEvent event) { //PLANETE DEPOSEE
+                                if (mA.getM().getSimulationView().getApp().getDebug())System.out.println("onDragDropped laché sur la cible mon ptit pote");
+                                Dragboard db = event.getDragboard();
+                                boolean success = false;
+                                if (db.hasString()) {
+                                    if (mA.getM().getSimulationView().getApp().getDebug())System.out.println("c'est bon mon ptit pote");
+                                    mA.getM().getSimulationView().getEspace().listeA.add(p);
+                                    mA.getMesPlanetesCourantes().remove(mA.getaAjouter());
+                                    if (!mA.getM().getSimulationView().getSimulation().getListeAstre().contains(mA.getM().getSimulationView().getEspace().getListeCetA().get(a))) {
+                                        if (mA.getM().getSimulationView().getApp().getDebug())System.out.println("c'est CARRE");
+                                    }
+                                }
+                                else {event.setDropCompleted(false);}
+                                event.setDropCompleted(success);
+                                event.consume();
+                            }
+                        });
                     }
                 }catch (NumberFormatException e){
                     getChildren().remove(error);

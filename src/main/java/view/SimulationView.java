@@ -60,10 +60,16 @@ public class SimulationView extends Stage {
         Scene scene = new Scene(all);
 
         scene.addEventFilter(KeyEvent.KEY_PRESSED, ke -> {
-            if (ke.getCode() == KeyCode.F1) {
-                ouvrirMenuOption();
-                ke.consume();
+            if (ke.getCode() == KeyCode.F1 ||ke.getCode() == KeyCode.ESCAPE ) {
+                if (!optionsOuvertes.getValue()) {
+                    ouvrirMenuOption();
+                    ke.consume();
+                }else {
+                    optionsOuvertes.set(false);
+                    ke.consume();
+                }
             }
+
 
         });
         app.getStage().setScene(scene);
@@ -73,7 +79,7 @@ public class SimulationView extends Stage {
         @Override
         public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
             menuOption.setVisible(t1);
-            System.out.println("visible ? " + t1);
+            if (app.getDebug()) System.out.println("visible ? " + t1);
         }
     };
 

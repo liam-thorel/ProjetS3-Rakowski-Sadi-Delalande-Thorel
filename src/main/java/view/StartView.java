@@ -70,14 +70,7 @@ public class StartView extends Pane {
         root.getStylesheets().add(this.getClass().getResource("/Css/accueil.css").toExternalForm());
         Scene scene = new Scene(root);
 
-
-
-
         app.getStage().setScene(scene);
-
-
-
-
     }
 
 

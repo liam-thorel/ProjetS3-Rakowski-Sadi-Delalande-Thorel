@@ -26,6 +26,10 @@ public class Menu extends Pane {
     private Button option = new Button("Options");
     private SimulationView sV;
 
+    public SimulationView getsVmenu() {
+        return sV;
+    }
+
     public Menu(SimulationView sV) {
         this.sV =sV;
         changeMenu = new BorderPane();

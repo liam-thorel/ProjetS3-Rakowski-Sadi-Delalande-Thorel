@@ -20,6 +20,7 @@ public class PlaneteApp extends Application {
     private SimulationView simulationView;
     private Simulation simulation;
     private File emplacement;
+    private Boolean debug = true;
 
 
 
@@ -52,17 +53,23 @@ public class PlaneteApp extends Application {
     }
 
     public void initChooseFile(){
+        stage.setMaximized(false);
         chooseFileView = new ChooseFileView(this);
+        stage.setMaximized(true);
     }
 
     public void initStart(){
+        stage.setMaximized(false);
         startView = new StartView(this);
+        stage.setMaximized(true);
 
     }
 
     public void initSimulation(Simulation s){
+
         this.simulation=s;
         simulationView = new SimulationView(s, this);
+
     }
 
 
@@ -108,14 +115,14 @@ public class PlaneteApp extends Application {
 
 
     public String getfilechooser (Boolean type) { // si true alors enregistrer si false alors sauvegarder
+        FileChooser fileChooser = new FileChooser();
         if (type) {
-            FileChooser fileChooser = new FileChooser();
             fileChooser.getExtensionFilters().addAll(//
                     new FileChooser.ExtensionFilter("Simu", "*.simu"), //
                     new FileChooser.ExtensionFilter("All Files", "*.*"));
             fileChooser.setTitle("Selectionner un fichier à charger");
             if (emplacement!=null){
-                System.out.println(emplacement.getAbsolutePath() + System.getProperty("file.separator") + ".." );
+               if(debug)System.out.println(emplacement.getAbsolutePath() + System.getProperty("file.separator") + ".." );
             }
             else {
                 fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
@@ -132,7 +139,6 @@ public class PlaneteApp extends Application {
             return "";
         }
         else {
-            FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Selectionner un endroit ou enregistrer le fichier");
             fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Simu", "*.simu"));
             if (emplacement != null){
@@ -156,4 +162,7 @@ public class PlaneteApp extends Application {
         return "";
     }
 
+    public Boolean getDebug() {
+        return debug;
+    }
 }

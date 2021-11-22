@@ -7,14 +7,15 @@ import java.util.ArrayList;
 
 public abstract class Astre implements Serializable {
     private float taille;
-    private int masse;
+    private float masse;
     private String nom;
     private double positionX;
     private double positionY;
-    private int vitesseInit;
-    //private int vecteurX;
-    //private int vecteurY;
-    private int vitesse;
+
+    private double vitesseX;
+    private double vitesseY;
+
+
     public abstract String getArgString();
     public abstract String toString();
     private Node n;
@@ -33,7 +34,7 @@ public abstract class Astre implements Serializable {
         return taille;
     }
 
-    public int getMasse() {
+    public float getMasse() {
         return masse;
     }
 
@@ -60,4 +61,34 @@ public abstract class Astre implements Serializable {
     public void setPositionY(double positionY) {
         this.positionY = positionY;
     }
+
+    public double getVitesseX() {
+        return vitesseX;
+    }
+
+    public double getVitesseY() {
+        return vitesseY;
+    }
+
+    public void setTaille(float taille) {
+        this.taille = taille;
+    }
+
+    public void setMasse(int masse) {
+        this.masse = masse;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setVitesseX(double vitesseX) {
+        this.vitesseX = vitesseX;
+    }
+
+    public void setVitesseY(double vitesseY) {
+        this.vitesseY = vitesseY;
+    }
+
+    public abstract  void setAll(float taille, float masse, String nom, double positionX, double positionY, double vitesseX, double vitesseY);
 }
