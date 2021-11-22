@@ -20,6 +20,7 @@ public class PlaneteApp extends Application {
     private SimulationView simulationView;
     private Simulation simulation;
     private File emplacement;
+    private Boolean debug = true;
 
 
 
@@ -161,4 +162,7 @@ public class PlaneteApp extends Application {
         return "";
     }
 
+    public Boolean getDebug() {
+        return debug;
+    }
 }
