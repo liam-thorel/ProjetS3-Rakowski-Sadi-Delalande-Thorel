@@ -198,7 +198,8 @@ public class MenuSysteme extends Pane {
 
                 getMenuGen().getSimulationView().getEspace().getListeA().remove(index);
                 getMenuGen().getSimulationView().getEspace().getListeA().add(a);
-
+                supprimer.setText("Supprimer " + a.getNom());
+                modifier.setText("Modifier " + a.getNom());
                 afficherInfos(a, supprimer, modifier);
             }
         };

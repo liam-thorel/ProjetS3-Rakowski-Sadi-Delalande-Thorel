@@ -56,14 +56,6 @@ public class EspaceView extends Pane {
         showingT.setValue(true);
         showingT.addListener(onShowingT);
 
-        //playing.addListener(playOrStop);
-        /*for (Astre a: listeA) {
-            Circle p = creerPlaneteCercle(a);
-            listeAetC.put(a, p);
-            getChildren().add(p);
-            p.relocate(p.getCenterX(), p.getCenterY());
-        }*/
-
         timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
@@ -83,7 +75,15 @@ public class EspaceView extends Pane {
     // prend un Astre en paramètre et créer un cercle le représentant graphiquement
     public static Circle creerPlaneteCercle(Astre p){
         Circle planete = new Circle();
-        planete.setFill(new Color(new Random().nextFloat(),new Random().nextFloat(), new Random().nextFloat(), 1));
+        Color c;
+        if(p.getColor() == null){
+            c = new Color(new Random().nextFloat(),new Random().nextFloat(), new Random().nextFloat(), 1);
+            p.setColor(c);
+        }else{
+            c = p.getColor();
+        }
+
+        planete.setFill(c);
         planete.setStrokeWidth(2);
         planete.setStroke(Color.BLUE);
         planete.setCenterX(p.getPositionX() - p.getTaille()/2);

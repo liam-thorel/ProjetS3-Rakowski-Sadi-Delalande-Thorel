@@ -1,6 +1,7 @@
 package logic;
 
 import javafx.scene.Node;
+import javafx.scene.paint.Color;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ public abstract class Astre implements Serializable {
     private String nom;
     private double positionX;
     private double positionY;
-
+    private Color color;
     private double vitesseX;
     private double vitesseY;
 
@@ -91,4 +92,12 @@ public abstract class Astre implements Serializable {
     }
 
     public abstract  void setAll(float taille, float masse, String nom, double positionX, double positionY, double vitesseX, double vitesseY);
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public Color getColor(){
+        return  this.color;
+    }
 }
