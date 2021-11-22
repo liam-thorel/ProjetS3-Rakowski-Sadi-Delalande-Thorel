@@ -31,7 +31,7 @@ public class ChooseFileView extends Stage {
         root = new Pane();
         boutons = new VBox();
 
-        chargerSystemeSolaire = new Button("Charger Système Solaire");
+        chargerSystemeSolaire = new Button("Charger système solaire");
         chargerSystemeSolaire.setOnAction(chargerSystemeSol);
         chargerSystemeSolaire.setStyle("-fx-font: 35 arial;-fx-font-family: OpenSymbol;-fx-font-weight: bold;");
         chargerSystemeSolaire.setPrefSize(500,70);
