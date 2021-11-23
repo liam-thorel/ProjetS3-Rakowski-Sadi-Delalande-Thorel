@@ -62,7 +62,7 @@ public class EspaceView extends Pane {
                 long delay = l - previousL;
                 if(playing.getValue()){
                     move();
-                    if (sV.getApp().getDebug())System.out.println(System.currentTimeMillis();
+                    if (sV.getApp().getDebug())System.out.println(System.currentTimeMillis());
                 }
                 previousL = l;
 
