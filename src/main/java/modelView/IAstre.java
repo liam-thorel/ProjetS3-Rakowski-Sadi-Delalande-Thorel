@@ -6,7 +6,7 @@ import model.Vecteur;
 
 import java.util.ArrayList;
 
-public abstract  class IAstre {
+public abstract class IAstre {
 
 
 
@@ -16,7 +16,7 @@ public abstract  class IAstre {
      * */
     public static Vecteur calculerSommeForces(ArrayList<Astre> liste, Astre current){
         Vecteur vSommeForces = new Vecteur(0,0);
-
+        System.out.println("je calcule");
         for(Astre a : liste){
             double distanceX = (a.getPositionX() - current.getPositionX()) * Simulation.scaleDistance;
             double distanceY = (a.getPositionY() - current.getPositionY()) * Simulation.scaleDistance;
@@ -42,16 +42,23 @@ public abstract  class IAstre {
 
             vAcc = calculerSommeForces(listeA,current);
         }
+        //System.out.println("je met a jour la vitesse");
         current.setVitesseX(current.getVitesseX() + (vAcc.getX() * Simulation.scaleTemps) / current.getMasse() *0.0005);
         current.setVitesseY(current.getVitesseY() +(vAcc.getY() * Simulation.scaleTemps) / current.getMasse() *0.0005);
-        //System.out.println("vitesseX = " + vitesseX + "    vitesseY = " + vitesseY);
+
     }
 
     /**position * le pas de temps*
      **/
 
     public static void setPositions(Astre current){
-        current.setPositionX(current.getPositionX()+ current.getVitesseX() *0.0005);
-        current.setPositionY(current.getPositionY()+ current.getVitesseY() *0.0005);
+        //System.out.println("je met a jour la position de " + current.getNom());
+        //System.out.println("vitesseX = " + current.getVitesseX() + "    vitesseY = " + current.getVitesseY());
+        current.setPositionX(current.getPositionX() + (current.getVitesseX() *0.0005));
+        current.setPositionY(current.getPositionY() + (current.getVitesseY() *0.0005));
+        /*double x = current.getPositionX() + (current.getVitesseX() *0.0005);
+        double y = current.getPositionY() + (current.getVitesseY() *0.0005);
+        System.out.println("positionX " +x );
+        System.out.println("positionY " + y);*/
     }
 }

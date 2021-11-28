@@ -99,4 +99,38 @@ public class Planete extends Astre{
     public Color getColor(){
         return  this.color;
     }
+
+    @Override
+    public void setTaille(float taille) {
+        this.taille = taille;
+    }
+
+    public void setMasse(float masse) {
+        this.masse = masse;
+    }
+
+    @Override
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    @Override
+    public void setPositionX(double positionX) {
+        this.positionX = positionX;
+    }
+
+    @Override
+    public void setPositionY(double positionY) {
+        this.positionY = positionY;
+    }
+
+    @Override
+    public void setVitesseX(double vitesseX) {
+        this.vitesseX = vitesseX;
+    }
+
+    @Override
+    public void setVitesseY(double vitesseY) {
+        this.vitesseY = vitesseY;
+    }
 }

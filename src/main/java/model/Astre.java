@@ -96,4 +96,6 @@ public abstract class Astre implements Serializable {
     public Color getColor(){
         return  this.color;
     }
+
+
 }
