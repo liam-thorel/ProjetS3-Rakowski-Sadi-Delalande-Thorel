@@ -70,7 +70,7 @@ public class MenuSysteme extends Pane {
         menuSys.add(ln, 1,0);
         menuSys.add(nom,1,1);
 
-        Label taille = new Label(String.valueOf((int) a.getTaille()));
+        Label taille = new Label(String.valueOf((int)  a.getTaille()));
         taille.setAlignment(Pos.CENTER);
         Label lt = new Label(" Taille en 10^9 m ");
         lt.setAlignment(Pos.CENTER);
@@ -84,28 +84,28 @@ public class MenuSysteme extends Pane {
         menuSys.add(lm, 3, 0);
         menuSys.add(masse, 3, 1);
 
-        Label pX = new Label(String.valueOf((a.getPositionX())));
+        Label pX = new Label(String.valueOf( (int) Math.round(a.getPositionX()*100.0)/100.0));
         pX.setAlignment(Pos.CENTER);
         Label lpx = new Label(" Position x ");
         lpx.setAlignment(Pos.CENTER);
         menuSys.add(lpx, 4, 0);
         menuSys.add(pX, 4, 1);
 
-        Label pY = new Label(String.valueOf(a.getPositionY()));
+        Label pY = new Label(String.valueOf((int) Math.round(a.getPositionY()*100.0)/100.0));
         pY.setAlignment(Pos.CENTER);
         Label lpY = new Label(" Position y ");
         lpY.setAlignment(Pos.CENTER);
         menuSys.add(lpY, 5, 0);
         menuSys.add(pY, 5, 1);
 
-        Label vX = new Label(String.valueOf(a.getVitesseX()));
+        Label vX = new Label(String.valueOf((int) Math.round(a.getVitesseX()*100.0)/100.0));
         vX.setAlignment(Pos.CENTER);
         Label lvx = new Label(" Vitesse x ");
         lvx.setAlignment(Pos.CENTER);
         menuSys.add(lvx, 6, 0);
         menuSys.add(vX, 6, 1);
 
-        Label vY = new Label(String.valueOf(a.getVitesseY()));
+        Label vY = new Label(String.valueOf((int) Math.round(a.getVitesseY()*100.0)/100.0));
         vY.setAlignment(Pos.CENTER);
         Label lvy = new Label(" Vitesse y ");
         lvy.setAlignment(Pos.CENTER);
