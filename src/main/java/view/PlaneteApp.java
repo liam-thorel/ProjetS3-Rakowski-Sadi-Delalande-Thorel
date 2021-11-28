@@ -7,7 +7,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import logic.Simulation;
 
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
