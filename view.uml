@@ -3,83 +3,359 @@
   <ID>JAVA</ID>
   <OriginalElement>view</OriginalElement>
   <nodes>
-    <node x="0.0" y="0.0">view.StartView</node>
-    <node x="457.175" y="499.0">view.EspaceView</node>
-    <node x="341.0" y="55.0">view.ChooseFileView</node>
-    <node x="693.175" y="389.0">view.MenuAjouter</node>
-    <node x="219.175" y="411.0">view.PlaneteApp</node>
-    <node x="396.625" y="789.0">view.SimulationView</node>
+    <node x="527.0" y="612.0">view.MenuSysteme</node>
+    <node x="431.2638888888893" y="1035.0">view.Menu</node>
+    <node x="210.66666666666663" y="0.0">view.MenuAddAstre</node>
+    <node x="793.9871794871796" y="1810.5">view.StartView</node>
+    <node x="742.2638888888894" y="1057.0">view.EspaceView</node>
+    <node x="186.0" y="546.0">view.MenuAjouter</node>
+    <node x="1134.9871794871797" y="1810.0">view.ChooseFileView</node>
+    <node x="119.26388888888931" y="1255.0">view.OptionView</node>
+    <node x="845.9038461538462" y="2247.0">view.PlaneteApp</node>
+    <node x="474.98717948717956" y="1744.0">view.SimulationView</node>
+    <node x="879.9038461538462" y="2684.0">view.Launcher</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="view.PlaneteApp" target="view.StartView">
-      <point x="-95.375" y="-138.0" />
-      <point x="232.8" y="369.0" />
-      <point x="40.125" y="369.0" />
-      <point x="-120.375" y="159.5" />
+    <edge source="view.MenuAddAstre" target="view.MenuAjouter" relationship="TO_ONE">
+      <point x="-94.66666666666663" y="248.0" />
+      <point x="258.0" y="521.0" />
+      <point x="239.5" y="521.0" />
+      <point x="-107.0" y="-193.5" />
     </edge>
-    <edge source="view.EspaceView" target="view.SimulationView">
-      <point x="72.0" y="50.0" />
-      <point x="637.175" y="739.0" />
-      <point x="570.175" y="739.0" />
-      <point x="40.05000000000001" y="-116.0" />
+    <edge source="view.StartView" target="view.PlaneteApp" relationship="DEPENDENCY">
+      <point x="-107.0" y="149.0" />
+      <point x="847.4871794871796" y="2216.0" />
+      <point x="306.98717948717956" y="2216.0" />
+      <point x="306.98717948717956" y="2226.0" />
+      <point x="882.2371794871796" y="2226.0" />
+      <point x="-72.66666666666669" y="-193.5" />
     </edge>
-    <edge source="view.StartView" target="view.PlaneteApp">
-      <point x="40.125" y="159.5" />
-      <point x="200.625" y="349.0" />
-      <point x="287.3" y="349.0" />
-      <point x="-40.875" y="-138.0" />
+    <edge source="view.EspaceView" target="view.PlaneteApp" relationship="DEPENDENCY">
+      <point x="-110.0" y="270.5" />
+      <point x="797.2638888888893" y="1662.0" />
+      <point x="259.7991452991454" y="1662.0" />
+      <point x="259.7991452991454" y="2216.0" />
+      <point x="306.98717948717956" y="2216.0" />
+      <point x="306.98717948717956" y="2226.0" />
+      <point x="882.2371794871796" y="2226.0" />
+      <point x="-72.66666666666669" y="-193.5" />
     </edge>
-    <edge source="view.PlaneteApp" target="view.ChooseFileView">
-      <point x="13.625" y="-138.0" />
-      <point x="341.8" y="339.0" />
-      <point x="377.375" y="339.0" />
-      <point x="-109.125" y="104.5" />
+    <edge source="view.SimulationView" target="view.PlaneteApp" relationship="DEPENDENCY">
+      <point x="-99.66666666666674" y="215.5" />
+      <point x="524.8205128205128" y="2216.0" />
+      <point x="306.98717948717956" y="2216.0" />
+      <point x="306.98717948717956" y="2226.0" />
+      <point x="882.2371794871796" y="2226.0" />
+      <point x="-72.66666666666669" y="-193.5" />
     </edge>
-    <edge source="view.ChooseFileView" target="view.PlaneteApp">
-      <point x="36.375" y="104.5" />
-      <point x="522.875" y="359.0" />
-      <point x="396.3" y="359.0" />
-      <point x="68.125" y="-138.0" />
+    <edge source="view.MenuAjouter" target="view.Menu" relationship="DEPENDENCY">
+      <point x="-107.0" y="193.5" />
+      <point x="239.5" y="984.0" />
+      <point x="307.0" y="984.0" />
+      <point x="307.0" y="994.0" />
+      <point x="523.2638888888893" y="994.0" />
+      <point x="523.2638888888893" y="1014.0" />
+      <point x="479.7638888888893" y="1014.0" />
+      <point x="-97.0" y="-292.5" />
     </edge>
-    <edge source="view.SimulationView" target="view.PlaneteApp">
-      <point x="-120.14999999999992" y="-116.0" />
-      <point x="409.975" y="769.0" />
-      <point x="246.425" y="769.0" />
-      <point x="-81.75" y="138.0" />
+    <edge source="view.PlaneteApp" target="view.ChooseFileView" relationship="TO_ONE">
+      <point x="0.0" y="-193.5" />
+      <point x="954.9038461538462" y="2206.0" />
+      <point x="1286.9871794871797" y="2206.0" />
+      <point x="0.0" y="149.5" />
     </edge>
-    <edge source="view.SimulationView" target="view.EspaceView">
-      <point x="-13.349999999999966" y="-116.0" />
-      <point x="516.775" y="729.0" />
-      <point x="493.175" y="729.0" />
-      <point x="-72.0" y="50.0" />
+    <edge source="view.ChooseFileView" target="view.PlaneteApp" relationship="TO_ONE">
+      <point x="0.0" y="149.5" />
+      <point x="1286.9871794871797" y="2206.0" />
+      <point x="954.9038461538462" y="2206.0" />
+      <point x="0.0" y="-193.5" />
     </edge>
-    <edge source="view.PlaneteApp" target="view.SimulationView">
-      <point x="27.25" y="138.0" />
-      <point x="355.425" y="749.0" />
-      <point x="463.375" y="749.0" />
-      <point x="-66.74999999999994" y="-116.0" />
+    <edge source="view.Menu" target="view.SimulationView" relationship="DEPENDENCY">
+      <point x="-97.0" y="292.5" />
+      <point x="479.7638888888893" y="1672.0" />
+      <point x="249.79914529914538" y="1672.0" />
+      <point x="249.79914529914538" y="1692.0" />
+      <point x="322.48717948717956" y="1692.0" />
+      <point x="322.48717948717956" y="1722.0" />
+      <point x="524.8205128205128" y="1722.0" />
+      <point x="-99.66666666666674" y="-215.5" />
     </edge>
-    <edge source="view.SimulationView" target="view.MenuAjouter">
-      <point x="66.75" y="-116.0" />
-      <point x="596.875" y="749.0" />
-      <point x="741.675" y="749.0" />
-      <point x="-97.0" y="160.0" />
+    <edge source="view.MenuAjouter" target="view.PlaneteApp" relationship="DEPENDENCY">
+      <point x="-107.0" y="193.5" />
+      <point x="239.5" y="984.0" />
+      <point x="307.0" y="984.0" />
+      <point x="307.0" y="1014.0" />
+      <point x="0.0" y="1014.0" />
+      <point x="0.0" y="2216.0" />
+      <point x="306.98717948717956" y="2216.0" />
+      <point x="306.98717948717956" y="2226.0" />
+      <point x="882.2371794871796" y="2226.0" />
+      <point x="-72.66666666666669" y="-193.5" />
     </edge>
-    <edge source="view.MenuAjouter" target="view.SimulationView">
-      <point x="97.0" y="160.0" />
-      <point x="935.675" y="769.0" />
-      <point x="650.275" y="769.0" />
-      <point x="120.14999999999998" y="-116.0" />
+    <edge source="view.ChooseFileView" target="view.PlaneteApp" relationship="DEPENDENCY">
+      <point x="-101.33333333333337" y="149.5" />
+      <point x="1185.6538461538464" y="2216.0" />
+      <point x="306.98717948717956" y="2216.0" />
+      <point x="306.98717948717956" y="2226.0" />
+      <point x="882.2371794871796" y="2226.0" />
+      <point x="-72.66666666666669" y="-193.5" />
+    </edge>
+    <edge source="view.PlaneteApp" target="view.StartView" relationship="CREATE">
+      <point x="72.66666666666663" y="-193.5" />
+      <point x="1027.570512820513" y="2226.0" />
+      <point x="1219.465811965812" y="2226.0" />
+      <point x="1219.465811965812" y="2196.0" />
+      <point x="1061.4871794871797" y="2196.0" />
+      <point x="107.0" y="149.0" />
+    </edge>
+    <edge source="view.EspaceView" target="view.SimulationView" relationship="TO_ONE">
+      <point x="0.0" y="270.5" />
+      <point x="907.2638888888894" y="1652.0" />
+      <point x="624.4871794871796" y="1652.0" />
+      <point x="0.0" y="-215.5" />
+    </edge>
+    <edge source="view.SimulationView" target="view.OptionView" relationship="DEPENDENCY">
+      <point x="-99.66666666666674" y="-215.5" />
+      <point x="524.8205128205128" y="1722.0" />
+      <point x="322.48717948717956" y="1722.0" />
+      <point x="322.48717948717956" y="1702.0" />
+      <point x="190.7638888888893" y="1702.0" />
+      <point x="-71.5" y="72.5" />
+    </edge>
+    <edge source="view.OptionView" target="view.SimulationView" relationship="DEPENDENCY">
+      <point x="-71.5" y="72.5" />
+      <point x="190.7638888888893" y="1702.0" />
+      <point x="322.48717948717956" y="1702.0" />
+      <point x="322.48717948717956" y="1722.0" />
+      <point x="524.8205128205128" y="1722.0" />
+      <point x="-99.66666666666674" y="-215.5" />
+    </edge>
+    <edge source="view.SimulationView" target="view.EspaceView" relationship="TO_ONE">
+      <point x="0.0" y="-215.5" />
+      <point x="624.4871794871796" y="1652.0" />
+      <point x="907.2638888888894" y="1652.0" />
+      <point x="0.0" y="270.5" />
+    </edge>
+    <edge source="view.MenuAddAstre" target="view.MenuAjouter" relationship="DEPENDENCY">
+      <point x="94.66666666666674" y="248.0" />
+      <point x="447.33333333333337" y="521.0" />
+      <point x="453.5" y="521.0" />
+      <point x="107.0" y="-193.5" />
+    </edge>
+    <edge source="view.Menu" target="view.PlaneteApp" relationship="DEPENDENCY">
+      <point x="-97.0" y="292.5" />
+      <point x="479.7638888888893" y="1672.0" />
+      <point x="249.79914529914538" y="1672.0" />
+      <point x="249.79914529914538" y="2216.0" />
+      <point x="306.98717948717956" y="2216.0" />
+      <point x="306.98717948717956" y="2226.0" />
+      <point x="882.2371794871796" y="2226.0" />
+      <point x="-72.66666666666669" y="-193.5" />
+    </edge>
+    <edge source="view.SimulationView" target="view.Menu" relationship="CREATE">
+      <point x="99.66666666666674" y="-215.5" />
+      <point x="724.1538461538463" y="1722.0" />
+      <point x="966.2991452991453" y="1722.0" />
+      <point x="966.2991452991453" y="1642.0" />
+      <point x="673.7638888888894" y="1642.0" />
+      <point x="97.0" y="292.5" />
+    </edge>
+    <edge source="view.MenuSysteme" target="view.Menu" relationship="TO_ONE">
+      <point x="0.0" y="127.5" />
+      <point x="659.0" y="974.0" />
+      <point x="552.5619658119658" y="974.0" />
+      <point x="552.5619658119658" y="1014.0" />
+      <point x="576.7638888888893" y="1014.0" />
+      <point x="0.0" y="-292.5" />
+    </edge>
+    <edge source="view.Menu" target="view.MenuSysteme" relationship="TO_ONE">
+      <point x="0.0" y="-292.5" />
+      <point x="576.7638888888893" y="1014.0" />
+      <point x="552.5619658119658" y="1014.0" />
+      <point x="552.5619658119658" y="974.0" />
+      <point x="659.0" y="974.0" />
+      <point x="0.0" y="127.5" />
+    </edge>
+    <edge source="view.OptionView" target="view.PlaneteApp" relationship="DEPENDENCY">
+      <point x="-71.5" y="72.5" />
+      <point x="190.7638888888893" y="2216.0" />
+      <point x="306.98717948717956" y="2216.0" />
+      <point x="306.98717948717956" y="2226.0" />
+      <point x="882.2371794871796" y="2226.0" />
+      <point x="-72.66666666666669" y="-193.5" />
+    </edge>
+    <edge source="view.PlaneteApp" target="view.ChooseFileView" relationship="CREATE">
+      <point x="72.66666666666663" y="-193.5" />
+      <point x="1027.570512820513" y="2226.0" />
+      <point x="1219.465811965812" y="2226.0" />
+      <point x="1219.465811965812" y="2196.0" />
+      <point x="1388.320512820513" y="2196.0" />
+      <point x="101.33333333333326" y="149.5" />
+    </edge>
+    <edge source="view.EspaceView" target="view.SimulationView" relationship="DEPENDENCY">
+      <point x="-110.0" y="270.5" />
+      <point x="797.2638888888893" y="1662.0" />
+      <point x="259.7991452991454" y="1662.0" />
+      <point x="259.7991452991454" y="1682.0" />
+      <point x="322.48717948717956" y="1682.0" />
+      <point x="322.48717948717956" y="1722.0" />
+      <point x="524.8205128205128" y="1722.0" />
+      <point x="-99.66666666666674" y="-215.5" />
+    </edge>
+    <edge source="view.MenuAjouter" target="view.SimulationView" relationship="DEPENDENCY">
+      <point x="-107.0" y="193.5" />
+      <point x="239.5" y="984.0" />
+      <point x="307.0" y="984.0" />
+      <point x="307.0" y="1014.0" />
+      <point x="415.7638888888893" y="1014.0" />
+      <point x="415.7638888888893" y="1712.0" />
+      <point x="322.48717948717956" y="1712.0" />
+      <point x="322.48717948717956" y="1722.0" />
+      <point x="524.8205128205128" y="1722.0" />
+      <point x="-99.66666666666674" y="-215.5" />
+    </edge>
+    <edge source="view.MenuSysteme" target="view.Menu" relationship="DEPENDENCY">
+      <point x="-88.0" y="127.5" />
+      <point x="571.0" y="964.0" />
+      <point x="356.8119658119658" y="964.0" />
+      <point x="356.8119658119658" y="984.0" />
+      <point x="523.2638888888893" y="984.0" />
+      <point x="523.2638888888893" y="1014.0" />
+      <point x="479.7638888888893" y="1014.0" />
+      <point x="-97.0" y="-292.5" />
+    </edge>
+    <edge source="view.Launcher" target="view.PlaneteApp" relationship="DEPENDENCY">
+      <point x="0.0" y="-28.0" />
+      <point x="0.0" y="193.5" />
+    </edge>
+    <edge source="view.MenuAjouter" target="view.MenuAddAstre" relationship="CREATE">
+      <point x="0.0" y="-193.5" />
+      <point x="346.5" y="521.0" />
+      <point x="352.66666666666663" y="521.0" />
+      <point x="0.0" y="248.0" />
+    </edge>
+    <edge source="view.MenuSysteme" target="view.PlaneteApp" relationship="DEPENDENCY">
+      <point x="-88.0" y="127.5" />
+      <point x="571.0" y="964.0" />
+      <point x="356.8119658119658" y="964.0" />
+      <point x="356.8119658119658" y="1004.0" />
+      <point x="108.76388888888931" y="1004.0" />
+      <point x="108.76388888888931" y="2216.0" />
+      <point x="306.98717948717956" y="2216.0" />
+      <point x="306.98717948717956" y="2226.0" />
+      <point x="882.2371794871796" y="2226.0" />
+      <point x="-72.66666666666669" y="-193.5" />
+    </edge>
+    <edge source="view.SimulationView" target="view.OptionView" relationship="TO_ONE">
+      <point x="0.0" y="-215.5" />
+      <point x="624.4871794871796" y="1652.0" />
+      <point x="333.7638888888893" y="1652.0" />
+      <point x="71.5" y="72.5" />
+    </edge>
+    <edge source="view.OptionView" target="view.SimulationView" relationship="TO_ONE">
+      <point x="71.5" y="72.5" />
+      <point x="333.7638888888893" y="1652.0" />
+      <point x="624.4871794871796" y="1652.0" />
+      <point x="0.0" y="-215.5" />
+    </edge>
+    <edge source="view.SimulationView" target="view.EspaceView" relationship="CREATE">
+      <point x="99.66666666666674" y="-215.5" />
+      <point x="724.1538461538463" y="1722.0" />
+      <point x="966.2991452991453" y="1722.0" />
+      <point x="966.2991452991453" y="1642.0" />
+      <point x="1017.2638888888894" y="1642.0" />
+      <point x="110.0" y="270.5" />
+    </edge>
+    <edge source="view.Menu" target="view.MenuAjouter" relationship="CREATE">
+      <point x="97.0" y="-292.5" />
+      <point x="673.7638888888894" y="1014.0" />
+      <point x="737.7371794871796" y="1014.0" />
+      <point x="737.7371794871796" y="954.0" />
+      <point x="453.5" y="954.0" />
+      <point x="107.0" y="193.5" />
+    </edge>
+    <edge source="view.Menu" target="view.MenuSysteme" relationship="CREATE">
+      <point x="97.0" y="-292.5" />
+      <point x="673.7638888888894" y="1014.0" />
+      <point x="737.7371794871796" y="1014.0" />
+      <point x="737.7371794871796" y="954.0" />
+      <point x="747.0" y="954.0" />
+      <point x="88.0" y="127.5" />
+    </edge>
+    <edge source="view.PlaneteApp" target="view.SimulationView" relationship="CREATE">
+      <point x="72.66666666666663" y="-193.5" />
+      <point x="1027.570512820513" y="2226.0" />
+      <point x="1219.465811965812" y="2226.0" />
+      <point x="1219.465811965812" y="2196.0" />
+      <point x="724.1538461538463" y="2196.0" />
+      <point x="99.66666666666674" y="215.5" />
+    </edge>
+    <edge source="view.SimulationView" target="view.PlaneteApp" relationship="TO_ONE">
+      <point x="0.0" y="215.5" />
+      <point x="624.4871794871796" y="2206.0" />
+      <point x="954.9038461538462" y="2206.0" />
+      <point x="0.0" y="-193.5" />
+    </edge>
+    <edge source="view.PlaneteApp" target="view.SimulationView" relationship="TO_ONE">
+      <point x="0.0" y="-193.5" />
+      <point x="954.9038461538462" y="2206.0" />
+      <point x="624.4871794871796" y="2206.0" />
+      <point x="0.0" y="215.5" />
+    </edge>
+    <edge source="view.MenuAjouter" target="view.Menu" relationship="TO_ONE">
+      <point x="0.0" y="193.5" />
+      <point x="346.5" y="974.0" />
+      <point x="552.5619658119658" y="974.0" />
+      <point x="552.5619658119658" y="1014.0" />
+      <point x="576.7638888888893" y="1014.0" />
+      <point x="0.0" y="-292.5" />
+    </edge>
+    <edge source="view.Menu" target="view.MenuAjouter" relationship="TO_ONE">
+      <point x="0.0" y="-292.5" />
+      <point x="576.7638888888893" y="1014.0" />
+      <point x="552.5619658119658" y="1014.0" />
+      <point x="552.5619658119658" y="974.0" />
+      <point x="346.5" y="974.0" />
+      <point x="0.0" y="193.5" />
+    </edge>
+    <edge source="view.StartView" target="view.PlaneteApp" relationship="TO_ONE">
+      <point x="0.0" y="149.0" />
+      <point x="0.0" y="-193.5" />
+    </edge>
+    <edge source="view.PlaneteApp" target="view.StartView" relationship="TO_ONE">
+      <point x="0.0" y="-193.5" />
+      <point x="0.0" y="149.0" />
+    </edge>
+    <edge source="view.Menu" target="view.SimulationView" relationship="TO_ONE">
+      <point x="0.0" y="292.5" />
+      <point x="576.7638888888893" y="1652.0" />
+      <point x="624.4871794871796" y="1652.0" />
+      <point x="0.0" y="-215.5" />
+    </edge>
+    <edge source="view.SimulationView" target="view.Menu" relationship="TO_ONE">
+      <point x="0.0" y="-215.5" />
+      <point x="624.4871794871796" y="1652.0" />
+      <point x="576.7638888888893" y="1652.0" />
+      <point x="0.0" y="292.5" />
+    </edge>
+    <edge source="view.MenuSysteme" target="view.SimulationView" relationship="DEPENDENCY">
+      <point x="-88.0" y="127.5" />
+      <point x="571.0" y="964.0" />
+      <point x="356.8119658119658" y="964.0" />
+      <point x="356.8119658119658" y="1004.0" />
+      <point x="420.7638888888893" y="1004.0" />
+      <point x="420.7638888888893" y="1712.0" />
+      <point x="322.48717948717956" y="1712.0" />
+      <point x="322.48717948717956" y="1722.0" />
+      <point x="524.8205128205128" y="1722.0" />
+      <point x="-99.66666666666674" y="-215.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.6000000000000001" x="534.9999999999998" y="512.4999999999999" />
-  <SelectedNodes>
-    <node>view.StartView</node>
-  </SelectedNodes>
+  <settings layout="Hierarchic" zoom="0.6452898550724637" showDependencies="true" x="731.9981587755308" y="1217.64177428411" />
+  <SelectedNodes />
   <Categories>
     <Category>Fields</Category>
-    <Category>Constructors</Category>
     <Category>Methods</Category>
   </Categories>
   <SCOPE>All</SCOPE>
