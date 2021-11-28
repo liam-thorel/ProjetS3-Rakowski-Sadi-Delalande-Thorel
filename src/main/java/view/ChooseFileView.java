@@ -6,12 +6,11 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import logic.Simulation;
+import model.Simulation;
+import modelView.ISimulation;
 
 import java.io.File;
 import java.io.IOException;
@@ -80,7 +79,7 @@ public class ChooseFileView extends Stage {
         @Override
         public void handle(ActionEvent actionEvent) {
             try {
-                app.initSimulation(new Simulation(new File("presets/systeme solaire.simu")));
+                app.initSimulation(ISimulation.setAPartirDunFichier(new File("presets/systeme solaire.simu")));
             }catch (NoSuchFileException e) {
                 boutons.getChildren().remove(erreur);
                 boutons.getChildren().add(erreur = new Label("Fichier preset systeme solaire.simu non trouvé"));

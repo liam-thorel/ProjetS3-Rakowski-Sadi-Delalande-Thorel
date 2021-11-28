@@ -16,8 +16,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
-import logic.Astre;
-import logic.Simulation;
+import model.Astre;
+import model.Simulation;
+import modelView.IAstre;
+import modelView.ISimulation;
 
 
 import java.util.*;
@@ -100,8 +102,8 @@ public class EspaceView extends Pane {
 
         for(Astre a : listeAetC.keySet()) {
             if (sV.getApp().getDebug())System.out.println("ancienne position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
-            a.addVitesse(Simulation.getOther(a, s.getListeAstre()));
-            a.setPositions();
+            IAstre.addVitesse(ISimulation.getOther(a, s.getListeAstre()), a);
+            IAstre.setPositions(a);
             if (sV.getApp().getDebug())System.out.println("nouvelle position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
             Circle currentC = listeAetC.get(a);
             currentC.relocate(a.getPositionX() - a.getTaille()/2, a.getPositionY() - a.getTaille()/2);

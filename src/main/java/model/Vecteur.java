@@ -1,4 +1,4 @@
-package logic;
+package model;
 
 public class Vecteur {
     private double x;

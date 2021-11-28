@@ -1,9 +1,7 @@
 package view;
 
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -12,13 +10,8 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
-import logic.Astre;
-import logic.Planete;
-import logic.Simulation;
-
-import java.util.ArrayList;
-import java.util.Locale;
-import java.util.concurrent.TimeUnit;
+import model.Astre;
+import model.Planete;
 
 public class MenuAddAstre extends VBox {
     private Button newAstre;

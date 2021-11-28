@@ -3,7 +3,6 @@ package view;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableBooleanValue;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,10 +10,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import logic.Planete;
-import logic.Simulation;
-
-import java.util.ArrayList;
+import model.Simulation;
 
 
 public class SimulationView extends Stage {
@@ -24,9 +20,7 @@ public class SimulationView extends Stage {
     private static VBox root;
     private static Pane all;
 
-    public static Simulation getS() {
-        return s;
-    }
+
 
     private HBox contener;
     private EspaceView espace;
@@ -116,5 +110,8 @@ public class SimulationView extends Stage {
         this.optionsOuvertes.setValue(optionsOuvertes);
     }
 
+    public static Simulation getS() {
+        return s;
+    }
 
 }

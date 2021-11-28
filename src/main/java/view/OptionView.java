@@ -10,16 +10,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Rectangle;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import logic.Simulation;
+import model.Simulation;
+import modelView.ISimulation;
 
-import java.io.File;
 import java.io.IOException;
 
 public class OptionView extends Pane {
@@ -120,7 +115,7 @@ public class OptionView extends Pane {
             @Override
             public void handle(ActionEvent actionEvent){
                     try {
-                        sV.getApp().initSimulation(new Simulation(sV.getSimulation().getFile()));
+                        sV.getApp().initSimulation(ISimulation.setAPartirDunFichier(sV.getSimulation().getFile()));
                     } catch (IOException | NullPointerException | ClassNotFoundException e) {
                         sV.getApp().initSimulation(new Simulation());
                     }

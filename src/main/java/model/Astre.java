@@ -1,4 +1,4 @@
-package logic;
+package model;
 
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
@@ -50,10 +50,6 @@ public abstract class Astre implements Serializable {
     public double getPositionY() {
         return positionY;
     }
-
-    public abstract void addVitesse(ArrayList<Astre> listeA);
-
-    public abstract void setPositions();
 
     public void setPositionX(double positionX) {
         this.positionX = positionX;

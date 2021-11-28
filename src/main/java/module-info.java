@@ -11,4 +11,6 @@ module com.example.demo {
     requires eu.hansolo.tilesfx;
     requires java.desktop;
     exports view;
+    exports model;
+    exports modelView;
 }

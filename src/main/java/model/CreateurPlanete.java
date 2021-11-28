@@ -1,6 +1,4 @@
-package logic;
-
-import javafx.scene.paint.Color;
+package model;
 
 public class CreateurPlanete extends CreateurAstre{
 
