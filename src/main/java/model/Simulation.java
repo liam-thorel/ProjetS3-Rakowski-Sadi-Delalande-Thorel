@@ -11,8 +11,8 @@ public class Simulation {
     public static double g =   6.6742e-11;
     public static float simuRate = 0.001f;
     private ArrayList<Astre> listeAstre;
-    public static double scaleDistance = Math.pow(10, 9); //m
-    public static double scaleMasse = Math.pow(10,22); //kg
+    public static double scaleDistance = Math.pow(10, 9); //m = 1m
+    public static double scaleMasse = Math.pow(10,22); //kg = 1kk
     public static double scaleTemps = 315360000; // 1 frame ~~ 1 mois
     private File file;
 
