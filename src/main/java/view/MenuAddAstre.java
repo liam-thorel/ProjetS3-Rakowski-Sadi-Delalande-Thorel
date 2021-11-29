@@ -35,7 +35,7 @@ public class MenuAddAstre extends VBox {
         nameAll.getChildren().addAll(nomtxt, nom);
         nom.setMaxWidth(75);
         taille = new TextField();
-        tailletxt = new Label("Taille en 10^9 m");
+        tailletxt = new Label("Taille");
         VBox tailleAll = new VBox();
         tailleAll.getChildren().addAll(tailletxt, taille);
         taille.setMaxWidth(75);

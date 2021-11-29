@@ -1,5 +1,8 @@
 package view;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -13,6 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import model.Astre;
+import modelView.IAstre;
 
 public class MenuSysteme extends Pane {
 
@@ -91,7 +95,7 @@ public class MenuSysteme extends Pane {
         menuSys.add(lpx, 4, 0);
         menuSys.add(pX, 4, 1);
 
-        Label pY = new Label(String.valueOf((int) Math.round(a.getPositionY()*100.0)/100.0));
+        Label pY = new Label(String.valueOf( (int) Math.round(a.getPositionY()*100.0)/100.0));
         pY.setAlignment(Pos.CENTER);
         Label lpY = new Label(" Position y ");
         lpY.setAlignment(Pos.CENTER);
@@ -118,6 +122,17 @@ public class MenuSysteme extends Pane {
 
         menuSys.add(supprimer, 8, 0);
         menuSys.add(modifier, 8, 1);
+
+        ChangeListener<Number> onChange = new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                pX.setText(String.valueOf( (int) Math.round(a.getPositionX()*100.0)/100.0));
+                pY.setText(String.valueOf( (int) Math.round(a.getPositionY()*100.0)/100.0));
+                vX.setText(String.valueOf((int) Math.round(a.getVitesseX()*100.0)/100.0));
+                vY.setText(String.valueOf((int) Math.round(a.getVitesseY()*100.0)/100.0));
+            }
+        };
+        IAstre.addListenerAll(a, onChange);
     }
 
     public Menu getMenuGen() {

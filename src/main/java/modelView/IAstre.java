@@ -1,5 +1,7 @@
 package modelView;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.value.ChangeListener;
 import model.Astre;
 import model.Simulation;
 import model.Vecteur;
@@ -61,4 +63,13 @@ public abstract class IAstre {
         System.out.println("positionX " +x );
         System.out.println("positionY " + y);*/
     }
+
+
+    public static void addListenerAll(Astre a, ChangeListener<Number> changeListener){
+        a.positionXProperty().addListener(changeListener);
+        a.positionYProperty().addListener(changeListener);
+        a.vitesseXProperty().addListener(changeListener);
+        a.vitesseYProperty().addListener(changeListener);
+    }
+
 }

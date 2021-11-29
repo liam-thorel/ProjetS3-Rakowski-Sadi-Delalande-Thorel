@@ -1,5 +1,6 @@
 package modelView;
 
+import javafx.beans.value.ChangeListener;
 import model.Astre;
 import model.Planete;
 
@@ -15,6 +16,10 @@ public class IPlanete extends IAstre {
     public static void setPositions(Astre current){
         IAstre.setPositions(current);
         System.out.println("je passe par planete");
+    }
+
+    public static void addListenerAll(Astre a, ChangeListener<Number> changeListener){
+        IAstre.addListenerAll(a, changeListener);
     }
 
 }

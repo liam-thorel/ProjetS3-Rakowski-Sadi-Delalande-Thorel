@@ -1,5 +1,7 @@
 package model;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 
@@ -10,17 +12,17 @@ public abstract class Astre implements Serializable {
     private float taille;
     private float masse;
     private String nom;
-    private double positionX;
-    private double positionY;
+    private DoubleProperty positionX = new SimpleDoubleProperty();
+    private DoubleProperty positionY = new SimpleDoubleProperty();
+    private DoubleProperty vitesseX= new SimpleDoubleProperty();
+    private DoubleProperty vitesseY = new SimpleDoubleProperty();
+    private boolean isFixed;
     private Color color;
-    private double vitesseX;
-    private double vitesseY;
 
 
     public abstract String getArgString();
     public abstract String toString();
     private Node n;
-    private boolean isFixed;
 
     public boolean isFixed() {
         return isFixed;
@@ -44,27 +46,19 @@ public abstract class Astre implements Serializable {
     }
 
     public double getPositionX() {
-        return positionX;
+        return positionX.get();
     }
 
     public double getPositionY() {
-        return positionY;
-    }
-
-    public void setPositionX(double positionX) {
-        this.positionX = positionX;
-    }
-
-    public void setPositionY(double positionY) {
-        this.positionY = positionY;
+        return positionY.get();
     }
 
     public double getVitesseX() {
-        return vitesseX;
+        return vitesseX.get();
     }
 
     public double getVitesseY() {
-        return vitesseY;
+        return vitesseY.get();
     }
 
     public void setTaille(float taille) {
@@ -79,12 +73,21 @@ public abstract class Astre implements Serializable {
         this.nom = nom;
     }
 
+
+    public void setPositionX(double positionX) {
+        this.positionX.set(positionX);
+    }
+
+    public void setPositionY(double positionY) {
+        this.positionY.set(positionY);
+    }
+
     public void setVitesseX(double vitesseX) {
-        this.vitesseX = vitesseX;
+        this.vitesseX.set(vitesseX);
     }
 
     public void setVitesseY(double vitesseY) {
-        this.vitesseY = vitesseY;
+        this.vitesseY.set(vitesseY);
     }
 
     public abstract  void setAll(float taille, float masse, String nom, double positionX, double positionY, double vitesseX, double vitesseY);
@@ -97,5 +100,19 @@ public abstract class Astre implements Serializable {
         return  this.color;
     }
 
+    public DoubleProperty positionXProperty() {
+        return positionX;
+    }
 
+    public DoubleProperty positionYProperty() {
+        return positionY;
+    }
+
+    public DoubleProperty vitesseXProperty() {
+        return vitesseX;
+    }
+
+    public DoubleProperty vitesseYProperty() {
+        return vitesseY;
+    }
 }
