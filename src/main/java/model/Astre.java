@@ -4,7 +4,6 @@ import javafx.scene.Node;
 import javafx.scene.paint.Color;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public abstract class Astre implements Serializable {
     private float taille;
