@@ -135,7 +135,7 @@ public class MenuAjouter extends Pane {
         //Création et éffectation du réctangle d'arrière plan derrière Add astres
         Rectangle rectangleAddAstres = new Rectangle();
         rectangleAddAstres.setHeight(70);
-        rectangleAddAstres.setWidth(695);
+        rectangleAddAstres.setWidth(800);
         rectangleAddAstres.setFill(Color.rgb(64, 68, 75, 1));
 
         menuAddAstreBg.getChildren().add(rectangleAddAstres);
