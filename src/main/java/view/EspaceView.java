@@ -104,10 +104,13 @@ public class EspaceView extends Pane {
             if (sV.getApp().getDebug())System.out.println("ancienne position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
             IAstre.addVitesse(ISimulation.getOther(a, s.getListeAstre()), a);
             IAstre.setPositions(a);
-            System.out.println(a.hashCode());
+            if (sV.getApp().getDebug())System.out.println(a.hashCode());
             if (sV.getApp().getDebug())System.out.println("nouvelle position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
             Circle currentC = listeAetC.get(a);
             currentC.relocate(a.getPositionX() - a.getTaille()/2, a.getPositionY() - a.getTaille()/2);
+            /*for (Astre autre : ISimulation.getOther(a, s.getListeAstre())){
+                if(IAstre.verifCollision(a,autre))IAstre.collisionFusion(a,autre);
+            }*/
             if(showingT.getValue()){
                 tracerTrajectoire(a);
             }
@@ -137,7 +140,7 @@ public class EspaceView extends Pane {
                 }
             }
             if (change.wasRemoved()) {
-                for (Astre a : change.getRemoved()) { // je crois ça vas ressembler à un truc du genre
+                for (Astre a : change.getRemoved()) { // je crois ça va ressembler à un truc du genre
                     getChildren().remove(listeAetC.get(a));
                     s.getListeAstre().remove(a);
                     listeCetA.remove(listeAetC.get(a));

@@ -2,6 +2,7 @@ package modelView;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.value.ChangeListener;
+import javafx.scene.paint.Color;
 import model.Astre;
 import model.Simulation;
 import model.Vecteur;
@@ -50,6 +51,7 @@ public abstract class IAstre {
 
     }
 
+
     /**position * le pas de temps*
      **/
 
@@ -72,4 +74,33 @@ public abstract class IAstre {
         a.vitesseYProperty().addListener(changeListener);
     }
 
+    public static double distanceCentres(Astre a1, Astre a2){
+        double distanceX = (a1.getPositionX() - a2.getPositionX());
+        double distanceY = (a1.getPositionY() - a2.getPositionY());
+        return Math.sqrt(Math.pow(Math.abs(distanceX), 2) + (Math.pow(Math.abs(distanceY), 2) + 1.f));
+
+    }
+    public static Boolean verifCollision(Astre a, Astre b) {
+        return distanceCentres(a, b) <= a.getTaille() + b.getTaille();
+    }
+
+    public static void collisionFusion(Astre a, Astre b){
+        if (a.getMasse()>= b.getMasse()){
+            a.incrementMasse(b.getMasse());
+            a.incrementTaille(b.getTaille()/2);
+            a.setVitesseX(a.getVitesseX()*a.getMasse()/(b.getMasse()+a.getMasse())+b.getVitesseX()*b.getMasse()/(b.getMasse()+a.getMasse()));
+            a.setVitesseX(a.getVitesseX()*a.getMasse()/(b.getMasse()+a.getMasse())+b.getVitesseX()*b.getMasse()/(b.getMasse()+a.getMasse()));
+            a.setColor(Color.hsb((a.getColor().getRed()+b.getColor().getRed())/2, (a.getColor().getGreen()+b.getColor().getRed())/2, (a.getColor().getBlue()+b.getColor().getRed())/2));
+            b.setMasse(1);
+            b.setTaille(1);
+        } else{
+            b.incrementMasse(a.getMasse());
+            b.incrementTaille(a.getTaille());
+            b.setVitesseX(a.getVitesseX()*a.getMasse()/(b.getMasse()+a.getMasse())+b.getVitesseX()*b.getMasse()/(b.getMasse()+a.getMasse()));
+            b.setVitesseY(a.getVitesseY()*a.getMasse()/(b.getMasse()+a.getMasse())+b.getVitesseY()*a.getMasse()/(b.getMasse()+a.getMasse()));
+            b.setColor(Color.hsb((a.getColor().getRed()+b.getColor().getRed())/2, (a.getColor().getGreen()+b.getColor().getRed())/2, (a.getColor().getBlue()+b.getColor().getRed())/2));
+            a.setMasse(1);
+            a.setTaille(1);
+        }
+    }
 }

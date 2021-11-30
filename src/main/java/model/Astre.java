@@ -111,7 +111,10 @@ public abstract class Astre implements Serializable {
         return vitesseX;
     }
 
-    public DoubleProperty vitesseYProperty() {
-        return vitesseY;
-    }
+    public DoubleProperty vitesseYProperty() {return vitesseY;}
+
+    public void incrementTaille(double increment){this.taille += increment;}
+
+    public void incrementMasse(double increment){this.masse += increment;}
+
 }
