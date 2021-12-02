@@ -7,3 +7,6 @@
 ![](src/main/resources/images/jar_path.png "le path")
 
 *En ce moment, il s'appelle Simulation Planètes.jar, normalement un double clic suffit.*
+
+![](src/main/resources/images/scale.png "le path")
+*les différentes scales*

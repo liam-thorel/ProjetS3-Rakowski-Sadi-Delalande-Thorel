@@ -16,8 +16,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
-import logic.Astre;
-import logic.Simulation;
+import model.Astre;
+import model.Simulation;
+import modelView.IAstre;
+import modelView.ISimulation;
 
 
 import java.util.*;
@@ -50,19 +52,11 @@ public class EspaceView extends Pane {
         listeA = FXCollections.observableArrayList();
         listeA.addListener(addingOrRemovingAstres);
         listeA.addAll(sV.getSimulation().getListeAstre());
-        System.out.println(listeA);
+        if (sV.getApp().getDebug())System.out.println(listeA);
 
         playing.setValue(false);
         showingT.setValue(true);
         showingT.addListener(onShowingT);
-
-        //playing.addListener(playOrStop);
-        /*for (Astre a: listeA) {
-            Circle p = creerPlaneteCercle(a);
-            listeAetC.put(a, p);
-            getChildren().add(p);
-            p.relocate(p.getCenterX(), p.getCenterY());
-        }*/
 
         timer = new AnimationTimer() {
             @Override
@@ -70,6 +64,7 @@ public class EspaceView extends Pane {
                 long delay = l - previousL;
                 if(playing.getValue()){
                     move();
+                    if (sV.getApp().getDebug())System.out.println(System.currentTimeMillis());
                 }
                 previousL = l;
 
@@ -83,7 +78,15 @@ public class EspaceView extends Pane {
     // prend un Astre en paramètre et créer un cercle le représentant graphiquement
     public static Circle creerPlaneteCercle(Astre p){
         Circle planete = new Circle();
-        planete.setFill(new Color(new Random().nextFloat(),new Random().nextFloat(), new Random().nextFloat(), 1));
+        Color c;
+        if(p.getColor() == null){
+            c = new Color(new Random().nextFloat(),new Random().nextFloat(), new Random().nextFloat(), 1);
+            p.setColor(c);
+        }else{
+            c = p.getColor();
+        }
+
+        planete.setFill(c);
         planete.setStrokeWidth(2);
         planete.setStroke(Color.BLUE);
         planete.setCenterX(p.getPositionX() - p.getTaille()/2);
@@ -98,12 +101,16 @@ public class EspaceView extends Pane {
     public void move(){
 
         for(Astre a : listeAetC.keySet()) {
-            //System.out.println("ancienne position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
-            a.addVitesse(Simulation.getOther(a, s.getListeAstre()));
-            a.setPositions();
-            //System.out.println("nouvelle position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
+            if (sV.getApp().getDebug())System.out.println("ancienne position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
+            IAstre.addVitesse(ISimulation.getOther(a, s.getListeAstre()), a);
+            IAstre.setPositions(a);
+            if (sV.getApp().getDebug())System.out.println(a.hashCode());
+            if (sV.getApp().getDebug())System.out.println("nouvelle position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
             Circle currentC = listeAetC.get(a);
             currentC.relocate(a.getPositionX() - a.getTaille()/2, a.getPositionY() - a.getTaille()/2);
+            /*for (Astre autre : ISimulation.getOther(a, s.getListeAstre())){
+                if(IAstre.verifCollision(a,autre))IAstre.collisionFusion(a,autre);
+            }*/
             if(showingT.getValue()){
                 tracerTrajectoire(a);
             }
@@ -133,7 +140,7 @@ public class EspaceView extends Pane {
                 }
             }
             if (change.wasRemoved()) {
-                for (Astre a : change.getRemoved()) { // je crois ça vas ressembler à un truc du genre
+                for (Astre a : change.getRemoved()) { // je crois ça va ressembler à un truc du genre
                     getChildren().remove(listeAetC.get(a));
                     s.getListeAstre().remove(a);
                     listeCetA.remove(listeAetC.get(a));
@@ -141,6 +148,7 @@ public class EspaceView extends Pane {
 
                 }
             }
+
         }
     };
 
@@ -155,14 +163,24 @@ public class EspaceView extends Pane {
             Circle selectedC = (Circle) mouseEvent.getSource();
             Astre selectedA = listeCetA.get(selectedC);
             Button supprimer = new Button("Supprimer " + selectedA.getNom());
+            Button modifier = new Button("Modifier " + selectedA.getNom());
             EventHandler<ActionEvent> supression = new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
                     listeA.remove(selectedA);
+                    sV.getMenu().getMenuSysteme().rmv();
+                }
+            };
+
+            EventHandler<ActionEvent> onModify = new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    sV.getMenu().getMenuSysteme().modifierInfos(selectedA, supprimer, modifier);
                 }
             };
             supprimer.setOnAction(supression);
-            sV.getMenu().getMenuSysteme().afficherInfos(selectedA.getArgString(), supprimer);
+            modifier.setOnAction(onModify);
+            sV.getMenu().getMenuSysteme().afficherInfos(selectedA, supprimer, modifier);
 
         }
     };
@@ -209,6 +227,10 @@ public class EspaceView extends Pane {
 
     public void setPlaying(boolean playing) {
         this.playing.setValue(playing);
+    }
+
+    public ObservableList<Astre> getListeA() {
+        return listeA;
     }
 }
 

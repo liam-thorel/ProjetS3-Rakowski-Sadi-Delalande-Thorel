@@ -3,7 +3,6 @@ package view;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableBooleanValue;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,10 +10,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import logic.Planete;
-import logic.Simulation;
-
-import java.util.ArrayList;
+import model.Simulation;
 
 
 public class SimulationView extends Stage {
@@ -24,9 +20,7 @@ public class SimulationView extends Stage {
     private static VBox root;
     private static Pane all;
 
-    public static Simulation getS() {
-        return s;
-    }
+
 
     private HBox contener;
     private EspaceView espace;
@@ -60,10 +54,16 @@ public class SimulationView extends Stage {
         Scene scene = new Scene(all);
 
         scene.addEventFilter(KeyEvent.KEY_PRESSED, ke -> {
-            if (ke.getCode() == KeyCode.F1) {
-                ouvrirMenuOption();
-                ke.consume();
+            if (ke.getCode() == KeyCode.F1 ||ke.getCode() == KeyCode.ESCAPE ) {
+                if (!optionsOuvertes.getValue()) {
+                    ouvrirMenuOption();
+                    ke.consume();
+                }else {
+                    optionsOuvertes.set(false);
+                    ke.consume();
+                }
             }
+
 
         });
         app.getStage().setScene(scene);
@@ -73,7 +73,7 @@ public class SimulationView extends Stage {
         @Override
         public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
             menuOption.setVisible(t1);
-            System.out.println("visible ? " + t1);
+            if (app.getDebug()) System.out.println("visible ? " + t1);
         }
     };
 
@@ -110,5 +110,8 @@ public class SimulationView extends Stage {
         this.optionsOuvertes.setValue(optionsOuvertes);
     }
 
+    public static Simulation getS() {
+        return s;
+    }
 
 }
