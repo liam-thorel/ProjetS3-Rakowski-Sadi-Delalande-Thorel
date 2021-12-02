@@ -18,8 +18,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import logic.Astre;
-import logic.Planete;
 import org.controlsfx.control.PropertySheet;
 
 public class MenuAjouter extends Pane {
@@ -31,7 +29,7 @@ public class MenuAjouter extends Pane {
     private Pane menuAstreBg;
     private Pane menuAddAstreBg;
     private Menu m;
-    private HBox dnd;
+    private DragnDrop dnd;
 
     public VBox getAddAstre() {
         return addAstre;
@@ -69,11 +67,11 @@ public class MenuAjouter extends Pane {
         menuAstre.setSpacing(10); // espacement 10 pixels
 
         //Création et éffectation du réctangle d'arrière plan derrière Mes astres
-        Rectangle rectangleMenuAstres = new Rectangle();
+        /*Rectangle rectangleMenuAstres = new Rectangle();
         rectangleMenuAstres.setHeight(70);
         rectangleMenuAstres.setWidth(500);
         rectangleMenuAstres.setFill(Color.WHITE);//rgb(64, 68, 75, 1));*/
-        menuAstreBg.getChildren().add(rectangleMenuAstres);
+        //menuAstreBg.getChildren().add(rectangleMenuAstres);
         menuAstreBg.getChildren().add(dnd);
         menuAstreBg.getChildren().add(menuAstre);
 
@@ -100,7 +98,7 @@ public class MenuAjouter extends Pane {
 
     public Menu getM() {return m;}
 
-    public HBox getDnd() {
+    public DragnDrop getDnd() {
         return dnd;
     }
 }

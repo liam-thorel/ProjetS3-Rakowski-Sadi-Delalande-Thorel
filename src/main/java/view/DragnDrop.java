@@ -15,17 +15,18 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.Circle;
 
-public class DragnDrop extends HBox{
+public class DragnDrop extends ListView{
 
     private MenuAjouter m;
-    private ObservableList<Circle> planetesCourantes;
-    private ListView<Circle> mesAstres ;
+    private ObservableList<Circle> planetesCourantes = FXCollections.observableArrayList();
+    private ListView<Circle> mesAstres = new ListView<>(planetesCourantes);
     private Circle aAjouter = new Circle();
 
     public DragnDrop(MenuAjouter menuA){
         this.m = menuA;
-        planetesCourantes = FXCollections.observableArrayList();
-        mesAstres = new ListView<Circle>(planetesCourantes);
+        //planetesCourantes = FXCollections.observableArrayList();
+        //mesAstres.setItems(planetesCourantes);
+
 
         ///// Listener /////
         planetesCourantes.addListener(new ListChangeListener<Circle>() {

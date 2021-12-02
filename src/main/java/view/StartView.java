@@ -28,8 +28,8 @@ public class StartView extends Pane {
 
     public StartView(PlaneteApp app) {
         this.app = app;
-        setWidth(1500);
-        setHeight(750);
+        setWidth(1200);
+        setHeight(600);
         welcomeText = new Label();
         background = new Pane();
         root = new BorderPane();
@@ -58,13 +58,13 @@ public class StartView extends Pane {
         logo.setFitWidth(753);
         logo.setFitHeight(409);
 
-        nouveau.setPrefWidth(500);
-        charger.setPrefWidth(500);
-        field.setSpacing(50);
+        nouveau.setPrefWidth(300);
+        charger.setPrefWidth(300);
+        field.setSpacing(10);
         field.getChildren().addAll(nouveau, charger);
         //background.getChildren().add(root);
         root.setTop(centrage);
-        root.setCenter(logo);
+        //root.setCenter(logo);
         root.setBottom(field);
         root.setId("pane");
         root.getStylesheets().add(this.getClass().getResource("/Css/accueil.css").toExternalForm());

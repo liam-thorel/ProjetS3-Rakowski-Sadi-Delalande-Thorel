@@ -24,6 +24,7 @@ public class MenuAddAstre extends VBox {
     private Label error;
     private Label errorProximite;
     private DragnDrop d;
+    private Circle newC;
 
     public MenuAjouter getmA() {
         return mA;
@@ -125,7 +126,7 @@ public class MenuAddAstre extends VBox {
                         Astre p = new Planete(n,t,m,pX,pY,vX,vY,isFixed);
                         p.toString();
                         Circle a = EspaceView.creerPlaneteCercle(p);
-                        mA.getDnd().getChildren().getPlanetesCourantes().add(a);
+                        mA.getDnd().getPlanetesCourantes().add(a);
                         getChildren().remove(error);
                         mA.getM().getSimulationView().getEspace().setOnDragDropped(new EventHandler <DragEvent>() {
                             public void handle(DragEvent event) { //PLANETE DEPOSEE
@@ -135,7 +136,7 @@ public class MenuAddAstre extends VBox {
                                 if (db.hasString()) {
                                     if (mA.getM().getSimulationView().getApp().getDebug())System.out.println("c'est bon mon ptit pote");
                                     mA.getM().getSimulationView().getEspace().listeA.add(p);
-                                    mA.getDnd().getChildren().getPlanetesCourantes().remove(mA.getDnd().getaAjouter());
+                                    mA.getDnd().getPlanetesCourantes().remove(mA.getDnd().getaAjouter());
                                     if (!mA.getM().getSimulationView().getSimulation().getListeAstre().contains(mA.getM().getSimulationView().getEspace().getListeCetA().get(a))) {
                                         if (mA.getM().getSimulationView().getApp().getDebug())System.out.println("c'est CARRE");
                                     }
