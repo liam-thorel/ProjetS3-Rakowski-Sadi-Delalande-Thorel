@@ -31,12 +31,18 @@ public class MenuAjouter extends Pane {
     private Pane menuAstreBg;
     private Pane menuAddAstreBg;
     private Menu m;
-    private ObservableList<Circle> mesPlanetesCourantes = FXCollections.observableArrayList();
-    ListView<Circle> mesAstres = new ListView<Circle>(mesPlanetesCourantes);// créer ListView pour astres
-    private Circle aAjouter = new Circle();
+    private HBox dnd;
 
-    public Circle getaAjouter() {
-        return aAjouter;
+    public VBox getAddAstre() {
+        return addAstre;
+    }
+
+    public Pane getMenuAstreBg() {
+        return menuAstreBg;
+    }
+
+    public HBox getMenuAstre() {
+        return menuAstre;
     }
 
     public MenuAjouter(Menu m){
@@ -47,6 +53,7 @@ public class MenuAjouter extends Pane {
         menuAstre = new HBox();
         addAstre = new MenuAddAstre(this);
         menu=new HBox();
+        dnd = new DragnDrop(this);
 
         //Création et affectation du réctangle d'arrière plan derrière le menu
         Rectangle rectangle = new Rectangle();
@@ -58,83 +65,17 @@ public class MenuAjouter extends Pane {
         menuBg.getChildren().add(rectangle);
         menuBg.getChildren().add(menu);
 
-        /////////////// Pour afficher les planètes courantes ;) ///////////////
-        mesAstres.setOrientation(Orientation.HORIZONTAL); // Orientation pour la ListView
-        mesAstres.setPrefSize(500, 70); // taille ListView
-        //écoute l'index de la planète sélectionnée
-        mesAstres.getSelectionModel().selectedItemProperty().addListener(
-                (ObservableValue<? extends Circle> ov, Circle old_val, Circle new_val) -> {
-                    aAjouter = new_val;
-                    if ( aAjouter != null){System.out.println(aAjouter);}
-                });
-        //mesAstres.getSelectionModel().selectedIndexProperty().addListener(observable -> System.out.printf("Indice sélectionné: %d", mesAstres.getSelectionModel().getSelectedIndex()).println());
-        //int selectedIndex = mesAstres.getSelectionModel().getSelectedIndex();
-        ///// Listener /////
-        mesPlanetesCourantes.addListener(new ListChangeListener<Circle>() {
-            @Override
-            public void onChanged(ListChangeListener.Change<? extends Circle> change) {
-                while(change.next()) {
-                    if (change.wasAdded()) {
-                        System.out.println("++Ajout");
-                    }
-                    if (change.wasRemoved()) {
-                        mesPlanetesCourantes.remove(aAjouter);
-                        System.out.println("++Retrait");
-                    }
-                }
-            }
-        });
-
-        ///// DRAG N' DROP /////
-        mesAstres.setOnDragDetected(mouseEvent -> {
-            System.out.println("Drag n' Drop detecté mon ptit pote");
-            Dragboard db = mesAstres.startDragAndDrop(TransferMode.MOVE);//autorise le mode de transfert déplacement
-            ClipboardContent content = new ClipboardContent();// put a string on dragboard
-            content.putString("Planète");
-            db.setContent(content);
-            mouseEvent.consume();
-            // Exporter en tant qu'image.
-            WritableImage capturePlanete = aAjouter.snapshot(null, null);
-            content.putImage(capturePlanete);
-            //
-            db.setContent(content);
-            mouseEvent.consume();
-        });
-
-        m.getSimulationView().getEspace().setOnDragOver(new EventHandler<DragEvent>() {
-            public void handle(DragEvent event) {
-                System.out.println("onDragOver détecté sur sa cible mon ptit pote");
-                /* accept it only if it is  not dragged from the same node
-                 * and if it has a string data */
-                if (event.getGestureSource() != m.getSimulationView().getEspace() && event.getDragboard().hasString()) {
-                    event.acceptTransferModes(TransferMode.MOVE); //accepte les déplacements
-                }
-                event.consume();
-            }
-        });
-
-
-        mesAstres.setOnDragDone(dragEvent -> {
-            if (dragEvent.getTransferMode() == TransferMode.MOVE) {
-                // retirer la planete en attente dans la liste view
-            }
-            dragEvent.consume();
-        });
-
+        //menuAstre.getChildren().add(getDnd().getMesAstres());
         menuAstre.setSpacing(10); // espacement 10 pixels
-        menuAstre.getChildren().add(mesAstres);
-        //eloignement des différents Menu
-
 
         //Création et éffectation du réctangle d'arrière plan derrière Mes astres
         Rectangle rectangleMenuAstres = new Rectangle();
         rectangleMenuAstres.setHeight(70);
         rectangleMenuAstres.setWidth(500);
-        rectangleMenuAstres.setFill(Color.WHITE);//rgb(64, 68, 75, 1));
+        rectangleMenuAstres.setFill(Color.WHITE);//rgb(64, 68, 75, 1));*/
         menuAstreBg.getChildren().add(rectangleMenuAstres);
+        menuAstreBg.getChildren().add(dnd);
         menuAstreBg.getChildren().add(menuAstre);
-
-
 
 
         //Création et éffectation du réctangle d'arrière plan derrière Add astres
@@ -155,13 +96,11 @@ public class MenuAjouter extends Pane {
         menu.getChildren().addAll(menuAstreBg, menuAddAstreBg);
     }
 
-    public ObservableList<Circle> getMesPlanetesCourantes() {return mesPlanetesCourantes;}
-
-    public void setMesAstres(ListView<Circle> mesAstres) {this.mesAstres = mesAstres;}
-
-    public ListView<Circle> getMesAstres() {return mesAstres;}
-
     public Pane getMenu() {return menuBg;}
 
     public Menu getM() {return m;}
+
+    public HBox getDnd() {
+        return dnd;
+    }
 }
