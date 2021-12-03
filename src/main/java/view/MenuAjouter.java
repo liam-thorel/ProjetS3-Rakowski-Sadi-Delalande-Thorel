@@ -24,26 +24,14 @@ public class MenuAjouter extends Pane {
 
     private HBox menu ;
     private HBox menuAstre;
-    private VBox addAstre;
+    private MenuAddAstre addAstre;
     private Pane menuBg = new Pane();
     private Pane menuAstreBg;
     private Pane menuAddAstreBg;
     private Menu m;
     private DragnDrop dnd;
 
-    public VBox getAddAstre() {
-        return addAstre;
-    }
-
-    public Pane getMenuAstreBg() {
-        return menuAstreBg;
-    }
-
-    public HBox getMenuAstre() {
-        return menuAstre;
-    }
-
-    public MenuAjouter(Menu m){
+    public MenuAjouter(Menu m) {
         this.m = m;
 
         menuAstreBg = new Pane();
@@ -51,7 +39,7 @@ public class MenuAjouter extends Pane {
         menuAstre = new HBox();
         addAstre = new MenuAddAstre(this);
         menu=new HBox();
-        dnd = new DragnDrop(this);
+        dnd = new DragnDrop(this, addAstre);
 
         //Création et affectation du réctangle d'arrière plan derrière le menu
         Rectangle rectangle = new Rectangle();
@@ -63,18 +51,10 @@ public class MenuAjouter extends Pane {
         menuBg.getChildren().add(rectangle);
         menuBg.getChildren().add(menu);
 
-        //menuAstre.getChildren().add(getDnd().getMesAstres());
         menuAstre.setSpacing(10); // espacement 10 pixels
 
-        //Création et éffectation du réctangle d'arrière plan derrière Mes astres
-        /*Rectangle rectangleMenuAstres = new Rectangle();
-        rectangleMenuAstres.setHeight(70);
-        rectangleMenuAstres.setWidth(500);
-        rectangleMenuAstres.setFill(Color.WHITE);//rgb(64, 68, 75, 1));*/
-        //menuAstreBg.getChildren().add(rectangleMenuAstres);
         menuAstreBg.getChildren().add(dnd);
         menuAstreBg.getChildren().add(menuAstre);
-
 
         //Création et éffectation du réctangle d'arrière plan derrière Add astres
         Rectangle rectangleAddAstres = new Rectangle();
@@ -84,7 +64,6 @@ public class MenuAjouter extends Pane {
 
         menuAddAstreBg.getChildren().add(rectangleAddAstres);
         menuAddAstreBg.getChildren().add(addAstre);
-
 
         //eloignement des différents Menu
         menu.setSpacing(200);
@@ -100,5 +79,17 @@ public class MenuAjouter extends Pane {
 
     public DragnDrop getDnd() {
         return dnd;
+    }
+
+    public MenuAddAstre getAddAstre() {
+        return addAstre;
+    }
+
+    public Pane getMenuAstreBg() {
+        return menuAstreBg;
+    }
+
+    public HBox getMenuAstre() {
+        return menuAstre;
     }
 }

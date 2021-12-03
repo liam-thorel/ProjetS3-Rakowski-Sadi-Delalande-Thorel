@@ -24,11 +24,12 @@ public class MenuAddAstre extends VBox {
     private Label error;
     private Label errorProximite;
     private DragnDrop d;
-    private Circle newC;
+    private Circle newB;
+    private Astre newC;
 
-    public MenuAjouter getmA() {
-        return mA;
-    }
+    public Circle getNewB() {return newB;}
+
+    public MenuAjouter getmA() {return mA;}
 
     public MenuAddAstre(MenuAjouter mA) {
         newAstre = new Button();
@@ -124,28 +125,14 @@ public class MenuAddAstre extends VBox {
                     }
                     else{
                         Astre p = new Planete(n,t,m,pX,pY,vX,vY,isFixed);
+                        newC = p;
                         p.toString();
                         Circle a = EspaceView.creerPlaneteCercle(p);
+                        newB = a;
                         mA.getDnd().getPlanetesCourantes().add(a);
+                        System.out.println(mA.getDnd().getMesAstres());
                         getChildren().remove(error);
-                        mA.getM().getSimulationView().getEspace().setOnDragDropped(new EventHandler <DragEvent>() {
-                            public void handle(DragEvent event) { //PLANETE DEPOSEE
-                                if (mA.getM().getSimulationView().getApp().getDebug())System.out.println("onDragDropped laché sur la cible mon ptit pote");
-                                Dragboard db = event.getDragboard();
-                                boolean success = false;
-                                if (db.hasString()) {
-                                    if (mA.getM().getSimulationView().getApp().getDebug())System.out.println("c'est bon mon ptit pote");
-                                    mA.getM().getSimulationView().getEspace().listeA.add(p);
-                                    mA.getDnd().getPlanetesCourantes().remove(mA.getDnd().getaAjouter());
-                                    if (!mA.getM().getSimulationView().getSimulation().getListeAstre().contains(mA.getM().getSimulationView().getEspace().getListeCetA().get(a))) {
-                                        if (mA.getM().getSimulationView().getApp().getDebug())System.out.println("c'est CARRE");
-                                    }
-                                }
-                                else {event.setDropCompleted(false);}
-                                event.setDropCompleted(success);
-                                event.consume();
-                            }
-                        });
+
                     }
                 }catch (NumberFormatException e){
                     getChildren().remove(error);
@@ -168,6 +155,8 @@ public class MenuAddAstre extends VBox {
             }
         };
 
+    public Button getNewAstre() {return newAstre;}
 
+    public Astre getNewC() {return newC;}
 }
 

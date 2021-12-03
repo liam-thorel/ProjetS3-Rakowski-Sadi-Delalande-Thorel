@@ -4,8 +4,10 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.ClipboardContent;
@@ -14,6 +16,9 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.Circle;
+import model.Astre;
+import model.Planete;
+import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 
 public class DragnDrop extends ListView{
 
@@ -21,9 +26,11 @@ public class DragnDrop extends ListView{
     private ObservableList<Circle> planetesCourantes = FXCollections.observableArrayList();
     private ListView<Circle> mesAstres = new ListView<>(planetesCourantes);
     private Circle aAjouter = new Circle();
+    private MenuAddAstre ma;
 
-    public DragnDrop(MenuAjouter menuA){
+    public DragnDrop(MenuAjouter menuA, MenuAddAstre menueAA){
         this.m = menuA;
+        this.ma = this.m.getAddAstre();
         //planetesCourantes = FXCollections.observableArrayList();
         //mesAstres.setItems(planetesCourantes);
 
@@ -34,6 +41,8 @@ public class DragnDrop extends ListView{
             public void onChanged(ListChangeListener.Change<? extends Circle> change) {
                 while(change.next()) {
                     if (change.wasAdded()) {
+                        mesAstres.setItems(planetesCourantes);
+                        System.out.println(change);
                         System.out.println("++Ajout");
                     }
                     if (change.wasRemoved()) {
@@ -93,6 +102,26 @@ public class DragnDrop extends ListView{
         }
         dragEvent.consume();
         });
+
+        m.getM().getSimulationView().getEspace().setOnDragDropped(new EventHandler <DragEvent>() {
+            public void handle(DragEvent event) { //PLANETE DEPOSEE
+                if (m.getM().getSimulationView().getApp().getDebug())System.out.println("onDragDropped laché sur la cible mon ptit pote");
+                Dragboard db = event.getDragboard();
+                boolean success = false;
+                if (db.hasString()) {
+                    if (m.getM().getSimulationView().getApp().getDebug())System.out.println("c'est bon mon ptit pote");
+                    m.getM().getSimulationView().getEspace().listeA.add(ma.getNewC());
+                    planetesCourantes.remove(aAjouter);
+                    if (!m.getM().getSimulationView().getSimulation().getListeAstre().contains(m.getM().getSimulationView().getEspace().getListeCetA().get(ma.getNewB()))) {
+                        if (m.getM().getSimulationView().getApp().getDebug())System.out.println("c'est CARRE");
+                    }
+                }
+                else {event.setDropCompleted(false);}
+                event.setDropCompleted(success);
+                event.consume();
+            }
+        });
+
 
     }
 
