@@ -7,7 +7,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -16,7 +15,6 @@ import model.Simulation;
 
 public class StartView extends Pane {
     private Label welcomeText;
-    private Label systemText;
     private Button charger;
     private Button nouveau;
     private BorderPane root;
@@ -24,14 +22,10 @@ public class StartView extends Pane {
     private VBox field;
     private Label titre;
     private VBox centrage;
-    private Pane background;
-
     public StartView(PlaneteApp app) {
         this.app = app;
         welcomeText = new Label();
-        background = new Pane();
         root = new BorderPane();
-        //root.getStylesheets().addAll(this.getClass().getResource("Css/accueil.css").toExternalForm());
         field = new VBox();
         centrage = new VBox();
         nouveau = new Button("Nouveau Systeme");
@@ -40,8 +34,6 @@ public class StartView extends Pane {
         charger.setOnAction(onChargerSimulation);
         nouveau.setOnAction(onNouvelleSimulation);
 
-        //ImageView background = new ImageView("images/background.png");
-        //root.setStyle("-fx-background-image: url(https://c.pxhere.com/photos/1a/9d/stars_background_blue_photoshop_color_space_sky_dark-610854.jpg!d);-fx-background-repeat : stretch;-fx-background-position: center center;-fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0)");
         field.setAlignment(Pos.CENTER);
         field.setPadding(new Insets(0,0,200,0));
         titre.setAlignment(Pos.CENTER);
@@ -49,22 +41,24 @@ public class StartView extends Pane {
         centrage.getChildren().add(titre);
         titre.getStylesheets().add(this.getClass().getResource("/Css/accueil.css").toExternalForm());
 
-        /*background.setFitWidth(1500);
-        background.setFitHeight(750);*/
 
         ImageView logo = new ImageView(getClass().getResource("/images/logo.png").toExternalForm());
         logo.setFitWidth(753);
         logo.setFitHeight(409);
 
-        nouveau.setPrefWidth(300);
-        charger.setPrefWidth(300);
+        // Boutons
+        nouveau.setPrefWidth(500);
+        charger.setPrefWidth(500);
         field.setSpacing(10);
         field.getChildren().addAll(nouveau, charger);
-        //background.getChildren().add(root);
+
+        //ajout des éléments à la border pane
         root.setTop(centrage);
         root.setCenter(logo);
         root.setBottom(field);
         root.setId("pane");
+
+        //mise en fond du background
         root.getStylesheets().add(this.getClass().getResource("/Css/accueil.css").toExternalForm());
         Scene scene = new Scene(root);
 
