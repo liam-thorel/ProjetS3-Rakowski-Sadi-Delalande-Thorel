@@ -28,8 +28,6 @@ public class StartView extends Pane {
 
     public StartView(PlaneteApp app) {
         this.app = app;
-        setWidth(1200);
-        setHeight(600);
         welcomeText = new Label();
         background = new Pane();
         root = new BorderPane();
@@ -64,7 +62,7 @@ public class StartView extends Pane {
         field.getChildren().addAll(nouveau, charger);
         //background.getChildren().add(root);
         root.setTop(centrage);
-        //root.setCenter(logo);
+        root.setCenter(logo);
         root.setBottom(field);
         root.setId("pane");
         root.getStylesheets().add(this.getClass().getResource("/Css/accueil.css").toExternalForm());
