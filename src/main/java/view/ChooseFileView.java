@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import model.Simulation;
 import modelView.ISimulation;
 
 import java.io.File;
@@ -50,7 +49,7 @@ public class ChooseFileView extends Stage {
         boutons.setSpacing(50);
         double tailleTotale = (chargerFile.getPrefHeight()+retourPageAccueil.getPrefHeight()+chargerSystemeSolaire.getPrefHeight()+boutons.getSpacing()*2);
 
-        boutons.relocate(app.getStage().getWidth()/3.5+(chargerFile.getPrefWidth()/3.3),app.getStage().getHeight()-tailleTotale*2);
+        boutons.relocate(app.getStage().getWidth()/2+(chargerFile.getPrefWidth()/3),app.getStage().getHeight()-tailleTotale*2);
 
 
 
