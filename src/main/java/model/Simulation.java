@@ -13,7 +13,7 @@ public class Simulation {
     private ArrayList<Astre> listeAstre;
     public static double scaleDistance = Math.pow(10, 9); //milliard de m ou million de km
     public static double scaleMasse = Math.pow(10,22); //kg
-    public static double scaleTemps = 315360000; // 1 frame ~~ 1 mois
+    public static double scaleTemps = 43200; // nb de seconde pendant une frame
     private File file;
 
     public Simulation(){

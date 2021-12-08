@@ -108,8 +108,10 @@ public class EspaceView extends Pane {
             if (sV.getApp().getDebug())System.out.println("nouvelle position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
             Circle currentC = listeAetC.get(a);
             currentC.relocate(a.getPositionX() - a.getTaille()/2, a.getPositionY() - a.getTaille()/2);
-            /*for (Astre autre : ISimulation.getOther(a, s.getListeAstre())){
-                if(IAstre.verifCollision(a,autre))IAstre.collisionFusion(a,autre);
+            /*for (Astre autre : ISimulation.getOther(a, listeAetC.keySet())){
+                if(IAstre.verifCollision(a,autre)){
+                    IAstre.collisionFusion(a,autre);
+                }
             }*/
             if(showingT.getValue()){
                 tracerTrajectoire(a);

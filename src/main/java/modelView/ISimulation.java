@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class ISimulation {
 
@@ -79,7 +80,7 @@ public class ISimulation {
      * @return la liste des autres astres
      * */
 
-    public static ArrayList<Astre> getOther(Astre a, ArrayList<Astre> listeA){
+    public static ArrayList<Astre> getOther(Astre a, Collection<Astre> listeA){
         ArrayList<Astre> r = new ArrayList<>(listeA);
         r.remove(a);
         return r;
