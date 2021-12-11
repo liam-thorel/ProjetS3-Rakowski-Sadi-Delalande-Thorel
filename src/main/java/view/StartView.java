@@ -17,6 +17,7 @@ public class StartView extends Pane {
     private Label welcomeText;
     private Button charger;
     private Button nouveau;
+    private Button credit;
     private BorderPane root;
     private PlaneteApp app;
     private VBox field;
@@ -30,6 +31,7 @@ public class StartView extends Pane {
         centrage = new VBox();
         nouveau = new Button("Nouveau Systeme");
         charger = new Button("Charger Systeme");
+        credit = new Button("Crédit");
         titre = new Label("Trajectoire de planètes");
         charger.setOnAction(onChargerSimulation);
         nouveau.setOnAction(onNouvelleSimulation);
@@ -49,8 +51,9 @@ public class StartView extends Pane {
         // Boutons
         nouveau.setPrefWidth(500);
         charger.setPrefWidth(500);
+        credit.setPrefWidth(500);
         field.setSpacing(10);
-        field.getChildren().addAll(nouveau, charger);
+        field.getChildren().addAll(nouveau, charger,credit);
 
         //ajout des éléments à la border pane
         root.setTop(centrage);
