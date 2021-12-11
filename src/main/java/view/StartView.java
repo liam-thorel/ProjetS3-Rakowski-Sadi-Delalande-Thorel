@@ -35,6 +35,7 @@ public class StartView extends Pane {
         titre = new Label("Trajectoire de planètes");
         charger.setOnAction(onChargerSimulation);
         nouveau.setOnAction(onNouvelleSimulation);
+        credit.setOnAction(onCredit);
 
         field.setAlignment(Pos.CENTER);
         field.setPadding(new Insets(0,0,200,0));
@@ -82,10 +83,16 @@ public class StartView extends Pane {
     private EventHandler<ActionEvent> onNouvelleSimulation = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent) {
-            welcomeText.setText("Generation de la nouvelle simulation...");
             Simulation s = new Simulation();
             app.initSimulation(s);
 
+        }
+    };
+
+    private EventHandler<ActionEvent> onCredit = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            app.initCredit();
         }
     };
 
