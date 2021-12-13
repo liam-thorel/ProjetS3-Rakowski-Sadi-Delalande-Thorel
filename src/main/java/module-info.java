@@ -12,5 +12,4 @@ module com.example.demo {
     requires java.desktop;
     exports view;
     exports model;
-    exports modelView;
 }
