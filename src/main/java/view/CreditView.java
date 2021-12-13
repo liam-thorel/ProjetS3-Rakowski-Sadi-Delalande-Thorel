@@ -3,6 +3,7 @@ package view;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -27,14 +28,15 @@ public class CreditView extends Stage {
         this.app=app;
         root = new Pane();
         all = new BorderPane();
+        retourPageAccueil = new Button("Retour à la Page d'accueil");
 
         root.setId("bg");
         root.getStylesheets().add(this.getClass().getResource("/Css/simulation.css").toExternalForm());
 
-        retourPageAccueil = new Button("Retour à la Page d'accueil");
+        retourPageAccueil.setAlignment(Pos.CENTER);
+
         retourPageAccueil.setOnAction(pageAccueil);
-        retourPageAccueil.setStyle("-fx-font: 35 arial;-fx-font-family: OpenSymbol;-fx-font-weight: bold;");
-        retourPageAccueil.setPrefSize(500,70);
+        retourPageAccueil.setStyle("-fx-font: 30 arial;-fx-font-family: OpenSymbol;-fx-font-weight: bold;");
 
         all.setBottom(retourPageAccueil);
 
