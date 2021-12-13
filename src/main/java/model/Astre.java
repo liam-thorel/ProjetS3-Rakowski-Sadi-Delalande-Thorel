@@ -185,7 +185,7 @@ public abstract class Astre implements Serializable {
     public static double distanceCentres(Astre a1, Astre a2){
         double distanceX = (a1.getPositionX() - a2.getPositionX());
         double distanceY = (a1.getPositionY() - a2.getPositionY());
-        return Math.sqrt(Math.pow(Math.abs(distanceX), 2) + (Math.pow(Math.abs(distanceY), 2) + 1.f));
+        return Math.sqrt(Math.pow(Math.abs(distanceX), 2) + (Math.pow(Math.abs(distanceY), 2)));
 
     }
     public static Boolean verifCollision(Astre a, Astre b) {
