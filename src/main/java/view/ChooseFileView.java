@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -19,14 +20,14 @@ public class ChooseFileView extends Stage {
 
     private Button chargerFile, chargerSystemeSolaire, retourPageAccueil;
     private PlaneteApp app;
-    private Pane root;
+    private BorderPane root;
     public File fichierSimu;
     private VBox boutons;
     private Label erreur;
 
     public ChooseFileView(PlaneteApp app) {
         this.app = app;
-        root = new Pane();
+        root = new BorderPane();
         boutons = new VBox();
 
         chargerSystemeSolaire = new Button("Charger système solaire");
@@ -56,7 +57,7 @@ public class ChooseFileView extends Stage {
 
         boutons.setAlignment(Pos.CENTER);
 
-        root.getChildren().add(boutons);
+        root.setCenter(boutons);
         root.setId("bg");
         root.getStylesheets().add(this.getClass().getResource("/Css/simulation.css").toExternalForm());
 
