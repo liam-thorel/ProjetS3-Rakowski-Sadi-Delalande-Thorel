@@ -32,17 +32,17 @@ public class ChooseFileView extends Stage {
 
         chargerSystemeSolaire = new Button("Charger système solaire");
         chargerSystemeSolaire.setOnAction(chargerSystemeSol);
-        chargerSystemeSolaire.setStyle("-fx-font: 35 arial;-fx-font-family: OpenSymbol;-fx-font-weight: bold;");
+        chargerSystemeSolaire.setStyle("-fx-font: 30 arial;-fx-font-family: OpenSymbol;-fx-font-weight: bold;");
         chargerSystemeSolaire.setPrefSize(500,70);
 
         retourPageAccueil = new Button("Retour à la Page d'accueil");
         retourPageAccueil.setOnAction(pageAccueil);
-        retourPageAccueil.setStyle("-fx-font: 35 arial;-fx-font-family: OpenSymbol;-fx-font-weight: bold;");
+        retourPageAccueil.setStyle("-fx-font: 30 arial;-fx-font-family: OpenSymbol;-fx-font-weight: bold;");
         retourPageAccueil.setPrefSize(500,70);
 
         chargerFile = new Button("Charger simulation");
         chargerFile.setOnAction(chargerFileEvent);
-        chargerFile.setStyle("-fx-font: 35 arial;-fx-font-family: OpenSymbol;-fx-font-weight: bold;");
+        chargerFile.setStyle("-fx-font: 30 arial;-fx-font-family: OpenSymbol;-fx-font-weight: bold;");
         chargerFile.setPrefSize(500,70);
 
 
