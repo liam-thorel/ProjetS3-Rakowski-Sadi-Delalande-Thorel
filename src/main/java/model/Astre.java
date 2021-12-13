@@ -193,23 +193,12 @@ public abstract class Astre implements Serializable {
     }
 
     public static void collisionFusion(Astre a, Astre b){
-        if (a.getMasse()>= b.getMasse()){
             a.incrementMasse(b.getMasse());
             a.incrementTaille(b.getTaille()/2);
             a.setVitesseX(a.getVitesseX()*a.getMasse()/(b.getMasse()+a.getMasse())+b.getVitesseX()*b.getMasse()/(b.getMasse()+a.getMasse()));
             a.setVitesseX(a.getVitesseX()*a.getMasse()/(b.getMasse()+a.getMasse())+b.getVitesseX()*b.getMasse()/(b.getMasse()+a.getMasse()));
-            a.setColor(Color.hsb((a.getColor().getRed()+b.getColor().getRed())/2, (a.getColor().getGreen()+b.getColor().getRed())/2, (a.getColor().getBlue()+b.getColor().getRed())/2));
+            a.setColor(Color.hsb((a.getColor().getHue()+b.getColor().getHue())/2, (a.getColor().getSaturation()+b.getColor().getSaturation())/2, (a.getColor().getBrightness()+b.getColor().getBrightness())/2));
             b.setMasse(1);
             b.setTaille(1);
-        } else{
-            b.incrementMasse(a.getMasse());
-            b.incrementTaille(a.getTaille());
-            b.setVitesseX(a.getVitesseX()*a.getMasse()/(b.getMasse()+a.getMasse())+b.getVitesseX()*b.getMasse()/(b.getMasse()+a.getMasse()));
-            b.setVitesseY(a.getVitesseY()*a.getMasse()/(b.getMasse()+a.getMasse())+b.getVitesseY()*a.getMasse()/(b.getMasse()+a.getMasse()));
-            b.setColor(Color.hsb((a.getColor().getRed()+b.getColor().getRed())/2, (a.getColor().getGreen()+b.getColor().getRed())/2, (a.getColor().getBlue()+b.getColor().getRed())/2));
-            a.setMasse(1);
-            a.setTaille(1);
-        }
     }
-
 }
