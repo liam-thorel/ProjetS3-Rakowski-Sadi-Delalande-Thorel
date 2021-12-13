@@ -48,13 +48,6 @@ public class ChooseFileView extends Stage {
 
         boutons.getChildren().addAll(chargerSystemeSolaire,chargerFile,retourPageAccueil);
         boutons.setSpacing(50);
-        double tailleTotale = (chargerFile.getPrefHeight()+retourPageAccueil.getPrefHeight()+chargerSystemeSolaire.getPrefHeight()+boutons.getSpacing()*2);
-
-        boutons.relocate(app.getStage().getWidth()/2+(chargerFile.getPrefWidth()/3),app.getStage().getHeight()-tailleTotale*2);
-
-
-
-
         boutons.setAlignment(Pos.CENTER);
 
         root.setCenter(boutons);
