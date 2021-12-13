@@ -13,7 +13,6 @@ import javafx.scene.paint.Color;
 
 import javafx.event.ActionEvent;
 import model.Simulation;
-import modelView.ISimulation;
 
 import java.io.IOException;
 
@@ -115,7 +114,7 @@ public class OptionView extends Pane {
             @Override
             public void handle(ActionEvent actionEvent){
                     try {
-                        sV.getApp().initSimulation(ISimulation.setAPartirDunFichier(sV.getSimulation().getFile()));
+                        sV.getApp().initSimulation(Simulation.setAPartirDunFichier(sV.getSimulation().getFile()));
                     } catch (IOException | NullPointerException | ClassNotFoundException e) {
                         sV.getApp().initSimulation(new Simulation());
                     }

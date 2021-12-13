@@ -6,7 +6,6 @@ import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Simulation;
-import modelView.ISimulation;
 
 import java.io.File;
 import java.io.IOException;
@@ -130,7 +129,7 @@ public class PlaneteApp extends Application {
             File s = fileChooser.showOpenDialog(new Stage());
             try {
                 emplacement = s;
-                initSimulation(ISimulation.setAPartirDunFichier(s));
+                initSimulation(Simulation.setAPartirDunFichier(s));
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (NullPointerException e) {
@@ -149,7 +148,7 @@ public class PlaneteApp extends Application {
             }
             File s =fileChooser.showSaveDialog(new Stage());
             try {
-                ISimulation.saveListeAstre(s, simulation.getListeAstre());
+                Simulation.saveListeAstre(s, simulation.getListeAstre());
                 emplacement = s;
             } catch (IOException e) {
                 e.printStackTrace();

@@ -1,6 +1,5 @@
 package view;
 
-import javafx.beans.property.DoubleProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -16,7 +15,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import model.Astre;
-import modelView.IAstre;
 
 public class MenuSysteme extends Pane {
 
@@ -132,7 +130,7 @@ public class MenuSysteme extends Pane {
                 vY.setText(String.valueOf((int) Math.round(a.getVitesseY()*100.0)/100.0));
             }
         };
-        IAstre.addListenerAll(a, onChange);
+        Astre.addListenerAll(a, onChange);
     }
 
     public Menu getMenuGen() {

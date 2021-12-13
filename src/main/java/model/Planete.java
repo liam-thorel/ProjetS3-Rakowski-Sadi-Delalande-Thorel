@@ -3,6 +3,7 @@ package model;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
@@ -156,5 +157,18 @@ public class Planete extends Astre{
         this.vitesseY.set(vitesseY);
     }
 
+
+    public static void addVitesse(ArrayList<Astre> listeA, Astre current){
+        Astre.addVitesse(listeA, current);
+    }
+
+    public static void setPositions(Astre current){
+        Astre.setPositions(current);
+        System.out.println("je passe par planete");
+    }
+
+    public static void addListenerAll(Astre a, ChangeListener<Number> changeListener){
+        Astre.addListenerAll(a, changeListener);
+    }
 
 }
