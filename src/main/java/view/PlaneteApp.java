@@ -20,6 +20,7 @@ public class PlaneteApp extends Application {
     private Simulation simulation;
     private File emplacement;
     private Boolean debug = true;
+    private CreditView creditView;
 
 
 
@@ -60,6 +61,13 @@ public class PlaneteApp extends Application {
     public void initStart(){
         stage.setMaximized(false);
         startView = new StartView(this);
+        stage.setMaximized(true);
+
+    }
+
+    public void initCredit(){
+        stage.setMaximized(false);
+        creditView = new CreditView(this);
         stage.setMaximized(true);
 
     }

@@ -4,10 +4,9 @@
 }
 
 .label {
-    -fx-font-size: 100px;
+    -fx-font-size: 75px;
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-label-padding: 50;
     -fx-font-family: 'Gravitas';
 
 }
@@ -24,5 +23,7 @@
 #pane{
     -fx-background-image:url(../images/background.png);
 }
+
+
 
 
