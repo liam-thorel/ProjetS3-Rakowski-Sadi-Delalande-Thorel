@@ -36,6 +36,7 @@ public class CreditView extends Stage {
 
         root.setId("bg");
         root.getStylesheets().add(this.getClass().getResource("/Css/simulation.css").toExternalForm());
+        remerciement.getStylesheets().add(this.getClass().getResource("/Css/accueil.css").toExternalForm());
 
         retourPageAccueil.setAlignment(Pos.CENTER);
 
