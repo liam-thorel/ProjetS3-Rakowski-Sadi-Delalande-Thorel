@@ -85,6 +85,7 @@ public class OptionView extends Pane {
                    @Override
                    public void handle(ActionEvent actionEvent) {
                        ancient.setAlignment(Pos.CENTER);
+                       ancient.setSpacing(10);
                         bouttons.getChildren().setAll(ancient);
                    }
                };
