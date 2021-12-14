@@ -241,12 +241,30 @@ public class EspaceView extends Pane {
         }
     };
 
+    public boolean mouseInAstre(double mX, double mY){
+        boolean isInAstre = false;
+        for(Astre a : listeCetA.values()){
+            if(a.getPositionX() - a.getTaille() < mX && mX< a.getPositionX()+ a.getTaille()){
+                if( a.getPositionY() - a.getTaille() < mY && mY < a.getPositionY()+a.getTaille()){
+                    isInAstre = true;
+                }
+            }
+        }
+
+        return isInAstre;
+
+    }
+
     private EventHandler<MouseEvent> nothingSelected = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent mouseEvent) {
-            sV.getMenu().getMenuSysteme().afficherList();
+            if(!mouseInAstre(mouseEvent.getX(), mouseEvent.getY())) {
+
+                sV.getMenu().getMenuSysteme().afficherList();
+            }
         }
     };
+
 
 
 
