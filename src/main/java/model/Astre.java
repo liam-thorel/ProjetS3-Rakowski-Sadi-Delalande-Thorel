@@ -195,8 +195,8 @@ public abstract class Astre implements Serializable {
     public static void collisionFusion(Astre a, Astre b){
         a.incrementMasse(b.getMasse());
         a.incrementTaille(b.getTaille()/2);
-        a.setVitesseX((a.getVitesseX()+b.getVitesseX())*a.getMasse()/(b.getMasse()+a.getMasse()));
-        a.setVitesseY((a.getVitesseY()+b.getVitesseY())*a.getMasse()/(b.getMasse()+a.getMasse()));
+        a.setVitesseX(((a.getVitesseX()*a.getMasse())+(b.getVitesseX()*b.getMasse()))/(a.getMasse()+b.getMasse()));
+        a.setVitesseY(((a.getVitesseY()*a.getMasse())+(b.getVitesseY()*b.getMasse()))/(a.getMasse()+b.getMasse()));
         a.setColor(Color.hsb((a.getColor().getHue()+b.getColor().getHue())/2, (a.getColor().getSaturation()+b.getColor().getSaturation())/2, (a.getColor().getBrightness()+b.getColor().getBrightness())/2));
     }
 }
