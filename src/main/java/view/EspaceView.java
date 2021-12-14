@@ -43,6 +43,7 @@ public class EspaceView extends Pane {
 
 
     public EspaceView(SimulationView sV){
+        this.setOnMouseClicked(nothingSelected);
         this.sV = sV;
         this.s = sV.getSimulation();
         listeAetC = new HashMap<>();
@@ -159,7 +160,7 @@ public class EspaceView extends Pane {
                     listeCetA.put(c, a);
                     getChildren().add(c);
                     c.relocate(c.getCenterX(), c.getCenterY());
-                    c.setOnMouseClicked(selected);
+                    setSelectedListener(listeCetA, c);
                     if(!s.getListeAstre().contains(a)){
                     s.getListeAstre().add(a);}
 
@@ -182,34 +183,39 @@ public class EspaceView extends Pane {
         return listeCetA;
     }
 
-    //eventHandler de la selection des cercles
-    public EventHandler<MouseEvent> selected = new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent mouseEvent) {
-            Circle selectedC = (Circle) mouseEvent.getSource();
-            Astre selectedA = listeCetA.get(selectedC);
-            Button supprimer = new Button("Supprimer " + selectedA.getNom());
-            Button modifier = new Button("Modifier " + selectedA.getNom());
-            EventHandler<ActionEvent> supression = new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
-                    listeA.remove(selectedA);
-                    sV.getMenu().getMenuSysteme().rmv();
-                }
-            };
 
-            EventHandler<ActionEvent> onModify = new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
-                    sV.getMenu().getMenuSysteme().modifierInfos(selectedA, supprimer, modifier);
-                }
-            };
-            supprimer.setOnAction(supression);
-            modifier.setOnAction(onModify);
-            sV.getMenu().getMenuSysteme().afficherInfos(selectedA, supprimer, modifier);
+    public void setSelectedListener(HashMap<Circle, Astre> hashMap, Circle c){
 
-        }
-    };
+        //eventHandler de la selection des cercles
+         EventHandler<MouseEvent> selected = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                Circle selectedC = (Circle) mouseEvent.getSource();
+                Astre selectedA = hashMap.get(selectedC);
+                Button supprimer = new Button("Supprimer " + selectedA.getNom());
+                Button modifier = new Button("Modifier " + selectedA.getNom());
+                EventHandler<ActionEvent> supression = new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        listeA.remove(selectedA);
+                        sV.getMenu().getMenuSysteme().rmv();
+                    }
+                };
+
+                EventHandler<ActionEvent> onModify = new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        sV.getMenu().getMenuSysteme().modifierInfos(selectedA, supprimer, modifier);
+                    }
+                };
+                supprimer.setOnAction(supression);
+                modifier.setOnAction(onModify);
+                sV.getMenu().getMenuSysteme().afficherInfos(selectedA, supprimer, modifier);
+
+            }
+        };
+         c.setOnMouseClicked(selected);
+    }
 
     private ArrayList<Circle> listeTrajectoires = new ArrayList<>();
 
@@ -235,6 +241,15 @@ public class EspaceView extends Pane {
         }
     };
 
+    private EventHandler<MouseEvent> nothingSelected = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent mouseEvent) {
+            sV.getMenu().getMenuSysteme().afficherList();
+        }
+    };
+
+
+
     public void effacerAllTrajectoire(){
         getChildren().removeAll(listeTrajectoires);
         listeTrajectoires.clear();
@@ -258,5 +273,7 @@ public class EspaceView extends Pane {
     public ObservableList<Astre> getListeA() {
         return listeA;
     }
+
+
 }
 

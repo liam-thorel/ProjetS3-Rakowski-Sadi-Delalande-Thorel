@@ -12,12 +12,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import model.Astre;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MenuSysteme extends Pane {
 
@@ -58,6 +60,9 @@ public class MenuSysteme extends Pane {
 
         //ajout a menu de l'ensemble des sous menu
         menu.getChildren().addAll(menuSysBg);
+
+        //au debut on affiche la liste de tout
+        afficherList();
 
     }
 
@@ -225,14 +230,34 @@ public class MenuSysteme extends Pane {
         menuSys.add(apply, 8, 0);
     }
 
+
+    HashMap<Circle, Astre> listeCetA;
+
+
     public void afficherList(){
+
+        menuSys.getChildren().clear();
         ArrayList<Astre> listeA = menuGen.getSimulationView().getSimulation().getListeAstre();
-        GridPane all = new GridPane();
+
         int count = 0;
         for(Astre a : listeA){
             Circle c = new Circle();
             c.setFill(a.getColor());
+            c.setRadius(20);
+            listeCetA.put(c, a);
 
+            Label nom = new Label(a.getNom());
+            nom.setAlignment(Pos.CENTER);
+            VBox box = new VBox();
+            box.setSpacing(3);
+            box.getChildren().addAll(nom, c);
+            menuSys.add(box, count, 0);
+            count++;
         }
+
+        for(Circle c : listeCetA.keySet()){
+            menuGen.getSimulationView().getEspace().setSelectedListener(listeCetA, c);
+        }
+
     }
 }
