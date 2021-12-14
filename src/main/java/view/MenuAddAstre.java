@@ -125,13 +125,13 @@ public class MenuAddAstre extends VBox {
                     }
                     else{
                         Astre p = new Planete(n,t,m,pX,pY,vX,vY,isFixed);
-                        newC = p;
-                        p.toString();
+                        //newC = p;
+                        //p.toString();
                         //Circle a = EspaceView.creerPlaneteCercle(p);
                         //newB = a;
                         //mA.getDnd().getPlanetesCourantes().add(a);
-                        mA.getM().getSimulationView().getEspace().getListeA().add(newC);
-                        System.out.println(mA.getDnd().getMesAstres());
+                        mA.getM().getSimulationView().getEspace().getListeA().add(p);
+                        //if (mA.getM().getSimulationView().getApp().getDebug())System.out.println(mA.getDnd().getMesAstres());
                         getChildren().remove(error);
 
                     }
