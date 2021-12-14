@@ -21,10 +21,13 @@ public class CreditView extends Stage {
     private Label remerciement;
     private Label tuteur;
     private Label createur;
-    private Label createurs;
     private PlaneteApp app;
     private VBox text;
     private HBox centrage;
+    private Label mae;
+    private Label tom;
+    private Label lia;
+    private Label lei;
 
     public CreditView(PlaneteApp app){
         this.app=app;
@@ -34,9 +37,36 @@ public class CreditView extends Stage {
         remerciement = new Label("Remerciments :");
         retourPageAccueil = new Button("Retour à la Page d'accueil");
 
+
+
         root.setId("bg");
         root.getStylesheets().add(this.getClass().getResource("/Css/simulation.css").toExternalForm());
         remerciement.getStylesheets().add(this.getClass().getResource("/Css/accueil.css").toExternalForm());
+        remerciement.setPadding(new Insets(20,0,0,30));
+
+        tuteur = new Label("Notre tuteur pour ce projet Rosenfeld Matthieu");
+        tuteur.setStyle("-fx-font-size: 25");
+        tuteur.setPadding(new Insets(30,0,0,60));
+
+        createur = new Label("Créateurs :");
+        createur.getStylesheets().add(this.getClass().getResource("/Css/accueil.css").toExternalForm());
+        createur.setPadding(new Insets(40,0,0,30));
+
+        mae = new Label("• Maelis Rakowski");
+        mae.setStyle("-fx-font-size: 25");
+        mae.setPadding(new Insets(50,0,0,60));
+
+        tom = new Label("• Tom Delalande");
+        tom.setStyle("-fx-font-size: 25");
+        tom.setPadding(new Insets(50,0,0,60));
+
+        lia = new Label("• Liam Thorel");
+        lia.setStyle("-fx-font-size: 25");
+        lia.setPadding(new Insets(50,0,0,60));
+
+        lei = new Label("• Leina Sadi");
+        lei.setStyle("-fx-font-size: 25");
+        lei.setPadding(new Insets(50,0,0,60));
 
         retourPageAccueil.setAlignment(Pos.CENTER);
 
@@ -48,7 +78,7 @@ public class CreditView extends Stage {
 
 
 
-        text.getChildren().add(remerciement);
+        text.getChildren().addAll(remerciement,tuteur,createur,tom,mae,lei,lia);
         root.setCenter(text);
         root.setBottom(centrage);
 
