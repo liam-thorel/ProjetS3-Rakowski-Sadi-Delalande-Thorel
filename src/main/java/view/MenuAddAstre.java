@@ -127,9 +127,10 @@ public class MenuAddAstre extends VBox {
                         Astre p = new Planete(n,t,m,pX,pY,vX,vY,isFixed);
                         newC = p;
                         p.toString();
-                        Circle a = EspaceView.creerPlaneteCercle(p);
-                        newB = a;
-                        mA.getDnd().getPlanetesCourantes().add(a);
+                        //Circle a = EspaceView.creerPlaneteCercle(p);
+                        //newB = a;
+                        //mA.getDnd().getPlanetesCourantes().add(a);
+                        mA.getM().getSimulationView().getEspace().getListeA().add(newC);
                         System.out.println(mA.getDnd().getMesAstres());
                         getChildren().remove(error);
 
