@@ -236,6 +236,7 @@ public class MenuSysteme extends Pane {
 
     public void afficherList(){
 
+        listeCetA = new HashMap<>();
         menuSys.getChildren().clear();
         ArrayList<Astre> listeA = menuGen.getSimulationView().getSimulation().getListeAstre();
 
