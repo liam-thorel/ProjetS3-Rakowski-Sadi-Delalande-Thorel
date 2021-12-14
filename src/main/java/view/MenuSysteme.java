@@ -13,8 +13,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import model.Astre;
+
+import java.util.ArrayList;
 
 public class MenuSysteme extends Pane {
 
@@ -222,5 +225,14 @@ public class MenuSysteme extends Pane {
         menuSys.add(apply, 8, 0);
     }
 
+    public void afficherList(){
+        ArrayList<Astre> listeA = menuGen.getSimulationView().getSimulation().getListeAstre();
+        GridPane all = new GridPane();
+        int count = 0;
+        for(Astre a : listeA){
+            Circle c = new Circle();
+            c.setFill(a.getColor());
 
+        }
+    }
 }

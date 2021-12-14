@@ -73,6 +73,25 @@ public class EspaceView extends Pane {
         timer.start();
 
     }
+
+    /**
+     * Constructeur pour les test unitaires
+     * */
+    public EspaceView(Simulation simu){
+        this.s = simu;
+        listeAetC = new HashMap<>();
+        listeCetA = new HashMap<>();
+        listeA = FXCollections.observableArrayList();
+        listeA.addListener(addingOrRemovingAstres);
+        listeA.addAll(s.getListeAstre());
+
+        playing.setValue(false);
+        showingT.setValue(true);
+        showingT.addListener(onShowingT);
+
+
+    }
+
     // prend un Astre en paramètre et créer un cercle le représentant graphiquement
     public static Circle creerPlaneteCercle(Astre p){
         Circle planete = new Circle();
