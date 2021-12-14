@@ -72,7 +72,9 @@ public class ChooseFileView extends Stage {
         @Override
         public void handle(ActionEvent actionEvent) {
             try {
+                File fichier = new File("presets/systeme-solaire.simu");
                 app.initSimulation(Simulation.setAPartirDunFichier(new File("presets/systeme-solaire.simu")));
+                boutons.getChildren().add(erreur = new Label(fichier.getAbsolutePath()));
             }catch (NoSuchFileException e) {
                 boutons.getChildren().remove(erreur);
                 boutons.getChildren().add(erreur = new Label("Fichier preset systeme solaire.simu non trouvé"));
