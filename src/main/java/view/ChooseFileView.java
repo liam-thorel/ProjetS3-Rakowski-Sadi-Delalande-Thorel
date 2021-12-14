@@ -76,7 +76,7 @@ public class ChooseFileView extends Stage {
             }catch (NoSuchFileException e) {
                 boutons.getChildren().remove(erreur);
                 File fichier = new File("presets/systeme solaire.simu");
-                boutons.getChildren().add(erreur = new Label("Fichier systeme-solaire.simu non trouvé à l'emplacement "  + fichier.getAbsolutePath()));
+                boutons.getChildren().add(erreur = new Label("Fichier systeme solaire.simu non trouvé à l'emplacement "  + fichier.getAbsolutePath()));
             }catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
