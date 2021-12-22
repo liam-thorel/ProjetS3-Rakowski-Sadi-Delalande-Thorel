@@ -86,7 +86,7 @@ public class OptionView extends Pane {
                 CheckBox showTraj = new CheckBox("afficher les trajectoires");
                 CheckBox colision = new CheckBox("Activer/Désativer les colisions");
                 showTraj.setSelected(sV.getEspace().isShowingT());
-                colision.setSelected(sV.getEspace().isColisionBoolean());
+                colision.setSelected(sV.getEspace().isColisionBoolean() );
                 showTraj.setTextFill(Color.WHITE);
                 colision.setTextFill(Color.WHITE);
                 EventHandler<ActionEvent> onRetourOption = new EventHandler<ActionEvent>() {
