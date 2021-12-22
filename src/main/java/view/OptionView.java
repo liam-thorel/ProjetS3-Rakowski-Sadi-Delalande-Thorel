@@ -84,8 +84,11 @@ public class OptionView extends Pane {
                 bouttons.getChildren().add(titre);
                 Button retourOptions= new Button("retour");
                 CheckBox showTraj = new CheckBox("afficher les trajectoires");
+                CheckBox colision = new CheckBox("Activer/Désativer les colisions");
                 showTraj.setSelected(sV.getEspace().isShowingT());
+                colision.setSelected(sV.getEspace().isShowingT());
                 showTraj.setTextFill(Color.WHITE);
+                colision.setTextFill(Color.WHITE);
                 EventHandler<ActionEvent> onRetourOption = new EventHandler<ActionEvent>() {
                    @Override
                    public void handle(ActionEvent actionEvent) {
@@ -101,10 +104,17 @@ public class OptionView extends Pane {
                         sV.getEspace().setShowingT(showTraj.isSelected());
                     }
                 };
+                EventHandler<ActionEvent> OnColision = new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        sV.getEspace().setColisionBoolean(colision.isSelected());
+                    }
+                };
 
                 retourOptions.setOnAction(onRetourOption);
                 showTraj.setOnAction(onShowingTParam);
-                bouttons.getChildren().addAll(showTraj,retourOptions);
+                colision.setOnAction(OnColision);
+                bouttons.getChildren().addAll(showTraj,colision,retourOptions);
             }
         };
 

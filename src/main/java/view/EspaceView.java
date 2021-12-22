@@ -39,6 +39,8 @@ public class EspaceView extends Pane {
     private AnimationTimer timer;
     private long previousL = 0;
     private SimulationView sV;
+    //boolean de colision activé ou pas
+    private boolean colisionBoolean;
 
 
 
@@ -55,6 +57,7 @@ public class EspaceView extends Pane {
 
         playing.setValue(false);
         showingT.setValue(true);
+        colisionBoolean = true;
         showingT.addListener(onShowingT);
 
         timer = new AnimationTimer() {
@@ -129,7 +132,7 @@ public class EspaceView extends Pane {
             Circle currentC = listeAetC.get(a);
             currentC.relocate(a.getPositionX() - a.getTaille()/2, a.getPositionY() - a.getTaille()/2);
             for (Astre autre : Simulation.getOther(a, listeAetC.keySet())){
-                if(Astre.verifCollision(a,autre)){
+                if(Astre.verifCollision(a,autre) && colisionBoolean){
                     if (a.getMasse()>=autre.getMasse()){
                         Astre.collisionFusion(a,autre);
                         listeA.remove(autre);
@@ -294,6 +297,8 @@ public class EspaceView extends Pane {
         return listeA;
     }
 
-
+    public void setColisionBoolean(boolean colisionBoolean) {
+        this.colisionBoolean = colisionBoolean;
+    }
 }
 

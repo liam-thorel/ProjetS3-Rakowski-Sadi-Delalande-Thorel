@@ -74,7 +74,6 @@ public abstract class Astre implements Serializable {
         this.nom = nom;
     }
 
-
     public void setPositionX(double positionX) {
         this.positionX.set(positionX);
     }
@@ -192,11 +191,11 @@ public abstract class Astre implements Serializable {
         return distanceCentres(a, b) <= a.getTaille()/2 + b.getTaille()/2;
     }
 
-    public static void collisionFusion(Astre a, Astre b){
+    public static void collisionFusion(Astre a, Astre b) {
         a.incrementMasse(b.getMasse());
-        a.incrementTaille(b.getTaille()/2);
-        a.setVitesseX(((a.getVitesseX()*a.getMasse())+(b.getVitesseX()*b.getMasse()))/(a.getMasse()+b.getMasse()));
-        a.setVitesseY(((a.getVitesseY()*a.getMasse())+(b.getVitesseY()*b.getMasse()))/(a.getMasse()+b.getMasse()));
-        a.setColor(Color.hsb((a.getColor().getHue()+b.getColor().getHue())/2, (a.getColor().getSaturation()+b.getColor().getSaturation())/2, (a.getColor().getBrightness()+b.getColor().getBrightness())/2));
+        a.incrementTaille(b.getTaille() / 2);
+        a.setVitesseX(((a.getVitesseX() * a.getMasse()) + (b.getVitesseX() * b.getMasse())) / (a.getMasse() + b.getMasse()));
+        a.setVitesseY(((a.getVitesseY() * a.getMasse()) + (b.getVitesseY() * b.getMasse())) / (a.getMasse() + b.getMasse()));
+        a.setColor(Color.hsb((a.getColor().getHue() + b.getColor().getHue()) / 2, (a.getColor().getSaturation() + b.getColor().getSaturation()) / 2, (a.getColor().getBrightness() + b.getColor().getBrightness()) / 2));
     }
 }
