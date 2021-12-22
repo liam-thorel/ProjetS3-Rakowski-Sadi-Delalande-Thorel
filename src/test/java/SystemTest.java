@@ -26,11 +26,11 @@ public class SystemTest {
     public void setUp(){
         CreateurPlanete factoryP = new CreateurPlanete();
         ArrayList<Astre> listeSimu = new ArrayList<>();
-        Astre p1 = factoryP.factory("p1", 100, 100, 100, 100, 100, 100, false);
-        Astre p2 = factoryP.factory("p2", 100, 100, 100, 100, 100, 100, false);
-        Astre p3 = factoryP.factory("p3", 100, 100, 100, 100, 100, 100, false);
-        Astre p4 = factoryP.factory("p4", 100, 100, 100, 100, 100, 100, false);
-        Astre p5 = factoryP.factory("p5", 100, 100, 100, 100, 100, 100, false);
+        Astre p1 = factoryP.factory("p1", 100, 100, 100, 100, 100, 100);
+        Astre p2 = factoryP.factory("p2", 100, 100, 100, 100, 100, 100);
+        Astre p3 = factoryP.factory("p3", 100, 100, 100, 100, 100, 100);
+        Astre p4 = factoryP.factory("p4", 100, 100, 100, 100, 100, 100);
+        Astre p5 = factoryP.factory("p5", 100, 100, 100, 100, 100, 100);
         listeSimu.add(p1);
         listeSimu.add(p2);
         listeSimu.add(p3);
@@ -73,7 +73,7 @@ public class SystemTest {
     @Test
     void testAjout(){
         CreateurPlanete factoryP = new CreateurPlanete();
-        Astre ajoute = factoryP.factory("ajoute", 100, 100, 100, 100, 100, 100, false);
+        Astre ajoute = factoryP.factory("ajoute", 100, 100, 100, 100, 100, 100);
         listeAEspace.add(ajoute);
 
         assertTrue(listeAsimu.contains(ajoute));
