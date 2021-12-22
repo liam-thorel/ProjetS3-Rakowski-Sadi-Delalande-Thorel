@@ -124,6 +124,8 @@ public class EspaceView extends Pane {
             Astre.setPositions(a);
             if (sV.getApp().getDebug())System.out.println(a.hashCode());
             if (sV.getApp().getDebug())System.out.println("nouvelle position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
+            if(PlaneteApp.debug) {
+                System.out.println("=============================" + Simulation.getSimuRate() + "===================");}
             Circle currentC = listeAetC.get(a);
             currentC.relocate(a.getPositionX() - a.getTaille()/2, a.getPositionY() - a.getTaille()/2);
             for (Astre autre : Simulation.getOther(a, listeAetC.keySet())){
@@ -224,7 +226,7 @@ public class EspaceView extends Pane {
         p.setFill(Color.RED);
         p.setCenterX(a.getPositionX());
         p.setCenterY(a.getPositionY());
-        p.setRadius(1);
+        p.setRadius(0.5);
         ArrayList<Circle> trajectoire;
         listeTrajectoires.add(p);
 

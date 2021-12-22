@@ -1,6 +1,6 @@
 // nom taille masse positionX positionY vitesseX vitesseY estFixe
 soleil 69 198900000 960 340 0 0 false
-mercure 10 3301 891 340 0 45000 false
+mercure 9 3301 891 340 0 44000 false
 venus 25 48675 852 340 0 35000 false
 terre 30 59736 810 340 0 30000 false
 mars 15 6418 733 340 0 24000 false

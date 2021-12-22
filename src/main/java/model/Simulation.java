@@ -10,11 +10,11 @@ import java.util.Collection;
 public class Simulation {
 
     public static double g =   6.6742e-11;
-    public static float simuRate = 0.001f;
+    private static float simuRate = 1f;
     private ArrayList<Astre> listeAstre;
     public static double scaleDistance = Math.pow(10, 9); //milliard de m ou million de km
     public static double scaleMasse = Math.pow(10,22); //kg
-    public static double scaleTemps = 43200; // nb de seconde pendant une frame
+    public static double scaleTemps = 43200 * simuRate; // nb de seconde pendant une frame
     private File file;
 
     public Simulation(){
@@ -127,5 +127,9 @@ public class Simulation {
         ArrayList<Astre> r = new ArrayList<>(listeA);
         r.remove(a);
         return r;
+    }
+
+    public static float getSimuRate() {
+        return simuRate;
     }
 }

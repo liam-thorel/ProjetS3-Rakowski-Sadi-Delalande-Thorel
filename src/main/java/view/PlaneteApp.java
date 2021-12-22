@@ -19,7 +19,7 @@ public class PlaneteApp extends Application {
     private SimulationView simulationView;
     private Simulation simulation;
     private File emplacement;
-    private Boolean debug = true;
+    public static Boolean debug = true;
     private CreditView creditView;
 
 
