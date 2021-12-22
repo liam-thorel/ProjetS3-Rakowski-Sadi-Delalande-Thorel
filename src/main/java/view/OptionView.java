@@ -12,6 +12,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
 import javafx.event.ActionEvent;
+import javafx.scene.paint.Paint;
 import model.Simulation;
 
 import java.io.IOException;
@@ -23,6 +24,7 @@ public class OptionView extends Pane {
     private SimulationView sV;
     private VBox bouttons;
     private Label error;
+    private Label titre;
     public OptionView(SimulationView sV){
         this.sV = sV;
         bouttons = new VBox();
@@ -76,7 +78,10 @@ public class OptionView extends Pane {
                 ancient.getChildren().addAll(bouttons.getChildren());
 
                 bouttons.getChildren().clear();
-                bouttons.getChildren().add(new Label("les parametres arrivent"));
+                titre = new Label("Paramètres");
+                titre.setTextFill(Paint.valueOf("white"));
+                titre.setStyle("-fx-font-size: 15");
+                bouttons.getChildren().add(titre);
                 Button retourOptions= new Button("retour");
                 CheckBox showTraj = new CheckBox("afficher les trajectoires");
                 showTraj.setSelected(sV.getEspace().isShowingT());
