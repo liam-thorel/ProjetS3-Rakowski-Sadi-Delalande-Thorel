@@ -140,6 +140,7 @@ public class EspaceView extends Pane {
                         Astre.collisionFusion(autre,a);
                         listeA.remove(a);
                     }
+                    sV.getMenu().getMenuSysteme().afficherList();
 
                 }
             }
