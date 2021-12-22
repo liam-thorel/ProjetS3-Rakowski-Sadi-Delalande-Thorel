@@ -38,7 +38,13 @@ public class Menu extends Pane {
         menuSysteme.setPrefWidth(sV.getApp().getStage().getWidth());
         menuSysteme.setPrefHeight(sV.getApp().getStage().getHeight()*0.27);
         menuSystemePane = menuSysteme.getMenu();
-        menuActuelPane = menuAjouterPane;
+        if (sV.getEspace().getListeA().size()==0) {
+            menuActuelPane = menuAjouterPane;
+        }else{
+            menuActuelPane = menuSystemePane;
+        }
+
+
         menuEtChangeMenu = new VBox();
         systemeOuAjouter = new HBox();
         playOuPause = new HBox();
