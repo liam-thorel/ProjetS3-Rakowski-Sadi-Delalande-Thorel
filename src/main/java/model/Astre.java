@@ -17,17 +17,13 @@ public abstract class Astre implements Serializable {
     private DoubleProperty positionY = new SimpleDoubleProperty();
     private DoubleProperty vitesseX= new SimpleDoubleProperty();
     private DoubleProperty vitesseY = new SimpleDoubleProperty();
-    private boolean isFixed;
+
     private Color color;
 
 
     public abstract String getArgString();
     public abstract String toString();
     private Node n;
-
-    public boolean isFixed() {
-        return isFixed;
-    }
 
     public Node getN() {return n;}
 
@@ -144,13 +140,9 @@ public abstract class Astre implements Serializable {
      * */
 
     public static void addVitesse(ArrayList<Astre> listeA, Astre current){
-        Vecteur vAcc;
-        if(current.isFixed()){
-            vAcc = new Vecteur(0, 0);
-        }else {
 
-            vAcc = calculerSommeForces(listeA,current);
-        }
+        Vecteur vAcc = calculerSommeForces(listeA,current);
+
         //System.out.println("je met a jour la vitesse");
         current.setVitesseX(current.getVitesseX() + (vAcc.getX() * (Simulation.scaleTemps* Simulation.getSimuRate())));
         current.setVitesseY(current.getVitesseY() +(vAcc.getY() * (Simulation.scaleTemps * Simulation.getSimuRate())))  ;

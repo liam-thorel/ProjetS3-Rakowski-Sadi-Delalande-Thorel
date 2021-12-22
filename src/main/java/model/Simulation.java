@@ -72,7 +72,6 @@ public class Simulation {
             int pY = 0;
             double vitesseX = 0;
             double vitesseY = 0;
-            boolean isFixed = false;
 
             boolean creer = true;
             String [] arguments = ligne.split(" ");
@@ -85,7 +84,6 @@ public class Simulation {
                 pY = Integer.parseInt(arguments[4]);
                 vitesseX = Double.parseDouble(arguments[5]);
                 vitesseY = Double.parseDouble(arguments[6]);
-                isFixed = Boolean.parseBoolean(arguments[7]);
 
             }else{
                 creer = false;
@@ -93,7 +91,7 @@ public class Simulation {
 
 
             if(creer){
-                listeA.add(p.factory(name, taille, masse, pX, pY, vitesseX, vitesseY, isFixed));
+                listeA.add(p.factory(name, taille, masse, pX, pY, vitesseX, vitesseY));
             }
         }
         return  new Simulation(save,listeA);

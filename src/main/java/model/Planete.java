@@ -16,11 +16,10 @@ public class Planete extends Astre{
     private DoubleProperty positionY = new SimpleDoubleProperty();
     private DoubleProperty vitesseX= new SimpleDoubleProperty();
     private DoubleProperty vitesseY = new SimpleDoubleProperty();
-    private boolean isFixed;
     private Color color;
 
 
-    public Planete(String nom, float taille, float masse,  double positionX, double positionY, double vitesseX, double vitesseY, boolean isFixed) {
+    public Planete(String nom, float taille, float masse,  double positionX, double positionY, double vitesseX, double vitesseY) {
         this.taille = taille;
         this.masse = masse;
         this.nom = nom;
@@ -28,7 +27,6 @@ public class Planete extends Astre{
         this.positionY.set(positionY);
         this.vitesseX.set(vitesseX);
         this.vitesseY.set(vitesseY);
-        this.isFixed = isFixed;
     }
 
 
@@ -37,14 +35,9 @@ public class Planete extends Astre{
     }
 
 
-    public boolean isFixed() {
-        return isFixed;
-    }
-
-
     @Override
     public String getArgString(){
-        return nom + " "+ taille+ " " + masse+ " " + (int) positionX.get()+ " " + (int) positionY.get() + " "  + (int) vitesseX.get()+ " " + (int) vitesseY.get()+ " " + isFixed+"\n";
+        return nom + " "+ taille+ " " + masse+ " " + (int) positionX.get()+ " " + (int) positionY.get() + " "  + (int) vitesseX.get()+ " " + (int) vitesseY.get() +"\n";
     }
 
     @Override

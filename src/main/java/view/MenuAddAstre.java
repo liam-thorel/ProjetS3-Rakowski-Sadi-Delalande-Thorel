@@ -105,7 +105,6 @@ public class MenuAddAstre extends VBox {
                     pY = Integer.parseInt(positionY.getText());
                     vX = Double.parseDouble(vitesseX.getText());
                     vY = Double.parseDouble(vitesseY.getText());
-                    boolean isFixed = false;
                     int nbTropProches = 0;
                     String listeProchesNoms = "";
                     for(Astre a : mA.getM().getSimulationView().getEspace().listeA){
@@ -124,7 +123,7 @@ public class MenuAddAstre extends VBox {
                         getChildren().add(error);
                     }
                     else{
-                        Astre p = new Planete(n,t,m,pX,pY,vX,vY,isFixed);
+                        Astre p = new Planete(n,t,m,pX,pY,vX,vY);
                         //newC = p;
                         //p.toString();
                         //Circle a = EspaceView.creerPlaneteCercle(p);
