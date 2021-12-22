@@ -78,7 +78,7 @@ public class CreditView extends Stage {
 
 
 
-        text.getChildren().addAll(remerciement,tuteur,createur,tom,mae,lei,lia);
+        text.getChildren().addAll(createur,tom,mae,lei,lia,remerciement,tuteur);
         root.setCenter(text);
         root.setBottom(centrage);
 
