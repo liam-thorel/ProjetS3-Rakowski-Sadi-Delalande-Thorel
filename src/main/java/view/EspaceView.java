@@ -288,6 +288,9 @@ public class EspaceView extends Pane {
         return showingT.getValue();
     }
 
+    public boolean isColisionBoolean() {
+        return colisionBoolean;
+    }
 
     public void setPlaying(boolean playing) {
         this.playing.setValue(playing);
