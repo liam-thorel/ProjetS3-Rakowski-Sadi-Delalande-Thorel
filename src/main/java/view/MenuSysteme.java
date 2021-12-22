@@ -9,14 +9,18 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.util.converter.NumberStringConverter;
 import model.Astre;
+import model.Simulation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,6 +57,50 @@ public class MenuSysteme extends Pane {
         rectangleMenuAstres.setFill(Color.rgb(64,68,75, 1));
         menuSysBg.getChildren().add(rectangleMenuAstres);
         menuSysBg.getChildren().add(menuSys);
+
+        /**Le control de la vitesse*/
+        VBox vitesseField = new VBox();
+
+        //label de presentation
+        Label presentation = new Label("Vitesse de la simulation");
+        //textField
+        HBox simuRateEtfois = new HBox();
+        simuRateEtfois.setSpacing(5);
+        Label fois = new Label("x");
+        TextField rateField = new TextField();
+        rateField.setAlignment(Pos.CENTER);
+        rateField.setMaxSize(50,20);
+        rateField.setText("1.0");
+        simuRateEtfois.getChildren().addAll(fois, rateField);
+        //warning de depassement
+        Label limiteDepassee = new Label("");
+        limiteDepassee.setTextFill(Color.WHITE);
+
+        /** ecoute la valeur du simuRate*/
+        ChangeListener<String> whenSimuRateIsChange = new ChangeListener<>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                if (Float.parseFloat(t1) <= 10) {
+                    Simulation.setSimuRate(Float.parseFloat(t1));
+                    limiteDepassee.setText("");
+                } else {
+                    Simulation.setSimuRate(10f);
+                    limiteDepassee.setText("la limite est de x10");
+                }
+                if (PlaneteApp.debug) {
+                    System.out.println("===========================================================");
+                    System.out.println(Simulation.getSimuRate());
+                }
+            }
+        };
+
+        rateField.textProperty().addListener(whenSimuRateIsChange);
+        vitesseField.setSpacing(10);
+        vitesseField.setPadding(new Insets(40, 20, 10, 10));
+        vitesseField.getChildren().addAll(presentation, simuRateEtfois, limiteDepassee);
+        menuBg.getChildren().add(vitesseField);
+
+
 
         //eloignement des différents Menu
         menu.setPadding(new Insets(25));
