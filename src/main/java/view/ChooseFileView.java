@@ -17,35 +17,46 @@ import java.io.IOException;
 import java.nio.file.NoSuchFileException;
 
 public class ChooseFileView extends Stage {
-
-    private Button chargerFile, chargerSystemeSolaire, retourPageAccueil;
+    /** Bouton charger Fichier */
+    private Button chargerFile;
+    /** Bouton charger Système solaire */
+    private Button chargerSystemeSolaire;
+    /** Bouton retour à la page d'accueil */
+    private Button retourPageAccueil;
+    /** Application courante */
     private PlaneteApp app;
+    /** Pane mère */
     private BorderPane root;
-    public File fichierSimu;
+    /** Vbox (pane) pour centrer les boutons */
     private VBox boutons;
+    /** label pour afficher les erreurs */
     private Label erreur;
 
     public ChooseFileView(PlaneteApp app) {
+        //initialisation des attributs
         this.app = app;
         root = new BorderPane();
         boutons = new VBox();
-
         chargerSystemeSolaire = new Button("Charger système solaire");
+        chargerFile = new Button("Charger simulation");
+        retourPageAccueil = new Button("Retour à la Page d'accueil");
+
+        //Stylisation du bouton chargerSystemeSolaire + ajout fonction quand cliquer
         chargerSystemeSolaire.setOnAction(chargerSystemeSol);
         chargerSystemeSolaire.setStyle("-fx-font: 30 arial;-fx-font-family: OpenSymbol;-fx-font-weight: bold;");
         chargerSystemeSolaire.setPrefSize(500,70);
 
-        retourPageAccueil = new Button("Retour à la Page d'accueil");
+        //Stylisation du bouton retourPageAccueil + ajout fonction quand cliquer
         retourPageAccueil.setOnAction(pageAccueil);
         retourPageAccueil.setStyle("-fx-font: 30 arial;-fx-font-family: OpenSymbol;-fx-font-weight: bold;");
         retourPageAccueil.setPrefSize(500,70);
 
-        chargerFile = new Button("Charger simulation");
+        //Stylisation du bouton chargerFile + ajout fonction quand cliquer
         chargerFile.setOnAction(chargerFileEvent);
         chargerFile.setStyle("-fx-font: 30 arial;-fx-font-family: OpenSymbol;-fx-font-weight: bold;");
         chargerFile.setPrefSize(500,70);
 
-
+        //Ajout à la pane mère + stylisation + mise de l'espace entre les boutons
         boutons.getChildren().addAll(chargerSystemeSolaire,chargerFile,retourPageAccueil);
         boutons.setSpacing(50);
         boutons.setAlignment(Pos.CENTER);
@@ -54,12 +65,16 @@ public class ChooseFileView extends Stage {
         root.setId("bg");
         root.getStylesheets().add(this.getClass().getResource("/Css/simulation.css").toExternalForm());
 
+        //met en scène la pane mère courante
         Scene scene = new Scene(root);
+        //affiche la vue courante
         app.getStage().setScene(scene);
 
 
     }
-
+    /** Quand bouton ChargerSimulation presser invoque la méthode getfilechooser de PlanetApp pour sélectionner
+     * un fichier à charger
+     * Affiche une erreur si fichier non sélectionné*/
     private EventHandler<ActionEvent> chargerFileEvent = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent) {
@@ -67,7 +82,8 @@ public class ChooseFileView extends Stage {
             boutons.getChildren().add(erreur = new Label(app.getfilechooser(true)));
         }
     };
-
+    /** Quand bouton charger Systeme Solaire presser charge le système solaire a partir des presets
+     * Si le fichier système solaire pas dans preset renvoie une erreur  */
     private EventHandler<ActionEvent> chargerSystemeSol = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent) {
@@ -84,7 +100,7 @@ public class ChooseFileView extends Stage {
             }
         }
     };
-
+    /** Quand bouton retour presser rencoie à la page d'accueil */
     private EventHandler<ActionEvent> pageAccueil = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent) {
@@ -92,7 +108,4 @@ public class ChooseFileView extends Stage {
         }
     };
 
-    public File getFichierSimu() {
-        return fichierSimu;
-    }
 }
