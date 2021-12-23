@@ -143,8 +143,6 @@ public class Menu extends Pane {
         @Override
         public void handle(ActionEvent actionEvent){
             sV.getEspace().setPlaying(false);
-            //play.setGraphic(new ImageView("src/main/resources/images/PlayButtonNo.png"));
-            //pause.setGraphic(new ImageView("src/main/resources/images/PauseButtonON.png"));
         }
     };
     /** Affiche les options */
