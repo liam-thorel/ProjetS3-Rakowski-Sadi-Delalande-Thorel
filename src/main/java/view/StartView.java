@@ -14,29 +14,42 @@ import javafx.scene.layout.VBox;
 import model.Simulation;
 
 public class StartView extends Pane {
-    private Label welcomeText;
-    private Button charger;
-    private Button nouveau;
-    private Button credit;
+    //Pane mère
     private BorderPane root;
+    //application courante
     private PlaneteApp app;
+    //Bouton pour charger une simulation
+    private Button charger;
+    //Bouton pour créer une nouvelle simulation
+    private Button nouvelle;
+    //Bouton d'accès au crédit
+    private Button credit;
+    //Conteneur des Boutons
     private VBox field;
+    //Texte du Titre
     private Label titre;
+    //Conteneur pour centrer le titre
     private VBox centrage;
+    //Logo
+    private ImageView logo;
     public StartView(PlaneteApp app) {
+
+        //Initialisation des attributs
         this.app = app;
-        welcomeText = new Label();
         root = new BorderPane();
         field = new VBox();
         centrage = new VBox();
-        nouveau = new Button("Nouveau Systeme");
+        nouvelle = new Button("Nouveau Systeme");
         charger = new Button("Charger Systeme");
         credit = new Button("Crédit");
         titre = new Label("Trajectoire de planètes");
+
+        //Quand bouton presser utiliser la méthode :
         charger.setOnAction(onChargerSimulation);
-        nouveau.setOnAction(onNouvelleSimulation);
+        nouvelle.setOnAction(onNouvelleSimulation);
         credit.setOnAction(onCredit);
 
+        //Stylisation du conteneur des boutons
         field.setAlignment(Pos.CENTER);
         field.setPadding(new Insets(0,0,200,0));
         titre.setAlignment(Pos.CENTER);
@@ -44,19 +57,19 @@ public class StartView extends Pane {
         centrage.getChildren().add(titre);
         titre.getStylesheets().add(this.getClass().getResource("/Css/accueil.css").toExternalForm());
 
-
-        ImageView logo = new ImageView(getClass().getResource("/images/logo.png").toExternalForm());
+        //Chargement du logo et définition de la taille
+        logo = new ImageView(getClass().getResource("/images/logo.png").toExternalForm());
         logo.setFitWidth(753);
         logo.setFitHeight(409);
 
-        // Boutons
-        nouveau.setPrefWidth(500);
+        //stylisation des Boutons
+        nouvelle.setPrefWidth(500);
         charger.setPrefWidth(500);
         credit.setPrefWidth(500);
         field.setSpacing(10);
-        field.getChildren().addAll(nouveau, charger,credit);
+        field.getChildren().addAll(nouvelle, charger,credit);
 
-        //ajout des éléments à la border pane
+        //ajout des éléments à la pane mère
         root.setTop(centrage);
         root.setCenter(logo);
         root.setBottom(field);
@@ -70,7 +83,7 @@ public class StartView extends Pane {
     }
 
 
-
+    //Quand le bouton charger est pressé initialise la vue ChooseFileView
     private EventHandler<ActionEvent> onChargerSimulation = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent){
@@ -80,6 +93,7 @@ public class StartView extends Pane {
 
     };
 
+    // Quand le bouton nouvelle est pressé initialise une nouvelle simulation
     private EventHandler<ActionEvent> onNouvelleSimulation = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent) {
@@ -89,6 +103,7 @@ public class StartView extends Pane {
         }
     };
 
+    // Quand le bouton credit est pressé initialise la vue crédit
     private EventHandler<ActionEvent> onCredit = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent) {
