@@ -26,11 +26,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MenuSysteme extends Pane {
-
+    /** Pane mère */
     private HBox menu;
+    /** Pane qui affiche les données planète */
     private GridPane menuSys;
+    /** arrière-Plan du menu courant */
     private Pane menuBg = new Pane();
+    /** Arrière plan menuSystème + menu Sytème*/
     private Pane menuSysBg;
+    /** menu mère  */
     private Menu menuGen;
 
 
