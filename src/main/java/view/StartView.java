@@ -14,24 +14,25 @@ import javafx.scene.layout.VBox;
 import model.Simulation;
 
 public class StartView extends Pane {
-    //Pane mère
+    /**Pane mère*/
     private BorderPane root;
-    //application courante
+    /**application courante*/
     private PlaneteApp app;
-    //Bouton pour charger une simulation
+    /**Bouton pour charger une simulation*/
     private Button charger;
-    //Bouton pour créer une nouvelle simulation
+    /**Bouton pour créer une nouvelle simulation*/
     private Button nouvelle;
-    //Bouton d'accès au crédit
+    /**Bouton d'accès au crédit*/
     private Button credit;
-    //Conteneur des Boutons
+    /**Conteneur des Boutons*/
     private VBox field;
-    //Texte du Titre
+    /**Texte du Titre*/
     private Label titre;
-    //Conteneur pour centrer le titre
+    /**Conteneur pour centrer le titre*/
     private VBox centrage;
-    //Logo
+    /**Logo*/
     private ImageView logo;
+
     public StartView(PlaneteApp app) {
 
         //Initialisation des attributs
@@ -83,7 +84,7 @@ public class StartView extends Pane {
     }
 
 
-    //Quand le bouton charger est pressé initialise la vue ChooseFileView
+    /**Quand le bouton charger est pressé initialise la vue ChooseFileView*/
     private EventHandler<ActionEvent> onChargerSimulation = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent){
@@ -93,7 +94,7 @@ public class StartView extends Pane {
 
     };
 
-    // Quand le bouton nouvelle est pressé initialise une nouvelle simulation
+    /**Quand le bouton nouvelle est pressé initialise une nouvelle simulation*/
     private EventHandler<ActionEvent> onNouvelleSimulation = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent) {
@@ -103,15 +104,12 @@ public class StartView extends Pane {
         }
     };
 
-    // Quand le bouton credit est pressé initialise la vue crédit
+    /**Quand le bouton credit est pressé initialise la vue crédit*/
     private EventHandler<ActionEvent> onCredit = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent) {
             app.initCredit();
         }
     };
-
-
-
 
 }
