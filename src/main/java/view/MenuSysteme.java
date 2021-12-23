@@ -118,6 +118,11 @@ public class MenuSysteme extends Pane {
         return menuBg;
     }
 
+    /**affichages des informations d'un astre
+     * @param a astre sélectionné
+     * @param modifier boutton de modification associé à l'astre
+     * @param supprimer boutton de supression associé à l'astre
+     * */
     public void afficherInfos(Astre a, Button supprimer, Button modifier){
         menuSys.getChildren().clear();
 
@@ -177,6 +182,7 @@ public class MenuSysteme extends Pane {
         menuSys.add(supprimer, 8, 0);
         menuSys.add(modifier, 8, 1);
 
+        //listener des valeurs de la position et de la vitesse pour qu'elles changent en temps réél
         ChangeListener<Number> onChange = new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
@@ -196,7 +202,11 @@ public class MenuSysteme extends Pane {
     public void rmv(){
         menuSys.getChildren().clear();
     }
-
+    /**modification des champs d'un astre
+     * @param a astre sélectionné
+     * @param modifier boutton de modification associé à l'astre
+     * @param supprimer boutton de supression associé à l'astre
+     */
     public void modifierInfos(Astre a, Button supprimer, Button modifier){
         menuSys.getChildren().clear();
 
@@ -251,10 +261,12 @@ public class MenuSysteme extends Pane {
 
         Button apply = new Button("Confirmer");
 
+        //event de confirmation des changements,
         EventHandler <ActionEvent> onConfirmerModif = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 int index = 0;
+                //si rien n'a été changé on sort
                 for( Astre astre : getMenuGen().getSimulationView().getEspace().getListeA()){
                     if (astre == a){
                         break;
@@ -262,10 +274,11 @@ public class MenuSysteme extends Pane {
                     index++;
                 }
 
-
                 a.setAll(Float.parseFloat(taille.getText()), Float.parseFloat(masse.getText()), nom.getText(), Integer.parseInt(pX.getText()), Integer.parseInt(pY.getText()), Double.parseDouble(vX.getText()), Double.parseDouble(vY.getText()));
 
+                //on supprime l'ancien astre
                 getMenuGen().getSimulationView().getEspace().getListeA().remove(index);
+                //puis on ajoute le nouveau
                 getMenuGen().getSimulationView().getEspace().getListeA().add(a);
                 supprimer.setText("Supprimer " + a.getNom());
                 modifier.setText("Modifier " + a.getNom());
@@ -281,7 +294,7 @@ public class MenuSysteme extends Pane {
 
     HashMap<Circle, Astre> listeCetA;
 
-
+    /**affiche tout les astres sous la formes d'icones cliquables*/
     public void afficherList(){
 
         listeCetA = new HashMap<>();
