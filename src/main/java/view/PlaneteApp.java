@@ -212,12 +212,13 @@ public class PlaneteApp extends Application {
         return "";
     }
 
-    //renvoi le booléen debug mode
+    /** Verifie si débug mode ou non
+     * @return booléen debug
+     * */
     public Boolean getDebug() {
         return debug;
     }
 
-    //renvoi fenêtre courante
     public Stage getStage() {
         return stage;
     }
