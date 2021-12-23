@@ -107,10 +107,11 @@ public class Menu extends Pane {
 
 
 
+
+    }
     /** Quand bouton Ajouter pressé affiche le menu Ajouter (enlève le menu actuel de la Pane mère
      * redéfinis le menu ajouter comme pane actuel
      * et ajoute à la Pane mère le menu actuel) */
-    }
     private EventHandler<ActionEvent> onAjouterMenu = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent){
