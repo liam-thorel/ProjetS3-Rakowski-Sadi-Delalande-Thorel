@@ -29,6 +29,7 @@ public class OptionView extends Pane {
         this.sV = sV;
         bouttons = new VBox();
         error = new Label();
+
         //le fond legerement transparent
         this.setBackground(new Background(new BackgroundFill(Color.rgb(47, 49, 54,0.8), null, null)));
 
@@ -50,7 +51,8 @@ public class OptionView extends Pane {
                 error.setText("");
             }
         };
-        //event pour save
+
+        //event pour la sauvegarde
         EventHandler<ActionEvent> onSave = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -70,7 +72,7 @@ public class OptionView extends Pane {
             }
         };
 
-        //event pour les param
+        //event pour les parametres
         EventHandler<ActionEvent> onSettings = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -89,6 +91,8 @@ public class OptionView extends Pane {
                 colision.setSelected(sV.getEspace().isColisionBoolean() );
                 showTraj.setTextFill(Color.WHITE);
                 colision.setTextFill(Color.WHITE);
+
+                //event pour retouner dans les options depuis les parametres
                 EventHandler<ActionEvent> onRetourOption = new EventHandler<ActionEvent>() {
                    @Override
                    public void handle(ActionEvent actionEvent) {
@@ -98,12 +102,14 @@ public class OptionView extends Pane {
                    }
                };
 
+                //event pour la checkBox de l'option des trajectoires
                 EventHandler<ActionEvent> onShowingTParam = new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
                         sV.getEspace().setShowingT(showTraj.isSelected());
                     }
                 };
+                //event pour la checkBox pour l'option des collisions
                 EventHandler<ActionEvent> OnColision = new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
@@ -118,7 +124,7 @@ public class OptionView extends Pane {
             }
         };
 
-        //event retour
+        //event retour à la simulation depuis les options
         EventHandler<ActionEvent> onRetourSimu = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -126,6 +132,7 @@ public class OptionView extends Pane {
             }
         };
 
+        //event pour reset la simulation
         EventHandler<ActionEvent> onReset = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent){
