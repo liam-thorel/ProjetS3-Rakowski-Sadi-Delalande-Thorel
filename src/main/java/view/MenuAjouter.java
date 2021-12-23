@@ -22,18 +22,26 @@ import org.controlsfx.control.PropertySheet;
 
 public class MenuAjouter extends Pane {
 
+    /** Pane mère*/
     private HBox menu ;
-    private HBox menuAstre;
+    /**Pane menuAstre */
+    private HBox    menuAstre;
+    /** MenuAstre */
     private MenuAddAstre addAstre;
+    /** arrière plan du menu courant */
     private Pane menuBg = new Pane();
+    /** Arrière-plan du menuAstre + menu Astre */
     private Pane menuAstreBg;
+    /** Arrière-plan du menuAddAstre + menu addAstre*/
     private Pane menuAddAstreBg;
+    /** Menu courant */
     private Menu m;
+    /** menu drag and drop */
     private DragnDrop dnd;
 
     public MenuAjouter(Menu m) {
+        //initialisation des attributs
         this.m = m;
-
         menuAstreBg = new Pane();
         menuAddAstreBg = new Pane();
         menuAstre = new HBox();
@@ -53,6 +61,7 @@ public class MenuAjouter extends Pane {
 
         menuAstre.setSpacing(10); // espacement 10 pixels
 
+        //ajout au menu son sous menus
         menuAstreBg.getChildren().add(dnd);
         menuAstreBg.getChildren().add(menuAstre);
 
@@ -62,6 +71,7 @@ public class MenuAjouter extends Pane {
         rectangleAddAstres.setWidth(695);
         rectangleAddAstres.setFill(Color.rgb(64, 68, 75, 1));
 
+        //ajout au menu add astre sont arrière plan et son sous menu
         menuAddAstreBg.getChildren().add(rectangleAddAstres);
         menuAddAstreBg.getChildren().add(addAstre);
 
