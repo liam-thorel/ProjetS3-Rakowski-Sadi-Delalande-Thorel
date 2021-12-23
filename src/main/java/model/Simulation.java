@@ -21,10 +21,15 @@ public class Simulation {
         listeAstre = new ArrayList<>();
     }
 
+    /**
+     * construit une simulation a partire d'une liste d'astre et d'un fichier
+     * @param save fichier d'où la simulation est générée
+     * @param listeAstre nouvelle liste d'astres*/
     public Simulation(File save, ArrayList<Astre> listeAstre) throws IOException, ClassNotFoundException {
         this.listeAstre = listeAstre;
         file = save;
     }
+
     public ArrayList<Astre> getListeAstre() {
         return listeAstre;
     }

@@ -130,7 +130,6 @@ public abstract class Astre implements Serializable {
             acceleration.incrementXBy(Simulation.g * (distanceX * (a.getMasse() * Simulation.scaleMasse)/ Math.pow(distance, 3)));
             acceleration.incrementYBy(Simulation.g * (distanceY * (a.getMasse() * Simulation.scaleMasse) / Math.pow(distance,3)));
         }
-        //System.out.println("acceleration = " + acceleration);
         return acceleration;
     }
 
@@ -150,19 +149,12 @@ public abstract class Astre implements Serializable {
     }
 
 
-    /**position * le pas de temps*
+    /**position + la vitesse * le pas de temps*
      **/
 
     public static void setPositions(Astre current){
-        //System.out.println("je met a jour la position de " + current.getNom());
-        //System.out.println("vitesseX = " + current.getVitesseX() + "    vitesseY = " + current.getVitesseY());
-        //remplacer 0.0005 par echelle de temps
         current.setPositionX(current.getPositionX() + (current.getVitesseX() * (Simulation.scaleTemps* Simulation.getSimuRate()) )/Simulation.scaleDistance);
         current.setPositionY(current.getPositionY() + (current.getVitesseY() * (Simulation.scaleTemps* Simulation.getSimuRate()))/Simulation.scaleDistance);
-        /*double x = current.getPositionX() + (current.getVitesseX() *0.0005);
-        double y = current.getPositionY() + (current.getVitesseY() *0.0005);
-        System.out.println("positionX " +x );
-        System.out.println("positionY " + y);*/
     }
 
 

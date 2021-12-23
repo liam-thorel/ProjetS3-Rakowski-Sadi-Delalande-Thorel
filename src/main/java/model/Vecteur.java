@@ -1,22 +1,19 @@
 package model;
 
+
+/***
+ * Cette classe sert dans calculerSommeForces et elle joue principalement le rôle d'une structure
+ */
 public class Vecteur {
     private double x;
     private double y;
-    private double norme;
+
 
     public Vecteur(double x, double y) {
         this.x = x;
         this.y = y;
-        norme = calculerNorme(this);
-    }
 
-    public static double calculerNorme(Vecteur v) {
-        return Math.sqrt(norm(v));
     }
-
-    public static double norm(Vecteur v){return Math.pow(v.getX(), 2) + Math.pow(v.getY(), 2); }
-    public static double normalize(Vecteur v){ return v.getX() - v.getY()/calculerNorme(v);}
 
     public void incrementXBy(double px){
         x += px;
@@ -25,6 +22,7 @@ public class Vecteur {
     public void incrementYBy(double py){
         y += py;
     }
+
     public double getX() {
         return x;
     }
@@ -33,13 +31,6 @@ public class Vecteur {
         return y;
     }
 
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
 
     @Override
     public String toString() {

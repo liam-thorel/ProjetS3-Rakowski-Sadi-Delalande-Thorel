@@ -35,6 +35,8 @@ public class Planete extends Astre{
     }
 
 
+    /**
+     * @return la les arguments séparés par des espaces pour générer des fichiers de sauvergardes */
     @Override
     public String getArgString(){
         return nom + " "+ taille+ " " + masse+ " " + (int) positionX.get()+ " " + (int) positionY.get() + " "  + (int) vitesseX.get()+ " " + (int) vitesseY.get() +"\n";
@@ -78,6 +80,8 @@ public class Planete extends Astre{
         return vitesseY.get();
     }
 
+    /**
+     * prend tout les attribut de la planetes en parametre te les set avec la valeurs choisies */
     public void setAll(float taille, float masse, String nom, double positionX, double positionY, double vitesseX, double vitesseY){
         this.taille = taille;
         this.masse = masse;
@@ -148,20 +152,6 @@ public class Planete extends Astre{
     @Override
     public void setVitesseY(double vitesseY) {
         this.vitesseY.set(vitesseY);
-    }
-
-
-    public static void addVitesse(ArrayList<Astre> listeA, Astre current){
-        Astre.addVitesse(listeA, current);
-    }
-
-    public static void setPositions(Astre current){
-        Astre.setPositions(current);
-        System.out.println("je passe par planete");
-    }
-
-    public static void addListenerAll(Astre a, ChangeListener<Number> changeListener){
-        Astre.addListenerAll(a, changeListener);
     }
 
 }
