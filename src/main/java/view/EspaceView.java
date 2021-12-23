@@ -100,7 +100,6 @@ public class EspaceView extends Pane {
      * créer un cercle représentant graphiquement un astre
      * @param astre l'astre que l'on va representer
      */
-
     public static Circle creerPlaneteCercle(Astre astre){
         Circle planete = new Circle();
         Color c;
@@ -119,7 +118,6 @@ public class EspaceView extends Pane {
         planete.setRadius(astre.getTaille()/2);
         return planete;
     }
-
 
 
     /**
@@ -252,19 +250,22 @@ public class EspaceView extends Pane {
 
     private ArrayList<Circle> listeTrajectoires = new ArrayList<>();
 
+    /**trace la trajectoire de chaque astre
+     * @param a l'astre dont l'on va tracer la trajectoire
+     * */
     public void tracerTrajectoire(Astre a){
         Circle p = new Circle();
         p.setFill(Color.RED);
         p.setCenterX(a.getPositionX());
         p.setCenterY(a.getPositionY());
         p.setRadius(0.5);
-        ArrayList<Circle> trajectoire;
         listeTrajectoires.add(p);
 
         getChildren().add(p);
     }
 
 
+    /**listener de l'etat des trajectoires, si(false) -> appel de effacerAllTrajectoire */
     private ChangeListener<Boolean> onShowingT = new ChangeListener<Boolean>() {
         @Override
         public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
@@ -274,6 +275,8 @@ public class EspaceView extends Pane {
         }
     };
 
+    /**méthode pour savoir si la souris est dans un astre
+     * @return true si la souris est dans un astre false sinon */
     public boolean mouseInAstre(double mX, double mY){
         boolean isInAstre = false;
         for(Astre a : listeCetA.values()){
@@ -288,6 +291,7 @@ public class EspaceView extends Pane {
 
     }
 
+    /**eventHandler quand rien n'est selectionné */
     private EventHandler<MouseEvent> nothingSelected = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent mouseEvent) {
