@@ -9,12 +9,20 @@ import java.util.Collection;
 
 public class Simulation {
 
+    /** constante gravitationnelle */
     public static double g =   6.6742e-11;
+    /** vitesse de la simulation*/
     private static float simuRate = 1f;
+    /** liste des astres de la simulation*/
     private ArrayList<Astre> listeAstre;
-    public static double scaleDistance = Math.pow(10, 9); //milliard de m ou million de km
-    public static double scaleMasse = Math.pow(10,22); //kg
+    /** échelle de distance : 1 unité = 1 milliard de m ou 1 million de km */
+    public static double scaleDistance = Math.pow(10, 9);
+    /** échelle de la masse : 1 unité = 1*10^22 kg */
+    public static double scaleMasse = Math.pow(10,22);
+    /** échelle de temps : 1 frame = 43200 secondes = 0.5 jours,
+     * au rythme de soixante frame par seconde on obtient 1 seconde réél = 1 mois dans la simulation */
     public static double scaleTemps = 43200 * simuRate; // nb de seconde pendant une frame
+    /** son fichier père si elle est généré à partir d'un fichier, null sinon*/
     private File file;
 
     public Simulation(){
