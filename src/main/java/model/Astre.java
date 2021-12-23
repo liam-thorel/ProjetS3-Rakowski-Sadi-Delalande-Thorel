@@ -114,9 +114,10 @@ public abstract class Astre implements Serializable {
 
     public void incrementMasse(double increment){this.masse += increment;}
 
-    /** calcule la somme des forces que recoit this des autres
-     * @param liste les astres qui ont une influence sur this
-     * @return le vesteur de l'acceleration de this par rapport aux autres planetes
+    /** calcule la somme des forces que recoit current des autres
+     * @param liste les astres qui ont une influence sur current
+     * @param current l'astre qui est influencé
+     * @return le vecteur de l'acceleration de this par rapport aux autres planetes
      * */
     public static Vecteur calculerSommeForces(ArrayList<Astre> liste, Astre current){
         Vecteur acceleration = new Vecteur(0,0);
@@ -126,7 +127,6 @@ public abstract class Astre implements Serializable {
             double distanceY = (a.getPositionY() - current.getPositionY()) * Simulation.scaleDistance;
             double distance = Math.sqrt(Math.pow(Math.abs(distanceX), 2) + (Math.pow(Math.abs(distanceY), 2) + 1.f));
 
-
             acceleration.incrementXBy(Simulation.g * (distanceX * (a.getMasse() * Simulation.scaleMasse)/ Math.pow(distance, 3)));
             acceleration.incrementYBy(Simulation.g * (distanceY * (a.getMasse() * Simulation.scaleMasse) / Math.pow(distance,3)));
         }
@@ -134,8 +134,9 @@ public abstract class Astre implements Serializable {
     }
 
 
-    /** ajoute la vitesse a this et multiplie par le pas de temps
-     * @param listeA la liste des astres qui influent this
+    /** ajoute la vitesse a current et multiplie par le pas de temps
+     * @param listeA la liste des astres qui influent current
+     * @param current l'astre influencé
      * */
 
     public static void addVitesse(ArrayList<Astre> listeA, Astre current){
