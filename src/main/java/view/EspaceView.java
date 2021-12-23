@@ -168,8 +168,10 @@ public class EspaceView extends Pane {
         return listeAetC;
     }
 
-    /**Le listener pour les changements de listeA
-     *
+    /**Le listener pour les changements de listeA:
+     *   si(ajout) -> pour chaque ajout on creer un cercle avec creerPlaneteCercle(), on les ajoutes aux HashMap, on place le cercle dans l'espace,
+     *      et on ajoute le nouvel astre a listeAstre de Simulation
+     *   si(suppression) -> pour chaque suppression on enleve l'astre des HashMap et de la listeAstre de Simulation et on retire le cercle de l'espace
      * */
     public ListChangeListener<Astre> addingOrRemovingAstres = new ListChangeListener<>() {
         @Override
@@ -189,7 +191,7 @@ public class EspaceView extends Pane {
                 }
             }
             if (change.wasRemoved()) {
-                for (Astre a : change.getRemoved()) { // je crois ça va ressembler à un truc du genre
+                for (Astre a : change.getRemoved()) {
                     getChildren().remove(listeAetC.get(a));
                     s.getListeAstre().remove(a);
                     listeCetA.remove(listeAetC.get(a));
@@ -205,10 +207,13 @@ public class EspaceView extends Pane {
         return listeCetA;
     }
 
-
+    /**creer et ajoute un listener à un cercle
+     * @param hashMap pour avoir l'astre correspondant au cercle
+     * @param c le cercle auquel on va ajouter le listener
+     * */
     public void setSelectedListener(HashMap<Circle, Astre> hashMap, Circle c){
 
-        //eventHandler de la selection des cercles
+        //eventHandler de la selection des cercles: si un cercle est selectionné on affiche ses infos
          EventHandler<MouseEvent> selected = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -216,6 +221,8 @@ public class EspaceView extends Pane {
                 Astre selectedA = hashMap.get(selectedC);
                 Button supprimer = new Button("Supprimer " + selectedA.getNom());
                 Button modifier = new Button("Modifier " + selectedA.getNom());
+
+                //eventHandler de la suppression pour le boutton supprimer
                 EventHandler<ActionEvent> supression = new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
@@ -224,14 +231,18 @@ public class EspaceView extends Pane {
                     }
                 };
 
+                //eventHandler de la modification pour le boutton modifier
                 EventHandler<ActionEvent> onModify = new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
                         sV.getMenu().getMenuSysteme().modifierInfos(selectedA, supprimer, modifier);
                     }
                 };
+
                 supprimer.setOnAction(supression);
                 modifier.setOnAction(onModify);
+
+                //affichage des infos avec les bouttons associés
                 sV.getMenu().getMenuSysteme().afficherInfos(selectedA, supprimer, modifier);
 
             }
