@@ -62,7 +62,7 @@ public class SimulationView extends Stage {
         all.getChildren().add(root);
         Scene scene = new Scene(all);
 
-        /** Si bouton Echap ou F1 presser afficher ou désafficher les options*/
+        /** Si bouton Echap ou F1 pressé afficher ou désafficher les options*/
         scene.addEventFilter(KeyEvent.KEY_PRESSED, ke -> {
             if (ke.getCode() == KeyCode.F1 ||ke.getCode() == KeyCode.ESCAPE ) {
                 if (!optionsOuvertes.getValue()) {
@@ -80,6 +80,7 @@ public class SimulationView extends Stage {
         app.getStage().setScene(scene);
     }
 
+    /**le listener de l'ouverture des options*/
     private ChangeListener<Boolean> optionOpenOrClose = new ChangeListener<Boolean>() {
         @Override
         public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
@@ -88,6 +89,8 @@ public class SimulationView extends Stage {
         }
     };
 
+    /**méthode d'ouverture du menu des options
+     * */
     public void ouvrirMenuOption(){
         espace.setPlaying(false);
         optionsOuvertes.setValue(true);
