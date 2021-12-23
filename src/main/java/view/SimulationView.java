@@ -15,36 +15,45 @@ import model.Simulation;
 
 public class SimulationView extends Stage {
 
+    /** Application courante */
     private PlaneteApp app;
+    /** Simulation Courante */
     private static Simulation s;
+    /** Pane espace*/
     private static VBox root;
+    /** Pane mère*/
     private static Pane all;
-
-
-
-    private HBox contener;
+    /** vue de l'espace */
     private EspaceView espace;
+    /** vue du menu qui contient tous les menus */
     private Menu menu;
+    /** Menu des options */
     private OptionView menuOption;
+    /** Verfie si les options sont ouvertes ou non */
     private BooleanProperty optionsOuvertes = new SimpleBooleanProperty();
 
     public SimulationView(Simulation myS,PlaneteApp app) {
+        //Initialisation des attributs
         s = myS;
         this.app = app;
         root = new VBox();
         all = new Pane();
-        optionsOuvertes.addListener(optionOpenOrClose);
         menuOption = OptionView.getOptionView(this);
         espace = new EspaceView(this);
+        menu = new Menu(this);
+
+        //Ecoute le changement sur le booléen et fait :
+        optionsOuvertes.addListener(optionOpenOrClose);
+
+        //Mise à l'echelle sur l'écrans des différentes vue
         espace.setPrefHeight(app.getStage().getHeight()*0.73);
         espace.setPrefWidth(app.getStage().getWidth());
-        contener = new HBox();
-        contener.setAlignment(Pos.CENTER);
-        root.getChildren().add(contener);
-        menu = new Menu(this);
+
         menu.setPrefHeight(app.getStage().getHeight()*0.27);
         menu.setPrefWidth(app.getStage().getWidth());
         menu.toBack();
+
+        //Mise en  place des vue à leur emplacement
         root.getChildren().add(espace);
         root.getChildren().add(menu.getMenuEtChangeMenu());
         root.setId("bg");
@@ -53,6 +62,7 @@ public class SimulationView extends Stage {
         all.getChildren().add(root);
         Scene scene = new Scene(all);
 
+        /** Si bouton Echap ou F1 presser afficher ou désafficher les options*/
         scene.addEventFilter(KeyEvent.KEY_PRESSED, ke -> {
             if (ke.getCode() == KeyCode.F1 ||ke.getCode() == KeyCode.ESCAPE ) {
                 if (!optionsOuvertes.getValue()) {
@@ -66,6 +76,7 @@ public class SimulationView extends Stage {
 
 
         });
+        // met la scène de la fenêtre courante à SimulationView
         app.getStage().setScene(scene);
     }
 
