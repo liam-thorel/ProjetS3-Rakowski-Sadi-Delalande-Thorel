@@ -24,22 +24,22 @@ import java.util.*;
 
 public class EspaceView extends Pane {
 
-    //liste des astres de la simulation
+    /**liste des astres de la simulation*/
     public ObservableList<Astre> listeA;
     private Simulation s;
-    //verifie si la simulation est en cours
+    /**verifie si la simulation est en cours*/
     private BooleanProperty playing = new SimpleBooleanProperty();
-    //pour avoir le cercle d'un astre
+    /**pour avoir le cercle d'un astre*/
     private HashMap <Astre, Circle> listeAetC;
-    //pour avoir l'astre d'un cercle
+    /**pour avoir l'astre d'un cercle*/
     private HashMap <Circle, Astre> listeCetA;
-    //boolean de la trajectoire
+    /**boolean de la trajectoire*/
     private BooleanProperty showingT = new SimpleBooleanProperty();
-    //timer de l'animation
+    /**timer de l'animation*/
     private AnimationTimer timer;
     private long previousL = 0;
     private SimulationView sV;
-    //boolean de colision activé ou pas
+    /**boolean de colision activé ou pas*/
     private boolean colisionBoolean;
 
 
@@ -60,10 +60,10 @@ public class EspaceView extends Pane {
         colisionBoolean = true;
         showingT.addListener(onShowingT);
 
+        /**a chaque frame de la simulation la position des planetes est mise à jour avec move()*/
         timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
-                long delay = l - previousL;
                 if(playing.getValue()){
                     move();
                     if (sV.getApp().getDebug())System.out.println(System.currentTimeMillis());
@@ -96,39 +96,53 @@ public class EspaceView extends Pane {
 
     }
 
-    // prend un Astre en paramètre et créer un cercle le représentant graphiquement
-    public static Circle creerPlaneteCercle(Astre p){
+    /**
+     * créer un cercle représentant graphiquement un astre
+     * @param astre l'astre que l'on va representer
+     */
+
+    public static Circle creerPlaneteCercle(Astre astre){
         Circle planete = new Circle();
         Color c;
-        if(p.getColor() == null){
+        if(astre.getColor() == null){
             c = new Color(new Random().nextFloat(),new Random().nextFloat(), new Random().nextFloat(), 1);
-            p.setColor(c);
+            astre.setColor(c);
         }else{
-            c = p.getColor();
+            c = astre.getColor();
         }
 
         planete.setFill(c);
-        planete.setStrokeWidth(2);
+        planete.setStrokeWidth(1);
         planete.setStroke(Color.BLUE);
-        planete.setCenterX(p.getPositionX() - p.getTaille()/2);
-        planete.setCenterY(p.getPositionY() - p.getTaille()/2);
-        planete.setRadius(p.getTaille()/2);
+        planete.setCenterX(astre.getPositionX() - astre.getTaille()/2);
+        planete.setCenterY(astre.getPositionY() - astre.getTaille()/2);
+        planete.setRadius(astre.getTaille()/2);
         return planete;
     }
 
 
-    //mettre un pas de temps en arg dans move pour utiliser dans add vitesse
 
+    /**
+     * Gestion du mouvement des astres:
+     *  Calcule la nouvelle position de cahque astre par rapport aux autres avec Astre.addVitesse() et Astre.setPosition()
+     *  Relocalise à la nouvelle position le cercle associé
+     *  Vérifie que l'astre n'entre pas en colision avec un autre
+     *    si(oui) -> il appelle collisionFusion(laplusgrandeMasse, lapluspetite) et supprime lapluspetite de listeA
+     *  Vérifie que l'on veux tracer les trajectoires
+     *    si(oui) -> appelle tracerTrajectoire()
+     * */
     public void move(){
 
         for(Astre a : listeAetC.keySet()) {
             if (sV.getApp().getDebug())System.out.println("ancienne position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
             Astre.addVitesse(Simulation.getOther(a, s.getListeAstre()), a);
             Astre.setPositions(a);
-            if (sV.getApp().getDebug())System.out.println(a.hashCode());
-            if (sV.getApp().getDebug())System.out.println("nouvelle position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
+
             if(PlaneteApp.debug) {
+                System.out.println(a.hashCode());
+                System.out.println("nouvelle position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
                 System.out.println("=============================" + Simulation.getSimuRate() + "===================");}
+
             Circle currentC = listeAetC.get(a);
             currentC.relocate(a.getPositionX() - a.getTaille()/2, a.getPositionY() - a.getTaille()/2);
             for (Astre autre : Simulation.getOther(a, listeAetC.keySet())){
@@ -154,7 +168,9 @@ public class EspaceView extends Pane {
         return listeAetC;
     }
 
-    //le listener des ajouts ou des suppression d'astres
+    /**Le listener pour les changements de listeA
+     *
+     * */
     public ListChangeListener<Astre> addingOrRemovingAstres = new ListChangeListener<>() {
         @Override
         public void onChanged(Change<? extends Astre> change) {
