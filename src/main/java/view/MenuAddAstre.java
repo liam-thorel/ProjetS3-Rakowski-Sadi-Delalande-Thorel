@@ -112,8 +112,9 @@ public class MenuAddAstre extends VBox {
                 double vX,vY;
 
                 n = nom.getText();
-                //vérifie si les attributs sont bien du bon type
-                // si dans la masse il n'y a pas de lettre par exemple
+                /**vérifie si les attributs sont bien du bon type
+                * si dans la masse il n'y a pas de lettre par exemple
+                 */
                 try {
                     m = Float.parseFloat(masse.getText()); // cast le texte dans masse en Float
                     t = Float.parseFloat(taille.getText());
