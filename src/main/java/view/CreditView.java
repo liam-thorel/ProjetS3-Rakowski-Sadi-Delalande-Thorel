@@ -16,20 +16,33 @@ import javafx.stage.Stage;
 
 
 public class CreditView extends Stage {
+    /**Pane mère */
     private BorderPane root;
+    /** retourPageAccueil */
     private Button retourPageAccueil;
+    /** Label remerciement */
     private Label remerciement;
+    /** Label nom de notre tuteur */
     private Label tuteur;
+    /** Label Createur */
     private Label createur;
+    /** Application courante */
     private PlaneteApp app;
+    /** Totale des label pour créer les wraps */
     private VBox text;
+    /** Centre le bouton */
     private HBox centrage;
+    /** Label Maelis Rakowski */
     private Label mae;
+    /** Label Delaalnde Tom */
     private Label tom;
+    /** Label Liam Thore */
     private Label lia;
+    /** Label Leina Sadi */
     private Label lei;
 
     public CreditView(PlaneteApp app){
+        // intialisation attributs
         this.app=app;
         root = new BorderPane();
         text = new VBox();
@@ -38,7 +51,7 @@ public class CreditView extends Stage {
         retourPageAccueil = new Button("Retour à la Page d'accueil");
 
 
-
+        // Stylisation
         root.setId("bg");
         root.getStylesheets().add(this.getClass().getResource("/Css/simulation.css").toExternalForm());
         remerciement.getStylesheets().add(this.getClass().getResource("/Css/accueil.css").toExternalForm());
@@ -77,15 +90,17 @@ public class CreditView extends Stage {
         centrage.setPadding(new Insets(0,0,50,0));
 
 
-
+        // texte total
         text.getChildren().addAll(createur,tom,mae,lei,lia,remerciement,tuteur);
+        //mise sur l'écran des Panes au bon endroit
         root.setCenter(text);
         root.setBottom(centrage);
-
+        //met la Pane mère dans la scène courante
         Scene scene = new Scene(root);
+        // affiche la scène courante dans la fenêtre mère
         app.getStage().setScene(scene);
     }
-
+    /** Quand bouton pageAccueil pressé affiche la page d'accueil */
     private EventHandler<ActionEvent> pageAccueil = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent) {
