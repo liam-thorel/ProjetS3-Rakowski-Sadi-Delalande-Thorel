@@ -133,7 +133,6 @@ public class Simulation {
      * @param listeA la liste de tout les astres
      * @return la liste des autres astres
      * */
-
     public static ArrayList<Astre> getOther(Astre a, Collection<Astre> listeA){
         ArrayList<Astre> r = new ArrayList<>(listeA);
         r.remove(a);
