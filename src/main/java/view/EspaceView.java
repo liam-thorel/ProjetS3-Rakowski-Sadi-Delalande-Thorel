@@ -111,7 +111,7 @@ public class EspaceView extends Pane {
         }
 
         planete.setFill(c);
-        planete.setStrokeWidth(1);
+        planete.setStrokeWidth(0.5);
         planete.setStroke(Color.BLUE);
         planete.setCenterX(astre.getPositionX() - astre.getTaille()/2);
         planete.setCenterY(astre.getPositionY() - astre.getTaille()/2);

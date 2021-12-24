@@ -6,10 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -214,6 +211,7 @@ public class MenuSysteme extends Pane {
     public void modifierInfos(Astre a, Button supprimer, Button modifier){
         menuSys.getChildren().clear();
 
+        //nom
         TextField nom = new TextField(a.getNom());
         nom.setAlignment(Pos.CENTER);
         Label ln = new Label("Nom  ");
@@ -221,6 +219,7 @@ public class MenuSysteme extends Pane {
         menuSys.add(ln, 1,0);
         menuSys.add(nom,1,1);
 
+        //taille
         TextField taille = new TextField(String.valueOf((int) a.getTaille()));
         taille.setAlignment(Pos.CENTER);
         Label lt = new Label(" Taille en 10^9 m ");
@@ -228,35 +227,50 @@ public class MenuSysteme extends Pane {
         menuSys.add(lt, 2, 0);
         menuSys.add(taille, 2, 1);
 
+        //masse
         TextField masse = new TextField(String.valueOf((int) a.getMasse()));
+        Tooltip masseInfo = new Tooltip("La masse de la Terre est 59736");//quand on survol le textfield ce message apparait
+        masse.setTooltip(masseInfo);
         masse.setAlignment(Pos.CENTER);
         Label lm = new Label(" Masse en 10^20 kg ");
         lm.setAlignment(Pos.CENTER);
         menuSys.add(lm, 3, 0);
         menuSys.add(masse, 3, 1);
 
+        //positionX
         TextField pX = new TextField(String.valueOf((int) a.getPositionX()));
+        Tooltip pXinfo = new Tooltip("Le milieu de l'espace est environt à x=730");
+        pX.setTooltip(pXinfo);
         pX.setAlignment(Pos.CENTER);
         Label lpx = new Label(" Position x ");
         lpx.setAlignment(Pos.CENTER);
         menuSys.add(lpx, 4, 0);
         menuSys.add(pX, 4, 1);
 
+        //positionY
         TextField pY = new TextField(String.valueOf((int) a.getPositionY()));
+        Tooltip pYinfo = new Tooltip("Le milieu de l'espace est environt à y=360");
+        pY.setTooltip(pYinfo);
         pY.setAlignment(Pos.CENTER);
         Label lpY = new Label(" Position y ");
         lpY.setAlignment(Pos.CENTER);
         menuSys.add(lpY, 5, 0);
         menuSys.add(pY, 5, 1);
 
+        //vitesseX
         TextField vX = new TextField(String.valueOf((int) a.getVitesseX()));
+        Tooltip vXinfo = new Tooltip("Minimum 1000 pour voir l'astre bouger ");
+        vX.setTooltip(vXinfo);
         vX.setAlignment(Pos.CENTER);
         Label lvx = new Label(" Vitesse x ");
         lvx.setAlignment(Pos.CENTER);
         menuSys.add(lvx, 6, 0);
         menuSys.add(vX, 6, 1);
 
+        //vitesseY
         TextField vY = new TextField(String.valueOf((int) a.getVitesseY()));
+        Tooltip vYinfo = new Tooltip("Minimum 1000 pour voir l'astre bouger ");
+        vY.setTooltip(vYinfo);
         vY.setAlignment(Pos.CENTER);
         Label lvy = new Label(" Vitesse y ");
         lvy.setAlignment(Pos.CENTER);

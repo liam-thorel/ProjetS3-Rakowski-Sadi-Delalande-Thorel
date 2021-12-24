@@ -10,7 +10,7 @@ import java.util.Collection;
 public class Simulation {
 
     /** constante gravitationnelle */
-    public static double g =   6.6742e-11;
+    public static double g = 6.6742e-11;
     /** vitesse de la simulation*/
     private static float simuRate = 1f;
     /** liste des astres de la simulation*/

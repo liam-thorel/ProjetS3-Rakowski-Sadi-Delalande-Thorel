@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.layout.HBox;
@@ -49,7 +50,7 @@ public class MenuAddAstre extends VBox {
         nameAll = new VBox();
         nameAll.getChildren().addAll(nomtxt, nom);
         nom.setMaxWidth(75);
-        //taile
+        //taille
         taille = new TextField();
         tailletxt = new Label("Taille");
         tailleAll = new VBox();
@@ -57,31 +58,41 @@ public class MenuAddAstre extends VBox {
         taille.setMaxWidth(75);
         //masse
         masse = new TextField();
+        Tooltip masseInfo = new Tooltip("La masse de la Terre est 59736");//quand on survol le textfield ce message apparait
+        masse.setTooltip(masseInfo);
         massetxt = new Label("Masse en 10^20 kg");
         masseAll = new VBox();
         masseAll.getChildren().addAll(massetxt, masse);
         masse.setMaxWidth(75);
         //positionX
         positionX = new TextField();
+        Tooltip pXinfo = new Tooltip("Le milieu de l'espace est environt à x=730");
+        positionX.setTooltip(pXinfo);
         positionXtxt = new Label("Position X");
         positionXAll = new VBox();
         positionXAll.getChildren().addAll(positionXtxt, positionX);
         positionX.setMaxWidth(50);
         //positionY
         positionY = new TextField();
+        Tooltip pYinfo = new Tooltip("Le milieu de l'espace est environt à y=360");
+        positionY.setTooltip(pYinfo);
         positionYtxt = new Label("Position Y");
         positionYAll = new VBox();
         positionYAll.getChildren().addAll(positionYtxt, positionY);
         positionY.setMaxWidth(50);
         //VitesseX
         vitesseX = new TextField();
-        vitesseXtxt = new Label("Vitesse X");
+        Tooltip vXinfo = new Tooltip("Minimum 1000 pour voir l'astre bouger ");
+        vitesseX.setTooltip(vXinfo);
+        vitesseXtxt = new Label("Vitesse X en m/s");
         vitesseXAll = new VBox();
         vitesseXAll.getChildren().addAll(vitesseXtxt, vitesseX);
         vitesseX.setMaxWidth(75);
         //vitesseY
         vitesseY = new TextField();
-        vitesseYtxt = new Label("Vitesse Y");
+        Tooltip vYinfo = new Tooltip("Minimum 1000 pour voir l'astre bouger ");
+        vitesseY.setTooltip(vYinfo);
+        vitesseYtxt = new Label("Vitesse Y en m/s");
         vitesseYAll = new VBox();
         vitesseYAll.getChildren().addAll(vitesseYtxt, vitesseY);
         vitesseY.setMaxWidth(75);
