@@ -66,7 +66,8 @@ public class MenuAddAstre extends VBox {
         masse.setMaxWidth(75);
         //positionX
         positionX = new TextField();
-        Tooltip pXinfo = new Tooltip("Le milieu de l'espace est environt à x=730");
+
+        Tooltip pXinfo = new Tooltip("Le milieu de l'espace est environt à x= " + Math.round(mA.getM().getSimulationView().getApp().getStage().getWidth()/2));
         positionX.setTooltip(pXinfo);
         positionXtxt = new Label("Position X");
         positionXAll = new VBox();
@@ -74,7 +75,8 @@ public class MenuAddAstre extends VBox {
         positionX.setMaxWidth(50);
         //positionY
         positionY = new TextField();
-        Tooltip pYinfo = new Tooltip("Le milieu de l'espace est environt à y=360");
+        if (mA.getM().getSimulationView().getApp().getDebug()) System.out.println(mA.getPrefHeight());
+        Tooltip pYinfo = new Tooltip("Le milieu de l'espace est environt à y=" + (Math.round((mA.getM().getSimulationView().getApp().getStage().getHeight()*0.73/2))));
         positionY.setTooltip(pYinfo);
         positionYtxt = new Label("Position Y");
         positionYAll = new VBox();
