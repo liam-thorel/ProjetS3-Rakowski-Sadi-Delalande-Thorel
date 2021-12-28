@@ -12,10 +12,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.util.converter.NumberStringConverter;
 import model.Astre;
 import model.Simulation;
 

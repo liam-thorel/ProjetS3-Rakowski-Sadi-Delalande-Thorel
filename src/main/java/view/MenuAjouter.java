@@ -1,24 +1,10 @@
 package view;
 
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
-import javafx.scene.control.ListView;
-import javafx.scene.image.WritableImage;
-import javafx.scene.input.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.TilePane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import org.controlsfx.control.PropertySheet;
 
 public class MenuAjouter extends Pane {
 

@@ -43,7 +43,6 @@ public class EspaceView extends Pane {
     private boolean colisionBoolean;
 
 
-
     public EspaceView(SimulationView sV){
         this.setOnMouseClicked(nothingSelected);
         this.sV = sV;

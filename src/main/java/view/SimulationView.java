@@ -4,7 +4,6 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
