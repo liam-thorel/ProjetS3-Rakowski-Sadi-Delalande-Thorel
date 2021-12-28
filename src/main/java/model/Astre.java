@@ -166,16 +166,25 @@ public abstract class Astre implements Serializable {
         a.vitesseYProperty().addListener(changeListener);
     }
 
+    /**retourne la distance entre les deux centres des astres pris en argument
+     */
     public static double distanceCentres(Astre a1, Astre a2){
         double distanceX = (a1.getPositionX() - a2.getPositionX());
         double distanceY = (a1.getPositionY() - a2.getPositionY());
         return Math.sqrt(Math.pow(Math.abs(distanceX), 2) + (Math.pow(Math.abs(distanceY), 2)));
 
     }
+
+    /** retourne vrai si les astres pris en argument se touchent
+     */
     public static Boolean verifCollision(Astre a, Astre b) {
         return distanceCentres(a, b) <= a.getTaille()/2 + b.getTaille()/2;
     }
 
+    /** C'est la méthode qui est appélée lorsque verifCollision retourne vrai,
+     * en utilisation la loi de conservation du moment cinétique on re définit à vitesse du nouvel astre
+     * on garde le plus gros et on supprime l'autre et on fait une "moyenne" du hsb
+    */
     public static void collisionFusion(Astre a, Astre b) {
         a.incrementMasse(b.getMasse());
         a.incrementTaille(b.getTaille() / 2);
