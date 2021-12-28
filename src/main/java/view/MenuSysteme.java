@@ -239,7 +239,7 @@ public class MenuSysteme extends Pane {
 
         //positionX
         TextField pX = new TextField(String.valueOf((int) a.getPositionX()));
-        Tooltip pXinfo = new Tooltip("Le milieu de l'espace est environt à x=730");
+        Tooltip pXinfo = new Tooltip("Le milieu de l'espace est environt à x= " + Math.round(menuGen.getSimulationView().getApp().getStage().getWidth()/2));
         pX.setTooltip(pXinfo);
         pX.setAlignment(Pos.CENTER);
         Label lpx = new Label(" Position x ");
@@ -249,7 +249,7 @@ public class MenuSysteme extends Pane {
 
         //positionY
         TextField pY = new TextField(String.valueOf((int) a.getPositionY()));
-        Tooltip pYinfo = new Tooltip("Le milieu de l'espace est environt à y=360");
+        Tooltip pYinfo = new Tooltip("Le milieu de l'espace est environt à y= " + (Math.round((menuGen.getSimulationView().getApp().getStage().getHeight()*0.73/2))));
         pY.setTooltip(pYinfo);
         pY.setAlignment(Pos.CENTER);
         Label lpY = new Label(" Position y ");
