@@ -121,7 +121,6 @@ public abstract class Astre implements Serializable {
      * */
     public static Vecteur calculerSommeForces(ArrayList<Astre> liste, Astre current){
         Vecteur acceleration = new Vecteur(0,0);
-        System.out.println("je calcule");
         for(Astre a : liste){
             double distanceX = (a.getPositionX() - current.getPositionX()) * Simulation.scaleDistance;
             double distanceY = (a.getPositionY() - current.getPositionY()) * Simulation.scaleDistance;
@@ -166,7 +165,10 @@ public abstract class Astre implements Serializable {
         a.vitesseYProperty().addListener(changeListener);
     }
 
-    /**retourne la distance entre les deux centres des astres pris en argument
+    /** Calcule la distance entre deux astres
+     * @param a1 un astre
+     * @param a2 un astre
+     * @return la distance entre les deux centres des astres pris en argument
      */
     public static double distanceCentres(Astre a1, Astre a2){
         double distanceX = (a1.getPositionX() - a2.getPositionX());
@@ -175,7 +177,10 @@ public abstract class Astre implements Serializable {
 
     }
 
-    /** retourne vrai si les astres pris en argument se touchent
+    /** Vérifie si les astres sont en contact
+     *@param a un astre
+     *@param b un astre
+     *@return vrai si les astres se touchent et faux sinon
      */
     public static Boolean verifCollision(Astre a, Astre b) {
         return distanceCentres(a, b) <= a.getTaille()/2 + b.getTaille()/2;
@@ -184,6 +189,8 @@ public abstract class Astre implements Serializable {
     /** C'est la méthode qui est appélée lorsque verifCollision retourne vrai,
      * en utilisation la loi de conservation du moment cinétique on redéfinit à vitesse du nouvel astre
      * on garde le plus gros et on supprime l'autre et on fait une "moyenne" du hsb
+     *@param a un astre
+     *@param b un astre
     */
     public static void collisionFusion(Astre a, Astre b) {
         a.incrementMasse(b.getMasse());
