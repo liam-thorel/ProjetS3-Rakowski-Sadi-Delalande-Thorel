@@ -182,7 +182,7 @@ public abstract class Astre implements Serializable {
     }
 
     /** C'est la méthode qui est appélée lorsque verifCollision retourne vrai,
-     * en utilisation la loi de conservation du moment cinétique on re définit à vitesse du nouvel astre
+     * en utilisation la loi de conservation du moment cinétique on redéfinit à vitesse du nouvel astre
      * on garde le plus gros et on supprime l'autre et on fait une "moyenne" du hsb
     */
     public static void collisionFusion(Astre a, Astre b) {
