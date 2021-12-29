@@ -22,7 +22,7 @@ public class CreditView extends Stage {
     /** Label remerciement */
     private Label remerciement;
     /** Label nom de notre tuteur */
-    private Label tuteur;
+    private Label tuteurEtLogo;
     /** Label Createur */
     private Label createur;
     /** Application courante */
@@ -56,9 +56,9 @@ public class CreditView extends Stage {
         remerciement.getStylesheets().add(this.getClass().getResource("/Css/accueil.css").toExternalForm());
         remerciement.setPadding(new Insets(20,0,0,30));
 
-        tuteur = new Label("Notre tuteur pour ce projet Rosenfeld Matthieu");
-        tuteur.setStyle("-fx-font-size: 25");
-        tuteur.setPadding(new Insets(30,0,0,60));
+        tuteurEtLogo = new Label("Notre tuteur pour ce projet Rosenfeld Matthieu et Liloo Gourdain pour le design du logo");
+        tuteurEtLogo.setStyle("-fx-font-size: 25");
+        tuteurEtLogo.setPadding(new Insets(30,0,0,60));
 
         createur = new Label("Créateurs :");
         createur.getStylesheets().add(this.getClass().getResource("/Css/accueil.css").toExternalForm());
@@ -90,7 +90,7 @@ public class CreditView extends Stage {
 
 
         // texte total
-        text.getChildren().addAll(createur,tom,mae,lei,lia,remerciement,tuteur);
+        text.getChildren().addAll(createur,tom,mae,lei,lia,remerciement, tuteurEtLogo);
         //mise sur l'écran des Panes au bon endroit
         root.setCenter(text);
         root.setBottom(centrage);
