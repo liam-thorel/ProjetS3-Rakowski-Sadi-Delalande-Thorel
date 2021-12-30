@@ -7,20 +7,24 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.WritableImage;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.TransferMode;
+import javafx.scene.input.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 import model.Astre;
 import model.Planete;
 import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 
-public class DragnDrop extends ListView{
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseListener;
+
+public class DragnDrop extends HBox{
 
     private MenuAjouter m;
     private ObservableList<Circle> planetesCourantes = FXCollections.observableArrayList();
@@ -28,9 +32,11 @@ public class DragnDrop extends ListView{
     private Circle aAjouter = new Circle();
     private MenuAddAstre ma;
 
-    public DragnDrop(MenuAjouter menuA, MenuAddAstre menueAA){
+    public DragnDrop(MenuAjouter menuA){
         this.m = menuA;
         this.ma = this.m.getAddAstre();
+        this.getChildren().add(mesAstres);
+        //dropped = new MouseAdapter(m.getM().getSimulationView().getEspace());
         //planetesCourantes = FXCollections.observableArrayList();
         //mesAstres.setItems(planetesCourantes);
 
@@ -95,7 +101,6 @@ public class DragnDrop extends ListView{
         }
         });
 
-
         mesAstres.setOnDragDone(dragEvent -> {
         if (dragEvent.getTransferMode() == TransferMode.MOVE) {
             // retirer la planete en attente dans la liste view
@@ -105,25 +110,43 @@ public class DragnDrop extends ListView{
 
         m.getM().getSimulationView().getEspace().setOnDragDropped(new EventHandler <DragEvent>() {
             public void handle(DragEvent event) { //PLANETE DEPOSEE
-                if (m.getM().getSimulationView().getApp().getDebug())System.out.println("onDragDropped laché sur la cible mon ptit pote");
-                Dragboard db = event.getDragboard();
-                boolean success = false;
-                if (db.hasString()) {
-                    if (m.getM().getSimulationView().getApp().getDebug())System.out.println("c'est bon mon ptit pote");
-                    m.getM().getSimulationView().getEspace().listeA.add(ma.getNewC());
-                    planetesCourantes.remove(aAjouter);
-                    if (!m.getM().getSimulationView().getSimulation().getListeAstre().contains(m.getM().getSimulationView().getEspace().getListeCetA().get(ma.getNewB()))) {
-                        if (m.getM().getSimulationView().getApp().getDebug())System.out.println("c'est CARRE");
+                    System.out.println("onDragDropped laché sur la cible mon ptit pote");
+                    Dragboard db = event.getDragboard();
+                    boolean success = false;
+                    if (db.hasString()) {
+                        System.out.println("c'est bon mon ptit pote");
+                        PointerInfo pointer = MouseInfo.getPointerInfo();
+                        Point location = pointer.getLocation();
+                        System.out.println("La souris se trouve en " + location);
+                        ma.getNewC().setPositionX(location.getX());
+                        ma.getNewC().setPositionY(location.getY());
+                        m.getM().getSimulationView().getEspace().listeA.add(ma.getNewC());
+                        planetesCourantes.remove(aAjouter);
+                        System.out.println("c'est CARRE");
+                    } else {
+                        event.setDropCompleted(false);
                     }
+                    event.setDropCompleted(success);
+                    event.consume();
                 }
-                else {event.setDropCompleted(false);}
-                event.setDropCompleted(success);
-                event.consume();
-            }
+
         });
-
-
     }
+
+/*
+    private MouseEvent planeteLachee = new MouseEvent() {
+        public void mouseReleased( MouseEvent e ) {
+        //if(e.getButton()==MouseButton.PRIMARY);
+        //{
+            // Récupération de la position
+        double pX = e.getX();
+        double pY = e.getY();
+        //}
+    }
+
+    };
+    private Pane esp = m.getM().getSimulationView().getEspace();
+    esp.addMouseEvent(planeteLachee);*/
 
     public Circle getaAjouter() {return aAjouter;}
 

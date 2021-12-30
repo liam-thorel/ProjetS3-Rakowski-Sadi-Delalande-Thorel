@@ -33,7 +33,7 @@ public class MenuAjouter extends Pane {
         menuAstre = new HBox();
         addAstre = new MenuAddAstre(this);
         menu=new HBox();
-        dnd = new DragnDrop(this, addAstre);
+        dnd = new DragnDrop(this);
 
         //Création et affectation du réctangle d'arrière plan derrière le menu
         Rectangle rectangle = new Rectangle();
@@ -46,6 +46,7 @@ public class MenuAjouter extends Pane {
         menuBg.getChildren().add(menu);
 
         menuAstre.setSpacing(10); // espacement 10 pixels
+        menuAstre.getChildren().add(dnd);
 
         //ajout au menu son sous menus
         menuAstreBg.getChildren().add(dnd);

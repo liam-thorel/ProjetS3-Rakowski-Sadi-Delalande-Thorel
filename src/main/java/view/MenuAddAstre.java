@@ -62,6 +62,7 @@ public class MenuAddAstre extends VBox {
         masseAll = new VBox();
         masseAll.getChildren().addAll(massetxt, masse);
         masse.setMaxWidth(75);
+
         //positionX
         positionX = new TextField();
 
@@ -80,6 +81,7 @@ public class MenuAddAstre extends VBox {
         positionYAll = new VBox();
         positionYAll.getChildren().addAll(positionYtxt, positionY);
         positionY.setMaxWidth(50);
+
         //VitesseX
         vitesseX = new TextField();
         Tooltip vXinfo = new Tooltip("Minimum 1000 pour voir l'astre bouger ");
@@ -155,15 +157,10 @@ public class MenuAddAstre extends VBox {
                     // insère la planète normalement
                     else{
                         Astre p = new Planete(n,t,m,pX,pY,vX,vY);
-                        //newC = p;
-                        //p.toString();
-                        //Circle a = EspaceView.creerPlaneteCercle(p);
-                        //newB = a;
-                        //mA.getDnd().getPlanetesCourantes().add(a);
-                        mA.getM().getSimulationView().getEspace().getListeA().add(p);
-                        //if (mA.getM().getSimulationView().getApp().getDebug())System.out.println(mA.getDnd().getMesAstres());
+                        newC = p;
+                        Circle a = EspaceView.creerPlaneteCercle(p);
+                        mA.getDnd().getPlanetesCourantes().add(a);
                         getChildren().remove(error);
-
                     }
                     //affiche une erreur, car donnée(s) pas de bon type
                 }catch (NumberFormatException e){
