@@ -6,12 +6,15 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.Circle;
 import java.awt.*;
+
+import static javafx.scene.paint.Color.RED;
 
 public class DragnDrop extends HBox{
 
@@ -26,7 +29,21 @@ public class DragnDrop extends HBox{
         this.ma = this.m.getAddAstre();
         this.getChildren().add(mesAstres);
 
-        ///// Listener /////
+        ///// Listeners /////
+
+        //écoute l'index de la planète sélectionnée
+        mesAstres.getSelectionModel().selectedItemProperty().addListener(
+                (ObservableValue<? extends Circle> ov, Circle old_val, Circle new_val) -> {
+                    aAjouter = new_val;
+                    if ( aAjouter != null){System.out.println(aAjouter);}
+                });
+        //mesAstres.getSelectionModel().selectedIndexProperty().addListener(observable -> System.out.printf("Indice sélectionné: %d", mesAstres.getSelectionModel().getSelectedIndex()).println());
+        //int selectedIndex = mesAstres.getSelectionModel().getSelectedIndex();
+        aAjouter = mesAstres.getSelectionModel().getSelectedItem();
+
+
+
+        //ajout+retrait dnd
         planetesCourantes.addListener(new ListChangeListener<Circle>() {
             @Override
             public void onChanged(ListChangeListener.Change<? extends Circle> change) {
@@ -37,7 +54,7 @@ public class DragnDrop extends HBox{
                         System.out.println("++Ajout");
                     }
                     if (change.wasRemoved()) {
-                        planetesCourantes.remove(aAjouter);
+                        planetesCourantes.remove(mesAstres.getSelectionModel().getSelectedItem());
                         System.out.println("++Retrait");
                     }
                 }
@@ -48,20 +65,10 @@ public class DragnDrop extends HBox{
         mesAstres.setOrientation(Orientation.HORIZONTAL); // Orientation pour la ListView
         setPrefSize(500, 70); // taille ListView
 
-        //écoute l'index de la planète sélectionnée
-        mesAstres.getSelectionModel().selectedItemProperty().addListener(
-                (ObservableValue<? extends Circle> ov, Circle old_val, Circle new_val) -> {
-        aAjouter = new_val;
-        if ( aAjouter != null){System.out.println(aAjouter);}
-        });
-        //mesAstres.getSelectionModel().selectedIndexProperty().addListener(observable -> System.out.printf("Indice sélectionné: %d", mesAstres.getSelectionModel().getSelectedIndex()).println());
-        //int selectedIndex = mesAstres.getSelectionModel().getSelectedIndex();
-
                                             ///// DRAG N' DROP /////
         // mise en place du dnd avec un mouse event sur la listView
-        mesAstres.setOnDragDetected(mouseEvent -> {
-        System.out.println("Drag n' Drop detecté mon ptit pote");
-        Dragboard db = mesAstres.startDragAndDrop(TransferMode.MOVE);//autorise le mode de transfert déplacement
+        mesAstres.setOnDragDetected(mouseEvent -> {// detection du dnd
+        Dragboard db = aAjouter.startDragAndDrop(TransferMode.MOVE);//autorise le mode de transfert déplacement
         ClipboardContent content = new ClipboardContent();// put a string on dragboard
         content.putString("Planète");
         db.setContent(content);
@@ -104,7 +111,7 @@ public class DragnDrop extends HBox{
                     ma.getNewC().setPositionX(location.getX());
                     ma.getNewC().setPositionY(location.getY());
                     m.getM().getSimulationView().getEspace().listeA.add(ma.getNewC());
-                    planetesCourantes.remove(aAjouter);
+                    planetesCourantes.remove(mesAstres.getSelectionModel().getSelectedItem());
                 } else {
                     event.setDropCompleted(false);
                 }
