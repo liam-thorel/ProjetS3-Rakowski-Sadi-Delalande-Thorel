@@ -22,7 +22,9 @@ public class CreditView extends Stage {
     /** Label remerciement */
     private Label remerciement;
     /** Label nom de notre tuteur */
-    private Label tuteurEtLogo;
+    private Label tuteur;
+    /** Label nom de la créatrice du logo */
+    private Label logo;
     /** Label Createur */
     private Label createur;
     /** Application courante */
@@ -56,9 +58,13 @@ public class CreditView extends Stage {
         remerciement.getStylesheets().add(this.getClass().getResource("/Css/accueil.css").toExternalForm());
         remerciement.setPadding(new Insets(20,0,0,30));
 
-        tuteurEtLogo = new Label("Notre tuteur pour ce projet Rosenfeld Matthieu et Liloo Gourdain pour le design du logo");
-        tuteurEtLogo.setStyle("-fx-font-size: 25");
-        tuteurEtLogo.setPadding(new Insets(30,0,0,60));
+        tuteur = new Label("Notre tuteur pour ce projet Rosenfeld Matthieu");
+        tuteur.setStyle("-fx-font-size: 25");
+        tuteur.setPadding(new Insets(30,0,0,60));
+
+        logo = new Label("Liloo Gourdain pour le design du logo");
+        logo.setStyle("-fx-font-size: 25");
+        logo.setPadding(new Insets(30,0,0,60));
 
         createur = new Label("Créateurs :");
         createur.getStylesheets().add(this.getClass().getResource("/Css/accueil.css").toExternalForm());
@@ -66,19 +72,19 @@ public class CreditView extends Stage {
 
         mae = new Label("• Maelis Rakowski");
         mae.setStyle("-fx-font-size: 25");
-        mae.setPadding(new Insets(50,0,0,60));
+        mae.setPadding(new Insets(45,0,0,55));
 
         tom = new Label("• Tom Delalande");
         tom.setStyle("-fx-font-size: 25");
-        tom.setPadding(new Insets(50,0,0,60));
+        tom.setPadding(new Insets(45,0,0,55));
 
         lia = new Label("• Liam Thorel");
         lia.setStyle("-fx-font-size: 25");
-        lia.setPadding(new Insets(50,0,0,60));
+        lia.setPadding(new Insets(45,0,0,55));
 
         lei = new Label("• Leina Sadi");
         lei.setStyle("-fx-font-size: 25");
-        lei.setPadding(new Insets(50,0,0,60));
+        lei.setPadding(new Insets(45,0,0,55));
 
         retourPageAccueil.setAlignment(Pos.CENTER);
 
@@ -86,11 +92,11 @@ public class CreditView extends Stage {
         retourPageAccueil.setStyle("-fx-font: 30 arial;-fx-font-family: OpenSymbol;-fx-font-weight: bold;");
         centrage.setAlignment(Pos.CENTER);
         centrage.getChildren().add(retourPageAccueil);
-        centrage.setPadding(new Insets(0,0,50,0));
+        centrage.setPadding(new Insets(0,0,20,0));
 
 
         // texte total
-        text.getChildren().addAll(createur,tom,mae,lei,lia,remerciement, tuteurEtLogo);
+        text.getChildren().addAll(createur,tom,mae,lei,lia,remerciement, tuteur,logo);
         //mise sur l'écran des Panes au bon endroit
         root.setCenter(text);
         root.setBottom(centrage);
