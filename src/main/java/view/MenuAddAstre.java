@@ -28,13 +28,8 @@ public class MenuAddAstre extends VBox {
     /** label pour afficher une erreur s'il y' a */
     private Label error;
     private Label errorProximite;
-    private DragnDrop d;
-    private Circle newB;
+    /** nouvel astre pour le dnd */
     private Astre newC;
-
-    public Circle getNewB() {return newB;}
-
-    public MenuAjouter getmA() {return mA;}
 
     public MenuAddAstre(MenuAjouter mA) {
         //initialisation attributs
