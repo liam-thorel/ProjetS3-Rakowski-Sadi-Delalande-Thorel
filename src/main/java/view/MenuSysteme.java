@@ -79,12 +79,17 @@ public class MenuSysteme extends Pane {
         ChangeListener<String> whenSimuRateIsChange = new ChangeListener<>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                if (Float.parseFloat(t1) <= 10) {
+                if (Float.parseFloat(t1) >= -10 && Float.parseFloat(t1) <= 10) {
                     Simulation.setSimuRate(Float.parseFloat(t1));
                     limiteDepassee.setText("");
-                } else {
+                }
+                else if(Float.parseFloat(t1) > 10){
                     Simulation.setSimuRate(10f);
                     limiteDepassee.setText("la limite est de x10");
+                }
+                else{
+                    Simulation.setSimuRate(-10f);
+                    limiteDepassee.setText("la limite est de x-10");
                 }
                 if (PlaneteApp.debug) {
                     System.out.println("===========================================================");

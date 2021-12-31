@@ -25,7 +25,7 @@ public class PlaneteApp extends Application {
     /**emplacement courant de chargement du dernier fichier*/
     private File emplacement;
     /**attribut activer/desactiver le debug*/
-    public static Boolean debug = false;
+    public static Boolean debug = true;
     /**vue des crédits*/
     private CreditView creditView;
 

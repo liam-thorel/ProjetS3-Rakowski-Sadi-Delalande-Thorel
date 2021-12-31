@@ -47,14 +47,14 @@ public class OptionView extends Pane {
         Button reset = new Button("Reset");
         parametre.setAlignment(Pos.CENTER);
 
-        //set des differend eventHandler
+        //set des differents eventHandler
         save.setOnAction(onSave);
         quit.setOnAction(onQuit);
         parametre.setOnAction(onSettings);
         retour.setOnAction(onRetourSimu);
         reset.setOnAction(onReset);
 
-        // le hBox contenant les bouttons
+        // le VBox contenant les bouttons
         bouttons.setBackground(new Background(new BackgroundFill(Color.rgb(64,68,75,1), null, null)));
         bouttons.setMinWidth(250);
         bouttons.setAlignment(Pos.CENTER);

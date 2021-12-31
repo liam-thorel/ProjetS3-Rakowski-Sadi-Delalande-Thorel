@@ -3,6 +3,7 @@ package model;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ChangeListener;
+import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 
@@ -117,7 +118,7 @@ public abstract class Astre implements Serializable {
     /** calcule la somme des forces que recoit current des autres
      * @param liste les astres qui ont une influence sur current
      * @param current l'astre qui est influencé
-     * @return le vecteur de l'acceleration de this par rapport aux autres planetes
+     * @return le vecteur de l'acceleration de current par rapport aux autres planetes
      * */
     public static Vecteur calculerSommeForces(ArrayList<Astre> liste, Astre current){
         Vecteur acceleration = new Vecteur(0,0);
@@ -189,14 +190,15 @@ public abstract class Astre implements Serializable {
     /** C'est la méthode qui est appélée lorsque verifCollision retourne vrai,
      * en utilisation la loi de conservation du moment cinétique on redéfinit à vitesse du nouvel astre
      * on garde le plus gros et on supprime l'autre et on fait une "moyenne" du hsb
-     *@param a un astre
-     *@param b un astre
+     *@param a le plus lourd des deux astres
+     *@param b le plus léger des deux astres
     */
-    public static void collisionFusion(Astre a, Astre b) {
+    public static void collisionFusion(Astre a, Astre b, ObservableList<Astre> listA) {
         a.incrementMasse(b.getMasse());
         a.incrementTaille(b.getTaille() / 2);
         a.setVitesseX(((a.getVitesseX() * a.getMasse()) + (b.getVitesseX() * b.getMasse())) / (a.getMasse() + b.getMasse()));
         a.setVitesseY(((a.getVitesseY() * a.getMasse()) + (b.getVitesseY() * b.getMasse())) / (a.getMasse() + b.getMasse()));
         a.setColor(Color.hsb((a.getColor().getHue() + b.getColor().getHue()) / 2, (a.getColor().getSaturation() + b.getColor().getSaturation()) / 2, (a.getColor().getBrightness() + b.getColor().getBrightness()) / 2));
+        listA.remove(b);
     }
 }

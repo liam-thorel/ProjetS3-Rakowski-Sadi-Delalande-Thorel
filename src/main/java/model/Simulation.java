@@ -85,10 +85,8 @@ public class Simulation {
             int pY = 0;
             double vitesseX = 0;
             double vitesseY = 0;
-
             boolean creer = true;
             String [] arguments = ligne.split(" ");
-
             if (!(arguments[0].equals("//"))){
                 name = arguments[0];
                 taille = Float.parseFloat(arguments[1]);
@@ -97,12 +95,9 @@ public class Simulation {
                 pY = Integer.parseInt(arguments[4]);
                 vitesseX = Double.parseDouble(arguments[5]);
                 vitesseY = Double.parseDouble(arguments[6]);
-
             }else{
                 creer = false;
             }
-
-
             if(creer){
                 listeA.add(p.factory(name, taille, masse, pX, pY, vitesseX, vitesseY));
             }
@@ -116,15 +111,12 @@ public class Simulation {
      * @param save le fichier dans lequel on va sauvegarder
      * */
     public static void saveListeAstre(File save, ArrayList<Astre> listeAstre) throws IOException {
-        save.toPath();
         save.createNewFile();
         String commentaire = "// nom taille masse positionX positionY vitesseX vitesseY estFixe \n";
         Files.write(save.toPath(), commentaire.getBytes(), StandardOpenOption.APPEND);
         for(Astre a : listeAstre){
             String arg = a.getArgString();
             Files.write(save.toPath(), arg.getBytes(), StandardOpenOption.APPEND);
-
-
         }
     }
 

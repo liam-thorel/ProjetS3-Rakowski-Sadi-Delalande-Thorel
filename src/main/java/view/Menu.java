@@ -150,6 +150,9 @@ public class Menu extends Pane {
     private EventHandler<ActionEvent> onOption = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent) {
+            if(PlaneteApp.debug){
+                System.out.println("options ouvertes");
+            }
             sV.ouvrirMenuOption();
         }
     };
