@@ -90,6 +90,10 @@ public class PlaneteApp extends Application {
 
     /**Initialise et la logique de la simulation et crée la vue de la simulation*/
     public void initSimulation(Simulation s){
+        if(simulationView != null){
+            simulationView.detroy();
+            simulationView = null;
+        }
         this.simulation=s;
         simulationView = new SimulationView(s, this);
     }
