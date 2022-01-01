@@ -74,6 +74,7 @@ public class PlaneteApp extends Application {
         if(simulationView != null){
             simulationView.detroy();
             simulationView = null;
+            simulation = null;
         }
         startView = new StartView(this);
 

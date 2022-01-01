@@ -138,6 +138,7 @@ public class SimulationView extends Stage {
 
     public void detroy(){
         espace = null;
+        s = null;
         OptionView.destroyOption();
         menu.setMenuSysteme(null);
         menu.getMenuAjouter().setAddAstre(null);
