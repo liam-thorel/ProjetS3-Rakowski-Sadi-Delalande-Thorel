@@ -118,7 +118,6 @@ public class EspaceView extends Pane {
         return planete;
     }
 
-
     /**
      * Gestion du mouvement des astres:
      *  Calcule la nouvelle position de cahque astre par rapport aux autres avec Astre.addVitesse() et Astre.setPosition()
@@ -131,28 +130,24 @@ public class EspaceView extends Pane {
     public void move(){
 
         for(Astre a : listeAetC.keySet()) {
-            if (sV.getApp().getDebug())System.out.println("ancienne position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
             Astre.addVitesse(Simulation.getOther(a, s.getListeAstre()), a);
             Astre.setPositions(a);
-
-            if(PlaneteApp.debug) {
+            /*if(PlaneteApp.debug) {
                 System.out.println(a.hashCode());
                 System.out.println("nouvelle position de " + a.getNom() + " " + a.getPositionX() + " " + a.getPositionY());
-                System.out.println("=============================" + Simulation.getSimuRate() + "===================");}
-
+                System.out.println("=============================" + Simulation.getSimuRate() + "===================");}*/
             Circle currentC = listeAetC.get(a);
             currentC.relocate(a.getPositionX() - a.getTaille()/2, a.getPositionY() - a.getTaille()/2);
             for (Astre autre : Simulation.getOther(a, listeAetC.keySet())){
                 if(Astre.verifCollision(a,autre) && colisionBoolean){
                     if (a.getMasse()>=autre.getMasse()){
-                        Astre.collisionFusion(a,autre);
-                        listeA.remove(autre);
+                        Astre.collisionFusion(a,autre, listeA);
+
                     } else{
-                        Astre.collisionFusion(autre,a);
-                        listeA.remove(a);
+                        Astre.collisionFusion(autre,a, listeA);
                     }
                     sV.getMenu().getMenuSysteme().afficherList();
-
+                    return;
                 }
             }
             if(showingT.getValue()){
@@ -193,7 +188,12 @@ public class EspaceView extends Pane {
                     s.getListeAstre().remove(a);
                     listeCetA.remove(listeAetC.get(a));
                     listeAetC.remove(a);
-
+                    //listeA.remove(autre);
+                    if(PlaneteApp.debug){
+                        System.out.println(listeA);
+                        System.out.println(listeCetA);
+                        System.out.println(listeAetC);
+                    }
                 }
             }
 
@@ -209,7 +209,6 @@ public class EspaceView extends Pane {
      * @param c le cercle auquel on va ajouter le listener
      * */
     public void setSelectedListener(HashMap<Circle, Astre> hashMap, Circle c){
-
         //eventHandler de la selection des cercles: si un cercle est selectionné on affiche ses infos
          EventHandler<MouseEvent> selected = new EventHandler<MouseEvent>() {
             @Override
@@ -227,7 +226,6 @@ public class EspaceView extends Pane {
                         sV.getMenu().getMenuSysteme().rmv();
                     }
                 };
-
                 //eventHandler de la modification pour le boutton modifier
                 EventHandler<ActionEvent> onModify = new EventHandler<ActionEvent>() {
                     @Override
@@ -235,13 +233,10 @@ public class EspaceView extends Pane {
                         sV.getMenu().getMenuSysteme().modifierInfos(selectedA, supprimer, modifier);
                     }
                 };
-
                 supprimer.setOnAction(supression);
                 modifier.setOnAction(onModify);
-
                 //affichage des infos avec les bouttons associés
                 sV.getMenu().getMenuSysteme().afficherInfos(selectedA, supprimer, modifier);
-
             }
         };
          c.setOnMouseClicked(selected);
@@ -302,13 +297,10 @@ public class EspaceView extends Pane {
     };
 
 
-
-
+    /**efface toutes les trajectoires de listeTrajectoires*/
     public void effacerAllTrajectoire(){
         getChildren().removeAll(listeTrajectoires);
         listeTrajectoires.clear();
-
-
     }
 
     public void setShowingT(boolean showingT) {

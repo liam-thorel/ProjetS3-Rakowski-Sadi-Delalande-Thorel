@@ -96,7 +96,15 @@ public class SimulationView extends Stage {
         menuOption.toFront();
         menuOption.relocate(0, 0);
         if(!all.getChildren().contains(menuOption)){
-        all.getChildren().add(menuOption);}
+            if(PlaneteApp.debug){
+                System.out.println("je add au children");
+                System.out.println(all.getChildren());
+            }
+            all.getChildren().add(menuOption);
+        }
+        if(PlaneteApp.debug){
+            System.out.println(all.getChildren());
+        }
     }
 
     public Simulation getSimulation() {

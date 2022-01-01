@@ -192,6 +192,7 @@ public abstract class Astre implements Serializable {
      * on garde le plus gros et on supprime l'autre et on fait une "moyenne" du hsb
      *@param a le plus lourd des deux astres
      *@param b le plus léger des deux astres
+     * @param listA la liste d'où l'on supprime l'astre
     */
     public static void collisionFusion(Astre a, Astre b, ObservableList<Astre> listA) {
         a.incrementMasse(b.getMasse());
