@@ -42,7 +42,7 @@ public class OptionView extends Pane {
         save.setAlignment(Pos.CENTER);
         Button quit = new Button("Retour à l'écran titre");
         quit.setAlignment(Pos.CENTER);
-        Button parametre = new Button("Parametres");
+        Button parametre = new Button("Paramètres");
         parametre.setAlignment(Pos.CENTER);
         Button reset = new Button("Réinitialiser");
         parametre.setAlignment(Pos.CENTER);
@@ -103,8 +103,8 @@ public class OptionView extends Pane {
             titre.setTextFill(Paint.valueOf("white"));
             titre.setStyle("-fx-font-size: 15");
             bouttons.getChildren().add(titre);
-            Button retourOptions= new Button("retour");
-            CheckBox showTraj = new CheckBox("afficher les trajectoires");
+            Button retourOptions= new Button("Retour");
+            CheckBox showTraj = new CheckBox("Afficher/Masquer les trajectoires");
             CheckBox colision = new CheckBox("Activer/Désativer les colisions");
             showTraj.setSelected(sV.getEspace().isShowingT());
             colision.setSelected(sV.getEspace().isColisionBoolean() );

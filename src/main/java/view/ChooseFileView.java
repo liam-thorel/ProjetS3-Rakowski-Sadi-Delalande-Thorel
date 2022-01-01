@@ -37,7 +37,7 @@ public class ChooseFileView extends Stage {
         root = new BorderPane();
         boutons = new VBox();
         chargerSystemeSolaire = new Button("Charger système solaire");
-        chargerFile = new Button("Charger simulation");
+        chargerFile = new Button("Charger à partir d'un fichier");
         retourPageAccueil = new Button("Retour à la Page d'accueil");
 
         //Stylisation du bouton chargerSystemeSolaire + ajout fonction quand cliquer

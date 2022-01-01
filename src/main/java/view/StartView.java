@@ -41,7 +41,7 @@ public class StartView extends Pane {
         field = new VBox();
         centrage = new VBox();
         nouvelle = new Button("Nouveau Systeme");
-        charger = new Button("Charger Systeme");
+        charger = new Button("Charger un Systeme");
         credit = new Button("Crédit");
         titre = new Label("Trajectoire de planètes");
 
