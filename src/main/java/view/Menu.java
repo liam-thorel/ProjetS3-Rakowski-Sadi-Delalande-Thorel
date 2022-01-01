@@ -173,5 +173,13 @@ public class Menu extends Pane {
     public MenuSysteme getMenuSysteme() {
         return menuSysteme;
     }
+
+    public void setMenuAjouter(MenuAjouter menuAjouter) {
+        this.menuAjouter = menuAjouter;
+    }
+
+    public void setMenuSysteme(MenuSysteme menuSysteme) {
+        this.menuSysteme = menuSysteme;
+    }
 }
 

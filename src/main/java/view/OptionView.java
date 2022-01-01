@@ -85,6 +85,7 @@ public class OptionView extends Pane {
     private EventHandler<ActionEvent> onQuit = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent) {
+
             sV.getApp().initStart();
         }
     };
@@ -170,5 +171,7 @@ public class OptionView extends Pane {
         return optionView;
     }
 
-
+    public static void destroyOption(){
+        optionView = null;
+    }
 }

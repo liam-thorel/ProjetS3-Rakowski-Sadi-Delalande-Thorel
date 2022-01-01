@@ -94,6 +94,7 @@ public class SimulationView extends Stage {
         espace.setPlaying(false);
         optionsOuvertes.setValue(true);
         menuOption.toFront();
+        menuOption.setViewOrder(0);
         menuOption.relocate(0, 0);
         if(!all.getChildren().contains(menuOption)){
             if(PlaneteApp.debug){
@@ -133,6 +134,15 @@ public class SimulationView extends Stage {
 
     public static Simulation getS() {
         return s;
+    }
+
+    public void detroy(){
+        espace = null;
+        OptionView.destroyOption();
+        menu.setMenuSysteme(null);
+        menu.getMenuAjouter().setAddAstre(null);
+        menu.setMenuAjouter(null);
+        menu = null;
     }
 
 }

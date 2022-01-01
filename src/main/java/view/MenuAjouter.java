@@ -89,4 +89,8 @@ public class MenuAjouter extends Pane {
     public HBox getMenuAstre() {
         return menuAstre;
     }
+
+    public void setAddAstre(MenuAddAstre addAstre) {
+        this.addAstre = addAstre;
+    }
 }

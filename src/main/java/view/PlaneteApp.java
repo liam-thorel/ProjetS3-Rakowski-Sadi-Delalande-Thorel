@@ -71,7 +71,12 @@ public class PlaneteApp extends Application {
     /**Crée la vue afficher au démarrage de l'application*/
     public void initStart(){
         stage.setMaximized(false);
+        if(simulationView != null){
+            simulationView.detroy();
+            simulationView = null;
+        }
         startView = new StartView(this);
+
         stage.setMaximized(true);
 
     }
