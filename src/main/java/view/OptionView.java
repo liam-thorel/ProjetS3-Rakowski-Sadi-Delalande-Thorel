@@ -40,11 +40,11 @@ public class OptionView extends Pane {
         Button retour = new Button("Retour à la simulation");
         Button save = new Button("Enregistrer");
         save.setAlignment(Pos.CENTER);
-        Button quit = new Button("Quitter");
+        Button quit = new Button("Retour à l'écran titre");
         quit.setAlignment(Pos.CENTER);
         Button parametre = new Button("Parametres");
         parametre.setAlignment(Pos.CENTER);
-        Button reset = new Button("Reset");
+        Button reset = new Button("Réinitialiser");
         parametre.setAlignment(Pos.CENTER);
 
         //set des differents eventHandler
