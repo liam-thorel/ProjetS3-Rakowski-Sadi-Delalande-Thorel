@@ -52,6 +52,7 @@ public class Simulation {
 
     public static void setSimuRate(float simuRate) {
         Simulation.simuRate = simuRate;
+        scaleTemps = 43200 * simuRate;
     }
 
 

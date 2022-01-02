@@ -144,8 +144,8 @@ public abstract class Astre implements Serializable {
         Vecteur vAcc = calculerSommeForces(listeA,current);
 
         //System.out.println("je met a jour la vitesse");
-        current.setVitesseX(current.getVitesseX() + (vAcc.getX() * (Simulation.scaleTemps* Simulation.getSimuRate())));
-        current.setVitesseY(current.getVitesseY() +(vAcc.getY() * (Simulation.scaleTemps * Simulation.getSimuRate())))  ;
+        current.setVitesseX(current.getVitesseX() + (vAcc.getX() * (Simulation.scaleTemps)));
+        current.setVitesseY(current.getVitesseY() +(vAcc.getY() * (Simulation.scaleTemps)))  ;
 
     }
 
@@ -154,8 +154,8 @@ public abstract class Astre implements Serializable {
      **/
 
     public static void setPositions(Astre current){
-        current.setPositionX(current.getPositionX() + (current.getVitesseX() * (Simulation.scaleTemps* Simulation.getSimuRate()) )/Simulation.scaleDistance);
-        current.setPositionY(current.getPositionY() + (current.getVitesseY() * (Simulation.scaleTemps* Simulation.getSimuRate()))/Simulation.scaleDistance);
+        current.setPositionX(current.getPositionX() + (current.getVitesseX() * (Simulation.scaleTemps) )/Simulation.scaleDistance);
+        current.setPositionY(current.getPositionY() + (current.getVitesseY() * (Simulation.scaleTemps))/Simulation.scaleDistance);
     }
 
 

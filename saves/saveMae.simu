@@ -1,4 +1,4 @@
-// nom taille masse positionX positionY vitesseX vitesseY estFixe
+// nom taille masse positionX positionY vitesseX vitesseY
 planete 50 600000 500 300 0 0
 lune 20 1 400 450 4000 -4000
 lune2 20 1 450 500 3000 -100
