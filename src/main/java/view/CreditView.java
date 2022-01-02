@@ -35,9 +35,9 @@ public class CreditView extends Stage {
     private HBox centrage;
     /** Label Maelis Rakowski */
     private Label mae;
-    /** Label Delaalnde Tom */
+    /** Label Delalande Tom */
     private Label tom;
-    /** Label Liam Thore */
+    /** Label Liam Thorel */
     private Label lia;
     /** Label Leina Sadi */
     private Label lei;
