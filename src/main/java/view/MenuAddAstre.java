@@ -152,9 +152,10 @@ public class MenuAddAstre extends VBox {
                     // insère la planète normalement
                     else{
                         Astre p = new Planete(n,t,m,pX,pY,vX,vY);
-                        newC = p;
-                        Circle a = EspaceView.creerPlaneteCercle(p);
-                        mA.getDnd().getPlanetesCourantes().add(a);
+                        mA.getM().getSimulationView().getEspace().getListeA().add(p);
+                        //newC = p;
+                        //Circle a = EspaceView.creerPlaneteCercle(p);
+                        //mA.getDnd().getPlanetesCourantes().add(a);
                         getChildren().remove(error);
                     }
                     //affiche une erreur, car donnée(s) pas de bon type
