@@ -27,6 +27,7 @@ public class Simulation {
 
     public Simulation(){
         listeAstre = new ArrayList<>();
+        setSimuRate(1);
     }
 
     /**
@@ -36,6 +37,7 @@ public class Simulation {
     public Simulation(File save, ArrayList<Astre> listeAstre) throws IOException, ClassNotFoundException {
         this.listeAstre = listeAstre;
         file = save;
+        setSimuRate(1);
     }
 
     public ArrayList<Astre> getListeAstre() {
